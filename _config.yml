@@ -1,7 +1,7 @@
 # Site settings
 title: "Seabilwe P.L. Tilodi | GIS Analyst"
 description: "My personal resume and portfolio demonstrating my GIS expertise and projects."
-url: "https://yourusername.github.io"  # Replace with your GitHub Pages URL
+url: "https://seabilwe.github.io"  # Replace with your GitHub Pages URL
 baseurl: ""  # Leave empty if deploying at the root
 
 # Build settings
