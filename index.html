@@ -14,10 +14,10 @@
       COLOR & FONT VARIABLES
     --------------------------------*/
     :root {
-      --dark-bg: #333652;
-      --accent-1: #f1b345;
-      --accent-2: #90adc6;
-      --text-light: #ffffff;
+      --dark-bg: #333652;    /* main dark background */
+      --accent-1: #f1b345;   /* primary accent */
+      --accent-2: #90adc6;   /* secondary accent */
+      --text-light: #ffffff; /* main text color */
       --font-main: 'Raleway', sans-serif;
     }
 
@@ -42,6 +42,9 @@
     }
     a:hover {
       text-decoration: underline;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
     }
 
     /*--------------------------------
@@ -82,8 +85,8 @@
       width: 100%;
       height: 100vh;
       background: url('images/contour.png') no-repeat center center/cover;
-      /* Replace above with your actual contour image, e.g.:
-         background: url('images/contours.png') no-repeat center center/cover; */
+      /* If needed, update the URL to: 
+         https://github.com/seabilwe/seabilwe.github.io/blob/main/images/contour.png */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -91,14 +94,14 @@
       text-align: center;
       padding: 2rem;
     }
-    /* Dark overlay for better text contrast */
+    /* Dark overlay to keep background from becoming too light */
     header::after {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(51, 54, 82, 0.6);
+      background: rgba(51, 54, 82, 0.4);
       z-index: 1;
     }
     .hero-content {
@@ -110,7 +113,6 @@
     .hero-content h1 {
       font-size: 3rem;
       margin-bottom: 1rem;
-      font-weight: 700;
     }
     .hero-content p {
       font-size: 1.2rem;
@@ -136,7 +138,7 @@
     }
 
     /*--------------------------------
-      SECTIONS
+      MAIN CONTAINER
     --------------------------------*/
     .container {
       width: 90%;
@@ -155,7 +157,24 @@
       padding-bottom: 0.3rem;
     }
 
-    /* Two-column layout for certain sections */
+    /*--------------------------------
+      BIO SECTION
+    --------------------------------*/
+    .bio-block {
+      background-color: #2e2e3a;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 3rem;
+    }
+    .bio-block p {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+    }
+
+    /*--------------------------------
+      QUALIFICATIONS SECTION
+    --------------------------------*/
     .row {
       display: flex;
       flex-wrap: wrap;
@@ -163,7 +182,7 @@
     }
     .col {
       flex: 1;
-      min-width: 250px; /* ensures columns don't get too narrow */
+      min-width: 280px;
       background-color: #2e2e3a;
       border-radius: 8px;
       padding: 1.5rem;
@@ -188,6 +207,107 @@
       color: var(--accent-1);
       position: absolute;
       left: -1.2rem;
+    }
+
+    /*--------------------------------
+      EXPERIENCE SECTION
+    --------------------------------*/
+    .exp-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .exp-col {
+      flex: 1;
+      min-width: 280px;
+      background-color: #2e2e3a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .exp-col h3 {
+      color: var(--accent-2);
+      margin-bottom: 0.5rem;
+    }
+    .exp-role {
+      font-weight: 600;
+      margin: 0.5rem 0;
+    }
+    .exp-col ul {
+      list-style-type: none;
+      padding-left: 1.2rem;
+      margin-top: 0.5rem;
+    }
+    .exp-col li {
+      position: relative;
+      margin-bottom: 0.8rem;
+    }
+    .exp-col li::before {
+      content: "•";
+      color: var(--accent-1);
+      position: absolute;
+      left: -1.2rem;
+    }
+
+    /*--------------------------------
+      SKILLS SECTION (Progress Bars)
+    --------------------------------*/
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+    .skill-block {
+      flex: 1;
+      min-width: 280px;
+      background-color: #2e2e3a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .skill-title {
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--accent-2);
+    }
+    .skill-bar {
+      width: 100%;
+      background: #444;
+      border-radius: 20px;
+      margin-bottom: 1rem;
+      height: 20px;
+      overflow: hidden;
+    }
+    .skill-level {
+      background-color: var(--accent-2);
+      height: 100%;
+      border-radius: 20px;
+    }
+
+    /*--------------------------------
+      BLOG & MAPS SECTIONS
+    --------------------------------*/
+    .basic-block {
+      background-color: #2e2e3a;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      margin-bottom: 2rem;
+    }
+    .section-intro {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      color: var(--accent-2);
+    }
+    .section-btn {
+      margin-top: 1rem;
+    }
+
+    /*--------------------------------
+      CONTACT SECTION (Indented Contact Info)
+    --------------------------------*/
+    .contact-details {
+      margin-left: 2rem;
     }
 
     /*--------------------------------
@@ -216,10 +336,10 @@
       }
     }
     @media (max-width: 600px) {
-      .row {
+      .row, .exp-row, .skills-container {
         flex-direction: column;
       }
-      .col {
+      .col, .exp-col, .skill-block {
         margin-bottom: 1rem;
       }
     }
@@ -229,12 +349,10 @@
   <!-- Navigation Bar -->
   <nav>
     <ul>
-      <li><a href="#home">Home</a></li>
-      <li><a href="#qualifications">Qualifications</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#blog">Blog</a></li>
-      <li><a href="#maps">Maps</a></li>
-      <li><a href="#contact">Contact</a></li>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="maps.html">Maps</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="more.html">More</a></li>
     </ul>
   </nav>
 
@@ -242,7 +360,7 @@
   <header id="home">
     <div class="hero-content">
       <h1>Seabilwe P.L. Tilodi</h1>
-      <p>GIS Analyst specializing in transforming spatial data into actionable insights.</p>
+      <p>GIS Analyst specialising in transforming spatial data into actionable insights.</p>
       <a class="btn" href="Seabilwe_P_L_Tilodi_Resume.pdf" download>Download PDF CV</a>
       <a class="btn" href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" target="_blank">LinkedIn Profile</a>
     </div>
@@ -250,6 +368,15 @@
 
   <!-- Main Container -->
   <div class="container">
+
+    <!-- Bio Section -->
+    <section id="bio">
+      <div class="bio-block">
+        <p>
+          I am passionate about Geographic Information Systems (GIS) and Remote Sensing and how they transform raw data into actionable insights across industries like environmental conservation and urban planning. Skilled in spatial analysis, data modeling, cartography, and remote sensing, I work with tools such as QGIS, GeoServer, PostGIS, and GDAL/OGR to develop innovative geospatial solutions. My expertise extends to field data collection, cloud-based integration, and open-source GIS, with a strong focus on sustainability in areas like biodiversity, water management, and energy supply. I excel in problem-solving, project coordination, and communication, collaborating with academia, government, and civil society to drive impactful research and solutions. As an advocate for open-source GIS technology, I am committed to making geospatial data more accessible and continuously refining my skills to support meaningful projects.
+        </p>
+      </div>
+    </section>
 
     <!-- Qualifications Section -->
     <section id="qualifications">
@@ -259,9 +386,10 @@
         <div class="col">
           <h3>Education</h3>
           <ul>
-            <li>MSc in GIS and Remote Sensing</li>
-            <li>BSc(Hons) in Geography</li>
-            <li>BSc Geological Science</li>
+            <li><strong>University of the Witwatersrand</strong></li>
+            <li>MSc in GIS and Remote Sensing (2019 - 2020)</li>
+            <li>BSc(Hons) in Geography (2018)</li>
+            <li>BSc Geological Science (2015 - 2017)</li>
           </ul>
         </div>
         <!-- Certificates Block -->
@@ -278,23 +406,92 @@
 
     <!-- Experience Section -->
     <section id="experience">
-      <h2>Work Experience</h2>
-      <div class="row">
-        <!-- Experience Block 1 -->
-        <div class="col">
+      <h2>Experience</h2>
+      <div class="exp-row">
+        <!-- Kartoza - Head of Training -->
+        <div class="exp-col">
           <h3>Kartoza (Pty) Ltd</h3>
+          <p class="exp-role">Head of Training (2024 – Present)</p>
           <ul>
-            <li>Head of Training (2024 – Present)</li>
-            <li>GIS Specialist / GISc Technician (2020 – 2024)</li>
+            <li>Design and deliver training programs, workshops, and webinars on geospatial software.</li>
+            <li>Develop training materials, user manuals, and online tutorials.</li>
+            <li>Provide technical support and troubleshooting for geospatial software users.</li>
+            <li>Collaborate with software developers and project teams to stay updated on new features.</li>
           </ul>
         </div>
-        <!-- Experience Block 2 -->
-        <div class="col">
-          <h3>Other Roles</h3>
+        <!-- Kartoza - GIS Specialist -->
+        <div class="exp-col">
+          <h3>Kartoza (Pty) Ltd</h3>
+          <p class="exp-role">GIS Specialist (2020 – 2024)</p>
           <ul>
-            <li>MS Tutors (2018 – 2019)</li>
-            <li>Gauteng City-Region Observatory (2019 – 2020)</li>
+            <li>Conducted spatial analysis, geoprocessing, and problem-solving using QGIS, GeoServer, PostGIS, and GDAL/OGR.</li>
+            <li>Managed data acquisition, ETL processes, spatial databases, and remote sensing workflows.</li>
+            <li>Developed GIS systems, automated workflows, and web mapping applications using modern tools.</li>
+            <li>Designed cartographic products, maps, and data visualizations for various projects.</li>
+            <li>Provided training, technical support, and project coordination.</li>
           </ul>
+        </div>
+      </div>
+      <div class="exp-row" style="margin-top:2rem;">
+        <!-- GCRO -->
+        <div class="exp-col">
+          <h3>Gauteng City-Region Observatory (GCRO)</h3>
+          <p class="exp-role">GIS Research Assistant / Intern (2019 – 2020)</p>
+          <ul>
+            <li>Collected, cleaned, and managed historical mine datasets.</li>
+            <li>Georeferenced old mine and city maps to improve spatial analysis.</li>
+            <li>Conducted research on mining impacts on the socio-economic landscape.</li>
+          </ul>
+        </div>
+        <!-- Tutors -->
+        <div class="exp-col">
+          <h3>MS Tutors</h3>
+          <p class="exp-role">High School Geography Tutor (2018 – 2019)</p>
+          <ul>
+            <li>Provided tutoring for grades 10 and 11 at Orlando High School and Diepsloot.</li>
+            <li>Delivered engaging lessons and offered in-person and email support.</li>
+            <li>Assisted with logistical and administrative support for sessions.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills-container">
+        <div class="skill-block">
+          <div class="skill-title">Spatial Analysis & Geoprocessing</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 100%;"></div>
+          </div>
+
+          <div class="skill-title">GIS & Remote Sensing Software Proficiency</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 90%;"></div>
+          </div>
+
+          <div class="skill-title">Data Acquisition, ETL & Spatial DB Management</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 80%;"></div>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <div class="skill-title">Cartography & Data Visualization</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 100%;"></div>
+          </div>
+
+          <div class="skill-title">Coding & Automation (Python, SQL)</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 80%;"></div>
+          </div>
+
+          <div class="skill-title">Project Management & Communication</div>
+          <div class="skill-bar">
+            <div class="skill-level" style="width: 100%;"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -302,32 +499,42 @@
     <!-- Blog Section -->
     <section id="blog">
       <h2>Blog</h2>
-      <p>
-        Coming soon! Here you’ll find articles on GIS innovations, project insights, and industry updates. 
-        <br><br>
-        In the meantime, feel free to <a href="blog.html">visit the Blog page</a> if you’ve created a separate file for it.
-      </p>
+      <div class="basic-block">
+        <p class="section-intro">
+          Explore my articles on GIS innovations, analytical methods, and expert tips. Click below to read the latest posts.
+        </p>
+        <div class="section-btn">
+          <a class="btn" href="blogs.html">Visit Blog</a>
+        </div>
+      </div>
     </section>
 
     <!-- Maps Section -->
     <section id="maps">
       <h2>Maps</h2>
-      <p>
-        A showcase of interactive maps and geospatial visualizations will appear here. 
-        <br><br>
-        You can create a separate <a href="maps.html">Maps page</a> for deeper explorations.
-      </p>
+      <div class="basic-block">
+        <p class="section-intro">
+          Discover interactive maps and geospatial visualizations showcasing innovative projects and spatial data insights.
+        </p>
+        <div class="section-btn">
+          <a class="btn" href="maps.html">View Maps</a>
+        </div>
+      </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
       <h2>Contact</h2>
-      <p>Interested in collaborating or learning more? Feel free to reach out!</p>
-      <ul>
-        <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
-        <li>Phone: +27 79 473 5582</li>
-      </ul>
-      <p>References available upon request.</p>
+      <div class="basic-block">
+        <p>Interested in collaborating or learning more? Feel free to reach out!</p>
+        <div class="contact-details">
+          <ul>
+            <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
+            <li>Phone: +27 79 473 5582</li>
+          </ul>
+        </div>
+        <p>References available upon request.</p>
+      </div>
     </section>
   </div>
 
