@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>More | Seabilwe P.L. Tilodi</title>
+  
+  <!-- Google Fonts: Raleway -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    :root {
+      --dark-bg: #333652;
+      --accent-1: #f1b345;
+      --accent-2: #90adc6;
+      --text-light: #ffffff;
+      --font-main: 'Raleway', sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.5;
+      overflow-x: hidden;
+      padding-bottom: 2rem;
+    }
+    a {
+      color: var(--accent-1);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    /*--------------------------------
+      NAVIGATION
+    --------------------------------*/
+    nav {
+      width: 100%;
+      background-color: rgba(51, 54, 82, 0.9);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      margin: 0;
+    }
+    nav li {
+      margin: 0 1rem;
+    }
+    nav a {
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: var(--accent-2);
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 5rem auto 2rem auto;
+    }
+    section {
+      margin-bottom: 4rem;
+    }
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-1);
+      border-bottom: 2px solid var(--accent-2);
+      display: inline-block;
+      padding-bottom: 0.3rem;
+    }
+    .block {
+      background-color: #2e2e3a;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .block h3 {
+      color: var(--accent-2);
+      margin-bottom: 0.5rem;
+    }
+    .block ul {
+      list-style-type: none;
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+    }
+    .block li {
+      position: relative;
+      margin-bottom: 0.8rem;
+    }
+    .block li::before {
+      content: "•";
+      color: var(--accent-1);
+      position: absolute;
+      left: -1.2rem;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #2b2b35;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    @media (max-width: 600px) {
+      nav ul {
+        flex-direction: column;
+      }
+      nav li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="maps.html">Maps</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="more.html">More</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <!-- Key Projects Section -->
+    <section id="projects">
+      <h2>Key Projects</h2>
+      <div class="block">
+        <h3>Waterberg Biosphere Reserve - USAID Project (2020 – 2022, South Africa)</h3>
+        <ul>
+          <li>Developed a Strategic Environmental Management Plan (SEMP) using GIS and remote sensing to assess biodiversity, climate resilience, and ecological infrastructure.</li>
+          <li>Contributed to the expansion nomination of the Waterberg Biosphere Reserve.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Electronic Metadata Catalogue (EMC) & Data Capture Project Register – DALRRD (2022 – 2024, South Africa)</h3>
+        <ul>
+          <li>Created a national metadata catalogue for SA Spatial Data Infrastructure (SASDI) to improve data accessibility and governance.</li>
+          <li>Published and managed datasets via <a href="https://catalogue.sasdi.gov.za" target="_blank">SASDI Catalogue</a>.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Sustainable Energy for All (SE4All) - Energy Modelling Platform (2024, Italy)</h3>
+        <ul>
+          <li>Developed training content on energy modelling and geospatial data management.</li>
+          <li>Delivered training for academics and professionals from developing countries.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Global & Regional Electrification & GIS Initiatives</h3>
+        <ul>
+          <li>Supported global electrification platforms for Benin, Somalia, and Somaliland (World Bank & KTH Projects).</li>
+          <li>Applied GIS for sustainable groundwater management (SADC Groundwater Management Institute).</li>
+          <li>Contributed to global groundwater data initiatives (IGRAC - GGIS).</li>
+          <li>Assisted in GIS-based analysis for clean cooking solutions (Clean Cooking Alliance).</li>
+          <li>Led FOSS GIS training and migration for national geospatial systems (St. Lucia & Dominica Governments).</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Organizations & Conferences Section -->
+    <section id="orgs-conferences">
+      <h2>Organizations & Conferences</h2>
+      <div class="block">
+        <h3>Organizations</h3>
+        <ul>
+          <li>GISSA Member (2020 – Present)</li>
+          <li>SAGTA Member (2022 – Present)</li>
+          <li>OSGeo 2022 Charter Member</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Conferences & Presentations</h3>
+        <ul>
+          <li>FOSS4G - Florence, Italy – Classroom GIS in South Africa</li>
+          <li>Presented EMC and DCPR Training for government officials</li>
+          <li>Southern African Geography Teacher’s Association (SAGTA) – Academic Conference, June 2024 (Data collection for the Classroom)</li>
+          <li>Geospatial Data Management Trainer – Energy Modelling Platform, Joint Global Training School (smr 3963)</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
+  </footer>
+</body>
+</html>
