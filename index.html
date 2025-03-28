@@ -6,73 +6,129 @@
   <title>Seabilwe P.L. Tilodi | GIS Analyst</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    /* CSS Variables for our color palette */
+    :root {
+      --dark-bg: #36454F;
+      --light-blue: #B6D0E2;
+      --light-purple: #CCCCFF;
+      --accent-blue: #A7C7E7;
+      --text-color: #e0e0e0;
+    }
     /* Base styling */
     body {
       margin: 0;
       font-family: 'Roboto', sans-serif;
-      background-color: #f5f5f5;
-      color: #333;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
     a {
-      color: #007acc;
+      color: var(--accent-blue);
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-    /* Header */
+    /* Header / Intro Section */
     header {
-      background: linear-gradient(135deg, #dceefc, #ffd6d6);
-      color: #333;
+      position: relative;
+      min-height: 100vh;
+      background: url('https://via.placeholder.com/1920x1080?text=GIS+Background') no-repeat center center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 2rem 1rem;
-      border-bottom: 2px solid #ccc;
+      padding: 2rem;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(54, 69, 79, 0.7); /* dark overlay */
+      z-index: 1;
+    }
+    header .intro-content {
+      position: relative;
+      z-index: 2;
     }
     header h1 {
-      margin: 0;
-      font-size: 2.8rem;
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
     }
     header p {
-      margin: 0.5rem 0;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
     }
-    .contact a {
-      margin: 0 0.5rem;
-      font-weight: bold;
+    .btn {
+      background-color: var(--light-blue);
+      color: var(--dark-bg);
+      border: none;
+      padding: 0.8rem 1.2rem;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1rem;
+      margin: 0.5rem;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:hover {
+      background-color: var(--accent-blue);
     }
     /* Navigation */
     nav {
-      background-color: #e0e0e0;
-      padding: 0.5rem;
-      text-align: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: var(--dark-bg);
+      z-index: 10;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0.5rem 0;
+    }
+    nav li {
+      margin: 0 1rem;
     }
     nav a {
-      margin: 0 1rem;
+      color: var(--text-color);
       font-weight: 500;
+      transition: color 0.3s ease;
     }
-    /* Main content container */
+    nav a:hover {
+      color: var(--accent-blue);
+    }
+    /* Main content container for inner pages */
     .container {
       max-width: 900px;
-      margin: 2rem auto;
+      margin: 3rem auto;
       padding: 0 1rem;
     }
-    /* Sections */
+    /* Section styling */
     section {
-      background: #fff;
-      margin-bottom: 2rem;
-      padding: 1.5rem;
-      border-left: 6px solid #007acc;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #2b3a44;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
     section h2 {
       margin-top: 0;
-      color: #007acc;
-      border-bottom: 1px solid #ccc;
+      color: var(--light-blue);
+      border-bottom: 2px solid var(--accent-blue);
       padding-bottom: 0.5rem;
     }
     section h3 {
-      color: #d9534f;
+      color: var(--light-purple);
       margin-bottom: 0.5rem;
     }
     section ul {
@@ -80,13 +136,13 @@
       padding-left: 0;
     }
     section ul li {
+      margin-bottom: 0.8rem;
       padding-left: 1rem;
       position: relative;
-      margin-bottom: 0.5rem;
     }
-    section ul li:before {
+    section ul li::before {
       content: "•";
-      color: #007acc;
+      color: var(--accent-blue);
       position: absolute;
       left: 0;
     }
@@ -94,18 +150,19 @@
     footer {
       text-align: center;
       padding: 1rem;
-      background: #e0e0e0;
+      background: #2b3a44;
       font-size: 0.9rem;
-      color: #555;
-      border-top: 1px solid #ccc;
+      color: var(--text-color);
     }
     /* Responsive adjustments */
     @media (max-width: 600px) {
       header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
       }
-      nav a {
-        display: block;
+      nav ul {
+        flex-direction: column;
+      }
+      nav li {
         margin: 0.5rem 0;
       }
     }
@@ -113,168 +170,140 @@
 </head>
 <body>
 
-  <header>
-    <h1>Seabilwe P.L. Tilodi</h1>
-    <p>GIS Analyst</p>
-    <p class="contact">
-      +27 79 473 5582 | <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a> | 
-      <a href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" target="_blank">LinkedIn</a>
-    </p>
-  </header>
-
+  <!-- Navigation Bar -->
   <nav>
-    <a href="#profile">Profile</a>
-    <a href="#experience">Experience</a>
-    <a href="#education">Education</a>
-    <a href="#projects">Projects</a>
-    <a href="#skills">Skills</a>
-    <a href="#languages">Languages</a>
-    <a href="#references">References</a>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#qualifications">Qualifications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
+  <!-- Intro/Home Section -->
+  <header id="home">
+    <div class="intro-content">
+      <h1>Seabilwe P.L. Tilodi</h1>
+      <p>Passionate GIS Analyst specializing in Geographic Information Systems and Remote Sensing, turning complex data into actionable insights.</p>
+      <a class="btn" href="Seabilwe_P_L_Tilodi_Resume.pdf" download>Download PDF CV</a>
+      <a class="btn" href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" target="_blank">LinkedIn Profile</a>
+    </div>
+  </header>
+
+  <!-- Qualifications Section -->
   <div class="container">
-    <section id="profile">
-      <h2>Profile</h2>
-      <p>
-        I am passionate about Geographic Information Systems (GIS) and Remote Sensing, transforming raw data into actionable insights across industries such as environmental conservation and urban planning. With expertise in spatial analysis, data modelling, cartography, and remote sensing, I utilize tools such as QGIS, GeoServer, PostGIS, and GDAL/OGR to develop innovative geospatial solutions. I am committed to sustainability, open-source GIS technology, and continuous skill refinement to support meaningful projects.
-      </p>
+    <section id="qualifications">
+      <h2>Qualifications</h2>
+      <h3>Education & Certifications</h3>
+      <ul>
+        <li><strong>University of the Witwatersrand</strong> – MSc in GIS and Remote Sensing, BSc(Hons) in Geography, BSc Geological Science</li>
+        <li>DataCamp – Beginner & Intermediate Python; Data Analysis in SQL</li>
+      </ul>
     </section>
 
+    <!-- Experience Section -->
     <section id="experience">
-      <h2>Working Experience</h2>
+      <h2>Experience</h2>
       <h3>Kartoza (Pty) Ltd</h3>
       <p><strong>Head of Training</strong> | 2024 – Present</p>
       <ul>
         <li>Designed and delivered training programs, workshops, and webinars on geospatial software.</li>
-        <li>Developed training materials, user manuals, and online tutorials aligned with industry advancements.</li>
-        <li>Provided technical support and collaborated with developers for software enhancements.</li>
+        <li>Developed training materials, user manuals, and online tutorials.</li>
+        <li>Provided technical support and collaborated on software enhancements.</li>
       </ul>
-
       <h3>Kartoza (Pty) Ltd</h3>
       <p><strong>GIS Specialist / GISc Technician</strong> | 2020 – 2024</p>
       <ul>
-        <li>Conducted spatial analysis and geoprocessing using QGIS, GeoServer, PostGIS, and GDAL/OGR.</li>
+        <li>Conducted spatial analysis and geoprocessing with QGIS, GeoServer, PostGIS, and GDAL/OGR.</li>
         <li>Managed data acquisition, ETL processes, spatial databases, and remote sensing workflows.</li>
-        <li>Developed GIS systems, automated workflows, and web mapping applications using modern tools.</li>
-        <li>Designed cartographic products, maps, and data visualizations; provided training and support.</li>
+        <li>Developed GIS systems, automated workflows, and web mapping applications.</li>
       </ul>
-
-      <h3>MS Tutors</h3>
-      <p><strong>High School Geography Tutor</strong> | 2018 – 2019</p>
+      <h3>MS Tutors & Gauteng City-Region Observatory</h3>
       <ul>
-        <li>Delivered engaging lessons for high school students, enhancing their understanding of geography.</li>
-        <li>Provided in-person and online support, ensuring clear communication and effective learning.</li>
-      </ul>
-
-      <h3>Gauteng City-Region Observatory</h3>
-      <p><strong>GIS Research Assistant / Intern</strong> | 2019 – 2020</p>
-      <ul>
-        <li>Collected, cleaned, and managed historical mine datasets for improved spatial analysis.</li>
-        <li>Georeferenced historical maps to support research on mining impacts and socio-economic development.</li>
+        <li>High School Geography Tutor (2018–2019): Delivered engaging lessons and support.</li>
+        <li>GIS Research Assistant / Intern (2019–2020): Managed historical datasets and georeferenced maps.</li>
       </ul>
     </section>
 
-    <section id="education">
-      <h2>Education & Certifications</h2>
-      <h3>University of the Witwatersrand</h3>
-      <ul>
-        <li><strong>MSc in GIS and Remote Sensing</strong></li>
-        <li><strong>BSc(Hons) in Geography</strong></li>
-        <li><strong>BSc Geological Science</strong></li>
-      </ul>
-      <h3>Certifications</h3>
-      <ul>
-        <li>DataCamp: Beginner and Intermediate Python</li>
-        <li>DataCamp: Data Analysis in SQL</li>
-      </ul>
-    </section>
-
+    <!-- Projects Section -->
     <section id="projects">
-      <h2>Key Projects</h2>
+      <h2>Projects</h2>
       <ul>
         <li>
-          <strong>Waterberg Biosphere Reserve - USAID Project (2020 – 2022, South Africa)</strong>
-          <br>Developed a Strategic Environmental Management Plan using GIS and remote sensing to assess biodiversity, climate resilience, and ecological infrastructure.
+          <strong>Waterberg Biosphere Reserve – USAID Project (2020–2022)</strong><br>
+          Developed a Strategic Environmental Management Plan using GIS and remote sensing.
         </li>
         <li>
-          <strong>Electronic Metadata Catalogue (EMC) & Data Capture Project Register (DCPR) – DALRRD (2022 – 2024, South Africa)</strong>
-          <br>Created a national metadata catalogue for SA Spatial Data Infrastructure to improve data accessibility and governance.
+          <strong>Electronic Metadata Catalogue & Data Capture (DALRRD, 2022–2024)</strong><br>
+          Created a national metadata catalogue for improved spatial data governance.
         </li>
         <li>
-          <strong>Sustainable Energy for All (SE4All) - Energy Modelling Platform (2024, Italy)</strong>
-          <br>Developed training content on energy modelling and geospatial data management for academics and professionals.
+          <strong>Sustainable Energy for All – Energy Modelling Platform (2024, Italy)</strong><br>
+          Developed training content on energy modelling and geospatial data management.
         </li>
         <li>
-          <strong>Global & Regional Electrification & GIS Initiatives</strong>
-          <br>Supported global electrification platforms for Benin, Somalia, and Somaliland with projects for organizations like the World Bank.
+          <strong>Global & Regional Electrification Initiatives</strong><br>
+          Supported global electrification projects for organizations like the World Bank.
         </li>
         <li>
-          <strong>SADC Groundwater Management Institute</strong>
-          <br>Applied GIS for sustainable groundwater management.
+          <strong>SADC Groundwater Management Institute</strong><br>
+          Applied GIS for sustainable groundwater management.
         </li>
         <li>
-          <strong>IGRAC - The Global Groundwater Information System (GGIS)</strong>
-          <br>Contributed to global groundwater data initiatives.
+          <strong>IGRAC – Global Groundwater Information System</strong><br>
+          Contributed to global groundwater data initiatives.
         </li>
         <li>
-          <strong>Clean Cooking & Renewable Energy GIS Solutions</strong>
-          <br>Assisted in GIS-based analysis for clean cooking solutions with the Clean Cooking Alliance.
+          <strong>Clean Cooking & Renewable Energy GIS Solutions</strong><br>
+          Assisted in GIS-based analysis for clean cooking solutions.
         </li>
         <li>
-          <strong>St. Lucia & Dominica Governments</strong>
-          <br>Led FOSS GIS training and migration for national geospatial systems.
+          <strong>St. Lucia & Dominica Governments</strong><br>
+          Led FOSS GIS training and migration for national geospatial systems.
         </li>
       </ul>
     </section>
 
-    <section id="skills">
-      <h2>Skills</h2>
+    <!-- Activities Section -->
+    <section id="activities">
+      <h2>Activities</h2>
       <ul>
-        <li>Spatial Analysis & Geoprocessing</li>
-        <li>GIS & Remote Sensing Software (QGIS, GeoServer, PostGIS, GDAL/OGR)</li>
-        <li>Data Acquisition, ETL & Spatial Database Management</li>
-        <li>Cartography & Data Visualization</li>
-        <li>Coding & Automation (Python, SQL)</li>
-        <li>Project Management & Communication</li>
+        <li>Conducting training sessions, webinars, and workshops in GIS and Remote Sensing.</li>
+        <li>Active member of GISSA, SAGTA, and OSGeo.</li>
+        <li>Participation in conferences and presentations on geospatial innovations.</li>
       </ul>
     </section>
 
-    <section id="languages">
-      <h2>Languages</h2>
-      <ul>
-        <li><strong>English:</strong> Proficient (fluent in both written and spoken communication)</li>
-        <li><strong>Setswana:</strong> Native speaker</li>
-        <li><strong>isiZulu:</strong> Conversational proficiency</li>
-        <li><strong>Sepedi:</strong> Conversational and written proficiency</li>
-      </ul>
+    <!-- Blog Section -->
+    <section id="blog">
+      <h2>Blog</h2>
+      <p>This section will feature posts on GIS innovations, project insights, and industry updates. (Content to be updated regularly.)</p>
+      <a class="btn" href="blog.html">Visit Blog</a>
     </section>
 
-    <section id="references">
-      <h2>References</h2>
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Feel free to reach out for project inquiries or further information. References available upon request.</p>
       <ul>
-        <li>
-          <strong>Admire Nyakudya</strong><br>
-          Contact: +27 67 038 9982 | addloe@gmail.com
-        </li>
-        <li>
-          <strong>Luna Asefaw</strong><br>
-          Contact: +27 64 220 4899 | Lamelles78@gmail.com
-        </li>
-        <li>
-          <strong>Jeremy Prior</strong><br>
-          Contact: +27 76 126 1376 | jeremy@kartoza.com
-        </li>
-        <li>
-          <strong>Dr. Samkelisiwe Khanyile</strong><br>
-          Contact: +27 63 550 4645 / +27 11 717 4962 | samkelisiwe.khanyile@gcro.co.za
-        </li>
+        <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
+        <li>Phone: +27 79 473 5582</li>
       </ul>
     </section>
   </div>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
+  <!-- Optional JavaScript for additional interactivity -->
+  <script>
+    // Example: Add a scroll-to-top button if desired, or interactive animations.
+    // (Extend with additional interactivity as needed.)
+  </script>
 </body>
 </html>
