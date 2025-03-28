@@ -1,40 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Seabilwe P.L. Tilodi | GIS Analyst</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Google Fonts: Raleway -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+  
   <style>
-    /* CSS Variables for our color palette */
+    /*--------------------------------
+      COLOR & FONT VARIABLES
+    --------------------------------*/
     :root {
-      --dark-bg: #36454F;
-      --light-blue: #B6D0E2;
-      --light-purple: #CCCCFF;
-      --accent-blue: #A7C7E7;
-      --text-color: #e0e0e0;
+      --dark-bg: #333652;
+      --accent-1: #f1b345;
+      --accent-2: #90adc6;
+      --text-light: #ffffff;
+      --font-main: 'Raleway', sans-serif;
     }
-    /* Base styling */
-    body {
+
+    /*--------------------------------
+      BASE STYLES
+    --------------------------------*/
+    * {
+      box-sizing: border-box;
       margin: 0;
-      font-family: 'Roboto', sans-serif;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-main);
       background-color: var(--dark-bg);
-      color: var(--text-color);
-      line-height: 1.6;
-      scroll-behavior: smooth;
+      color: var(--text-light);
+      line-height: 1.5;
+      overflow-x: hidden;
     }
     a {
-      color: var(--accent-blue);
+      color: var(--accent-1);
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-    /* Header / Intro Section */
+
+    /*--------------------------------
+      NAVIGATION
+    --------------------------------*/
+    nav {
+      width: 100%;
+      background-color: rgba(51, 54, 82, 0.9); /* slight transparency */
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      margin: 0;
+    }
+    nav li {
+      margin: 0 1rem;
+    }
+    nav a {
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: var(--accent-2);
+    }
+
+    /*--------------------------------
+      HERO / INTRO SECTION
+    --------------------------------*/
     header {
       position: relative;
-      min-height: 100vh;
-      background: url('https://via.placeholder.com/1920x1080?text=GIS+Background') no-repeat center center/cover;
+      width: 100%;
+      height: 100vh;
+      background: url('https://via.placeholder.com/1920x1080?text=Contour+Background') no-repeat center center/cover;
+      /* Replace above with your actual contour image, e.g.:
+         background: url('images/contours.png') no-repeat center center/cover; */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -42,256 +91,243 @@
       text-align: center;
       padding: 2rem;
     }
+    /* Dark overlay for better text contrast */
     header::after {
       content: "";
       position: absolute;
       top: 0; left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(54, 69, 79, 0.7); /* dark overlay */
+      background: rgba(51, 54, 82, 0.6);
       z-index: 1;
     }
-    header .intro-content {
+    .hero-content {
       position: relative;
       z-index: 2;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
       max-width: 800px;
-      margin: 0 auto 1.5rem;
+      margin: 0 auto;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
     }
     .btn {
-      background-color: var(--light-blue);
+      display: inline-block;
+      background-color: var(--accent-1);
       color: var(--dark-bg);
       border: none;
-      padding: 0.8rem 1.2rem;
       border-radius: 30px;
-      cursor: pointer;
+      padding: 0.8rem 1.6rem;
       font-size: 1rem;
+      font-weight: 600;
       margin: 0.5rem;
+      cursor: pointer;
       transition: background-color 0.3s ease;
       text-decoration: none;
-      display: inline-block;
     }
     .btn:hover {
-      background-color: var(--accent-blue);
+      background-color: var(--accent-2);
+      color: var(--dark-bg);
     }
-    /* Navigation */
-    nav {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: var(--dark-bg);
-      z-index: 10;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.5);
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      justify-content: center;
-      margin: 0;
-      padding: 0.5rem 0;
-    }
-    nav li {
-      margin: 0 1rem;
-    }
-    nav a {
-      color: var(--text-color);
-      font-weight: 500;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: var(--accent-blue);
-    }
-    /* Main content container for inner pages */
+
+    /*--------------------------------
+      SECTIONS
+    --------------------------------*/
     .container {
-      max-width: 900px;
-      margin: 3rem auto;
-      padding: 0 1rem;
+      width: 90%;
+      max-width: 1200px;
+      margin: 5rem auto 2rem auto; /* top margin to offset fixed nav */
     }
-    /* Section styling */
     section {
-      margin-bottom: 3rem;
-      padding: 2rem;
-      background: #2b3a44;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      margin-bottom: 4rem;
     }
     section h2 {
-      margin-top: 0;
-      color: var(--light-blue);
-      border-bottom: 2px solid var(--accent-blue);
-      padding-bottom: 0.5rem;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: var(--accent-1);
+      border-bottom: 2px solid var(--accent-2);
+      display: inline-block;
+      padding-bottom: 0.3rem;
     }
-    section h3 {
-      color: var(--light-purple);
-      margin-bottom: 0.5rem;
+
+    /* Two-column layout for certain sections */
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
     }
-    section ul {
+    .col {
+      flex: 1;
+      min-width: 250px; /* ensures columns don't get too narrow */
+      background-color: #2e2e3a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .col h3 {
+      color: var(--accent-2);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .col ul {
       list-style-type: none;
-      padding-left: 0;
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
     }
-    section ul li {
-      margin-bottom: 0.8rem;
-      padding-left: 1rem;
+    .col li {
       position: relative;
+      margin-bottom: 0.8rem;
     }
-    section ul li::before {
+    .col li::before {
       content: "•";
-      color: var(--accent-blue);
+      color: var(--accent-1);
       position: absolute;
-      left: 0;
+      left: -1.2rem;
     }
-    /* Footer */
+
+    /*--------------------------------
+      FOOTER
+    --------------------------------*/
     footer {
       text-align: center;
-      padding: 1rem;
-      background: #2b3a44;
+      padding: 1rem 0;
+      background-color: #2b2b35;
+      color: #ccc;
       font-size: 0.9rem;
-      color: var(--text-color);
     }
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2.5rem;
+
+    /*--------------------------------
+      RESPONSIVE ADJUSTMENTS
+    --------------------------------*/
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
       }
-      nav ul {
-        flex-direction: column;
+      .hero-content p {
+        font-size: 1rem;
       }
       nav li {
-        margin: 0.5rem 0;
+        margin: 0 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .row {
+        flex-direction: column;
+      }
+      .col {
+        margin-bottom: 1rem;
       }
     }
   </style>
 </head>
 <body>
-
   <!-- Navigation Bar -->
   <nav>
     <ul>
       <li><a href="#home">Home</a></li>
       <li><a href="#qualifications">Qualifications</a></li>
       <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#activities">Activities</a></li>
       <li><a href="#blog">Blog</a></li>
+      <li><a href="#maps">Maps</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <!-- Intro/Home Section -->
+  <!-- Hero / Intro Section -->
   <header id="home">
-    <div class="intro-content">
+    <div class="hero-content">
       <h1>Seabilwe P.L. Tilodi</h1>
-      <p>Passionate GIS Analyst specializing in Geographic Information Systems and Remote Sensing, turning complex data into actionable insights.</p>
+      <p>GIS Analyst specializing in transforming spatial data into actionable insights.</p>
       <a class="btn" href="Seabilwe_P_L_Tilodi_Resume.pdf" download>Download PDF CV</a>
       <a class="btn" href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" target="_blank">LinkedIn Profile</a>
     </div>
   </header>
 
-  <!-- Qualifications Section -->
+  <!-- Main Container -->
   <div class="container">
+
+    <!-- Qualifications Section -->
     <section id="qualifications">
       <h2>Qualifications</h2>
-      <h3>Education & Certifications</h3>
-      <ul>
-        <li><strong>University of the Witwatersrand</strong> – MSc in GIS and Remote Sensing, BSc(Hons) in Geography, BSc Geological Science</li>
-        <li>DataCamp – Beginner & Intermediate Python; Data Analysis in SQL</li>
-      </ul>
+      <div class="row">
+        <!-- Education Block -->
+        <div class="col">
+          <h3>Education</h3>
+          <ul>
+            <li>MSc in GIS and Remote Sensing</li>
+            <li>BSc(Hons) in Geography</li>
+            <li>BSc Geological Science</li>
+          </ul>
+        </div>
+        <!-- Certificates Block -->
+        <div class="col">
+          <h3>Certificates</h3>
+          <ul>
+            <li>DataCamp: Beginner & Intermediate Python</li>
+            <li>DataCamp: Data Analysis in SQL</li>
+            <li>Additional GIS & Remote Sensing Workshops</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Experience Section -->
     <section id="experience">
-      <h2>Experience</h2>
-      <h3>Kartoza (Pty) Ltd</h3>
-      <p><strong>Head of Training</strong> | 2024 – Present</p>
-      <ul>
-        <li>Designed and delivered training programs, workshops, and webinars on geospatial software.</li>
-        <li>Developed training materials, user manuals, and online tutorials.</li>
-        <li>Provided technical support and collaborated on software enhancements.</li>
-      </ul>
-      <h3>Kartoza (Pty) Ltd</h3>
-      <p><strong>GIS Specialist / GISc Technician</strong> | 2020 – 2024</p>
-      <ul>
-        <li>Conducted spatial analysis and geoprocessing with QGIS, GeoServer, PostGIS, and GDAL/OGR.</li>
-        <li>Managed data acquisition, ETL processes, spatial databases, and remote sensing workflows.</li>
-        <li>Developed GIS systems, automated workflows, and web mapping applications.</li>
-      </ul>
-      <h3>MS Tutors & Gauteng City-Region Observatory</h3>
-      <ul>
-        <li>High School Geography Tutor (2018–2019): Delivered engaging lessons and support.</li>
-        <li>GIS Research Assistant / Intern (2019–2020): Managed historical datasets and georeferenced maps.</li>
-      </ul>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects">
-      <h2>Projects</h2>
-      <ul>
-        <li>
-          <strong>Waterberg Biosphere Reserve – USAID Project (2020–2022)</strong><br>
-          Developed a Strategic Environmental Management Plan using GIS and remote sensing.
-        </li>
-        <li>
-          <strong>Electronic Metadata Catalogue & Data Capture (DALRRD, 2022–2024)</strong><br>
-          Created a national metadata catalogue for improved spatial data governance.
-        </li>
-        <li>
-          <strong>Sustainable Energy for All – Energy Modelling Platform (2024, Italy)</strong><br>
-          Developed training content on energy modelling and geospatial data management.
-        </li>
-        <li>
-          <strong>Global & Regional Electrification Initiatives</strong><br>
-          Supported global electrification projects for organizations like the World Bank.
-        </li>
-        <li>
-          <strong>SADC Groundwater Management Institute</strong><br>
-          Applied GIS for sustainable groundwater management.
-        </li>
-        <li>
-          <strong>IGRAC – Global Groundwater Information System</strong><br>
-          Contributed to global groundwater data initiatives.
-        </li>
-        <li>
-          <strong>Clean Cooking & Renewable Energy GIS Solutions</strong><br>
-          Assisted in GIS-based analysis for clean cooking solutions.
-        </li>
-        <li>
-          <strong>St. Lucia & Dominica Governments</strong><br>
-          Led FOSS GIS training and migration for national geospatial systems.
-        </li>
-      </ul>
-    </section>
-
-    <!-- Activities Section -->
-    <section id="activities">
-      <h2>Activities</h2>
-      <ul>
-        <li>Conducting training sessions, webinars, and workshops in GIS and Remote Sensing.</li>
-        <li>Active member of GISSA, SAGTA, and OSGeo.</li>
-        <li>Participation in conferences and presentations on geospatial innovations.</li>
-      </ul>
+      <h2>Work Experience</h2>
+      <div class="row">
+        <!-- Experience Block 1 -->
+        <div class="col">
+          <h3>Kartoza (Pty) Ltd</h3>
+          <ul>
+            <li>Head of Training (2024 – Present)</li>
+            <li>GIS Specialist / GISc Technician (2020 – 2024)</li>
+          </ul>
+        </div>
+        <!-- Experience Block 2 -->
+        <div class="col">
+          <h3>Other Roles</h3>
+          <ul>
+            <li>MS Tutors (2018 – 2019)</li>
+            <li>Gauteng City-Region Observatory (2019 – 2020)</li>
+          </ul>
+        </div>
+      </div>
     </section>
 
     <!-- Blog Section -->
     <section id="blog">
       <h2>Blog</h2>
-      <p>This section will feature posts on GIS innovations, project insights, and industry updates. (Content to be updated regularly.)</p>
-      <a class="btn" href="blog.html">Visit Blog</a>
+      <p>
+        Coming soon! Here you’ll find articles on GIS innovations, project insights, and industry updates. 
+        <br><br>
+        In the meantime, feel free to <a href="blog.html">visit the Blog page</a> if you’ve created a separate file for it.
+      </p>
+    </section>
+
+    <!-- Maps Section -->
+    <section id="maps">
+      <h2>Maps</h2>
+      <p>
+        A showcase of interactive maps and geospatial visualizations will appear here. 
+        <br><br>
+        You can create a separate <a href="maps.html">Maps page</a> for deeper explorations.
+      </p>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
       <h2>Contact</h2>
-      <p>Feel free to reach out for project inquiries or further information. References available upon request.</p>
+      <p>Interested in collaborating or learning more? Feel free to reach out!</p>
       <ul>
         <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
         <li>Phone: +27 79 473 5582</li>
       </ul>
+      <p>References available upon request.</p>
     </section>
   </div>
 
@@ -299,11 +335,5 @@
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
-
-  <!-- Optional JavaScript for additional interactivity -->
-  <script>
-    // Example: Add a scroll-to-top button if desired, or interactive animations.
-    // (Extend with additional interactivity as needed.)
-  </script>
 </body>
 </html>
