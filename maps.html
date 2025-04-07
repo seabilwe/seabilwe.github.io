@@ -10,9 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <style>
-    /*--------------------------------
-      COLOR & FONT VARIABLES
-    --------------------------------*/
     :root {
       --dark-bg: #333652;
       --accent-1: #f1b345;
@@ -21,9 +18,6 @@
       --font-main: 'Raleway', sans-serif;
     }
 
-    /*--------------------------------
-      BASE STYLES
-    --------------------------------*/
     * {
       box-sizing: border-box;
       margin: 0;
@@ -58,18 +52,27 @@
       top: 0;
       left: 0;
       z-index: 100;
+      padding: 1rem;
+    }
+    .nav_menu {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .nav_toggle {
+      display: none;
+      cursor: pointer;
     }
     nav ul {
       list-style: none;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 1rem;
-      margin: 0;
+      padding: 0;
     }
     nav li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem; /* Increased clickable area */
+      padding: 0.5rem 1rem;
       border-radius: 5px;
       transition: background 0.3s ease;
     }
@@ -84,6 +87,33 @@
     }
     nav a:hover {
       color: var(--dark-bg);
+    }
+
+    /* Mobile Navigation */
+    @media (max-width: 600px) {
+      .nav_toggle {
+        display: block;
+        background-color: var(--accent-1);
+        padding: 0.5rem;
+        border-radius: 5px;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 3.5rem;
+        right: 0;
+        background: rgba(51, 54, 82, 0.9);
+        width: 100%;
+        text-align: right;
+        padding: 1rem;
+      }
+      nav ul.show {
+        display: flex;
+      }
+      nav li {
+        margin: 0.5rem 0;
+      }
     }
 
     /*--------------------------------
@@ -109,7 +139,7 @@
     }
 
     /*--------------------------------
-      MAP BLOCKS
+      MAP BLOCKS WITH NUMBERS
     --------------------------------*/
     .block {
       background-color: #2e2e3a;
@@ -117,27 +147,21 @@
       border-radius: 8px;
       margin-bottom: 2rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      position: relative;
     }
     .block h3 {
       color: var(--accent-2);
       margin-bottom: 0.5rem;
     }
-    .block ul {
-      list-style-type: none;
-      margin-top: 0.5rem;
-      padding-left: 1.2rem;
-    }
-    .block li {
-      position: relative;
-      margin-bottom: 0.8rem;
-    }
-    .block li::before {
-      content: "•";
+    .block::before {
+      content: attr(data-number) ".";
+      font-size: 2rem;
+      font-weight: bold;
       color: var(--accent-1);
       position: absolute;
-      left: -1.2rem;
+      top: 10px;
+      left: -30px;
     }
-    /* Placeholder for maps */
     .map-placeholder {
       width: 100%;
       height: 250px;
@@ -167,7 +191,7 @@
       background-color: var(--accent-2);
       color: var(--dark-bg);
     }
-    
+
     /*--------------------------------
       FOOTER
     --------------------------------*/
@@ -178,26 +202,21 @@
       color: #ccc;
       font-size: 0.9rem;
     }
-    
-    @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-      }
-      nav li {
-        margin: 0.5rem 0;
-      }
-    }
   </style>
 </head>
 <body>
   <!-- Navigation -->
   <nav>
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="maps.html">Maps</a></li>
-      <li><a href="blogs.html">Blogs</a></li>
-      <li><a href="more.html">More</a></li>
-    </ul>
+    <div class="nav_menu">
+      <div class="nav_toggle" onclick="toggleMenu()">☰</div>
+      <ul id="nav_list">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="maps.html">Maps</a></li>
+        <li><a href="blogs.html">Blogs</a></li>
+        <li><a href="more.html">More</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
   </nav>
 
   <div class="container">
@@ -206,40 +225,22 @@
       <p>Discover interactive maps and geospatial visualizations showcasing innovative projects and spatial data insights.</p>
     </header>
 
-    <!-- Sample Map Blocks -->
-    <div class="block">
+    <!-- Sample Map Blocks with Numbers -->
+    <div class="block" data-number="1">
       <h3>Urban Growth Analysis</h3>
-      <div class="map-placeholder">
-        Map Placeholder
-      </div>
-      <ul>
-        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-        <li>Proin dignissim ex in leo facilisis, at porta neque fermentum.</li>
-      </ul>
+      <div class="map-placeholder">Map Placeholder</div>
       <a class="btn" href="#">View Map</a>
     </div>
 
-    <div class="block">
+    <div class="block" data-number="2">
       <h3>Environmental Impact Study</h3>
-      <div class="map-placeholder">
-        Map Placeholder
-      </div>
-      <ul>
-        <li>Nullam nec est vel erat volutpat bibendum.</li>
-        <li>Mauris id augue eget ligula dignissim lacinia nec sed turpis.</li>
-      </ul>
+      <div class="map-placeholder">Map Placeholder</div>
       <a class="btn" href="#">View Map</a>
     </div>
 
-    <div class="block">
+    <div class="block" data-number="3">
       <h3>Water Resource Management</h3>
-      <div class="map-placeholder">
-        Map Placeholder
-      </div>
-      <ul>
-        <li>Sed consectetur, purus eu scelerisque porttitor, justo lorem dignissim.</li>
-        <li>At consequat mauris urna in ipsum.</li>
-      </ul>
+      <div class="map-placeholder">Map Placeholder</div>
       <a class="btn" href="#">View Map</a>
     </div>
   </div>
@@ -247,5 +248,11 @@
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
+
+  <script>
+    function toggleMenu() {
+      document.getElementById("nav_list").classList.toggle("show");
+    }
+  </script>
 </body>
 </html>
