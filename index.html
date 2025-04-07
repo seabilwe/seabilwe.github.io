@@ -29,17 +29,17 @@
       margin: 0;
       padding: 0;
     }
-    html {
-      /* Overall background pattern for the page */
-      background: var(--dark-bg) url('images/contour_3.png') repeat;
-    }
+    /* 
+       Set a new overall background for the page (except the hero section, which uses its own image).
+       This uses "images/contour_1.png" as the pattern. Adjust URL as needed.
+    */
     body {
       font-family: var(--font-main);
-      /* Body is transparent so the html background shows through */
-      background: transparent;
+      background: var(--dark-bg) url('images/contour_2.png') repeat;
       color: var(--text-light);
       line-height: 1.5;
       overflow-x: hidden;
+      padding-bottom: 2rem;
     }
     a {
       color: var(--accent-1);
@@ -78,7 +78,7 @@
       transition: background 0.3s ease;
     }
     nav a {
-      display: block; /* Makes the entire area clickable */
+      display: block; /* Ensures entire area is clickable */
       font-weight: 600;
       padding: 0.5rem 1rem;
       color: var(--text-light);
@@ -220,7 +220,7 @@
       position: absolute;
       left: -1.2rem;
     }
-    /* Remove bullet for specific li with class "no-bullet" */
+    /* Remove bullet for specific list item */
     .no-bullet {
       list-style-type: none;
     }
