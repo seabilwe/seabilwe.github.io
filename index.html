@@ -29,9 +29,14 @@
       margin: 0;
       padding: 0;
     }
+    html {
+      /* Overall background pattern for the page */
+      background: var(--dark-bg) url('images/background-pattern.png') repeat;
+    }
     body {
       font-family: var(--font-main);
-      background-color: var(--dark-bg);
+      /* Body is transparent so the html background shows through */
+      background: transparent;
       color: var(--text-light);
       line-height: 1.5;
       overflow-x: hidden;
@@ -93,7 +98,7 @@
       width: 100%;
       height: 100vh;
       background: url('images/contour.png') no-repeat center center/cover;
-      /* Update URL if needed: e.g., 'https://github.com/seabilwe/seabilwe.github.io/blob/main/images/contour.png' */
+      /* Hero background remains unchanged */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -101,7 +106,7 @@
       text-align: center;
       padding: 2rem;
     }
-    /* Dark overlay to prevent overly light background */
+    /* Dark overlay to prevent overly light hero background */
     header::after {
       content: "";
       position: absolute;
@@ -165,30 +170,35 @@
     }
 
     /*--------------------------------
-      BLOCK STYLES WITH BACKGROUND IMAGE
-      Using contour_1.png for a subtle patterned overlay.
+      BIO SECTION
     --------------------------------*/
-    .bio-block, .col, .exp-col, .skill-block, .basic-block {
-      background: #2e2e3a url('images/contour_1.png') no-repeat center center/cover;
-      /* You may adjust opacity of the image in an overlay if needed */
+    .bio-block {
+      background-color: #2e2e3a;
+      padding: 2rem;
       border-radius: 8px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-    .bio-block {
-      padding: 2rem;
       margin-bottom: 3rem;
     }
     .bio-block p {
       margin-bottom: 1rem;
       line-height: 1.6;
     }
+
+    /*--------------------------------
+      QUALIFICATIONS SECTION
+    --------------------------------*/
     .row {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
     }
     .col {
+      background-color: #2e2e3a;
       padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      flex: 1;
+      min-width: 280px;
     }
     .col h3 {
       color: var(--accent-2);
@@ -217,13 +227,22 @@
     .no-bullet::before {
       content: "";
     }
+
+    /*--------------------------------
+      EXPERIENCE SECTION
+    --------------------------------*/
     .exp-row {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
     }
     .exp-col {
+      background-color: #2e2e3a;
       padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      flex: 1;
+      min-width: 280px;
     }
     .exp-col h3 {
       color: var(--accent-2);
@@ -248,13 +267,22 @@
       position: absolute;
       left: -1.2rem;
     }
+
+    /*--------------------------------
+      SKILLS SECTION (Progress Bars)
+    --------------------------------*/
     .skills-container {
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
     }
     .skill-block {
+      background-color: #2e2e3a;
       padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      flex: 1;
+      min-width: 280px;
     }
     .skill-title {
       margin-bottom: 0.5rem;
@@ -274,8 +302,15 @@
       height: 100%;
       border-radius: 20px;
     }
+
+    /*--------------------------------
+      BLOG & MAPS SECTIONS
+    --------------------------------*/
     .basic-block {
+      background-color: #2e2e3a;
       padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
       margin-bottom: 2rem;
     }
     .section-intro {
@@ -286,6 +321,7 @@
     .section-btn {
       margin-top: 1rem;
     }
+
     /*--------------------------------
       CONTACT SECTION (Indented Contact Info)
     --------------------------------*/
