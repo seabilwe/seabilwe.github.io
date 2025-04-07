@@ -14,10 +14,10 @@
       COLOR & FONT VARIABLES
     --------------------------------*/
     :root {
-      --dark-bg: #333652;   /* main dark background */
-      --accent-1: #f1b345;  /* primary accent */
-      --accent-2: #90adc6;  /* secondary accent */
-      --text-light: #ffffff;/* main text color */
+      --dark-bg: #333652;    /* main dark background */
+      --accent-1: #f1b345;   /* primary accent */
+      --accent-2: #90adc6;   /* secondary accent */
+      --text-light: #ffffff; /* main text color */
       --font-main: 'Raleway', sans-serif;
     }
 
@@ -29,11 +29,14 @@
       margin: 0;
       padding: 0;
     }
+    html {
+      background: var(--dark-bg) url('images/contour_2.png') repeat;
+    }
     body {
       font-family: var(--font-main);
       color: var(--text-light);
       line-height: 1.5;
-      background-color: #333652; /* fallback color behind hero */
+      background: transparent; /* Let html's background show */
       overflow-x: hidden;
       margin: 0;
     }
@@ -49,7 +52,7 @@
     }
 
     /*--------------------------------
-      NAVIGATION
+      NAVIGATION & HAMBURGER MENU
     --------------------------------*/
     nav {
       width: 100%;
@@ -58,32 +61,65 @@
       top: 0;
       left: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
     }
-    nav ul {
+    /* Hamburger Icon */
+    .hamburger {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      cursor: pointer;
+      display: none;
+    }
+    /* Nav Menu */
+    .nav-menu {
       list-style: none;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 1rem;
       margin: 0;
     }
-    nav li {
+    .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1rem; /* Increase clickable area */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
-    nav a {
-      display: block; /* entire area is clickable */
+    .nav-menu a {
+      display: block;
       font-weight: 600;
       padding: 0.5rem 1rem;
       color: var(--text-light);
     }
-    nav li:hover {
+    .nav-menu li:hover {
       background-color: var(--accent-2);
     }
-    nav a:hover {
+    .nav-menu a:hover {
       color: var(--dark-bg);
+    }
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-menu {
+        flex-direction: column;
+        position: absolute;
+        top: 3.5rem; /* below nav */
+        right: 1rem;
+        background-color: rgba(51, 54, 82, 0.9);
+        width: 150px;
+        display: none;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
+      .nav-menu li {
+        margin: 0.5rem 0;
+      }
     }
 
     /*--------------------------------
@@ -94,14 +130,13 @@
       width: 100%;
       height: 100vh;
       background: url('images/contour.png') no-repeat center center/cover;
-      /* Keep your original hero background image here */
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
       padding: 2rem;
-      margin-bottom: 0; /* ensure no gap */
+      margin-bottom: 0;
     }
     header::after {
       content: "";
@@ -147,18 +182,15 @@
 
     /*--------------------------------
       PAGE CONTENT (AFTER HERO)
-      Different background image
     --------------------------------*/
     .page-content {
-      background: url('images/contour_2.png') repeat, var(--dark-bg);
-      /* Replace 'images/contour_1.png' with your new background image */
       padding-top: 2rem;
       padding-bottom: 2rem;
     }
     .container {
       width: 90%;
       max-width: 1200px;
-      margin: 0 auto; /* center container */
+      margin: 0 auto;
     }
     section {
       margin-bottom: 4rem;
@@ -193,7 +225,9 @@
       line-height: 1.6;
     }
 
-    /* Qualifications & Certificates */
+    /*--------------------------------
+      QUALIFICATIONS SECTION
+    --------------------------------*/
     .row {
       display: flex;
       flex-wrap: wrap;
@@ -231,7 +265,9 @@
       content: "";
     }
 
-    /* Experience */
+    /*--------------------------------
+      EXPERIENCE SECTION
+    --------------------------------*/
     .exp-row {
       display: flex;
       flex-wrap: wrap;
@@ -266,7 +302,9 @@
       left: -1.2rem;
     }
 
-    /* Skills */
+    /*--------------------------------
+      SKILLS SECTION (Progress Bars)
+    --------------------------------*/
     .skills-container {
       display: flex;
       flex-wrap: wrap;
@@ -296,7 +334,9 @@
       border-radius: 20px;
     }
 
-    /* Blog & Maps */
+    /*--------------------------------
+      BLOG & MAPS SECTIONS
+    --------------------------------*/
     .basic-block {
       padding: 1.5rem;
       margin-bottom: 2rem;
@@ -310,7 +350,9 @@
       margin-top: 1rem;
     }
 
-    /* Contact */
+    /*--------------------------------
+      CONTACT SECTION (Indented Contact Info)
+    --------------------------------*/
     .contact-details {
       margin-left: 2rem;
     }
@@ -351,9 +393,10 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- Navigation with Hamburger Menu -->
   <nav>
-    <ul>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="maps.html">Maps</a></li>
       <li><a href="blogs.html">Blogs</a></li>
@@ -372,7 +415,7 @@
     </div>
   </header>
 
-  <!-- Page Content with a different background image -->
+  <!-- Page Content with a Different Background -->
   <div class="page-content">
     <div class="container">
       <!-- Bio Section -->
@@ -537,11 +580,20 @@
           <p>References available upon request.</p>
         </div>
       </section>
-    </div> <!-- .container -->
-  </div> <!-- .page-content -->
+    </div>
+  </div>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
+
+  <!-- Hamburger Menu Script -->
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
