@@ -58,14 +58,23 @@
     }
     nav li {
       margin: 0 1rem;
+      padding: 0.5rem 1rem; /* Increased clickable area */
+      border-radius: 5px;
+      transition: background 0.3s ease;
     }
     nav a {
+      display: block;
       font-weight: 600;
-      transition: color 0.3s ease;
+      padding: 0.5rem 1rem;
+      color: var(--text-light);
+    }
+    nav li:hover {
+      background-color: var(--accent-2);
     }
     nav a:hover {
-      color: var(--accent-2);
+      color: var(--dark-bg);
     }
+
     .container {
       width: 90%;
       max-width: 1200px;
@@ -114,6 +123,19 @@
       background-color: #2b2b35;
       color: #ccc;
       font-size: 0.9rem;
+    }
+    /*--------------------------------
+      CONTACT SECTION
+    --------------------------------*/
+    .contact-block {
+      background-color: #2e2e3a;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      margin-top: 2rem;
+    }
+    .contact-details {
+      margin-left: 2rem;
     }
     @media (max-width: 600px) {
       nav ul {
@@ -193,6 +215,21 @@
           <li>Southern African Geography Teacher’s Association (SAGTA) – Academic Conference, June 2024 (Data collection for the Classroom)</li>
           <li>Geospatial Data Management Trainer – Energy Modelling Platform, Joint Global Training School (smr 3963)</li>
         </ul>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <p>Interested in collaborating or learning more? Feel free to reach out!</p>
+        <div class="contact-details">
+          <ul>
+            <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
+            <li>Phone: +27 79 473 5582</li>
+          </ul>
+        </div>
+        <p>References available upon request.</p>
       </div>
     </section>
   </div>
