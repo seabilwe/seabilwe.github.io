@@ -10,9 +10,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <style>
-    /*--------------------------------
-      COLOR & FONT VARIABLES
-    --------------------------------*/
     :root {
       --dark-bg: #333652;
       --accent-1: #f1b345;
@@ -59,14 +56,13 @@
       align-items: center;
       padding: 0.5rem 1rem;
     }
-    /* Hamburger icon (shown on mobile) */
+    /* Hamburger icon (visible on mobile) */
     .hamburger {
       font-size: 1.8rem;
       color: var(--text-light);
       cursor: pointer;
       display: none;
     }
-    /* Nav Menu */
     .nav-menu {
       list-style: none;
       display: flex;
@@ -75,12 +71,12 @@
     }
     .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem; /* Increase clickable area */
+      padding: 0.5rem 1rem; /* Expanded clickable area */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
     .nav-menu a {
-      display: block; /* Entire area is clickable */
+      display: block;
       font-weight: 600;
       padding: 0.5rem 1rem;
       color: var(--text-light);
@@ -91,7 +87,7 @@
     .nav-menu a:hover {
       color: var(--dark-bg);
     }
-    /* Mobile Styles */
+    /* Mobile styles */
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -121,7 +117,7 @@
     .container {
       width: 90%;
       max-width: 1200px;
-      margin: 5rem auto 2rem;
+      margin: 5rem auto 2rem auto;
     }
     section {
       margin-bottom: 4rem;
@@ -164,7 +160,7 @@
       position: absolute;
       left: -1.2rem;
     }
-    
+
     /*--------------------------------
       CONTACT SECTION
     --------------------------------*/
@@ -228,10 +224,41 @@
   </nav>
 
   <div class="container">
-    <header class="page-header">
-      <h1>Organizations & Conferences</h1>
-      <p>Learn more about my key projects, memberships, and presentations.</p>
-    </header>
+    <!-- Key Projects Section -->
+    <section id="projects">
+      <h2>Key Projects</h2>
+      <div class="block">
+        <h3>Waterberg Biosphere Reserve - USAID Project (2020 – 2022, South Africa)</h3>
+        <ul>
+          <li>Developed a Strategic Environmental Management Plan (SEMP) using GIS and remote sensing to assess biodiversity, climate resilience, and ecological infrastructure.</li>
+          <li>Contributed to the expansion nomination of the Waterberg Biosphere Reserve.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Electronic Metadata Catalogue (EMC) & Data Capture Project Register – DALRRD (2022 – 2024, South Africa)</h3>
+        <ul>
+          <li>Created a national metadata catalogue for SA Spatial Data Infrastructure (SASDI) to improve data accessibility and governance.</li>
+          <li>Published and managed datasets via <a href="https://catalogue.sasdi.gov.za" target="_blank">SASDI Catalogue</a>.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Sustainable Energy for All (SE4All) - Energy Modelling Platform (2024, Italy)</h3>
+        <ul>
+          <li>Developed training content on energy modelling and geospatial data management.</li>
+          <li>Delivered training for academics and professionals from developing countries.</li>
+        </ul>
+      </div>
+      <div class="block">
+        <h3>Global & Regional Electrification & GIS Initiatives</h3>
+        <ul>
+          <li>Supported global electrification platforms for Benin, Somalia, and Somaliland (World Bank & KTH Projects).</li>
+          <li>Applied GIS for sustainable groundwater management (SADC Groundwater Management Institute).</li>
+          <li>Contributed to global groundwater data initiatives (IGRAC - GGIS).</li>
+          <li>Assisted in GIS-based analysis for clean cooking solutions (Clean Cooking Alliance).</li>
+          <li>Led FOSS GIS training and migration for national geospatial systems (St. Lucia & Dominica Governments).</li>
+        </ul>
+      </div>
+    </section>
 
     <!-- Organizations & Conferences Section -->
     <section id="orgs-conferences">
