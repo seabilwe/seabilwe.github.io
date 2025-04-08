@@ -49,78 +49,75 @@
     }
 
     /*--------------------------------
-      NAVIGATION
+      NAVIGATION & HAMBURGER
     --------------------------------*/
     nav {
-        width: 100%;
-        background-color: rgba(51, 54, 82, 0.9);
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 100;
+      width: 100%;
+      background-color: rgba(51,54,82,0.9);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+    /* Hamburger icon (hidden on desktop) */
+    .hamburger {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      cursor: pointer;
+      display: none;
+    }
+    /* Nav menu */
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+    .nav-menu li {
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    .nav-menu a {
+      display: block;
+      font-weight: 600;
+      padding: 0.5rem 1rem;
+      color: var(--text-light);
+    }
+    .nav-menu li:hover {
+      background-color: var(--accent-2);
+    }
+    .nav-menu a:hover {
+      color: var(--dark-bg);
+    }
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-menu {
+        flex-direction: column;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;  /* now positioned from the left */
+        background-color: rgba(51,54,82,0.9);
+        width: 150px;
+        display: none;
+        border-radius: 5px;
         padding: 1rem;
       }
-      .nav_menu {
+      .nav-menu.open {
         display: flex;
-        justify-content: space-between;
-        align-items: center;
       }
-      .nav_toggle {
-        display: none;
-        cursor: pointer;
+      .nav-menu li {
+        margin: 0.5rem 0;
       }
-      nav ul {
-        list-style: none;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 0;
-      }
-      nav li {
-        margin: 0 1rem;
-        padding: 0.5rem 1rem;
-        border-radius: 5px;
-        transition: background 0.3s ease;
-      }
-      nav a {
-        display: block;
-        font-weight: 600;
-        padding: 0.5rem 1rem;
-        color: var(--text-light);
-      }
-      nav li:hover {
-        background-color: var(--accent-2);
-      }
-      nav a:hover {
-        color: var(--dark-bg);
-      }
-  
-      /* Mobile Navigation */
-      @media (max-width: 600px) {
-        .nav_toggle {
-          display: block;
-          background-color: var(--accent-1);
-          padding: 0.5rem;
-          border-radius: 5px;
-        }
-        nav ul {
-          display: none;
-          flex-direction: column;
-          position: absolute;
-          top: 3.5rem;
-          left: 0;
-          background: rgba(51, 54, 82, 0.9);
-          width: 100%;
-          text-align: left;
-          padding: 1rem;
-        }
-        nav ul.show {
-          display: flex;
-        }
-        nav li {
-          margin: 0.5rem 0;
-        }
-      }
+    }
 
     /*--------------------------------
       CONTAINER & HEADER
@@ -128,7 +125,7 @@
     .container {
       width: 90%;
       max-width: 1200px;
-      margin: 5rem auto 2rem auto;
+      margin: 5rem auto 2rem;
     }
     header.page-header {
       text-align: center;
@@ -203,28 +200,6 @@
       background-color: var(--accent-2);
       color: var(--dark-bg);
     }
-
-   /*--------------------------------
-      CONTACT SECTION
-    --------------------------------*/
-    .contact-block {
-        background-color: #2e2e3a;
-        padding: 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-        margin-top: 2rem;
-      }
-      .contact-details {
-        margin-left: 2rem;
-      }
-      @media (max-width: 600px) {
-        nav ul {
-          flex-direction: column;
-        }
-        nav li {
-          margin: 0.5rem 0;
-        }
-      }
     
     /*--------------------------------
       FOOTER
@@ -248,9 +223,10 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- Navigation with Hamburger Menu -->
   <nav>
-    <ul>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="maps.html">Maps</a></li>
       <li><a href="blogs.html">Blogs</a></li>
@@ -303,29 +279,15 @@
     </div>
   </div>
 
- <!-- Contact Section -->
- <section id="contact">
-    <h2>Contact</h2>
-    <div class="contact-block">
-      <p>Interested in collaborating or learning more? Feel free to reach out!</p>
-      <div class="contact-details">
-        <ul>
-          <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
-          <li>Phone: +27 79 473 5582</li>
-        </ul>
-      </div>
-      <p>References available upon request.</p>
-    </div>
-  </section>
-</div>
-
-<footer>
+  <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
+  <!-- Hamburger Menu Toggle Script -->
   <script>
     function toggleMenu() {
-      document.getElementById("nav_list").classList.toggle("show");
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('open');
     }
   </script>
 </body>
