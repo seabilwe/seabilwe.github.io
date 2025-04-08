@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <style>
+    /*--------------------------------
+      COLOR & FONT VARIABLES
+    --------------------------------*/
     :root {
       --dark-bg: #333652;
       --accent-1: #f1b345;
@@ -41,41 +44,74 @@
     }
     
     /*--------------------------------
-      NAVIGATION
+      NAVIGATION & HAMBURGER MENU
     --------------------------------*/
     nav {
       width: 100%;
-      background-color: rgba(51, 54, 82, 0.9);
+      background-color: rgba(51,54,82,0.9);
       position: fixed;
       top: 0;
       left: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
     }
-    nav ul {
+    /* Hamburger icon (hidden on desktop) */
+    .hamburger {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      cursor: pointer;
+      display: none;
+    }
+    /* Nav menu */
+    .nav-menu {
       list-style: none;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 1rem;
       margin: 0;
     }
-    nav li {
+    .nav-menu li {
       margin: 0 1rem;
       padding: 0.5rem 1rem; /* Expanded clickable area */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
-    nav a {
-      display: block;
+    .nav-menu a {
+      display: block; /* Makes entire area clickable */
       font-weight: 600;
       padding: 0.5rem 1rem;
       color: var(--text-light);
     }
-    nav li:hover {
+    .nav-menu li:hover {
       background-color: var(--accent-2);
     }
-    nav a:hover {
+    .nav-menu a:hover {
       color: var(--dark-bg);
+    }
+    /* Mobile styles */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-menu {
+        flex-direction: column;
+        position: absolute;
+        top: 3.5rem; /* below nav */
+        left: 1rem;  /* now from left */
+        background-color: rgba(51,54,82,0.9);
+        width: 150px;
+        display: none;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
+      .nav-menu li {
+        margin: 0.5rem 0;
+      }
     }
     
     /*--------------------------------
@@ -163,12 +199,13 @@
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- Navigation with Hamburger Menu -->
   <nav>
-    <ul>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="maps.html">Maps</a></li>
-      <li><a href="blogs.html">Blog</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
       <li><a href="more.html">More</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -206,5 +243,13 @@
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
+
+  <!-- Hamburger Menu Toggle Script -->
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
