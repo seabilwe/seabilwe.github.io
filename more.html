@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <style>
+    /*--------------------------------
+      COLOR & FONT VARIABLES
+    --------------------------------*/
     :root {
       --dark-bg: #333652;
       --accent-1: #f1b345;
@@ -37,8 +40,12 @@
     a:hover {
       text-decoration: underline;
     }
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+
     /*--------------------------------
-      NAVIGATION
+      NAVIGATION & HAMBURGER MENU
     --------------------------------*/
     nav {
       width: 100%;
@@ -47,38 +54,74 @@
       top: 0;
       left: 0;
       z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
     }
-    nav ul {
+    /* Hamburger icon (shown on mobile) */
+    .hamburger {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      cursor: pointer;
+      display: none;
+    }
+    /* Nav Menu */
+    .nav-menu {
       list-style: none;
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 1rem;
       margin: 0;
     }
-    nav li {
+    .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem; /* Increased clickable area */
+      padding: 0.5rem 1rem; /* Increase clickable area */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
-    nav a {
-      display: block;
+    .nav-menu a {
+      display: block; /* Entire area is clickable */
       font-weight: 600;
       padding: 0.5rem 1rem;
       color: var(--text-light);
     }
-    nav li:hover {
+    .nav-menu li:hover {
       background-color: var(--accent-2);
     }
-    nav a:hover {
+    .nav-menu a:hover {
       color: var(--dark-bg);
     }
+    /* Mobile Styles */
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-menu {
+        flex-direction: column;
+        position: absolute;
+        top: 3.5rem; /* below nav */
+        left: 1rem;  /* position from left */
+        background-color: rgba(51, 54, 82, 0.9);
+        width: 150px;
+        display: none;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
+      .nav-menu li {
+        margin: 0.5rem 0;
+      }
+    }
 
+    /*--------------------------------
+      CONTAINER & HEADER
+    --------------------------------*/
     .container {
       width: 90%;
       max-width: 1200px;
-      margin: 5rem auto 2rem auto;
+      margin: 5rem auto 2rem;
     }
     section {
       margin-bottom: 4rem;
@@ -91,6 +134,10 @@
       display: inline-block;
       padding-bottom: 0.3rem;
     }
+
+    /*--------------------------------
+      BLOCKS / CARDS
+    --------------------------------*/
     .block {
       background-color: #2e2e3a;
       padding: 1.5rem;
@@ -117,13 +164,7 @@
       position: absolute;
       left: -1.2rem;
     }
-    footer {
-      text-align: center;
-      padding: 1rem 0;
-      background-color: #2b2b35;
-      color: #ccc;
-      font-size: 0.9rem;
-    }
+    
     /*--------------------------------
       CONTACT SECTION
     --------------------------------*/
@@ -137,20 +178,47 @@
     .contact-details {
       margin-left: 2rem;
     }
-    @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
+
+    /*--------------------------------
+      FOOTER
+    --------------------------------*/
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #2b2b35;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+
+    /*--------------------------------
+      RESPONSIVE ADJUSTMENTS
+    --------------------------------*/
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-content p {
+        font-size: 1rem;
       }
       nav li {
-        margin: 0.5rem 0;
+        margin: 0 0.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .row, .exp-row, .skills-container {
+        flex-direction: column;
+      }
+      .col, .exp-col, .skill-block {
+        margin-bottom: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
+  <!-- Navigation with Hamburger Menu -->
   <nav>
-    <ul>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <ul class="nav-menu">
       <li><a href="index.html">Home</a></li>
       <li><a href="maps.html">Maps</a></li>
       <li><a href="blogs.html">Blogs</a></li>
@@ -160,41 +228,10 @@
   </nav>
 
   <div class="container">
-    <!-- Key Projects Section -->
-    <section id="projects">
-      <h2>Key Projects</h2>
-      <div class="block">
-        <h3>Waterberg Biosphere Reserve - USAID Project (2020 – 2022, South Africa)</h3>
-        <ul>
-          <li>Developed a Strategic Environmental Management Plan (SEMP) using GIS and remote sensing to assess biodiversity, climate resilience, and ecological infrastructure.</li>
-          <li>Contributed to the expansion nomination of the Waterberg Biosphere Reserve.</li>
-        </ul>
-      </div>
-      <div class="block">
-        <h3>Electronic Metadata Catalogue (EMC) & Data Capture Project Register – DALRRD (2022 – 2024, South Africa)</h3>
-        <ul>
-          <li>Created a national metadata catalogue for SA Spatial Data Infrastructure (SASDI) to improve data accessibility and governance.</li>
-          <li>Published and managed datasets via <a href="https://catalogue.sasdi.gov.za" target="_blank">SASDI Catalogue</a>.</li>
-        </ul>
-      </div>
-      <div class="block">
-        <h3>Sustainable Energy for All (SE4All) - Energy Modelling Platform (2024, Italy)</h3>
-        <ul>
-          <li>Developed training content on energy modelling and geospatial data management.</li>
-          <li>Delivered training for academics and professionals from developing countries.</li>
-        </ul>
-      </div>
-      <div class="block">
-        <h3>Global & Regional Electrification & GIS Initiatives</h3>
-        <ul>
-          <li>Supported global electrification platforms for Benin, Somalia, and Somaliland (World Bank & KTH Projects).</li>
-          <li>Applied GIS for sustainable groundwater management (SADC Groundwater Management Institute).</li>
-          <li>Contributed to global groundwater data initiatives (IGRAC - GGIS).</li>
-          <li>Assisted in GIS-based analysis for clean cooking solutions (Clean Cooking Alliance).</li>
-          <li>Led FOSS GIS training and migration for national geospatial systems (St. Lucia & Dominica Governments).</li>
-        </ul>
-      </div>
-    </section>
+    <header class="page-header">
+      <h1>Organizations & Conferences</h1>
+      <p>Learn more about my key projects, memberships, and presentations.</p>
+    </header>
 
     <!-- Organizations & Conferences Section -->
     <section id="orgs-conferences">
@@ -237,5 +274,13 @@
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
+
+  <!-- Hamburger Menu Toggle Script -->
+  <script>
+    function toggleMenu() {
+      const navMenu = document.querySelector('.nav-menu');
+      navMenu.classList.toggle('open');
+    }
+  </script>
 </body>
 </html>
