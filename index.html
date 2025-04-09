@@ -20,7 +20,6 @@
       --text-light: #ffffff; /* main text color */
       --font-main: 'Raleway', sans-serif;
     }
-
     /*--------------------------------
       BASE STYLES
     --------------------------------*/
@@ -47,7 +46,7 @@
     h1, h2, h3 {
       font-weight: 700;
     }
-
+    
     /*--------------------------------
       NAVIGATION & HAMBURGER MENU
     --------------------------------*/
@@ -77,7 +76,7 @@
     }
     .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem;
+      padding: 0.5rem 1rem; /* Expanded clickable area */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
@@ -102,7 +101,7 @@
         flex-direction: column;
         position: absolute;
         top: 3.5rem; /* below nav */
-        left: 1rem;  /* now positioned from the left */
+        left: 1rem;  /* from left */
         background-color: rgba(51, 54, 82, 0.9);
         width: 150px;
         display: none;
@@ -116,7 +115,7 @@
         margin: 0.5rem 0;
       }
     }
-
+    
     /*--------------------------------
       HERO SECTION
     --------------------------------*/
@@ -173,7 +172,7 @@
       background-color: var(--accent-2);
       color: var(--dark-bg);
     }
-
+    
     /*--------------------------------
       MAIN CONTENT
     --------------------------------*/
@@ -193,9 +192,51 @@
       display: inline-block;
       padding-bottom: 0.3rem;
     }
-
+    
     /*--------------------------------
-      CONTENT BLOCKS
+      CAROUSEL SECTION
+      (Placed between Bio and Qualifications)
+    --------------------------------*/
+    .carousel {
+      position: relative;
+      width: 100%;
+      max-width: 100%;
+      margin: 2rem 0;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .carousel-images {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+    .carousel-images img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none; /* Allow clicks to pass through except buttons */
+    }
+    .carousel-nav button {
+      background-color: rgba(241, 179, 69, 0.8);
+      border: none;
+      border-radius: 50%;
+      padding: 0.5rem;
+      cursor: pointer;
+      pointer-events: all;
+    }
+    .carousel-nav button:hover {
+      background-color: var(--accent-1);
+    }
+    
+    /*--------------------------------
+      CONTENT BLOCKS / CARDS
     --------------------------------*/
     .bio-block,
     .col,
@@ -214,7 +255,7 @@
       margin-bottom: 1rem;
       line-height: 1.6;
     }
-
+    
     /* Qualifications */
     .row {
       display: flex;
@@ -287,7 +328,7 @@
       position: absolute;
       left: -1.2rem;
     }
-
+    
     /* Skills */
     .skills-container {
       display: flex;
@@ -317,7 +358,7 @@
       height: 100%;
       border-radius: 20px;
     }
-
+    
     /* Blog & Maps */
     .basic-block {
       padding: 1.5rem;
@@ -331,12 +372,7 @@
     .section-btn {
       margin-top: 1rem;
     }
-
-    /* Contact */
-    .contact-details {
-      margin-left: 2rem;
-    }
-
+    
     /*--------------------------------
       FOOTER
     --------------------------------*/
@@ -347,7 +383,7 @@
       color: #ccc;
       font-size: 0.9rem;
     }
-
+    
     /*--------------------------------
       RESPONSIVE ADJUSTMENTS
     --------------------------------*/
@@ -384,7 +420,7 @@
       <li><a href="contact.html">Contact</a></li>
     </ul>
   </nav>
-
+  
   <!-- Hero Section (Full-Height Background) -->
   <header id="home">
     <div class="hero-content">
@@ -394,7 +430,7 @@
       <a class="btn" href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" target="_blank">LinkedIn Profile</a>
     </div>
   </header>
-
+  
   <!-- Main Container -->
   <div class="container">
     <!-- Bio Section -->
@@ -405,7 +441,22 @@
         </p>
       </div>
     </section>
-
+    
+    <!-- Carousel Section (Between Bio & Qualifications) -->
+    <section id="carousel">
+      <div class="carousel">
+        <div class="carousel-images">
+          <img src="images/picture1.jpg" alt="Portrait of Seabilwe">
+          <img src="images/map1.jpg" alt="Map Project 1">
+          <img src="images/map2.jpg" alt="Map Project 2">
+        </div>
+        <div class="carousel-nav">
+          <button onclick="prevSlide()">&#10094;</button>
+          <button onclick="nextSlide()">&#10095;</button>
+        </div>
+      </div>
+    </section>
+    
     <!-- Qualifications Section -->
     <section id="qualifications">
       <h2>Qualifications</h2>
@@ -413,8 +464,8 @@
         <!-- Education Block -->
         <div class="col">
           <h3>Education</h3>
-           <p class="exp-role">University of the Witwatersrand</p>
-          <ul>  
+          <p class="exp-role">University of the Witwatersrand</p>
+          <ul>
             <li>MSc in GIS and Remote Sensing (2019 - 2020)</li>
             <li>BSc(Hons) in Geography (2018)</li>
             <li>BSc Geological Science (2015 - 2017)</li>
@@ -431,7 +482,7 @@
         </div>
       </div>
     </section>
-
+    
     <!-- Experience Section -->
     <section id="experience">
       <h2>Experience</h2>
@@ -483,7 +534,7 @@
         </div>
       </div>
     </section>
-
+    
     <!-- Skills Section -->
     <section id="skills">
       <h2>Skills</h2>
@@ -518,7 +569,7 @@
         </div>
       </div>
     </section>
-
+    
     <!-- Blog Section -->
     <section id="blog">
       <h2>Blog</h2>
@@ -531,7 +582,7 @@
         </div>
       </div>
     </section>
-
+    
     <!-- Maps Section -->
     <section id="maps">
       <h2>Maps</h2>
@@ -544,34 +595,43 @@
         </div>
       </div>
     </section>
+  </div> <!-- .container -->
 
-    <!-- Contact Section -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="basic-block">
-        <p>Interested in collaborating or learning more? Feel free to reach out!</p>
-        <div class="contact-details">
-          <ul>
-            <li>Email: <a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></li>
-            <li>Phone: +27 79 473 5582</li>
-          </ul>
-        </div>
-        <p>References available upon request.</p>
-      </div>
-    </section>
-  </div>
-
-  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Menu Script -->
+  <!-- Hamburger Menu Toggle Script -->
   <script>
     function toggleMenu() {
       const navMenu = document.querySelector('.nav-menu');
       navMenu.classList.toggle('open');
     }
+    
+    // Basic Carousel Functionality
+    let slideIndex = 0;
+    const slides = document.querySelectorAll('.carousel-images img');
+    const totalSlides = slides.length;
+    
+    function showSlide(index) {
+      const carouselImages = document.querySelector('.carousel-images');
+      if (index >= totalSlides) { slideIndex = 0; }
+      if (index < 0) { slideIndex = totalSlides - 1; }
+      carouselImages.style.transform = 'translateX(-' + slideIndex * 100 + '%)';
+    }
+    
+    function nextSlide() {
+      slideIndex++;
+      showSlide(slideIndex);
+    }
+    
+    function prevSlide() {
+      slideIndex--;
+      showSlide(slideIndex);
+    }
+    
+    // Auto-play carousel every 5 seconds
+    setInterval(nextSlide, 5000);
   </script>
 </body>
 </html>
