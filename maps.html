@@ -49,7 +49,7 @@
     }
 
     /*--------------------------------
-      NAVIGATION & HAMBURGER
+      NAVIGATION & HAMBURGER MENU
     --------------------------------*/
     nav {
       width: 100%;
@@ -63,14 +63,12 @@
       align-items: center;
       padding: 0.5rem 1rem;
     }
-    /* Hamburger icon (hidden on desktop) */
     .hamburger {
       font-size: 1.8rem;
       color: var(--text-light);
       cursor: pointer;
       display: none;
     }
-    /* Nav menu */
     .nav-menu {
       list-style: none;
       display: flex;
@@ -95,7 +93,6 @@
     .nav-menu a:hover {
       color: var(--dark-bg);
     }
-    /* Mobile styles */
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -104,7 +101,7 @@
         flex-direction: column;
         position: absolute;
         top: 3.5rem;
-        left: 1rem;  /* now positioned from the left */
+        left: 1rem;
         background-color: rgba(51,54,82,0.9);
         width: 150px;
         display: none;
@@ -156,7 +153,7 @@
       margin-bottom: 0.5rem;
     }
     .block ul {
-      list-style-type: none;
+      list-style: none;
       margin-top: 0.5rem;
       padding-left: 1.2rem;
     }
@@ -170,7 +167,6 @@
       position: absolute;
       left: -1.2rem;
     }
-    /* Placeholder for maps */
     .map-placeholder {
       width: 100%;
       height: 250px;
@@ -200,7 +196,7 @@
       background-color: var(--accent-2);
       color: var(--dark-bg);
     }
-    
+
     /*--------------------------------
       FOOTER
     --------------------------------*/
@@ -210,15 +206,6 @@
       background-color: #2b2b35;
       color: #ccc;
       font-size: 0.9rem;
-    }
-    
-    @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-      }
-      nav li {
-        margin: 0.5rem 0;
-      }
     }
   </style>
 </head>
@@ -244,9 +231,7 @@
     <!-- Sample Map Blocks -->
     <div class="block">
       <h3>Urban Growth Analysis</h3>
-      <div class="map-placeholder">
-        Map Placeholder
-      </div>
+      <div class="map-placeholder">Map Placeholder</div>
       <ul>
         <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
         <li>Proin dignissim ex in leo facilisis, at porta neque fermentum.</li>
@@ -256,9 +241,7 @@
 
     <div class="block">
       <h3>Environmental Impact Study</h3>
-      <div class="map-placeholder">
-        Map Placeholder
-      </div>
+      <div class="map-placeholder">Map Placeholder</div>
       <ul>
         <li>Nullam nec est vel erat volutpat bibendum.</li>
         <li>Mauris id augue eget ligula dignissim lacinia nec sed turpis.</li>
@@ -268,9 +251,7 @@
 
     <div class="block">
       <h3>Water Resource Management</h3>
-      <div class="map-placeholder">
-        Map Placeholder
-      </div>
+      <div class="map-placeholder">Map Placeholder</div>
       <ul>
         <li>Sed consectetur, purus eu scelerisque porttitor, justo lorem dignissim.</li>
         <li>At consequat mauris urna in ipsum.</li>
@@ -283,12 +264,19 @@
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Menu Toggle Script -->
+  <!-- Hamburger Toggle & Click‑Outside to Close -->
   <script>
     function toggleMenu() {
-      const navMenu = document.querySelector('.nav-menu');
-      navMenu.classList.toggle('open');
+      const menu = document.querySelector('.nav-menu');
+      menu.classList.toggle('open');
     }
+    document.addEventListener('click', e => {
+      const nav = document.querySelector('nav');
+      const menu = document.querySelector('.nav-menu');
+      if (menu.classList.contains('open') && !nav.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
   </script>
 </body>
 </html>
