@@ -58,14 +58,12 @@
       align-items: center;
       padding: 0.5rem 1rem;
     }
-    /* Hamburger icon (hidden on desktop) */
     .hamburger {
       font-size: 1.8rem;
       color: var(--text-light);
       cursor: pointer;
       display: none;
     }
-    /* Nav menu */
     .nav-menu {
       list-style: none;
       display: flex;
@@ -74,12 +72,12 @@
     }
     .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem; /* Expanded clickable area */
+      padding: 0.5rem 1rem;
       border-radius: 5px;
       transition: background 0.3s ease;
     }
     .nav-menu a {
-      display: block; /* Makes entire area clickable */
+      display: block;
       font-weight: 600;
       padding: 0.5rem 1rem;
       color: var(--text-light);
@@ -90,7 +88,6 @@
     .nav-menu a:hover {
       color: var(--dark-bg);
     }
-    /* Mobile styles */
     @media (max-width: 768px) {
       .hamburger {
         display: block;
@@ -98,8 +95,8 @@
       .nav-menu {
         flex-direction: column;
         position: absolute;
-        top: 3.5rem; /* below nav */
-        left: 1rem;  /* now from left */
+        top: 3.5rem;
+        left: 1rem;
         background-color: rgba(51,54,82,0.9);
         width: 150px;
         display: none;
@@ -189,10 +186,7 @@
     }
     
     @media (max-width: 600px) {
-      nav ul {
-        flex-direction: column;
-      }
-      nav li {
+      .nav-menu li {
         margin: 0.5rem 0;
       }
     }
@@ -244,12 +238,18 @@
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Menu Toggle Script -->
+  <!-- Hamburger Menu Toggle & click‑outside-to‑close -->
   <script>
     function toggleMenu() {
-      const navMenu = document.querySelector('.nav-menu');
-      navMenu.classList.toggle('open');
+      document.querySelector('.nav-menu').classList.toggle('open');
     }
+    document.addEventListener('click', e => {
+      const nav = document.querySelector('nav');
+      const menu = document.querySelector('.nav-menu');
+      if (menu.classList.contains('open') && !nav.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
   </script>
 </body>
 </html>
