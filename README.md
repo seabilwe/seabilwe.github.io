@@ -126,5 +126,4 @@ This project is licensed under the **MIT License**. See [LICENSE.md](LICENSE.md)
 
 ## ✉️ Contact
 
-Seabilwe Tilodi – [Email me](mailto:youremail@example.com) – [@your\_twitter](https://twitter.com/your_twitter)
-
+Seabilwe Tilodi – [Email me](mailto:seabilwetilodi@gmail.com)
