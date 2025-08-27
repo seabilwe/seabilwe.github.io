@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Blog</title>
+  
+  <!-- Google Fonts: Raleway -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
+  
+  <style>
+    /*--------------------------------
+      COLOR & FONT VARIABLES
+    --------------------------------*/
+    :root {
+      --dark-bg: #333652;
+      --accent-1: #f1b345;
+      --accent-2: #90adc6;
+      --text-light: #ffffff;
+      --font-main: 'Raleway', sans-serif;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.5;
+      overflow-x: hidden;
+      /* No extra bottom padding—footer will sit right under content */
+    }
+    a {
+      color: var(--accent-1);
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+    }
+    
+    /*--------------------------------
+      NAVIGATION & HAMBURGER MENU
+    --------------------------------*/
+    nav {
+      width: 100%;
+      background-color: rgba(51,54,82,0.9);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.5rem 1rem;
+    }
+    .hamburger {
+      font-size: 1.8rem;
+      color: var(--text-light);
+      cursor: pointer;
+      display: none;
+    }
+    .nav-menu {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      margin: 0;
+    }
+    .nav-menu li {
+      margin: 0 1rem;
+      padding: 0.5rem 1rem;  /* same as index.html */
+      border-radius: 5px;
+      transition: background 0.3s ease;
+    }
+    /* Remove the extra padding from the anchor itself */
+    .nav-menu a {
+      display: block;
+      font-weight: 600;
+      color: var(--text-light);
+      padding: 0;            /* ← adjusted to match index */
+    }
+    .nav-menu li:hover {
+      background-color: var(--accent-2);
+    }
+    .nav-menu a:hover {
+      color: var(--dark-bg);
+    }
+    @media (max-width: 768px) {
+      .hamburger {
+        display: block;
+      }
+      .nav-menu {
+        flex-direction: column;
+        position: absolute;
+        top: 3.5rem;
+        left: 1rem;
+        background-color: rgba(51,54,82,0.9);
+        width: 150px;
+        display: none;
+        border-radius: 5px;
+        padding: 1rem;
+      }
+      .nav-menu.open {
+        display: flex;
+      }
+      .nav-menu li {
+        margin: 0.5rem 0;
+      }
+    }
+    
+    /*--------------------------------
+      CONTAINER & HEADER
+    --------------------------------*/
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 5rem auto 2rem auto; /* now matches index.html */
+    }
+    header.page-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    header.page-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-1);
+    }
+    header.page-header p {
+      font-size: 1rem;
+      color: var(--accent-2);
+    }
+    
+    /*--------------------------------
+      BLOG CARDS
+    --------------------------------*/
+    .blog-card {
+      background-color: #2e2e3a;
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    .blog-card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent-1);
+    }
+    .blog-card .date {
+      font-size: 0.9rem;
+      color: var(--accent-2);
+      margin-bottom: 1rem;
+    }
+    .blog-card p {
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      background-color: var(--accent-1);
+      color: var(--dark-bg);
+      border: none;
+      border-radius: 30px;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background-color: var(--accent-2);
+      color: var(--dark-bg);
+    }
+    
+    /*--------------------------------
+      FOOTER
+    --------------------------------*/
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #2b2b35;
+      color: #ccc;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 600px) {
+      .nav-menu li {
+        margin: 0.5rem 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation with Hamburger Menu -->
+  <nav>
+    <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
+    <ul class="nav-menu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="maps.html">Maps</a></li>
+      <li><a href="blogs.html">Blogs</a></li>
+      <li><a href="more.html">More</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <header class="page-header">
+      <h1>Blog</h1>
+      <p>GIS insights, analytical methods, tips, and more.</p>
+    </header>
+
+    <!-- Sample Blog Cards -->
+    <div class="blog-card">
+      <h2>Understanding Spatial Analysis Techniques</h2>
+      <div class="date">January 1, 2025</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id nunc vitae massa volutpat vestibulum. Sed gravida, ligula ac cursus consequat, dui arcu laoreet felis, eget fringilla orci nisi ac metus.</p>
+      <a class="btn" href="#">Read More</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Tips for Effective GIS Data Management</h2>
+      <div class="date">February 14, 2025</div>
+      <p>Phasellus imperdiet, quam a faucibus placerat, erat nisl tincidunt nibh, non blandit nisi urna eget velit. Donec sed augue non nulla pretium lacinia.</p>
+      <a class="btn" href="#">Read More</a>
+    </div>
+
+    <div class="blog-card">
+      <h2>Analytical Methods in Remote Sensing</h2>
+      <div class="date">March 10, 2025</div>
+      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin hendrerit neque non tellus tempor, nec fermentum urna efficitur.</p>
+      <a class="btn" href="#">Read More</a>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
+  </footer>
+
+  <!-- Hamburger Menu Toggle & click-outside-to-close -->
+  <script>
+    function toggleMenu() {
+      document.querySelector('.nav-menu').classList.toggle('open');
+    }
+    document.addEventListener('click', e => {
+      const nav = document.querySelector('nav');
+      const menu = document.querySelector('.nav-menu');
+      if (menu.classList.contains('open') && !nav.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
