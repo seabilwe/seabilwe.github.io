@@ -1,0 +1,24 @@
+name: Deploy – Staging
+on:
+  push:
+    branches: [staging]
+permissions:
+  contents: write
+jobs:
+  deploy-staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # add build step here if you have one
+
+      - name: Deploy to /staging
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: .               # or ./build if you build
+          target-folder: staging  # publish under /staging/
+          force: false
+          clean: true
+          clean-exclude: |
+            pr-preview/
+            staging/
