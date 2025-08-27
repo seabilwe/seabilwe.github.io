@@ -2,15 +2,27 @@ name: PR Preview
 on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
+
+# ✅ add these:
 permissions:
-  contents: write
-concurrency: preview-${{ github.ref }}
+  contents: write       # push preview files to gh-pages
+  pull-requests: write  # interact with the PR
+  issues: write         # create the PR comment (PRs are "issues" under the hood)
+
+concurrency: preview-${{ github.event.pull_request.number }}
+
 jobs:
   preview:
     runs-on: ubuntu-latest
+    # Optional safety: only run for branches in this repo (not forks)
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
     steps:
       - uses: actions/checkout@v4
-      # add a build step here later if you ever have one
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # If you later add a build, run it here and set source-dir to the build folder.
+
       - name: Deploy PR preview
         uses: rossjrw/pr-preview-action@v1
         with:
