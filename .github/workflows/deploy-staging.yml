@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      # add build step here if you have one
+      # add a build step here later if you ever have one
 
       - name: Deploy to /staging
         uses: JamesIves/github-pages-deploy-action@v4
@@ -20,5 +20,5 @@ jobs:
           force: false
           clean: true
           clean-exclude: |
-            pr-preview/
-            staging/
+            pr-preview/           # keep PR previews untouched
+
