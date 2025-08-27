@@ -2,20 +2,34 @@ name: PR Preview
 on:
   pull_request:
     types: [opened, reopened, synchronize, closed]
+
+# Permissions needed to push previews and add/update the PR comment
 permissions:
   contents: write
-concurrency: preview-${{ github.ref }}
+  pull-requests: write
+  issues: write
+
+# Keep one preview per PR
+concurrency: preview-${{ github.event.pull_request.number }}
+
 jobs:
   preview:
     runs-on: ubuntu-latest
+
+    # Only run for PRs from this repo (skip forks for safety)
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+
     steps:
       - uses: actions/checkout@v4
-      # add build step here if you have one
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      # If you add a build later (e.g., npm run build), run it above and set source-dir to ./build
 
       - name: Deploy PR preview
         uses: rossjrw/pr-preview-action@v1
         with:
-          source-dir: .                 # or ./build after a build
+          source-dir: .
           preview-branch: gh-pages
-          umbrella-dir: pr-preview      # previews live under /pr-preview/
-          action: auto                  # updates on changes; cleans up on close
+          umbrella-dir: pr-preview
+          action: auto
