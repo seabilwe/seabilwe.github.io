@@ -1,0 +1,21 @@
+name: PR Preview
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+permissions:
+  contents: write
+concurrency: preview-${{ github.ref }}
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # add build step here if you have one
+
+      - name: Deploy PR preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: .                 # or ./build after a build
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview      # previews live under /pr-preview/
+          action: auto                  # updates on changes; cleans up on close
