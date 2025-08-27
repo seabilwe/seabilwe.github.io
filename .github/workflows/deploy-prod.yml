@@ -9,17 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      # If you have a build step later (e.g. npm run build), insert it here
-      # - run: npm ci && npm run build
-
+      # add a build step here later if you have one
       - name: Deploy to gh-pages (root)
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages        # Pages publishing branch
-          folder: .               # deploy the repo root (or ./build if you build)
+          branch: gh-pages
+          folder: .                 # or ./build if you build
           force: false
           clean: true
+          # NOTE: no inline comments here either
           clean-exclude: |
             pr-preview/
             staging/
+
