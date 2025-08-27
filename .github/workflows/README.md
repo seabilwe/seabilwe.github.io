@@ -1,7 +1,5 @@
-# README 1 — Deploy & Repo Handbook (`README.md`)
+# Deploy & Repo Handbook
 
-
-# seabilwe.github.io — Deploy & Repo Handbook
 
 This repo powers my personal site with a **three-environment flow**:
 
