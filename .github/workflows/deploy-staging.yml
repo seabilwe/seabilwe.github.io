@@ -10,14 +10,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       # add a build step here later if you ever have one
+
       - name: Deploy to /staging
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: .
-          target-folder: staging
+ main
+          folder: .                 # or ./build if you build
+          target-folder: staging    # publish under /staging/
+
+          folder: .               # or ./build if you build
+          target-folder: staging  # publish under /staging/
+ staging
           force: false
           clean: true
+          # NOTE: no inline comments and no "staging/" here
           clean-exclude: |
+ main
             pr-preview/
-            staging/
+
+            pr-preview/           # keep PR previews untouched
+
+ staging
