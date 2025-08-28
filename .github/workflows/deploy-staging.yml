@@ -15,10 +15,20 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
+ main
+          folder: .                 # or ./build if you build
+          target-folder: staging    # publish under /staging/
+
           folder: .               # or ./build if you build
           target-folder: staging  # publish under /staging/
+ staging
           force: false
           clean: true
+          # NOTE: no inline comments and no "staging/" here
           clean-exclude: |
+ main
+            pr-preview/
+
             pr-preview/           # keep PR previews untouched
 
+ staging
