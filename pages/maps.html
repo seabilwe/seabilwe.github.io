@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Blog</title>
+  <title>Maps</title>
   
   <!-- Google Fonts: Raleway -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
@@ -20,6 +20,10 @@
       --text-light: #ffffff;
       --font-main: 'Raleway', sans-serif;
     }
+
+    /*--------------------------------
+      BASE STYLES
+    --------------------------------*/
     * {
       box-sizing: border-box;
       margin: 0;
@@ -31,7 +35,7 @@
       color: var(--text-light);
       line-height: 1.5;
       overflow-x: hidden;
-      /* No extra bottom padding—footer will sit right under content */
+      /* No extra bottom padding—footer sits directly under content */
     }
     a {
       color: var(--accent-1);
@@ -43,7 +47,7 @@
     h1, h2, h3 {
       font-weight: 700;
     }
-    
+
     /*--------------------------------
       NAVIGATION & HAMBURGER MENU
     --------------------------------*/
@@ -73,7 +77,7 @@
     }
     .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem;  /* same as index.html */
+      padding: 0.5rem 1rem;       /* same as index.html */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
@@ -82,7 +86,7 @@
       display: block;
       font-weight: 600;
       color: var(--text-light);
-      padding: 0;            /* ← adjusted to match index */
+      padding: 0;                 /* ← updated to match index */
     }
     .nav-menu li:hover {
       background-color: var(--accent-2);
@@ -112,14 +116,14 @@
         margin: 0.5rem 0;
       }
     }
-    
+
     /*--------------------------------
       CONTAINER & HEADER
     --------------------------------*/
     .container {
       width: 90%;
       max-width: 1200px;
-      margin: 5rem auto 2rem auto; /* now matches index.html */
+      margin: 5rem auto 2rem auto; /* matches index.html exactly */
     }
     header.page-header {
       text-align: center;
@@ -134,29 +138,47 @@
       font-size: 1rem;
       color: var(--accent-2);
     }
-    
+
     /*--------------------------------
-      BLOG CARDS
+      MAP BLOCKS
     --------------------------------*/
-    .blog-card {
+    .block {
       background-color: #2e2e3a;
-      border-radius: 8px;
       padding: 1.5rem;
+      border-radius: 8px;
       margin-bottom: 2rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
-    .blog-card h2 {
-      font-size: 1.8rem;
-      margin-bottom: 0.5rem;
-      color: var(--accent-1);
-    }
-    .blog-card .date {
-      font-size: 0.9rem;
+    .block h3 {
       color: var(--accent-2);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
     }
-    .blog-card p {
-      margin-bottom: 1rem;
+    .block ul {
+      list-style: none;
+      margin-top: 0.5rem;
+      padding-left: 1.2rem;
+    }
+    .block li {
+      position: relative;
+      margin-bottom: 0.8rem;
+    }
+    .block li::before {
+      content: "•";
+      color: var(--accent-1);
+      position: absolute;
+      left: -1.2rem;
+    }
+    .map-placeholder {
+      width: 100%;
+      height: 250px;
+      background-color: #444;
+      border-radius: 4px;
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-2);
+      font-size: 1.2rem;
     }
     .btn {
       display: inline-block;
@@ -175,7 +197,7 @@
       background-color: var(--accent-2);
       color: var(--dark-bg);
     }
-    
+
     /*--------------------------------
       FOOTER
     --------------------------------*/
@@ -186,12 +208,6 @@
       color: #ccc;
       font-size: 0.9rem;
     }
-    
-    @media (max-width: 600px) {
-      .nav-menu li {
-        margin: 0.5rem 0;
-      }
-    }
   </style>
 </head>
 <body>
@@ -199,7 +215,7 @@
   <nav>
     <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
     <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="../index.html">Home</a></li>
       <li><a href="maps.html">Maps</a></li>
       <li><a href="blogs.html">Blogs</a></li>
       <li><a href="more.html">More</a></li>
@@ -209,30 +225,39 @@
 
   <div class="container">
     <header class="page-header">
-      <h1>Blog</h1>
-      <p>GIS insights, analytical methods, tips, and more.</p>
+      <h1>Maps</h1>
+      <p>Discover interactive maps and geospatial visualizations showcasing innovative projects and spatial data insights.</p>
     </header>
 
-    <!-- Sample Blog Cards -->
-    <div class="blog-card">
-      <h2>Understanding Spatial Analysis Techniques</h2>
-      <div class="date">January 1, 2025</div>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id nunc vitae massa volutpat vestibulum. Sed gravida, ligula ac cursus consequat, dui arcu laoreet felis, eget fringilla orci nisi ac metus.</p>
-      <a class="btn" href="#">Read More</a>
+    <!-- Sample Map Blocks -->
+    <div class="block">
+      <h3>Urban Growth Analysis</h3>
+      <div class="map-placeholder">Map Placeholder</div>
+      <ul>
+        <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+        <li>Proin dignissim ex in leo facilisis, at porta neque fermentum.</li>
+      </ul>
+      <a class="btn" href="#">View Map</a>
     </div>
 
-    <div class="blog-card">
-      <h2>Tips for Effective GIS Data Management</h2>
-      <div class="date">February 14, 2025</div>
-      <p>Phasellus imperdiet, quam a faucibus placerat, erat nisl tincidunt nibh, non blandit nisi urna eget velit. Donec sed augue non nulla pretium lacinia.</p>
-      <a class="btn" href="#">Read More</a>
+    <div class="block">
+      <h3>Environmental Impact Study</h3>
+      <div class="map-placeholder">Map Placeholder</div>
+      <ul>
+        <li>Nullam nec est vel erat volutpat bibendum.</li>
+        <li>Mauris id augue eget ligula dignissim lacinia nec sed turpis.</li>
+      </ul>
+      <a class="btn" href="#">View Map</a>
     </div>
 
-    <div class="blog-card">
-      <h2>Analytical Methods in Remote Sensing</h2>
-      <div class="date">March 10, 2025</div>
-      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin hendrerit neque non tellus tempor, nec fermentum urna efficitur.</p>
-      <a class="btn" href="#">Read More</a>
+    <div class="block">
+      <h3>Water Resource Management</h3>
+      <div class="map-placeholder">Map Placeholder</div>
+      <ul>
+        <li>Sed consectetur, purus eu scelerisque porttitor, justo lorem dignissim.</li>
+        <li>At consequat mauris urna in ipsum.</li>
+      </ul>
+      <a class="btn" href="#">View Map</a>
     </div>
   </div>
 
@@ -240,10 +265,11 @@
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Menu Toggle & click-outside-to-close -->
+  <!-- Hamburger Toggle & Click-Outside to Close -->
   <script>
     function toggleMenu() {
-      document.querySelector('.nav-menu').classList.toggle('open');
+      const menu = document.querySelector('.nav-menu');
+      menu.classList.toggle('open');
     }
     document.addEventListener('click', e => {
       const nav = document.querySelector('nav');
