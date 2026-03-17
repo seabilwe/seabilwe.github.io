@@ -3,32 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact</title>
+  <title>Blog</title>
   
   <!-- Google Fonts: Raleway -->
   <link rel="preconnect" href="https://fonts.gstatic.com" />
   <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet" />
   
   <style>
-    /*--------------------------------
-      FULL-HEIGHT FLEX LAYOUT
-    --------------------------------*/
-    html {
-      height: 100%;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      font-family: var(--font-main);
-      background-color: var(--dark-bg);
-      color: var(--text-light);
-      line-height: 1.5;
-      overflow-x: hidden;
-      /* Removed padding-bottom; footer will sit at bottom */
-    }
-    
     /*--------------------------------
       COLOR & FONT VARIABLES
     --------------------------------*/
@@ -44,6 +25,14 @@
       margin: 0;
       padding: 0;
     }
+    body {
+      font-family: var(--font-main);
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      line-height: 1.5;
+      overflow-x: hidden;
+      /* No extra bottom padding—footer will sit right under content */
+    }
     a {
       color: var(--accent-1);
       text-decoration: none;
@@ -54,7 +43,7 @@
     h1, h2, h3 {
       font-weight: 700;
     }
-
+    
     /*--------------------------------
       NAVIGATION & HAMBURGER MENU
     --------------------------------*/
@@ -84,16 +73,16 @@
     }
     .nav-menu li {
       margin: 0 1rem;
-      padding: 0.5rem 1rem; /* same as index */
+      padding: 0.5rem 1rem;  /* same as index.html */
       border-radius: 5px;
       transition: background 0.3s ease;
     }
-    /* Remove padding from the anchor itself */
+    /* Remove the extra padding from the anchor itself */
     .nav-menu a {
       display: block;
       font-weight: 600;
       color: var(--text-light);
-      padding: 0; /* ← matches index.html */
+      padding: 0;            /* ← adjusted to match index */
     }
     .nav-menu li:hover {
       background-color: var(--accent-2);
@@ -123,15 +112,14 @@
         margin: 0.5rem 0;
       }
     }
-
+    
     /*--------------------------------
       CONTAINER & HEADER
     --------------------------------*/
     .container {
-      flex: 1;                        /* allow this to expand */
       width: 90%;
-      max-width: 800px;
-      margin: 5rem auto 2rem auto;    /* margin-top accounts for fixed nav */
+      max-width: 1200px;
+      margin: 5rem auto 2rem auto; /* now matches index.html */
     }
     header.page-header {
       text-align: center;
@@ -146,37 +134,32 @@
       font-size: 1rem;
       color: var(--accent-2);
     }
-
+    
     /*--------------------------------
-      CONTACT FORM STYLES
+      BLOG CARDS
     --------------------------------*/
-    .contact-form {
+    .blog-card {
       background-color: #2e2e3a;
-      padding: 1.5rem;
       border-radius: 8px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.3);
     }
-    .contact-form label {
-      display: block;
+    .blog-card h2 {
+      font-size: 1.8rem;
       margin-bottom: 0.5rem;
-      font-weight: 600;
+      color: var(--accent-1);
+    }
+    .blog-card .date {
+      font-size: 0.9rem;
       color: var(--accent-2);
-    }
-    .contact-form input,
-    .contact-form textarea {
-      width: 100%;
-      padding: 0.5rem;
       margin-bottom: 1rem;
-      border: none;
-      border-radius: 4px;
-      background-color: #444;
-      color: var(--text-light);
     }
-    .contact-form input::placeholder,
-    .contact-form textarea::placeholder {
-      color: #bbb;
+    .blog-card p {
+      margin-bottom: 1rem;
     }
-    .contact-form button {
+    .btn {
+      display: inline-block;
       background-color: var(--accent-1);
       color: var(--dark-bg);
       border: none;
@@ -186,12 +169,13 @@
       font-weight: 600;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      text-decoration: none;
     }
-    .contact-form button:hover {
+    .btn:hover {
       background-color: var(--accent-2);
       color: var(--dark-bg);
     }
-
+    
     /*--------------------------------
       FOOTER
     --------------------------------*/
@@ -201,17 +185,21 @@
       background-color: #2b2b35;
       color: #ccc;
       font-size: 0.9rem;
-      /* No need to change; sits at bottom of flex container */
+    }
+    
+    @media (max-width: 600px) {
+      .nav-menu li {
+        margin: 0.5rem 0;
+      }
     }
   </style>
 </head>
-
 <body>
   <!-- Navigation with Hamburger Menu -->
   <nav>
     <div class="hamburger" onclick="toggleMenu()">&#9776;</div>
     <ul class="nav-menu">
-      <li><a href="index.html">Home</a></li>
+      <li><a href="../index.html">Home</a></li>
       <li><a href="maps.html">Maps</a></li>
       <li><a href="blogs.html">Blogs</a></li>
       <li><a href="more.html">More</a></li>
@@ -219,43 +207,51 @@
     </ul>
   </nav>
 
-  <!-- Main Content Container -->
   <div class="container">
     <header class="page-header">
-      <h1>Contact</h1>
-      <p>Get in touch with me for collaborations, inquiries, or more information.</p>
+      <h1>Blog</h1>
+      <p>GIS insights, analytical methods, tips, and more.</p>
     </header>
 
-    <section id="contact-form">
-      <div class="contact-form">
-        <!-- Note: Form action points to Formspree example. Replace with your own endpoint if needed. -->
-        <form action="https://formspree.io/f/xyzelkjg" method="post">
-          <label for="name">Name:</label>
-          <input type="text" id="name" name="name" placeholder="Your name" required />
+    <!-- Sample Blog Cards -->
+    <div class="blog-card">
+      <h2>Understanding Spatial Analysis Techniques</h2>
+      <div class="date">January 1, 2025</div>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id nunc vitae massa volutpat vestibulum. Sed gravida, ligula ac cursus consequat, dui arcu laoreet felis, eget fringilla orci nisi ac metus.</p>
+      <a class="btn" href="#">Read More</a>
+    </div>
 
-          <label for="email">Email:</label>
-          <input type="email" id="email" name="email" placeholder="Your email" required />
+    <div class="blog-card">
+      <h2>Tips for Effective GIS Data Management</h2>
+      <div class="date">February 14, 2025</div>
+      <p>Phasellus imperdiet, quam a faucibus placerat, erat nisl tincidunt nibh, non blandit nisi urna eget velit. Donec sed augue non nulla pretium lacinia.</p>
+      <a class="btn" href="#">Read More</a>
+    </div>
 
-          <label for="message">Message:</label>
-          <textarea id="message" name="message" rows="5" placeholder="Your message" required></textarea>
-
-          <button type="submit">Send Message</button>
-        </form>
-      </div>
-    </section>
+    <div class="blog-card">
+      <h2>Analytical Methods in Remote Sensing</h2>
+      <div class="date">March 10, 2025</div>
+      <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Proin hendrerit neque non tellus tempor, nec fermentum urna efficitur.</p>
+      <a class="btn" href="#">Read More</a>
+    </div>
   </div>
 
-  <!-- Footer (will stick to the bottom when content is short) -->
   <footer>
     <p>&copy; 2025 Seabilwe P.L. Tilodi. All rights reserved.</p>
   </footer>
 
-  <!-- Hamburger Menu Toggle Script -->
+  <!-- Hamburger Menu Toggle & click-outside-to-close -->
   <script>
     function toggleMenu() {
-      const navMenu = document.querySelector('.nav-menu');
-      navMenu.classList.toggle('open');
+      document.querySelector('.nav-menu').classList.toggle('open');
     }
+    document.addEventListener('click', e => {
+      const nav = document.querySelector('nav');
+      const menu = document.querySelector('.nav-menu');
+      if (menu.classList.contains('open') && !nav.contains(e.target)) {
+        menu.classList.remove('open');
+      }
+    });
   </script>
 </body>
 </html>
