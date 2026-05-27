@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
-<title>Seabilwe Tilodi · GIS and Earth Observation</title>
+<title>Maps · Seabilwe Tilodi</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;600;700&family=DM+Sans:wght@300;400;500&display=swap');
 :root{--bg:#0d1117;--bg-card:#161b22;--bg-card2:#1c2333;--accent:#1fa876;--ag:rgba(31,168,118,.18);--text:#e6edf3;--tm:#7d8590;--td:#484f58;--border:#21262d;--sw:280px;--serif:'DM Serif Display',Georgia,serif;--sans:'Syne',sans-serif;--body:'DM Sans',sans-serif}
@@ -129,10 +129,10 @@ a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-st
   </div>
   <div class="sb-div"></div>
   <nav class="snav"><ul>
-    <li><a href="index.html" class="on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a></li>
+    <li><a href="index.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Home</a></li>
     <li><a href="about.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>About</a></li>
     <li><a href="skills.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>Skills</a></li>
-    <li><a href="maps.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Maps</a></li>
+    <li><a href="maps.html" class="on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>Maps</a></li>
     <li><a href="blogs.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Blog</a></li>
     <li><a href="contact.html"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Contact</a></li>
   </ul></nav>
@@ -140,61 +140,81 @@ a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-st
   <div class="avail"><span class="avail-dot"></span>Available for projects</div>
 </aside>
 <main class="main">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <div class="ph"><div class="ph-inner">
-  <span class="ptag">From spatial data to real-world impact</span>
-  <h1 class="ptitle">Seabilwe<br><em>P.L. Tilodi</em></h1>
-  <p class="plead">GIS and Earth Observation professional. Turning complex spatial data into decision-ready evidence and building the human capability to use it. Based in Johannesburg, working globally.</p>
-  <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1.4rem">
-    <a href="maps.html" class="btn btn-p" style="display:inline-block;width:auto">View My Work</a>
-    <a href="contact.html" class="btn btn-o" style="display:inline-block;width:auto">Get In Touch</a>
-  </div>
-  <div style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1.1rem">
-    <span class="tag tag-a">OSGeo Charter Member</span>
-    <span class="tag tag-a">Wits MSc GIS and RS</span>
-    <span class="tag tag-a">Open-source Advocate</span>
-    <span class="tag tag-a">Johannesburg · Global</span>
-  </div>
+  <span class="ptag">Cartographic Work</span>
+  <h1 class="ptitle">Maps and<br><em>Spatial Work</em></h1>
+  <p class="plead">A portfolio of cartographic outputs, GIS analysis and interactive maps. All produced using open-source tools. Explore project locations on the map below.</p>
 </div></div>
 
-<div class="stats">
-  <div class="sbox"><span class="snum" data-c="7">0</span><span class="slb">Years Experience</span></div>
-  <div class="sbox"><span class="snum" data-c="6">0</span><span class="slb">Countries Trained</span></div>
-  <div class="sbox"><span class="snum" data-c="4">0</span><span class="slb">Major Projects</span></div>
-  <div class="sbox"><span class="snum" data-c="10">0</span><span class="slb">Open-source Tools</span></div>
-</div>
-
 <div class="sec fi2">
-  <div class="slbl">Capabilities</div>
-  <h2 class="stitle">Core Skills</h2>
-  <div class="g3">
-    <div class="card"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3.33 1.67 6.67 1.67 10 0v-5"/></svg></div><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem">Capacity Building</div><p style="font-size:.8rem;color:var(--tm);line-height:1.65;margin-bottom:.65rem">Curriculum design, facilitation and e-learning operations at international scale.</p><div class="tlist"><span class="tag">Curriculum Design</span><span class="tag">Moodle</span><span class="tag">Facilitation</span></div></div>
-    <div class="card"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.5-1.5 4 0 5.5s4 1.5 5.5 0l10-10c1.5-1.5 1.5-4 0-5.5s-4-1.5-5.5 0z"/><path d="M8 8l8 8"/><line x1="18" y1="2" x2="22" y2="6"/><line x1="2" y1="18" x2="6" y2="22"/></svg></div><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem">Earth Observation</div><p style="font-size:.8rem;color:var(--tm);line-height:1.65;margin-bottom:.65rem">Open-data EO workflows for land, water and biodiversity monitoring across Africa.</p><div class="tlist"><span class="tag">DEA Platform</span><span class="tag">QGIS</span><span class="tag">Raster Analysis</span></div></div>
-    <div class="card"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/><path d="M3 13v4c0 1.66 4.03 3 9 3s9-1.34 9-3v-4"/></svg></div><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem">Data Governance</div><p style="font-size:.8rem;color:var(--tm);line-height:1.65;margin-bottom:.65rem">Metadata standards, SDI catalogue publishing and quality validation for government teams.</p><div class="tlist"><span class="tag">SDI</span><span class="tag">GeoNode</span><span class="tag">INSPIRE</span></div></div>
-    <div class="card"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem">Spatial Analysis</div><p style="font-size:.8rem;color:var(--tm);line-height:1.65;margin-bottom:.65rem">Advanced geoprocessing pipelines automated with Python and SQL.</p><div class="tlist"><span class="tag">PostGIS</span><span class="tag">Python</span><span class="tag">GDAL/OGR</span></div></div>
-    <div class="card"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem">Web GIS</div><p style="font-size:.8rem;color:var(--tm);line-height:1.65;margin-bottom:.65rem">OGC web mapping services and spatial data pipelines at organisational scale.</p><div class="tlist"><span class="tag">GeoServer</span><span class="tag">Lizmap</span><span class="tag">WMS/WFS</span></div></div>
-    <div class="card"><div class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem">Cartography</div><p style="font-size:.8rem;color:var(--tm);line-height:1.65;margin-bottom:.65rem">Compelling cartographic products and spatial visualisations for reports and decisions.</p><div class="tlist"><span class="tag">QGIS</span><span class="tag">ArcGIS Online</span><span class="tag">Power BI</span></div></div>
+  <div class="slbl">Project Footprint</div>
+  <h2 class="stitle">Where I Have Worked</h2>
+  <div id="map" style="height:460px;width:100%;border-radius:10px;overflow:hidden;border:1px solid var(--border)"></div>
+  <div style="display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem">
+    <span class="tag tag-a"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> Johannesburg (Base)</span>
+    <span class="tag">Abuja, Nigeria</span>
+    <span class="tag">Addis Ababa, Ethiopia</span>
+    <span class="tag">Trieste, Italy</span>
+    <span class="tag">Waterberg, South Africa</span>
+    <span class="tag">St. Lucia, South Africa</span>
+    <span class="tag">Dominica, Caribbean</span>
   </div>
-  <div style="text-align:center;margin-top:1.6rem"><a href="skills.html" class="btn btn-o" style="display:inline-block;width:auto">Full Skills Profile</a></div>
 </div>
 
 <div class="sec fi2">
-  <div class="slbl">Work</div><h2 class="stitle">Selected Projects</h2>
-  <a href="https://www.digitalearthafrica.org/" target="_blank" class="prow"><span class="pnum">01</span><div><div class="pname">Digital Earth Africa Learning Platform</div><div class="ptype">Led EO training content for national agencies across Africa.</div></div><span class="tag">EO · Capacity Building</span></a>
-  <a href="https://www.seforall.org/" target="_blank" class="prow"><span class="pnum">02</span><div><div class="pname">Energy Modelling Platform · SEforALL and CCG</div><div class="ptype">Geospatial data governance training in Nigeria, Ethiopia and Italy.</div></div><span class="tag">Training · Energy</span></a>
-  <a href="maps.html" class="prow"><span class="pnum">03</span><div><div class="pname">South African SDI Governance · DALRRD</div><div class="ptype">Dataset publishing via national SDI catalogue and governance training.</div></div><span class="tag">Data Governance</span></a>
-  <a href="maps.html" class="prow"><span class="pnum">04</span><div><div class="pname">Waterberg Biosphere Reserve SEMP · USAID</div><div class="ptype">GIS and remote sensing for biodiversity mapping and resilience planning.</div></div><span class="tag">GIS · Biodiversity</span></a>
-</div>
+  <div class="slbl">Featured Work</div><h2 class="stitle">Map Portfolio</h2>
 
-<div class="sec fi2">
-  <div class="slbl">Latest Writing</div><h2 class="stitle">From the Blog</h2>
-  <div class="g3">
-    <a href="blogs.html" class="card" style="display:block"><span style="font-family:var(--sans);font-size:.65rem;font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.55rem;display:block">Open Source GIS</span><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem;line-height:1.3">Why QGIS is the Future of Geospatial Analysis</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6">How the open-source ecosystem is reshaping what is possible at every scale.</p></a>
-    <a href="blogs.html" class="card" style="display:block"><span style="font-family:var(--sans);font-size:.65rem;font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.55rem;display:block">Earth Observation</span><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem;line-height:1.3">Satellite Data in Conservation</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6">How remote sensing drives conservation decisions across Southern Africa.</p></a>
-    <a href="blogs.html" class="card" style="display:block"><span style="font-family:var(--sans);font-size:.65rem;font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.55rem;display:block">Capacity Building</span><div style="font-family:var(--serif);font-size:.98rem;color:var(--text);margin-bottom:.45rem;line-height:1.3">Designing GIS Training That Sticks</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6">Lessons from seven years of facilitating geospatial training programmes.</p></a>
+  <div class="card" style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:center;margin-bottom:1.5rem;border-color:var(--accent)" class="feat-map">
+    <a href="assets/images/Zimbabwe_National_Parks.png" target="_blank"><img src="assets/images/Zimbabwe_National_Parks.png" alt="National Parks in Zimbabwe" style="width:100%;border-radius:8px;border:1px solid var(--border)"/></a>
+    <div>
+      <span class="tag tag-a" style="margin-bottom:.9rem;display:inline-block">Featured · QGIS Cartography</span>
+      <div style="font-family:var(--serif);font-size:1.3rem;color:var(--text);margin-bottom:.65rem;line-height:1.25">National Parks in Zimbabwe</div>
+      <p style="font-size:.85rem;color:var(--tm);line-height:1.75;margin-bottom:1.1rem">Professional cartographic map of Zimbabwe's protected national parks network. Includes park boundaries, cities, major roads, railways, rivers and water bodies with a full legend and inset locator map. Produced in QGIS using Natural Earth data.</p>
+      <div class="tlist" style="margin-bottom:1.1rem"><span class="tag">QGIS</span><span class="tag">Conservation</span><span class="tag">Natural Earth</span><span class="tag">WGS84</span></div>
+      <a href="assets/images/Zimbabwe_National_Parks.png" target="_blank" class="btn btn-p" style="display:inline-block;width:auto">View Full Map</a>
+    </div>
   </div>
-  <div style="text-align:center;margin-top:1.6rem"><a href="blogs.html" class="btn btn-o" style="display:inline-block;width:auto">Read All Articles</a></div>
+
+  <div class="g3">
+    <div class="card"><div style="height:130px;background:linear-gradient(135deg,#0d2a1f,#1c3a2a);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center;color:rgba(31,168,118,.35)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div style="font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.35rem">Waterberg Biosphere Analysis</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6;margin-bottom:.65rem">GIS and remote sensing outputs for the Waterberg Biosphere Reserve SEMP with USAID.</p><div class="tlist"><span class="tag">Biodiversity</span><span class="tag">USAID</span></div></div>
+    <div class="card"><div style="height:130px;background:linear-gradient(135deg,#1a2a1a,#0f1f0f);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center;color:rgba(31,168,118,.35)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="3" y1="15" x2="21" y2="15"/><line x1="9" y1="3" x2="9" y2="21"/><line x1="15" y1="3" x2="15" y2="21"/></svg></div><div style="font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.35rem">Land Cover Classification</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6;margin-bottom:.65rem">Satellite imagery classification for land cover monitoring and change detection analysis.</p><div class="tlist"><span class="tag">Remote Sensing</span><span class="tag">DEA</span></div></div>
+    <div class="card"><div style="height:130px;background:linear-gradient(135deg,#1f2d3a,#0d1f2a);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center;color:rgba(31,168,118,.35)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div><div style="font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.35rem">South Africa SDI Datasets</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6;margin-bottom:.65rem">National spatial datasets published via DALRRD SDI catalogue with full metadata compliance.</p><div class="tlist"><span class="tag">Governance</span><span class="tag">DALRRD</span></div></div>
+    <div class="card"><div style="height:130px;background:linear-gradient(135deg,#1a1f2a,#0f1520);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center;color:rgba(31,168,118,.35)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20"/></svg></div><div style="font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.35rem">Energy Access Mapping</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6;margin-bottom:.65rem">Spatial modelling for energy access planning in Nigeria and Ethiopia for SEforALL.</p><div class="tlist"><span class="tag">Energy</span><span class="tag">SEforALL</span></div></div>
+    <div class="card"><div style="height:130px;background:linear-gradient(135deg,#2a1a1a,#1f0f0f);border-radius:8px;margin-bottom:.9rem;display:flex;align-items:center;justify-content:center;color:rgba(31,168,118,.35)"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v4c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 9v4c0 1.66 4.03 3 9 3s9-1.34 9-3V9"/></svg></div><div style="font-family:var(--serif);font-size:.95rem;color:var(--text);margin-bottom:.35rem">Geospatial Data Platform</div><p style="font-size:.78rem;color:var(--tm);line-height:1.6;margin-bottom:.65rem">PostGIS and GeoServer-based spatial data platform for multi-stakeholder access and OGC services.</p><div class="tlist"><span class="tag">PostGIS</span><span class="tag">GeoServer</span></div></div>
+    <div class="card" style="border:2px dashed var(--border);background:transparent;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.65rem;min-height:210px;color:var(--td)"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg><div style="font-size:.8rem">More maps coming soon</div></div>
+  </div>
 </div>
-<footer class="ft"><span>© 2026 <strong>Seabilwe P.L. Tilodi</strong> · GIS and Earth Observation · seabilwetilodi@gmail.com</span><nav class="ftl"><a href="index.html">Home</a><a href="about.html">About</a><a href="skills.html">Skills</a><a href="maps.html">Maps</a><a href="blogs.html">Blog</a><a href="contact.html">Contact</a><a href="license.html">License</a></nav></footer></main>
+<footer class="ft"><span>© 2026 <strong>Seabilwe P.L. Tilodi</strong> · GIS and Earth Observation · seabilwetilodi@gmail.com</span><nav class="ftl"><a href="index.html">Home</a><a href="about.html">About</a><a href="skills.html">Skills</a><a href="maps.html">Maps</a><a href="blogs.html">Blog</a><a href="contact.html">Contact</a><a href="license.html">License</a></nav></footer>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(function(){
+  var map=L.map('map',{zoomControl:true,attributionControl:true}).setView([10,20],3);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/">CARTO</a>',
+    maxZoom:18,subdomains:'abcd'
+  }).addTo(map);
+  var style={radius:9,fillColor:'#1fa876',color:'#17c98a',weight:2,opacity:1,fillOpacity:.75};
+  var styleBase={radius:11,fillColor:'#1fa876',color:'#fff',weight:2,opacity:1,fillOpacity:1};
+  function mk(lat,lng,title,role,desc,base){
+    var m=L.circleMarker([lat,lng],base?styleBase:style).addTo(map);
+    m.bindPopup('<div style="min-width:200px"><strong style="color:#1fa876;font-size:.85rem">'+title+'</strong><br><span style="font-size:.72rem;color:#7d8590;font-family:monospace;text-transform:uppercase;letter-spacing:.08em">'+role+'</span><p style="font-size:.8rem;margin-top:.5rem;color:#c9d1d9;line-height:1.5">'+desc+'</p></div>',{maxWidth:260});
+    return m;
+  }
+  mk(-26.2041,28.0473,'Johannesburg, South Africa','Base / Kartoza HQ','Home base. Head of Training at Kartoza (Pty) Ltd. All major project coordination and training delivery.',true);
+  mk(9.0765,7.3986,'Abuja, Nigeria','Digital Earth Africa','EO capacity building programme for national mapping and environment agencies across West Africa.');
+  mk(9.1450,40.4897,'Addis Ababa, Ethiopia','SEforALL Energy Training','Energy Modelling Platform training with SEforALL and CCG. Geospatial data governance and analysis workflows.');
+  mk(45.6495,13.7768,'Trieste, Italy','SEforALL / CCG','Delivered geospatial data governance training for the SEforALL and CCG energy access platform.');
+  mk(-24.0,27.5,'Waterberg, South Africa','USAID Biosphere SEMP','GIS and remote sensing for biodiversity mapping, habitat analysis and resilience planning.');
+  mk(-28.3667,32.4167,'St. Lucia, South Africa','Conservation GIS','Wetlands and conservation spatial analysis in the iSimangaliso Wetland Park area.');
+  mk(15.3092,-61.3794,'Dominica, Caribbean','Caribbean Training','GIS capacity building and training delivery. Building local geospatial capability in the Caribbean.');
+  map.on('popupopen',function(){document.querySelectorAll('.leaflet-popup-content a')&&null;});
+})();
+</script>
+<style>
+@media(max-width:680px){.card[style*="grid-template-columns:1fr 1fr"]{grid-template-columns:1fr!important}}
+.leaflet-container{background:#0d1117}
+</style></main>
 <script>
 (function(){
   // Typed
