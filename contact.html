@@ -239,7 +239,7 @@ a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-st
     io.observe(el);
   });
   // Formspree submit — JSON payload, no FormData, no honeypot auto-fill issues
-  var FORM_ID='xyzelkjg';
+  var FORM_ID='mzdwyebz';
   var btn=document.getElementById('sbtn');
   var msgOk=document.getElementById('msg-ok');
   var msgErr=document.getElementById('msg-err');
@@ -266,9 +266,28 @@ a{text-decoration:none;color:inherit}img{max-width:100%;display:block}ul{list-st
         ['first_name','last_name','email','message'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
         document.getElementById('subject').value='';
       } else {
-        var e=(r.data&&r.data.errors)?r.data.errors.map(function(x){return x.message;}).join(', '):'Submission rejected.';
-        errTxt.innerHTML=e+' &mdash; or email <a href="mailto:seabilwetilodi@gmail.com" style="color:#e07055;text-decoration:underline">seabilwetilodi@gmail.com</a> directly.';
+        // Formspree returns either .error (string) or .errors (array) depending on the rejection type
+        var reason='';
+        if(r.data&&r.data.errors&&r.data.errors.length){
+          reason=r.data.errors.map(function(x){return x.message;}).join(' ');
+        } else if(r.data&&r.data.error){
+          reason=r.data.error;
+        } else {
+          reason='Formspree rejected the submission (status '+r.status+').';
+        }
+        // Common Formspree rejection reasons and plain-English fixes
+        var hint='';
+        var rl=reason.toLowerCase();
+        if(rl.indexOf('verify')!==-1||rl.indexOf('inactive')!==-1||rl.indexOf('confirm')!==-1){
+          hint=' Check your Formspree dashboard — your form may need email verification.';
+        } else if(rl.indexOf('domain')!==-1||rl.indexOf('origin')!==-1||rl.indexOf('allowed')!==-1){
+          hint=' This form only accepts submissions from seabilwe.github.io, not from a local or preview URL.';
+        } else if(rl.indexOf('not found')!==-1){
+          hint=' The form ID may be incorrect. Check formspree.io/dashboard.';
+        }
+        errTxt.innerHTML='<strong>'+reason+'</strong>'+hint+' &mdash; or email <a href="mailto:seabilwetilodi@gmail.com" style="color:#e07055;text-decoration:underline">seabilwetilodi@gmail.com</a> directly.';
         msgErr.style.display='block';
+        console.error('Formspree rejection:',r.data);
       }
     })
     .catch(function(){
