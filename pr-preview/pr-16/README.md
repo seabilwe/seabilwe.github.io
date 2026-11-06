@@ -26,7 +26,9 @@ tiles/, data/         Tiles and cities for the population map
 
 ## Deploy
 
-Pushing to `main` runs the production workflow in `.github/workflows/`.
+GitHub Pages builds the live site directly from `main`, so merging to `main` publishes it.
+
+The workflows in `.github/workflows/` publish production, staging and PR previews to the `gh-pages` branch. While the Pages source is `main`, the staging and preview links return 404. To use them, set the Pages source to `gh-pages`.
 
 ## Local preview
 
