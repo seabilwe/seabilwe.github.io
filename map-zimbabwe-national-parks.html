@@ -9,9 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=20261114b">
+<link rel="stylesheet" href="assets/css/site.css?v=20261114c">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/css/story-map.css?v=20261114b">
+<link rel="stylesheet" href="assets/css/story-map.css?v=20261114c">
 </head>
 <body>
 <header class="topbar">
@@ -46,21 +46,33 @@
       <header class="page-head">
         <p class="topic"><a href="blogs.html#maps">Maps and visualisations</a></p>
         <h1>Zimbabwe's eleven national parks</h1>
-        <p class="lede">The national parks set against the rest of Zimbabwe's protected estate, with every park's area measured in an equal-area projection. A 2023 map, redesigned in 2026.</p>
+        <p class="lede">The national parks set against the rest of Zimbabwe's protected estate, its rivers and relief, and the roads and towns around it. A 2023 map, redesigned and made interactive in 2026.</p>
       </header>
       <section aria-labelledby="zw-find">
         <div class="head"><div><h2 id="zw-find">What the map shows</h2></div></div>
         <ul class="stat-row">
           <li class="stat"><b>6.9%</b><span>of Zimbabwe, 26,866&nbsp;km², is national park.</span></li>
-          <li class="stat"><b>28%</b><span>is protected once safari areas, forest land and recreation parks are added.</span></li>
+          <li class="stat"><b>28%</b><span>is protected once wildlife management areas, safari areas, forests and recreation parks are added.</span></li>
           <li class="stat"><b>55%</b><span>of all national park land lies in a single park, Hwange.</span></li>
         </ul>
       </section>
-      <section aria-labelledby="zw-map">
-        <div class="head"><div><h2 id="zw-map">The map</h2><p>Scroll or pinch to zoom, drag to move around.</p></div></div>
-        <div class="zoom-map" data-zoom-image data-src="assets/maps/zimbabwe-national-parks-v2-large.jpg" data-width="3200" data-height="2263" role="img"
-             aria-label="Map of Zimbabwe's eleven national parks and wider protected estate"></div>
-        <p class="map-key"><a href="assets/maps/zimbabwe-national-parks-v2-large.jpg" target="_blank" rel="noopener">Open the full-size map</a></p>
+      <section aria-labelledby="zw-explore">
+        <div class="head"><div><h2 id="zw-explore">Explore the map</h2><p>Switch between the four themes. Each one explains what it shows; click a park or protected area for its details.</p></div></div>
+        <div class="story-map" data-config="zw-config">
+          <div class="sm-tabs" role="tablist" aria-label="Zimbabwe map themes"></div>
+          <div class="sm-body">
+            <div class="sm-map" aria-label="Interactive map: Zimbabwe's national parks"></div>
+            <aside class="sm-panel" aria-live="polite"></aside>
+          </div>
+        </div>
+        <script type="application/json" id="zw-config">{"base":"assets/maps/zimbabwe/","bounds":[[-22.750267,24.7],[-15.249721,33.8]],"home":[[-22.45,25.15],[-15.55,33.15]],"minZoom":5.5,"maxZoom":10,"attribution":"Map: Seabilwe Tilodi · Data: WDPA (UNEP-WCMC & IUCN), HDX, © OpenStreetMap contributors, Natural Earth · Relief: Esri","labels":"towns.geojson","labelMode":"towns","regionLabels":[["Zambia",-16.1,27.4],["Botswana",-20.5,25.7],["South Africa",-22.55,29.6],["Mozambique",-15.72,32.35],["Mozambique",-21.8,32.6]],"hint":"Click a park or protected area for its details. Scroll or pinch to zoom.","vectors":{"parks":"parks.geojson","protected":"protected.geojson"},"themes":[{"id":"parks","tab":"National parks","code":"THEME 01","img":"parks.jpg","title":"Zimbabwe's eleven national parks","noLookup":true,"text":"The national parks cover 26,866 km², 6.9% of the country, and Hwange alone holds 55% of that land. Lighter green is the rest of the protected estate. Click a park for its area, the year it was designated and its IUCN category.","vectors":["protected","parks"],"legend":[{"color":"#6F8A4C","label":"National park"},{"color":"#D6DCBC","label":"Other protected area"},{"line":"#2B1B17","width":2,"label":"International border"}]},{"id":"estate","tab":"Protected estate","code":"THEME 02","img":"estate.jpg","title":"The wider protected estate","noLookup":true,"text":"Add wildlife management areas, safari areas, state forests and recreation parks, and about 28% of Zimbabwe is protected. Safari and wildlife management areas wrap around most of the national parks, buffering them from farmland. Click any area for its name and type.","vectors":["protected","parks"],"legend":[{"color":"#6F8A4C","label":"National park"},{"color":"#E6DDB0","label":"Wildlife management area (39,235 km²)"},{"color":"#C9B56A","label":"Safari area (18,929 km²)"},{"color":"#9DB68A","label":"State forest (8,613 km²)"},{"color":"#D9A35E","label":"Sanctuary (6,225 km²)"},{"color":"#7FA9BE","label":"Recreation park (3,778 km²)"},{"color":"#E8CFA0","label":"Conservancy (3,709 km²)"},{"color":"#7E9A6A","label":"Wilderness area (504 km²)"},{"color":"#C98A7E","label":"Botanical reserve or garden (691 km²)"},{"line":"#1F4E6B","dash":true,"label":"Ramsar wetland (4,514 km², overlaps others)"}]},{"id":"landscape","tab":"Rivers and relief","code":"THEME 03","img":"landscape.jpg","title":"Where the parks sit in the landscape","noLookup":true,"text":"Most parks lie away from the central plateau where farming and cities concentrate: along the Zambezi valley, on the Kalahari sands of the west and in the south-eastern lowveld. Nyanga and Chimanimani are the exceptions, high in the Eastern Highlands.","vectors":["parks"],"legend":[{"line":"#3E5A2A","width":2,"label":"National park"},{"line":"#6E93AA","width":2,"label":"River"},{"color":"#CADBE0","label":"Lake or dam"},{"heading":"Shading shows relief (Esri)"}]},{"id":"access","tab":"Roads and towns","code":"THEME 04","img":"access.jpg","title":"How far are the parks from people?","noLookup":true,"text":"Primary roads and railways run along the central plateau between Harare, Gweru and Bulawayo, so most parks sit at the end of long access routes. Hwange is the exception: the Bulawayo–Victoria Falls railway and main road run along its northern edge.","vectors":["parks"],"legend":[{"color":"#B7C6A2","label":"National park"},{"line":"#9C7B52","width":2,"label":"Primary road"},{"line":"#4A3D31","width":2,"label":"Railway"},{"circle":"#2B1B17","label":"Capital, city or town"}]}]}</script>
+      </section>
+      <section aria-labelledby="zw-sheet">
+        <div class="head"><div><h2 id="zw-sheet">Print map sheet</h2><p>The finished QGIS map.</p></div></div>
+        <figure class="zw-sheet">
+          <a href="assets/maps/zimbabwe-national-parks-v2-large.jpg" target="_blank" rel="noopener"><img src="assets/images/zimbabwe-national-parks-v2.jpg" alt="Print map of Zimbabwe's eleven national parks" width="1800" height="1272" loading="lazy"></a>
+          <figcaption><span>Zimbabwe's eleven national parks, A4 landscape, Albers equal-area projection</span><a href="assets/maps/zimbabwe-national-parks-v2-large.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+        </figure>
       </section>
       <section aria-labelledby="zw-method">
         <div class="head"><div><h2 id="zw-method">How it was made</h2></div></div>
@@ -86,6 +98,6 @@
 </div>
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/js/story-map.js?v=20261114b"></script>
+<script src="assets/js/story-map.js?v=20261114c"></script>
 </body>
 </html>
