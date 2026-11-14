@@ -59,7 +59,7 @@ label.ga-lrow{cursor:pointer}
 .ga-home:hover{background:#f4f4f4}
 .ga-explorer .leaflet-container{font-family:var(--sans)}
 @media (max-width:900px){
-  .ga-body{grid-template-columns:1fr}
+  .ga-body{grid-template-columns:minmax(0,1fr)}
   .ga-map{height:62vh;min-height:360px}
   .ga-panel{border-left:0;border-top:1px solid var(--rule);max-height:none}
 }
@@ -72,7 +72,7 @@ label.ga-lrow{cursor:pointer}
 .ga-kpis span{display:block;margin-top:.3rem;color:var(--ink-soft);font-size:.92rem;line-height:1.35}
 .ga-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
 .ga-panels>.ga-card-wide{grid-column:1/-1}
-@media (max-width:1000px){.ga-panels{grid-template-columns:1fr}}
+@media (max-width:1000px){.ga-panels{grid-template-columns:minmax(0,1fr)}}
 .ga-card{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius-lg);padding:1.2rem 1.3rem 1.1rem;min-width:0}
 .ga-card h3{font-size:1.3rem;margin:0 0 .25rem}
 .ga-card>p{margin:0 0 .8rem;color:var(--ink-soft);font-size:.98rem}
@@ -107,7 +107,7 @@ label.ga-lrow{cursor:pointer}
 
 /* evidence ------------------------------------------------------------------------------------------------- */
 .ga-ev{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.25rem}
-@media (max-width:1000px){.ga-ev{grid-template-columns:1fr}}
+@media (max-width:1000px){.ga-ev{grid-template-columns:minmax(0,1fr)}}
 .ga-ev .ga-card h3{display:flex;align-items:baseline;gap:.6rem}
 .ga-ev .ga-card h3 small{font:500 .78rem var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--contour-deep)}
 .ga-pass{font-weight:500;color:#2C5A1F;margin:0 0 .5rem}
@@ -171,16 +171,33 @@ label.ga-lrow{cursor:pointer}
 .ga-dashboard .ga-barrow{font-size:.86rem;grid-template-columns:minmax(7rem,10.5rem) minmax(0,1fr) 3rem}
 .ga-dashboard .ga-bar{height:12px}
 .ga-dashboard .ga-legend-top{font-size:.84rem;margin-bottom:.6rem}
-@media (max-width:1000px){.ga-dashboard .ga-panels{grid-template-columns:1fr}.ga-dashboard .ga-condition{grid-row:auto}}
+@media (max-width:1000px){.ga-dashboard .ga-panels{grid-template-columns:minmax(0,1fr)}.ga-dashboard .ga-condition{grid-row:auto}}
 
 /* database design view */
 .ga-design{display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:1.5rem;align-items:start}
 .ga-erd-scroll{height:min(70vh,720px);overflow:auto;border-radius:var(--radius);cursor:grab;overscroll-behavior:contain}
 .ga-erd-scroll:focus-visible{outline:2px solid var(--water);outline-offset:2px}
 .ga-design .ga-erd img{width:1500px;max-width:none;max-height:none;height:auto}
-.ga-design .ga-schemas{margin:0 0 1rem;grid-template-columns:1fr;gap:.4rem}
+.ga-design .ga-schemas{margin:0 0 1rem;grid-template-columns:minmax(0,1fr);gap:.4rem}
 .ga-design .ga-schemas li{padding:.55rem .7rem;font-size:.88rem}
 .ga-design .prose h3{margin-top:.4em}
 .ga-design .prose li{font-size:.95rem}
-@media (max-width:1000px){.ga-design{grid-template-columns:1fr}}
+@media (max-width:1000px){.ga-design{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:560px){.ga-barrow,.ga-dashboard .ga-barrow{grid-template-columns:6.8rem minmax(0,1fr) 2.8rem;gap:.45rem;font-size:.82rem}}
+
+/* phones: every view fits the screen width; the diagram scrolls inside its own frame */
+@media (max-width:640px){
+  .ga-erd-scroll{height:62vh}
+  .ga-design .ga-erd img{width:980px}
+  .ga-erd figcaption{font-size:.88rem}
+  .ga-map{height:58vh;min-height:320px}
+  .ga-panel{max-height:none}
+  .ga-panel h3{font-size:1.2rem}
+  .ga-mode{font-size:.88rem}
+  .ga-mode button{font-size:.86rem;padding:.3rem .65rem}
+  .ga-views button{font-size:.92rem;padding:.45rem .85rem}
+  .ga-card{padding:.9rem .9rem .8rem}
+  .ga-dashboard .ga-kpis b{font-size:1.2rem}
+  .ga-explorer .leaflet-control-attribution{font-size:9px;line-height:1.3}
+  .ga-ward{font-size:10px;letter-spacing:.1em}
+}
