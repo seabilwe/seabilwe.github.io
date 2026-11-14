@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/css/geo-asset.css?v=20261114d">
+<link rel="stylesheet" href="assets/css/geo-asset.css?v=20261114e">
 </head>
 <body>
 <header class="topbar">
@@ -62,63 +62,67 @@
         </ul>
       </section>
 
-      <section aria-labelledby="ga-explore">
-        <div class="head"><div><h2 id="ga-explore">Explore the register</h2><p>Every feature is a row in the asset table. Switch asset classes on and off, colour by condition or by class, and click an asset for its record and history.</p></div></div>
-        <div class="ga-explorer">
-          <div class="ga-controls"></div>
-          <div class="ga-body">
-            <div class="ga-map" aria-label="Interactive map of the asset register"></div>
-            <aside class="ga-panel" aria-live="polite"></aside>
+      <section aria-labelledby="ga-explore" class="ga-workspace">
+        <div class="head"><div><h2 id="ga-explore">Explore the project</h2><p>Choose a view. The map and dashboard read the database's public views (snapshot of 2026-10-30); the other two show how it is built and run.</p></div></div>
+        <div class="ga-views" role="tablist" aria-label="Project views">
+          <button type="button" role="tab" id="tab-map" aria-controls="view-map" aria-selected="true" data-view="map"><span>01</span>Map</button>
+          <button type="button" role="tab" id="tab-dashboard" aria-controls="view-dashboard" aria-selected="false" tabindex="-1" data-view="dashboard"><span>02</span>Dashboard</button>
+          <button type="button" role="tab" id="tab-design" aria-controls="view-design" aria-selected="false" tabindex="-1" data-view="design"><span>03</span>Database design</button>
+          <button type="button" role="tab" id="tab-admin" aria-controls="view-admin" aria-selected="false" tabindex="-1" data-view="admin"><span>04</span>Administration</button>
+        </div>
+
+        <div class="ga-view" id="view-map" role="tabpanel" aria-labelledby="tab-map">
+          <div class="ga-explorer">
+            <div class="ga-controls"></div>
+            <div class="ga-body">
+              <div class="ga-map" aria-label="Interactive map of the asset register"></div>
+              <aside class="ga-panel" aria-live="polite"></aside>
+            </div>
           </div>
         </div>
-      </section>
 
-      <section aria-labelledby="ga-dash">
-        <div class="head"><div><h2 id="ga-dash">Dashboard</h2><p>The figures an infrastructure manager would ask for, each read from a view in the <code>api</code> schema. Snapshot of 2026-10-30.</p></div></div>
-        <div class="ga-dashboard">
+        <div class="ga-view" id="view-dashboard" role="tabpanel" aria-labelledby="tab-dashboard" hidden>
+          <div class="ga-dashboard">
           <ul class="ga-kpis"></ul>
           <div class="ga-panels">
-            <div class="ga-card ga-card-wide ga-condition">
+            <div class="ga-card ga-condition">
               <h3>Condition by asset type</h3>
-              <p>Share of each asset type in each condition grade at its latest inspection. Hover a segment for the count.</p>
+              <p>Latest inspection grade, as a share of each asset type. Hover for counts.</p>
               <div class="ga-legend-top"></div>
               <div class="ga-bars"></div>
               <details><summary>Show as a table</summary><div class="table-wrap ga-table"></div></details>
             </div>
             <div class="ga-card ga-spend">
               <h3>Maintenance spend per year</h3>
-              <p>Actual costs on completed work orders. The early years clear a backlog of assets already in poor condition in 2019. *2026 is January to October.</p>
+              <p>Actual costs of completed work. 2019–20 clear an existing backlog; *2026 is January to October.</p>
               <div class="ga-legend-top"></div>
               <div class="ga-chart"></div>
               <details><summary>Show as a table</summary><div class="table-wrap ga-table"></div></details>
             </div>
             <div class="ga-card">
               <h3>Work orders finished on time</h3>
-              <p>Share of completed work orders finished by their target date (1 day for emergencies, 7 for high, 30 for medium, 90 for low priority).</p>
+              <p>Completed work orders finished by their target date (1 to 90 days by priority).</p>
               <div class="ga-bars ga-performance"></div>
             </div>
             <div class="ga-card ga-card-wide">
               <h3>Highest-risk assets</h3>
-              <p>Risk score = condition grade × criticality of the asset type, plus 2 when the asset is past its design life and 1 when an inspection is overdue. From the materialized view <code>operations.maintenance_priority_summary</code>.</p>
-              <div class="table-wrap ga-priorities"></div>
+              <p>Risk score = condition grade × criticality, plus 2 past design life and 1 if an inspection is overdue (<code>operations.maintenance_priority_summary</code>).</p>
+              <div class="table-wrap ga-priorities" data-rows="6"></div>
             </div>
           </div>
+          </div>
         </div>
-      </section>
 
-      <section aria-labelledby="ga-design">
-        <div class="head"><div><h2 id="ga-design">How the database is built</h2><p>Generated from the live catalog, so the diagram cannot drift from the schema.</p></div></div>
-        <figure class="ga-erd">
-          <a href="assets/img/geo-asset-za/erd.svg" target="_blank" rel="noopener"><img src="assets/img/geo-asset-za/erd.svg" alt="Entity relationship diagram of the reference, assets, maintenance, staging and audit schemas" loading="lazy" width="1876" height="1974"></a>
-          <figcaption><span>Entity relationship diagram: 28 tables in five schemas (reporting, API and admin views not shown)</span><a href="assets/img/geo-asset-za/erd.svg" target="_blank" rel="noopener">Open full size</a></figcaption>
-        </figure>
+        <div class="ga-view" id="view-design" role="tabpanel" aria-labelledby="tab-design" hidden>
+          <div class="ga-design">
+            <div class="ga-design-text">
         <ul class="ga-schemas">
           <li><code>reference</code>Wards, asset classes and types with design life, inspection interval, criticality and unit cost; condition grades, priorities, defects.</li>
           <li><code>assets</code>One register table for every asset, plus six detail tables (streetlights, roads, water, electrical, stormwater, facilities).</li>
           <li><code>maintenance</code>Inspections, work orders, activities and planned and actual costs.</li>
           <li><code>staging</code>Incoming batches as raw text, 13 validation rules and a rejection log.</li>
           <li><code>audit</code>Every insert, update and delete, with the fields that changed, written by trigger.</li>
-          <li><code>operations</code>, <code>api</code>, <code>admin</code>Reporting views, the public read-only views, and migrations, backups and monitoring.</li>
+          <li><code>operations · api · admin</code>Reporting views, the public read-only views, and migrations, backups and monitoring.</li>
         </ul>
         <div class="prose">
           <h3>Design decisions</h3>
@@ -130,10 +134,18 @@
             <li><strong>Assets with a history are never deleted.</strong> They are decommissioned; foreign keys refuse the delete.</li>
           </ul>
         </div>
-      </section>
+            </div>
+            <div>
+        <figure class="ga-erd">
+          <div class="ga-erd-scroll" tabindex="0" aria-label="Entity relationship diagram, scroll to explore"><img src="assets/img/geo-asset-za/erd.svg" alt="Entity relationship diagram of the reference, assets, maintenance, staging and audit schemas" loading="lazy" width="1876" height="1974"></div>
+          <figcaption><span>Entity relationship diagram: 28 tables in five schemas. Scroll inside the frame to move around it.</span><a href="assets/img/geo-asset-za/erd.svg" target="_blank" rel="noopener">Open full size</a></figcaption>
+        </figure>
+            </div>
+          </div>
+        </div>
 
-      <section aria-labelledby="ga-admin">
-        <div class="head"><div><h2 id="ga-admin">Administration evidence</h2><p>Results from the scripts in the repository, taken from the database's own logs when this snapshot was exported.</p></div></div>
+        <div class="ga-view" id="view-admin" role="tabpanel" aria-labelledby="tab-admin" hidden>
+          <p class="ga-viewnote">Results from the scripts in the repository, read from the database's own logs when this snapshot was exported.</p>
         <div class="ga-evidence ga-ev">
           <div class="ga-card">
             <h3>Backup and recovery <small>restore test</small></h3>
@@ -174,6 +186,7 @@
             <p>Each migration is applied once and recorded with a checksum; an edited migration stops the runner. Holds <span class="ga-counts"></span>.</p>
             <ul class="ga-migrations"></ul>
           </div>
+        </div>
         </div>
       </section>
 
@@ -217,6 +230,6 @@
 </div>
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/js/geo-asset.js?v=20261114d"></script>
+<script src="assets/js/geo-asset.js?v=20261114e"></script>
 </body>
 </html>

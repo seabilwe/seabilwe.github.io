@@ -22,8 +22,8 @@
 .ga-mode button:last-of-type{border-radius:0 var(--radius-pill) var(--radius-pill) 0;border-left:0}
 .ga-mode button[aria-checked="true"]{background:var(--sand-2);border-color:var(--contour);font-weight:500}
 .ga-body{display:grid;grid-template-columns:minmax(0,1fr) 320px;border:1px solid var(--rule);border-radius:var(--radius-lg);overflow:hidden;background:var(--sheet);box-shadow:var(--lift)}
-.ga-map{height:min(74vh,720px);min-height:440px;background:#E9EAE4}
-.ga-panel{padding:1.15rem 1.2rem 1rem;border-left:1px solid var(--rule);overflow-y:auto;max-height:min(74vh,720px);font-size:.98rem}
+.ga-map{height:min(66vh,680px);min-height:420px;background:#E9EAE4}
+.ga-panel{padding:1.15rem 1.2rem 1rem;border-left:1px solid var(--rule);overflow-y:auto;max-height:min(66vh,680px);font-size:.98rem}
 .ga-panel h3{font-size:1.4rem;margin:.15rem 0 .55rem;line-height:1.2}
 .ga-panel p{margin:0 0 .8rem}
 .ga-panel code{font-size:.86em;background:var(--paper-2);padding:.05em .3em;border-radius:5px}
@@ -139,3 +139,48 @@ label.ga-lrow{cursor:pointer}
 .ga-error{color:var(--alert)}
 .ga-links{display:flex;flex-wrap:wrap;gap:.75rem;margin:1.2rem 0 0}
 @media (max-width:640px){.ga-chiprow{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:.2rem}.ga-chip{flex:none}}
+
+/* views (tabs) ---------------------------------------------------------------------------------------------- */
+.ga-views{display:flex;flex-wrap:wrap;gap:.4rem;padding:.1rem .1rem .9rem}
+@media (max-width:640px){.ga-views{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}}
+.ga-views button{flex:none;font:inherit;font-size:1rem;display:flex;align-items:center;gap:.45rem;padding:.55rem 1.05rem;border:1px solid var(--rule);
+  border-radius:var(--radius-pill);background:var(--sheet);color:var(--ink);cursor:pointer;transition:background-color .2s var(--ease),border-color .2s var(--ease)}
+.ga-views button span{font-size:.78rem;letter-spacing:.08em;color:var(--contour-deep)}
+.ga-views button:hover{background:var(--sand)}
+.ga-views button[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.ga-views button[aria-selected="true"] span{color:#E8CFA0}
+.ga-views button:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+.ga-view[hidden]{display:none}
+.ga-viewnote{margin:0 0 1rem;color:var(--ink-soft);max-width:var(--measure)}
+
+/* compact dashboard: everything on about one screen at desktop width */
+.ga-dashboard .ga-kpis{grid-template-columns:repeat(6,minmax(0,1fr));gap:.75rem;margin-bottom:1rem}
+.ga-dashboard .ga-kpis li{padding:.7rem .8rem}
+.ga-dashboard .ga-kpis b{font-size:clamp(1.25rem,1.9vw,1.6rem)}
+.ga-dashboard .ga-kpis span{font-size:.84rem}
+@media (max-width:1100px){.ga-dashboard .ga-kpis{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:560px){.ga-dashboard .ga-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ga-dashboard .ga-panels{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:1rem}
+.ga-dashboard .ga-condition{grid-row:span 2}
+.ga-dashboard .ga-card{padding:1rem 1.1rem .9rem}
+.ga-dashboard .ga-card h3{font-size:1.15rem}
+.ga-dashboard .ga-card>p{font-size:.9rem;margin-bottom:.6rem}
+.ga-dashboard .ga-bars{gap:.18rem}
+.ga-dashboard .ga-priorities .data-table td,.ga-dashboard .ga-priorities .data-table th{padding:.35rem .6rem;font-size:.88rem}
+.ga-dashboard .ga-priorities .ga-muted{font-size:.8rem}
+.ga-dashboard .ga-barrow{font-size:.86rem;grid-template-columns:minmax(7rem,10.5rem) minmax(0,1fr) 3rem}
+.ga-dashboard .ga-bar{height:12px}
+.ga-dashboard .ga-legend-top{font-size:.84rem;margin-bottom:.6rem}
+@media (max-width:1000px){.ga-dashboard .ga-panels{grid-template-columns:1fr}.ga-dashboard .ga-condition{grid-row:auto}}
+
+/* database design view */
+.ga-design{display:grid;grid-template-columns:minmax(0,22rem) minmax(0,1fr);gap:1.5rem;align-items:start}
+.ga-erd-scroll{height:min(70vh,720px);overflow:auto;border-radius:var(--radius);cursor:grab;overscroll-behavior:contain}
+.ga-erd-scroll:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+.ga-design .ga-erd img{width:1500px;max-width:none;max-height:none;height:auto}
+.ga-design .ga-schemas{margin:0 0 1rem;grid-template-columns:1fr;gap:.4rem}
+.ga-design .ga-schemas li{padding:.55rem .7rem;font-size:.88rem}
+.ga-design .prose h3{margin-top:.4em}
+.ga-design .prose li{font-size:.95rem}
+@media (max-width:1000px){.ga-design{grid-template-columns:1fr}}
+@media (max-width:560px){.ga-barrow,.ga-dashboard .ga-barrow{grid-template-columns:6.8rem minmax(0,1fr) 2.8rem;gap:.45rem;font-size:.82rem}}

@@ -79,8 +79,10 @@
     const mapEl = el.querySelector('.ga-map'), panel = el.querySelector('.ga-panel'), bar = el.querySelector('.ga-controls');
     const renderer = L.canvas({ padding: 0.3, tolerance: 4 });
     const map = L.map(mapEl, { preferCanvas: true, zoomSnap: 0.5, minZoom: 12, maxZoom: 19, attributionControl: true });
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      subdomains: 'abcd', maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a> · Wards: MDB 2026'
+    // Esri World Light Gray Canvas: free to use with attribution, no API key. Native tiles stop at zoom 16; Leaflet scales them beyond.
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      maxNativeZoom: 16, maxZoom: 19,
+      attribution: 'Basemap &copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors · Assets: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors and synthetic · Wards: MDB 2026'
     }).addTo(map);
     const wardLayer = L.geoJSON(wards, { interactive: false, style: { color: '#23312F', weight: 1.6, dashArray: '6 5', fill: false } }).addTo(map);
     wards.features.forEach(f => {
@@ -250,7 +252,7 @@
       const ys = Object.keys(years).sort(), cls = CLASS_ORDER.filter(c => classes.has(c));
       const totals = ys.map(y => cls.reduce((s, c) => s + (years[y][c] || 0), 0));
       const max = Math.ceil(Math.max(...totals) / 1e7) * 1e7;
-      const W = 520, H = 300, m = { l: 50, r: 6, t: 10, b: 28 }, iw = W - m.l - m.r, ih = H - m.t - m.b, bw = iw / ys.length;
+      const W = 520, H = 235, m = { l: 50, r: 6, t: 10, b: 26 }, iw = W - m.l - m.r, ih = H - m.t - m.b, bw = iw / ys.length;
       const yv = v => m.t + ih - v / max * ih;
       let svg = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Actual maintenance spend per year by asset class">`;
       for (let v = 0; v <= max; v += max / 5) svg += `<line x1="${m.l}" x2="${W - m.r}" y1="${yv(v)}" y2="${yv(v)}" class="${v ? 'grid' : 'base'}"/><text x="${m.l - 8}" y="${yv(v) + 4}" text-anchor="end">R${num(v / 1e6)}m</text>`;
@@ -272,7 +274,7 @@
 
     const prioEl = el.querySelector('.ga-priorities');
     if (prioEl) prioEl.innerHTML = `<table class="data-table"><thead><tr><th class="num">#</th><th>Asset</th><th>Type</th><th class="num">Ward</th><th>Condition</th>
-        <th class="num">Criticality</th><th class="num">Risk score</th><th>Open work order</th></tr></thead><tbody>${prio.slice(0, 10).map((p, i) => `<tr>
+        <th class="num">Criticality</th><th class="num">Risk score</th><th>Open work order</th></tr></thead><tbody>${prio.slice(0, +(prioEl.dataset.rows || 10)).map((p, i) => `<tr>
         <td class="num">${i + 1}</td><td><b>${esc(p.asset_code)}</b><br><span class="ga-muted">${esc(p.asset_name || '')}</span></td><td>${esc(p.type_name)}</td>
         <td class="num">${p.ward_no}</td><td><span class="ga-grade" style="--g:${GRADE_COLOUR[p.condition_grade || 0]}">${p.condition_grade || '–'}</span> ${esc(p.condition_label || 'Not inspected')}</td>
         <td class="num">${p.criticality}</td><td class="num">${p.risk_score}</td><td>${p.open_work_orders ? `Yes, due ${date(p.earliest_target)}` : '<span class="ga-flag">None</span>'}</td></tr>`).join('')}</tbody></table>`;
@@ -319,6 +321,48 @@
     const counts = el.querySelector('.ga-counts');
     if (counts) counts.textContent = `${num(ev.counts.inspections)} inspections, ${num(ev.counts.work_orders)} work orders, ${num(ev.counts.activities)} activities and ${num(ev.counts.cost_lines)} cost lines; ${ev.database_size} in total`;
   }
+
+  // ================================================================ VIEWS (tabs)
+  function initViews() {
+    const tabs = [...root.querySelectorAll('.ga-views [role="tab"]')];
+    if (!tabs.length) return;
+    function show(tab, focus) {
+      tabs.forEach(t => {
+        const on = t === tab;
+        t.setAttribute('aria-selected', on); t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+      });
+      if (focus) tab.focus();
+      hideTip();
+      const ex = root.querySelector('.ga-explorer');
+      if (tab.dataset.view === 'map' && ex && ex.gaMap) ex.gaMap.invalidateSize();
+      const panel = document.getElementById(tab.getAttribute('aria-controls'));
+      panel.querySelectorAll('.ga-erd-scroll:not([data-placed])').forEach(box => {
+        const place = () => { box.scrollLeft = (box.scrollWidth - box.clientWidth) * 0.42; box.scrollTop = (box.scrollHeight - box.clientHeight) * 0.42; box.dataset.placed = '1'; };
+        const img = box.querySelector('img');
+        img && !img.complete ? img.addEventListener('load', place, { once: true }) : place();     // start on the asset register, the centre of the model
+      });
+      try { history.replaceState(null, '', '#' + tab.dataset.view); } catch (e) { /* file:// or sandboxed */ }
+    }
+    tabs.forEach((t, i) => {
+      t.addEventListener('click', () => show(t));
+      t.addEventListener('keydown', e => {
+        const k = { ArrowRight: 1, ArrowLeft: -1, Home: -i, End: tabs.length - 1 - i }[e.key];
+        if (k !== undefined) { e.preventDefault(); show(tabs[(i + k + tabs.length) % tabs.length], true); }
+      });
+    });
+    const fromHash = tabs.find(t => '#' + t.dataset.view === location.hash);
+    if (fromHash) show(fromHash);
+  }
+  initViews();
+
+  // drag to pan the entity relationship diagram
+  root.querySelectorAll('.ga-erd-scroll').forEach(box => {
+    let start = null;
+    box.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') return; start = { x: e.clientX, y: e.clientY, l: box.scrollLeft, t: box.scrollTop }; box.style.cursor = 'grabbing'; e.preventDefault(); });
+    window.addEventListener('pointermove', e => { if (start) { box.scrollLeft = start.l - (e.clientX - start.x); box.scrollTop = start.t - (e.clientY - start.y); } });
+    window.addEventListener('pointerup', () => { start = null; box.style.cursor = ''; });
+  });
 
   const run = (sel, fn) => { const el = root.querySelector(sel); if (el) fn(el).catch(e => { console.error(e); el.insertAdjacentHTML('beforeend', `<p class="ga-error">Could not load this part: ${esc(e.message)}</p>`); }); };
   run('.ga-explorer', initMap);
