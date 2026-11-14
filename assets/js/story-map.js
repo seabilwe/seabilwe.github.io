@@ -82,6 +82,9 @@
       `<dt>Built storage</dt><dd>${(p.built_mcm / 1000).toFixed(p.built_mcm >= 10000 ? 0 : 1)} km³</dd>` +
       (p.year ? `<dt>Completed</dt><dd>${p.year}</dd>` : '') +
       `<dt>Water flows on to</dt><dd>${p.crossborder ? esc(p.downstream) : 'stays in ' + esc(p.country)}</dd></dl>`,
+    park: p => `<b>${esc(p.short)} National Park</b><dl><dt>Area</dt><dd>${num(p.area_km2)} km²</dd>` +
+      `<dt>Designated</dt><dd>${p.year || '–'}</dd><dt>IUCN category</dt><dd>${esc(p.iucn || '–')}</dd></dl>`,
+    protectedArea: p => `<b>${esc(p.name)}</b><dl><dt>Type</dt><dd>${esc(p.desig)}</dd><dt>Area in Zimbabwe</dt><dd>${num(p.area_km2)} km²</dd></dl>`,
     basin: p => `<b>${esc(p.Basin_Name)} basin</b><dl><dt>Countries sharing it</dt><dd>${p.NumberRipa ?? '–'}</dd>` +
       `<dt>Treaties</dt><dd>${p.Count_of_T ?? 0}</dd><dt>Basin organisations</dt><dd>${p.Count_of_R ?? 0}</dd>` +
       `<dt>Tension risk (TFDD)</dt><dd>${p.HydroPolTe && p.HydroPolTe !== 'N/A' ? p.HydroPolTe + ' of 5' : '–'}</dd>` +
@@ -135,6 +138,21 @@
       pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 2.5 + 15 * Math.sqrt(f.properties.built_mcm / 185000),
         color: '#F4EFE3', weight: 0.8, fillColor: f.properties.crossborder ? '#8E2F22' : '#9C8B72', fillOpacity: 0.85 }),
       onEachFeature: (f, l) => l.bindPopup(pop.dam(f.properties), { maxWidth: 280 })
+    }),
+    parks: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#3E5A2A', weight: 0, fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.park(f.properties), { maxWidth: 280 });
+        l.bindTooltip(f.properties.short, { permanent: true, direction: 'center', className: 'sm-park', offset: f.properties.lab || [0, 0] });
+        l.on('mouseover', () => l.setStyle({ weight: 2.4 })); l.on('mouseout', () => l.setStyle({ weight: 0 }));
+      }
+    }),
+    protected: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#6B5B4B', weight: 0, fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.protectedArea(f.properties), { maxWidth: 280 });
+        l.on('mouseover', () => l.setStyle({ weight: 1.8 })); l.on('mouseout', () => l.setStyle({ weight: 0 }));
+      }
     }),
     basins: gj => L.geoJSON(gj, {
       style: f => ({ color: /Juba/.test(f.properties.Basin_Name) ? '#8E2F22' : '#5A4B3D', weight: /Juba/.test(f.properties.Basin_Name) ? 3 : 0.6,
@@ -234,9 +252,10 @@
       labelData.features.forEach(f => {
         const p = f.properties, kinds = t.labelKinds || [];
         if (cfg.labelMode === 'towns') {
-          L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], { radius: p.name === 'Kimberley' ? 4 : 2.8, color: '#F4EFE3',
+          L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], { radius: (p.rank === 'capital' || p.name === cfg.capital) ? 4.2 : (p.rank === 'city' ? 3.4 : 2.8), color: '#F4EFE3',
             weight: 1, fillColor: '#2B1B17', fillOpacity: 1, interactive: false })
-            .bindTooltip(p.name, { permanent: true, direction: 'right', offset: [4, 0], className: 'sm-town' }).addTo(labelLayer);
+            .bindTooltip((p.rank === 'capital' ? p.name.toUpperCase() : p.name), { permanent: true, direction: 'right', offset: [4, 0],
+              className: 'sm-town' + (p.rank === 'town' ? ' sm-town-minor' : '') }).addTo(labelLayer);
         } else if (kinds.includes(p.kind) && (!p.sheets || p.sheets.includes('|' + (t.labelSheet || t.sheet) + '|'))) {
           L.marker([f.geometry.coordinates[1], f.geometry.coordinates[0]], { icon: blank, interactive: false, keyboard: false })
             .bindTooltip(p.txt.replace(/\n/g, '<br>'), { permanent: true, direction: 'center', className: 'sm-lab sm-lab-' + p.kind }).addTo(labelLayer);

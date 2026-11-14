@@ -57,9 +57,12 @@
 /* Sheet carousel */
 .sheet-carousel{border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--sheet);box-shadow:var(--lift);padding:12px}
 .sheet-carousel:focus-visible{outline:2px solid var(--water);outline-offset:3px}
-.sc-stage figure{margin:0}
-.sc-stage img{width:100%;height:auto;border-radius:var(--radius);border:.5px solid var(--rule);background:#F4EFE3}
-.sc-stage figcaption{padding:.9rem .3rem .2rem;max-width:var(--measure)}
+.sc-stage figure{margin:0;display:flex;flex-direction:column;align-items:center}
+.sc-stage figure[hidden]{display:none}
+/* whole sheet visible without scrolling: limit by screen height, keep the aspect ratio */
+.sc-stage img{width:auto;max-width:100%;height:auto;max-height:min(56vh,680px);border-radius:var(--radius);border:.5px solid var(--rule);background:#F4EFE3}
+.sc-stage figcaption{align-self:stretch}
+.sc-stage figcaption{padding:.7rem .3rem 0;max-width:var(--measure)}
 .sc-stage figcaption h3{font-size:var(--step-2);margin:.15rem 0 .35rem}
 .sc-stage figcaption p{margin:0;color:var(--ink-soft)}
 .sc-controls{display:flex;align-items:center;gap:.6rem;padding:.8rem .3rem .2rem;flex-wrap:wrap}
@@ -67,9 +70,16 @@
 .sc-controls button:hover{background:var(--ink);color:var(--paper)}
 .sc-count{font-variant-numeric:tabular-nums;color:var(--ink-soft);min-width:3.2em;text-align:center}
 .sc-full{margin-left:auto;font-weight:500}
-.sc-thumbs{display:grid;grid-template-columns:repeat(6,1fr);gap:.5rem;padding:.7rem .3rem .2rem}
+.sc-thumbs{display:grid;grid-template-columns:repeat(6,minmax(0,96px));justify-content:center;gap:.5rem;padding:.7rem .3rem .2rem}
 .sc-thumb{padding:0;border:1.5px solid var(--rule);border-radius:var(--radius-sm);overflow:hidden;background:#F4EFE3;cursor:pointer;aspect-ratio:4/3}
 .sc-thumb img{width:100%;height:100%;object-fit:cover;object-position:30% 40%}
 .sc-thumb[aria-current="true"]{border-color:var(--contour);box-shadow:0 0 0 2px var(--contour)}
 @media (max-width:640px){.sc-thumbs{grid-template-columns:repeat(3,1fr)}}
 .sm-blank{background:none;border:0}
+.leaflet-tooltip.sm-town-minor{font-weight:400;font-size:10.5px;color:#4A3D31}
+.leaflet-tooltip.sm-park{background:transparent;border:0;box-shadow:none;padding:0;font:italic 500 13px var(--serif);color:#2E4A22;text-align:center;
+  text-shadow:-1px -1px 0 #F4EFE3,1px -1px 0 #F4EFE3,-1px 1px 0 #F4EFE3,1px 1px 0 #F4EFE3,0 0 3px #F4EFE3}
+.leaflet-tooltip.sm-park::before{display:none}
+.zw-sheet{margin:0;border:1px solid var(--rule);border-radius:var(--radius-lg);background:var(--sheet);box-shadow:var(--lift);padding:12px;display:flex;flex-direction:column;align-items:center}
+.zw-sheet img{width:auto;max-width:100%;height:auto;max-height:min(70vh,760px);border-radius:var(--radius);border:.5px solid var(--rule)}
+.zw-sheet figcaption{align-self:stretch;padding:.8rem .3rem .2rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:.5rem;color:var(--ink-soft)}
