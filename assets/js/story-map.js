@@ -245,6 +245,7 @@
     let labelData = null;
     function drawLabels(t) {
       labelLayer.clearLayers();
+      requestAnimationFrame(() => requestAnimationFrame(declutter));
       (cfg.regionLabels || []).forEach(([txt, lat, lon]) =>
         L.marker([lat, lon], { icon: blank, interactive: false, keyboard: false })
           .bindTooltip(txt, { permanent: true, direction: 'center', className: 'sm-region' }).addTo(labelLayer));
@@ -262,6 +263,21 @@
         }
       });
     }
+    // Hide any label that would overlap one drawn before it (region names first, then towns or map labels in data
+    // order). Runs after every redraw and zoom, so crowded labels come back as you zoom in. Matters most on phones.
+    function declutter() {
+      const kept = [];
+      labelLayer.eachLayer(l => {
+        const tt = l.getTooltip && l.getTooltip(), el = tt && tt.getElement();
+        if (!el) return;
+        el.style.visibility = '';
+        const r = el.getBoundingClientRect();
+        if (!r.width) return;
+        const hit = kept.some(k => r.left < k.right + 3 && r.right > k.left - 3 && r.top < k.bottom + 2 && r.bottom > k.top - 2);
+        if (hit) el.style.visibility = 'hidden'; else kept.push(r);
+      });
+    }
+    map.on('zoomend', () => requestAnimationFrame(declutter));
     if (cfg.labels) fetch(base + cfg.labels).then(r => r.json()).then(j => { labelData = j; const t = cfg.themes.find(x => x.id === active); if (t) drawLabels(t); });
 
     function show(id, fromUser) {
