@@ -9,7 +9,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v=20261114b">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/css/story-map.css?v=20261114b">
 </head>
 <body>
 <header class="topbar">
@@ -57,46 +59,62 @@
         </ul>
       </section>
 
-      <section aria-labelledby="wh-maps">
-        <div class="head"><div><h2 id="wh-maps">The six map sheets</h2><p>Select a sheet to open it at full size.</p></div></div>
-        <ol class="sheet-list">
-          <li class="map-sheet">
-            <figure>
-              <a href="assets/img/maps/who-holds-the-tap/AF-01.jpg"><img src="assets/img/maps/who-holds-the-tap/AF-01.jpg" alt="Where Africa&#x27;s rivers run: map sheet AF-01" loading="lazy" width="1600" height="1760"></a>
-              <figcaption><span class="sheet-code">AF-01</span><h3>Where Africa's rivers run</h3><p>HydroRIVERS channels drawn by average discharge over 12,345 HydroBASINS level-7 sub-basins. Sand marks the 35.9% of the continent that drains inland, to Lake Chad, the Okavango delta and the dry hollows of the Sahara.</p></figcaption>
+      <section aria-labelledby="wh-explore">
+        <div class="head"><div><h2 id="wh-explore">Explore the analysis</h2><p>Switch between the six themes. Each one explains what it shows; click the map for the numbers behind it.</p></div></div>
+        <div class="story-map" data-config="wh-config">
+          <div class="sm-tabs" role="tablist" aria-label="Who Holds the Tap? map themes"></div>
+          <div class="sm-body">
+            <div class="sm-map" aria-label="Interactive map: Who Holds the Tap? map themes"></div>
+            <aside class="sm-panel" aria-live="polite"></aside>
+          </div>
+        </div>
+        <script type="application/json" id="wh-config">{"base":"assets/maps/who-holds-the-tap/","bounds":[[-37.50155,-21.0],[39.001518,56.0]],"home":[[-35.5,-18.5],[37.8,52.5]],"minZoom":2.5,"maxZoom":7.5,"homeOnSwitch":false,"attribution":"Analysis and maps: Seabilwe Tilodi · Data: HydroBASINS/HydroRIVERS, GHS-POP 2025, WRI Aqueduct 4.0, Global Dam Watch, TFDD, Natural Earth","lookup":{"type":"ids","src":"ids.png","attrs":"subbasins.json","bounds":[[-37.505792,-21.0],[39.005673,56.0]]},"labels":"labels.geojson","labelMode":"map","hint":"Click any sub-basin to see where its water comes from, who lives there and how stressed it is. Scroll or pinch to zoom.","vectors":{"countries":"countries.geojson","country_points":"country_points.geojson","dams":"dams.geojson","basins":"basins.geojson"},"themes":[{"id":"network","tab":"River network","sheet":1,"code":"SHEET AF-01","img":"network.jpg","title":"Where Africa's rivers run","text":"HydroRIVERS channels drawn by average discharge over 12,345 HydroBASINS sub-basins. Sand marks the 35.9% of the continent whose water never reaches the sea: Lake Chad, the Okavango delta and the dry hollows of the Sahara.","labelKinds":["river","lake","sea","note"],"legend":[{"heading":"Average discharge"},{"line":"#1F4E6B","width":1,"label":"100 m³/s"},{"line":"#1F4E6B","width":2,"label":"1,000 m³/s"},{"line":"#1F4E6B","width":4,"label":"10,000 m³/s and more"},{"color":"#EADCC0","label":"Drains inland, no outlet to the sea"},{"line":"#C9BCA6","width":2,"label":"Divide between large basins"},{"line":"#A89880","dash":true,"label":"International border"}]},{"id":"dependency","tab":"Who holds the tap","sheet":2,"code":"SHEET AF-02","img":"dependency.jpg","title":"How much of the river comes from abroad?","text":"For every sub-basin, the share of its upstream catchment lying in another country, traced through the river network. Dark blue means the water arriving there was mostly collected across a border. 49% of Africa's land drains into a neighbour before it reaches the sea.","labelKinds":["country","sea"],"legend":[{"heading":"Upstream catchment in another country"},{"color":"#E3EAE7","label":"0–10%"},{"color":"#C6D8DD","label":"10–25%"},{"color":"#9DBDCB","label":"25–50%"},{"color":"#5F93AE","label":"50–75%"},{"color":"#2F6688","label":"75–90%"},{"color":"#163A54","label":"90–100%"}]},{"id":"people","tab":"People exposed","sheet":3,"code":"SHEET AF-03","img":"people.jpg","title":"Who lives downstream?","text":"Shading: the share of each country's 2025 population living where at least half of the upstream catchment is foreign. Circles: how many people that is. 383 million people, a quarter of Africa, led by Egypt (94%), Somalia (77%) and the Republic of the Congo (74%). Click a country for its figures.","vectors":["exposedCircles","countries"],"noLookup":true,"labelKinds":["sea","country"],"hint":"Click a country for its population and the share exposed. Scroll or pinch to zoom.","legend":[{"heading":"Share of population exposed"},{"color":"#E3EAE7","label":"0–10%"},{"color":"#C6D8DD","label":"10–25%"},{"color":"#9DBDCB","label":"25–50%"},{"color":"#5F93AE","label":"50–75%"},{"color":"#2F6688","label":"75–90%"},{"color":"#163A54","label":"90–100%"},{"circle":"rgba(142,47,34,.45)","label":"People exposed (circle area)"}]},{"id":"stress","tab":"Water stress","sheet":4,"code":"SHEET AF-04","img":"stress.jpg","title":"Borrowed water, under pressure","text":"Upstream dependency crossed with WRI Aqueduct baseline water stress. The darkest places borrow most of their river and already use most of it: 111 million people live there, 106 million of them along Egypt's Nile.","labelKinds":["country","sea"],"legend":[{"color":"#2B2A33","label":"High dependency, extremely high stress"},{"color":"#4F6E78","label":"High dependency, high stress"},{"color":"#5F93AE","label":"High dependency, low stress"},{"color":"#A8784A","label":"Medium dependency, extremely high stress"},{"color":"#D9A35E","label":"Low dependency, extremely high stress"},{"color":"#E8CFA0","label":"Low dependency, high stress"},{"color":"#F1EDE2","label":"Low dependency, low stress"},{"color":"#D6D3CB","label":"Arid, little water use"}]},{"id":"dams","tab":"Dams across borders","sheet":5,"code":"SHEET AF-05","img":"dams.jpg","title":"Storage upstream of a border","text":"Reservoirs of 0.1 km³ or more, sized by built storage. Red dams hold water that flows on into another country: 42% of the continent's built storage, led by Kariba above Mozambique and the Grand Ethiopian Renaissance Dam above Sudan and Egypt. Click a dam for details.","vectors":["dams"],"labelKinds":["river","sea"],"hint":"Click a dam for its river, storage and where its water flows next; click elsewhere for the sub-basin. Scroll or pinch to zoom.","legend":[{"circle":"#8E2F22","label":"Upstream of another country"},{"circle":"#9C8B72","label":"Domestic"},{"heading":"Circle size shows built storage"}]},{"id":"governance","tab":"Governance","sheet":6,"code":"SHEET AF-06","img":"governance.jpg","title":"Who governs shared rivers?","text":"Africa's 69 transboundary basins from the Transboundary Freshwater Dispute Database, by whether a river basin organisation or treaty exists. The Juba–Shebelle (outlined in red) carries 12.3 million exposed people with no basin organisation and a tension risk of 4 out of 5. Click a basin for its record.","vectors":["basins"],"noLookup":true,"labelKinds":["sea"],"labelSheet":5,"hint":"Click a basin for its treaties, organisations, tension risk and people exposed. Scroll or pinch to zoom.","legend":[{"color":"#9DBDCB","label":"River basin organisation"},{"color":"#E8CFA0","label":"Treaty only"},{"color":"#C98A7E","label":"No treaty or organisation"},{"line":"#8E2F22","width":3,"label":"Juba–Shebelle basin"}]}]}</script>
+      </section>
+
+      <section aria-labelledby="wh-sheets">
+        <div class="head"><div><h2 id="wh-sheets">Print map sheets</h2><p>The six finished QGIS map sheets.</p></div></div>
+        <div class="sheet-carousel" data-sheet-carousel tabindex="0" aria-roledescription="carousel" aria-label="Who Holds the Tap? map sheets">
+          <div class="sc-stage">
+            <figure class="sc-slide">
+              <img src="assets/img/maps/who-holds-the-tap/AF-01.jpg" alt="Map sheet AF-01: Where Africa&#x27;s rivers run" width="1600" height="1760">
+              <figcaption><span class="sheet-code">AF-01</span><h3>Where Africa's rivers run</h3><p>HydroRIVERS channels drawn by average discharge over 12,345 HydroBASINS sub-basins. Sand marks the 35.9% of the continent whose water never reaches the sea: Lake Chad, the Okavango delta and the dry hollows of the Sahara.</p></figcaption>
             </figure>
-          </li>
-          <li class="map-sheet">
-            <figure>
-              <a href="assets/img/maps/who-holds-the-tap/AF-02.jpg"><img src="assets/img/maps/who-holds-the-tap/AF-02.jpg" alt="How much of the river comes from abroad?: map sheet AF-02" loading="lazy" width="1600" height="1760"></a>
-              <figcaption><span class="sheet-code">AF-02</span><h3>How much of the river comes from abroad?</h3><p>For every sub-basin, the share of its upstream catchment that lies in another country, traced through the river network. 49% of Africa's land drains into a neighbouring country before it reaches the sea or an inland sink.</p></figcaption>
+            <figure class="sc-slide" hidden>
+              <img data-src="assets/img/maps/who-holds-the-tap/AF-02.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet AF-02: How much of the river comes from abroad?" width="1600" height="1760">
+              <figcaption><span class="sheet-code">AF-02</span><h3>How much of the river comes from abroad?</h3><p>For every sub-basin, the share of its upstream catchment lying in another country, traced through the river network. Dark blue means the water arriving there was mostly collected across a border. 49% of Africa's land drains into a neighbour before it reaches the sea.</p></figcaption>
             </figure>
-          </li>
-          <li class="map-sheet">
-            <figure>
-              <a href="assets/img/maps/who-holds-the-tap/AF-03.jpg"><img src="assets/img/maps/who-holds-the-tap/AF-03.jpg" alt="Who lives downstream?: map sheet AF-03" loading="lazy" width="1600" height="1760"></a>
-              <figcaption><span class="sheet-code">AF-03</span><h3>Who lives downstream?</h3><p>The share of each country's 2025 population living where at least half of the upstream catchment is foreign, with circles for the number of people. Egypt 94%, Somalia 77%, the Republic of the Congo 74%, Sudan 51%, Uganda 50%.</p></figcaption>
+            <figure class="sc-slide" hidden>
+              <img data-src="assets/img/maps/who-holds-the-tap/AF-03.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet AF-03: Who lives downstream?" width="1600" height="1760">
+              <figcaption><span class="sheet-code">AF-03</span><h3>Who lives downstream?</h3><p>Shading: the share of each country's 2025 population living where at least half of the upstream catchment is foreign. Circles: how many people that is. 383 million people, a quarter of Africa, led by Egypt (94%), Somalia (77%) and the Republic of the Congo (74%).</p></figcaption>
             </figure>
-          </li>
-          <li class="map-sheet">
-            <figure>
-              <a href="assets/img/maps/who-holds-the-tap/AF-04.jpg"><img src="assets/img/maps/who-holds-the-tap/AF-04.jpg" alt="Borrowed water, under pressure: map sheet AF-04" loading="lazy" width="1600" height="1760"></a>
-              <figcaption><span class="sheet-code">AF-04</span><h3>Borrowed water, under pressure</h3><p>Upstream dependency crossed with WRI Aqueduct baseline water stress. 111 million people live where both are high, 106 million of them in Egypt.</p></figcaption>
+            <figure class="sc-slide" hidden>
+              <img data-src="assets/img/maps/who-holds-the-tap/AF-04.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet AF-04: Borrowed water, under pressure" width="1600" height="1760">
+              <figcaption><span class="sheet-code">AF-04</span><h3>Borrowed water, under pressure</h3><p>Upstream dependency crossed with WRI Aqueduct baseline water stress. The darkest places borrow most of their river and already use most of it: 111 million people live there, 106 million of them along Egypt's Nile.</p></figcaption>
             </figure>
-          </li>
-          <li class="map-sheet">
-            <figure>
-              <a href="assets/img/maps/who-holds-the-tap/AF-05.jpg"><img src="assets/img/maps/who-holds-the-tap/AF-05.jpg" alt="Storage upstream of a border: map sheet AF-05" loading="lazy" width="1600" height="1760"></a>
-              <figcaption><span class="sheet-code">AF-05</span><h3>Storage upstream of a border</h3><p>Reservoirs from Global Dam Watch sized by built storage. 42% of the continent's built storage, 399 of 953&nbsp;km³, sits upstream of a border, led by Kariba above Mozambique and the Grand Ethiopian Renaissance Dam above Sudan and Egypt.</p></figcaption>
+            <figure class="sc-slide" hidden>
+              <img data-src="assets/img/maps/who-holds-the-tap/AF-05.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet AF-05: Storage upstream of a border" width="1600" height="1760">
+              <figcaption><span class="sheet-code">AF-05</span><h3>Storage upstream of a border</h3><p>Reservoirs of 0.1 km³ or more, sized by built storage. Red dams hold water that flows on into another country: 42% of the continent's built storage, led by Kariba above Mozambique and the Grand Ethiopian Renaissance Dam above Sudan and Egypt.</p></figcaption>
             </figure>
-          </li>
-          <li class="map-sheet">
-            <figure>
-              <a href="assets/img/maps/who-holds-the-tap/AF-06.jpg"><img src="assets/img/maps/who-holds-the-tap/AF-06.jpg" alt="Juba–Shebelle: no basin body: map sheet AF-06" loading="lazy" width="1600" height="1760"></a>
+            <figure class="sc-slide" hidden>
+              <img data-src="assets/img/maps/who-holds-the-tap/AF-06.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet AF-06: Juba–Shebelle: no basin body" width="1600" height="1760">
               <figcaption><span class="sheet-code">AF-06</span><h3>Juba–Shebelle: no basin body</h3><p>Ethiopia's highlands collect most of the water that reaches southern Somalia. 12.3 million people depend on it, the basin has no river basin organisation, and the Transboundary Freshwater Dispute Database rates its tension risk 4 out of 5.</p></figcaption>
             </figure>
-          </li>
-        </ol>
+          </div>
+          <div class="sc-controls">
+            <button class="sc-prev" type="button" aria-label="Previous sheet">&larr;</button>
+            <span class="sc-count" aria-live="polite">1 / 6</span>
+            <button class="sc-next" type="button" aria-label="Next sheet">&rarr;</button>
+            <a class="sc-full" href="assets/img/maps/who-holds-the-tap/AF-01.jpg" target="_blank" rel="noopener">Open this sheet full size</a>
+          </div>
+          <div class="sc-thumbs">
+            <button class="sc-thumb" type="button" aria-label="Sheet AF-01: Where Africa&#x27;s rivers run"><img src="assets/img/maps/thumbs/AF-01.jpg" alt="" loading="lazy" width="360" height="360"></button>
+            <button class="sc-thumb" type="button" aria-label="Sheet AF-02: How much of the river comes from abroad?"><img src="assets/img/maps/thumbs/AF-02.jpg" alt="" loading="lazy" width="360" height="360"></button>
+            <button class="sc-thumb" type="button" aria-label="Sheet AF-03: Who lives downstream?"><img src="assets/img/maps/thumbs/AF-03.jpg" alt="" loading="lazy" width="360" height="360"></button>
+            <button class="sc-thumb" type="button" aria-label="Sheet AF-04: Borrowed water, under pressure"><img src="assets/img/maps/thumbs/AF-04.jpg" alt="" loading="lazy" width="360" height="360"></button>
+            <button class="sc-thumb" type="button" aria-label="Sheet AF-05: Storage upstream of a border"><img src="assets/img/maps/thumbs/AF-05.jpg" alt="" loading="lazy" width="360" height="360"></button>
+            <button class="sc-thumb" type="button" aria-label="Sheet AF-06: Juba–Shebelle: no basin body"><img src="assets/img/maps/thumbs/AF-06.jpg" alt="" loading="lazy" width="360" height="360"></button>
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="wh-method">
@@ -131,5 +149,7 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/story-map.js?v=20261114b"></script>
 </body>
 </html>

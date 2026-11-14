@@ -15,6 +15,9 @@ blogs.html            Writing, talks and the maps gallery
 map-population.html   Interactive "Where the World Lives, 2025" map
 map-who-holds-the-tap.html  "Who Holds the Tap?" Africa shared-rivers map series
 map-re-site-za.html   "RE-SITE ZA" Northern Cape solar suitability map series
+map-zimbabwe-national-parks.html  Zoomable Zimbabwe national parks map
+assets/js/story-map.js, assets/css/story-map.css  Interactive theme viewer, zoomable map and sheet carousel
+assets/maps/          Web layers for the interactive maps (theme images, click data, GeoJSON)
 maps.html             Redirects to the maps gallery on blogs.html
 contact.html          Formspree contact form (ID: mzdwyebz)
 license.html          Usage terms and citation guide
