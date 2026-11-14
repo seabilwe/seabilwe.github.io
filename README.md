@@ -19,7 +19,7 @@ map-zimbabwe-national-parks.html  Zoomable Zimbabwe national parks map
 assets/js/story-map.js, assets/css/story-map.css  Interactive theme viewer, zoomable map and sheet carousel
 assets/maps/          Web layers for the interactive maps (theme images, click data, GeoJSON)
 maps.html             Redirects to the maps gallery on blogs.html
-contact.html          Formspree contact form (ID: mzdwyebz)
+contact.html          Formspree contact form
 license.html          Usage terms and citation guide
 assets/css/site.css   One stylesheet for every page ("Survey Sheet" brand)
 assets/js/            Shared behaviour, globe and project map
