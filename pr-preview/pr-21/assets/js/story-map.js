@@ -1,0 +1,356 @@
+/*
+ * Story maps and sheet carousels for the project pages (RE-SITE ZA, Who Holds the Tap?, Zimbabwe).
+ * Needs Leaflet 1.9.x. Each viewer reads its settings from <script type="application/json" id="..."> referenced
+ * by data-config on the .story-map element. Theme images are Web Mercator renders from QGIS; clicks are answered
+ * from a packed data image (RE-SITE ZA) or a sub-basin id image (Who Holds the Tap?).
+ */
+(function () {
+  'use strict';
+  const fmt = new Intl.NumberFormat('en-ZA');
+  const pct = v => (v == null ? '–' : Math.round(v * 100) + '%');
+  const num = v => (v == null ? '–' : fmt.format(Math.round(v)));
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const millions = v => (v == null ? '–' : v >= 1e6 ? (v / 1e6).toFixed(v >= 1e7 ? 0 : 1) + ' million' : fmt.format(Math.round(v)));
+
+  // ---------------------------------------------------------------- pixel look-up images
+  function pixelSource(src, bounds) {
+    const img = new Image();
+    const state = { ready: false, ctx: null, w: 0, h: 0 };
+    img.onload = () => {
+      const c = document.createElement('canvas');
+      c.width = state.w = img.naturalWidth; c.height = state.h = img.naturalHeight;
+      state.ctx = c.getContext('2d', { willReadFrequently: true });
+      state.ctx.drawImage(img, 0, 0); state.ready = true;
+    };
+    img.src = src;
+    const sw = L.CRS.EPSG3857.project(L.latLng(bounds[0])), ne = L.CRS.EPSG3857.project(L.latLng(bounds[1]));
+    state.read = latlng => {
+      if (!state.ready) return null;
+      const p = L.CRS.EPSG3857.project(latlng);
+      const x = Math.floor((p.x - sw.x) / (ne.x - sw.x) * state.w), y = Math.floor((ne.y - p.y) / (ne.y - sw.y) * state.h);
+      if (x < 0 || y < 0 || x >= state.w || y >= state.h) return null;
+      return state.ctx.getImageData(x, y, 1, 1).data;
+    };
+    return state;
+  }
+
+  // ---------------------------------------------------------------- popup formatters
+  const SUIT = ['Excluded or outside', 'Very low', 'Low', 'Moderate', 'High', 'Very high'];
+  const CONSTRAINT = ['', 'Protected area', 'Cropland, built-up land, water or mines', 'Slope over 15°'];
+  const STRESS = { A1: 'low dependency, low stress', A2: 'low dependency, high stress', A3: 'low dependency, extremely high stress',
+    B1: 'medium dependency, low stress', B2: 'medium dependency, high stress', B3: 'medium dependency, extremely high stress',
+    C1: 'high dependency, low stress', C2: 'high dependency, high stress', C3: 'high dependency, extremely high stress',
+    AX: 'arid, low water use', BX: 'arid, low water use', CX: 'arid, low water use' };
+  const pop = {
+    grid: px => {
+      if (!px || px[3] === 0) return null;
+      const pv = px[0] ? 1700 + (px[0] - 1) * 2 : null, km = px[1], b = px[2];
+      const cls = Math.floor(b / 16), robust = Math.floor((b % 16) / 4), code = b % 4;
+      let h = '<b>This spot in the Northern Cape</b><dl>';
+      if (pv) h += `<dt>Solar output</dt><dd>about ${fmt.format(pv)} kWh per kWp a year</dd>`;
+      h += `<dt>To a 132 kV+ line</dt><dd>${km >= 255 ? 'over 250' : km} km</dd>`;
+      if (code) h += `<dt>Excluded</dt><dd>${CONSTRAINT[code]}</dd>`;
+      else h += `<dt>Suitability (balanced)</dt><dd>${SUIT[cls]}</dd><dt>High or better in</dt><dd>${robust} of 3 weightings</dd>`;
+      return h + '</dl>';
+    },
+    sub: (row, keys) => {
+      if (!row) return null;
+      const r = {}; keys.forEach((k, i) => (r[k] = row[i]));
+      let h = `<b>Sub-basin in ${esc(r.country || 'Africa')}</b><dl>`;
+      h += `<dt>River basin</dt><dd>${esc(r.tfdd_basin || r.basin_name || '–')}</dd>`;
+      h += `<dt>Upstream area abroad</dt><dd>${pct(r.foreign_share)} of ${num(r.up_land_km2)} km²</dd>`;
+      h += `<dt>People here, 2025</dt><dd>${num(r.pop_2025)}${r.pop_exposed ? ` (${num(r.pop_exposed)} exposed)` : ''}</dd>`;
+      if (r.bws_label) h += `<dt>Water stress</dt><dd>${esc(r.bws_label)}</dd>`;
+      if (r.dep_stress && !/X$/.test(r.dep_stress)) h += `<dt>Class</dt><dd>${esc(STRESS[r.dep_stress] || r.dep_stress)}</dd>`;
+      if (r.drains_to === 'inland') h += `<dt>Drains</dt><dd>inland, no outlet to the sea</dd>`;
+      return h + '</dl>';
+    },
+    zone: p => `<b>Priority zone ${p.rank}</b><dl><dt>Municipality</dt><dd>${esc(p.municipality)}</dd><dt>Area</dt><dd>${num(p.area_km2)} km²</dd>` +
+      `<dt>Mean suitability</dt><dd>${p.s_mean3.toFixed(2)} of 5 (three scenarios)</dd><dt>Solar output</dt><dd>${num(p.pvout)} kWh/kWp</dd>` +
+      `<dt>To a 132 kV+ line</dt><dd>${p.grid_km} km on average</dd><dt>GCCA substation</dt><dd>${esc((p.gcca_zone || '–'))}, ${p.gcca_sub_limit_mw == null ? '–' : num(p.gcca_sub_limit_mw) + ' MW'} (supply area 0 MW)</dd>` +
+      `<dt>Inside a solar REDZ</dt><dd>${pct(p.solar_redz_share)}</dd></dl>`,
+    gcca: p => `<b>${esc(p.substation)} substation zone</b><dl><dt>Local area</dt><dd>${esc(p.local_area)}</dd>` +
+      `<dt>Substation could take</dt><dd>${p.sub_limit_mw == null ? '–' : num(p.sub_limit_mw) + ' MW'}</dd>` +
+      `<dt>Supply-area limit</dt><dd>${p.supply_limit_mw == null ? '–' : num(p.supply_limit_mw) + ' MW'}</dd>` +
+      `<dt>Already allocated</dt><dd>${p.gx_connected_mw == null ? '–' : num(p.gx_connected_mw) + ' MW'}</dd></dl>`,
+    redz: p => `<b>${esc(p.name)} REDZ</b><dl><dt>Phase</dt><dd>${p.phase}</dd></dl><p>A Renewable Energy Development Zone, where DFFE has pre-assessed the environment for wind or solar.</p>`,
+    reea: p => `<b>Solar PV application</b><p>${esc(p.title)}</p><dl><dt>Status (2021)</dt><dd>${esc(p.status)}</dd><dt>Capacity</dt><dd>${p.mw ? num(p.mw) + ' MW' : '–'}</dd></dl>`,
+    substation: p => `<b>${esc(p.name || 'Substation')}</b><dl><dt>Voltage</dt><dd>${num(p.kv)} kV</dd></dl>`,
+    country: p => `<b>${esc(p.ADMIN)}</b><dl><dt>Population 2025</dt><dd>${millions(p.pop_2025)}</dd>` +
+      `<dt>Exposed</dt><dd>${millions(p.pop_exposed)} (${pct(p.exposed_share)})</dd></dl><p>Exposed: living where at least half of the river's upstream catchment lies in another country.</p>`,
+    dam: p => `<b>${esc(p.dam_name || 'Dam')}</b><dl><dt>River</dt><dd>${esc(p.river || '–')}</dd><dt>Country</dt><dd>${esc(p.country)}</dd>` +
+      `<dt>Built storage</dt><dd>${(p.built_mcm / 1000).toFixed(p.built_mcm >= 10000 ? 0 : 1)} km³</dd>` +
+      (p.year ? `<dt>Completed</dt><dd>${p.year}</dd>` : '') +
+      `<dt>Water flows on to</dt><dd>${p.crossborder ? esc(p.downstream) : 'stays in ' + esc(p.country)}</dd></dl>`,
+    park: p => `<b>${esc(p.short)} National Park</b><dl><dt>Area</dt><dd>${num(p.area_km2)} km²</dd>` +
+      `<dt>Designated</dt><dd>${p.year || '–'}</dd><dt>IUCN category</dt><dd>${esc(p.iucn || '–')}</dd></dl>`,
+    protectedArea: p => `<b>${esc(p.name)}</b><dl><dt>Type</dt><dd>${esc(p.desig)}</dd><dt>Area in Zimbabwe</dt><dd>${num(p.area_km2)} km²</dd></dl>`,
+    basin: p => `<b>${esc(p.Basin_Name)} basin</b><dl><dt>Countries sharing it</dt><dd>${p.NumberRipa ?? '–'}</dd>` +
+      `<dt>Treaties</dt><dd>${p.Count_of_T ?? 0}</dd><dt>Basin organisations</dt><dd>${p.Count_of_R ?? 0}</dd>` +
+      `<dt>Tension risk (TFDD)</dt><dd>${p.HydroPolTe && p.HydroPolTe !== 'N/A' ? p.HydroPolTe + ' of 5' : '–'}</dd>` +
+      `<dt>People exposed</dt><dd>${millions(p.exposed)}</dd></dl>`
+  };
+
+  // ---------------------------------------------------------------- vector layer recipes
+  const recipes = {
+    zones: (gj, map) => L.geoJSON(gj, {
+      style: f => ({ color: '#2E4A30', weight: 1.2, fillColor: f.properties.rank <= 10 ? '#4E7A50' : '#8FAE86', fillOpacity: 0.85 }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.zone(f.properties), { maxWidth: 300 });
+        if (f.properties.rank <= 10) l.bindTooltip(String(f.properties.rank), { permanent: true, direction: 'center', className: 'sm-rank' });
+      }
+    }),
+    gcca: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#8E2F22', weight: 1.3, dashArray: '5 4', fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.gcca(f.properties), { maxWidth: 280 });
+        l.on('mouseover', () => l.setStyle({ weight: 2.6, fillColor: '#8E2F22', fillOpacity: 0.08 }));
+        l.on('mouseout', () => l.setStyle({ weight: 1.3, fillOpacity: 0 }));
+      }
+    }),
+    substations: gj => L.geoJSON(gj, {
+      pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 3.5, color: '#2B1B17', weight: 1.2, fillColor: '#F4EFE3', fillOpacity: 1 }),
+      onEachFeature: (f, l) => l.bindPopup(pop.substation(f.properties))
+    }),
+    redz: gj => L.geoJSON(gj, {
+      filter: f => /Solar/.test(f.properties.name),
+      style: () => ({ color: '#2B1B17', weight: 2, dashArray: '8 4', fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => { l.bindPopup(pop.redz(f.properties)); l.bindTooltip(f.properties.name + ' REDZ', { sticky: true, className: 'sm-tip' }); }
+    }),
+    reea: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#4C7D99', weight: 0.8, fillColor: '#7397AD', fillOpacity: 0.55 }),
+      onEachFeature: (f, l) => l.bindPopup(pop.reea(f.properties), { maxWidth: 280 })
+    }),
+    countries: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#2B1B17', weight: 0, fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.country(f.properties), { maxWidth: 280 });
+        l.on('mouseover', () => l.setStyle({ weight: 2, color: '#8E2F22' }));
+        l.on('mouseout', () => l.setStyle({ weight: 0 }));
+      }
+    }),
+    exposedCircles: gj => L.geoJSON(gj, {
+      filter: f => (f.properties.pop_exposed || 0) >= 2e5,
+      pointToLayer: (f, ll) => L.circle(ll, { radius: 520000 * Math.sqrt(f.properties.pop_exposed / 1e8), color: '#8E2F22', weight: 1.2,
+        fillColor: '#8E2F22', fillOpacity: 0.32, interactive: false })
+    }),
+    dams: gj => L.geoJSON(gj, {
+      pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 2.5 + 15 * Math.sqrt(f.properties.built_mcm / 185000),
+        color: '#F4EFE3', weight: 0.8, fillColor: f.properties.crossborder ? '#8E2F22' : '#9C8B72', fillOpacity: 0.85 }),
+      onEachFeature: (f, l) => l.bindPopup(pop.dam(f.properties), { maxWidth: 280 })
+    }),
+    parks: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#3E5A2A', weight: 0, fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.park(f.properties), { maxWidth: 280 });
+        l.bindTooltip(f.properties.short, { permanent: true, direction: 'center', className: 'sm-park', offset: f.properties.lab || [0, 0] });
+        l.on('mouseover', () => l.setStyle({ weight: 2.4 })); l.on('mouseout', () => l.setStyle({ weight: 0 }));
+      }
+    }),
+    protected: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#6B5B4B', weight: 0, fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.protectedArea(f.properties), { maxWidth: 280 });
+        l.on('mouseover', () => l.setStyle({ weight: 1.8 })); l.on('mouseout', () => l.setStyle({ weight: 0 }));
+      }
+    }),
+    basins: gj => L.geoJSON(gj, {
+      style: f => ({ color: /Juba/.test(f.properties.Basin_Name) ? '#8E2F22' : '#5A4B3D', weight: /Juba/.test(f.properties.Basin_Name) ? 3 : 0.6,
+        fillOpacity: 0, fill: true }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.basin(f.properties), { maxWidth: 280 });
+        const hi = /Juba/.test(f.properties.Basin_Name);
+        l.on('mouseover', () => l.setStyle({ weight: hi ? 4 : 2.2, color: '#8E2F22' }));
+        l.on('mouseout', () => l.setStyle({ weight: hi ? 3 : 0.6, color: hi ? '#8E2F22' : '#5A4B3D' }));
+      }
+    })
+  };
+
+  // ---------------------------------------------------------------- legend
+  function legendHTML(items) {
+    return items.map(it => {
+      if (it.heading) return `<p class="sm-legend-h">${esc(it.heading)}</p>`;
+      let sw;
+      if (it.line) sw = `<span class="sm-sw sm-sw-line" style="border-top:${it.width || 2}px ${it.dash ? 'dashed' : 'solid'} ${it.line}"></span>`;
+      else if (it.circle) sw = `<span class="sm-sw sm-sw-dot" style="background:${it.circle}"></span>`;
+      else sw = `<span class="sm-sw" style="background:${it.color}${it.border ? ';border-color:' + it.border : ''}"></span>`;
+      return `<div class="sm-legend-row">${sw}<span>${esc(it.label)}</span></div>`;
+    }).join('');
+  }
+
+  // ---------------------------------------------------------------- story map
+  function storyMap(el) {
+    const cfg = JSON.parse(document.getElementById(el.dataset.config).textContent);
+    const base = cfg.base;
+    const mapEl = el.querySelector('.sm-map'), panel = el.querySelector('.sm-panel'), tabs = el.querySelector('.sm-tabs');
+    const imgBounds = L.latLngBounds(cfg.bounds);
+    const map = L.map(mapEl, { zoomSnap: 0.25, zoomDelta: 0.5, minZoom: cfg.minZoom, maxZoom: cfg.maxZoom,
+      maxBounds: imgBounds, maxBoundsViscosity: 1, attributionControl: true });
+    map.attributionControl.setPrefix(false).addAttribution(cfg.attribution);
+    // never zoom out past the edge of the map image
+    // zoom out no further than the whole study area, and stop before the edge of the image where possible
+    function clampZoom() {
+      const fill = map.getBoundsZoom(imgBounds, true), whole = map.getBoundsZoom(L.latLngBounds(cfg.home), false);
+      map.setMinZoom(Math.max(cfg.minZoom, Math.min(fill, whole)));
+    }
+    clampZoom(); map.fitBounds(cfg.home);
+    map.on('resize', clampZoom);
+    const home = L.control({ position: 'topleft' });
+    home.onAdd = () => {
+      const b = L.DomUtil.create('button', 'sm-home'); b.type = 'button'; b.title = 'Back to the full view'; b.setAttribute('aria-label', 'Back to the full view');
+      b.innerHTML = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>';
+      L.DomEvent.on(b, 'click', e => { L.DomEvent.stop(e); map.flyToBounds(cfg.home, { duration: 0.6 }); });
+      return b;
+    };
+    home.addTo(map);
+    L.control.scale({ imperial: false, position: 'bottomleft' }).addTo(map);
+
+    const overlays = {};
+    const vectors = {};
+    const vecData = {};
+    let active = null, activeVec = [];
+    const labelLayer = L.layerGroup().addTo(map);
+    const blank = L.divIcon({ className: 'sm-blank', iconSize: [0, 0] });
+
+    // click read-outs
+    let lookup = null, attrs = null;
+    if (cfg.lookup) {
+      lookup = pixelSource(base + cfg.lookup.src, cfg.lookup.bounds);
+      if (cfg.lookup.attrs) fetch(base + cfg.lookup.attrs).then(r => r.json()).then(j => (attrs = j));
+    }
+    map.on('click', e => {
+      const t = cfg.themes.find(x => x.id === active);
+      if (!lookup || (t && t.noLookup)) return;
+      const px = lookup.read(e.latlng);
+      let html = null;
+      if (cfg.lookup.type === 'grid') html = pop.grid(px);
+      else if (px && px[3] === 255 && attrs) {
+        const id = (px[0] << 16) + (px[1] << 8) + px[2];
+        html = pop.sub(attrs.rows[id], attrs.keys);
+      }
+      if (html) L.popup({ maxWidth: 300 }).setLatLng(e.latlng).setContent(html).openOn(map);
+    });
+
+    function loadVec(key) {
+      if (vecData[key]) return Promise.resolve(vecData[key]);
+      return fetch(base + cfg.vectors[key]).then(r => r.json()).then(j => (vecData[key] = j));
+    }
+    function getVec(key) {
+      if (vectors[key]) return Promise.resolve(vectors[key]);
+      const recipeName = key.split(':')[0];
+      return loadVec(recipeName === 'exposedCircles' ? 'country_points' : recipeName).then(gj => (vectors[key] = recipes[recipeName](gj, map)));
+    }
+
+    // labels: towns, regions, map labels per theme
+    let labelData = null;
+    function drawLabels(t) {
+      labelLayer.clearLayers();
+      requestAnimationFrame(() => requestAnimationFrame(declutter));
+      (cfg.regionLabels || []).forEach(([txt, lat, lon]) =>
+        L.marker([lat, lon], { icon: blank, interactive: false, keyboard: false })
+          .bindTooltip(txt, { permanent: true, direction: 'center', className: 'sm-region' }).addTo(labelLayer));
+      if (!labelData) return;
+      labelData.features.forEach(f => {
+        const p = f.properties, kinds = t.labelKinds || [];
+        if (cfg.labelMode === 'towns') {
+          L.circleMarker([f.geometry.coordinates[1], f.geometry.coordinates[0]], { radius: (p.rank === 'capital' || p.name === cfg.capital) ? 4.2 : (p.rank === 'city' ? 3.4 : 2.8), color: '#F4EFE3',
+            weight: 1, fillColor: '#2B1B17', fillOpacity: 1, interactive: false })
+            .bindTooltip((p.rank === 'capital' ? p.name.toUpperCase() : p.name), { permanent: true, direction: 'right', offset: [4, 0],
+              className: 'sm-town' + (p.rank === 'town' ? ' sm-town-minor' : '') }).addTo(labelLayer);
+        } else if (kinds.includes(p.kind) && (!p.sheets || p.sheets.includes('|' + (t.labelSheet || t.sheet) + '|'))) {
+          L.marker([f.geometry.coordinates[1], f.geometry.coordinates[0]], { icon: blank, interactive: false, keyboard: false })
+            .bindTooltip(p.txt.replace(/\n/g, '<br>'), { permanent: true, direction: 'center', className: 'sm-lab sm-lab-' + p.kind }).addTo(labelLayer);
+        }
+      });
+    }
+    // Hide any label that would overlap one drawn before it (region names first, then towns or map labels in data
+    // order). Runs after every redraw and zoom, so crowded labels come back as you zoom in. Matters most on phones.
+    function declutter() {
+      const kept = [];
+      labelLayer.eachLayer(l => {
+        const tt = l.getTooltip && l.getTooltip(), el = tt && tt.getElement();
+        if (!el) return;
+        el.style.visibility = '';
+        const r = el.getBoundingClientRect();
+        if (!r.width) return;
+        const hit = kept.some(k => r.left < k.right + 3 && r.right > k.left - 3 && r.top < k.bottom + 2 && r.bottom > k.top - 2);
+        if (hit) el.style.visibility = 'hidden'; else kept.push(r);
+      });
+    }
+    map.on('zoomend', () => requestAnimationFrame(declutter));
+    if (cfg.labels) fetch(base + cfg.labels).then(r => r.json()).then(j => { labelData = j; const t = cfg.themes.find(x => x.id === active); if (t) drawLabels(t); });
+
+    function show(id, fromUser) {
+      const t = cfg.themes.find(x => x.id === id); if (!t) return;
+      if (!overlays[id]) overlays[id] = L.imageOverlay(base + t.img, cfg.bounds, { className: 'sm-img', interactive: false });
+      overlays[id].addTo(map).bringToBack();
+      if (active && active !== id && overlays[active]) map.removeLayer(overlays[active]);
+      activeVec.forEach(v => map.removeLayer(v)); activeVec = [];
+      Promise.all((t.vectors || []).map(getVec)).then(ls => { if (active !== id) return; ls.forEach(l => l.addTo(map)); activeVec = ls; });
+      active = id;
+      map.closePopup();
+      tabs.querySelectorAll('button').forEach(b => { const on = b.dataset.theme === id; b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1; });
+      panel.innerHTML = `<p class="sm-code">${esc(t.code)}</p><h3>${esc(t.title)}</h3><p class="sm-text">${t.text}</p>` +
+        `<div class="sm-legend">${legendHTML(t.legend)}</div><p class="sm-hint">${t.hint || cfg.hint}</p>`;
+      drawLabels(t);
+      if (t.view && fromUser) map.flyToBounds(t.view, { duration: 0.8 });
+      if (!t.view && fromUser && cfg.homeOnSwitch) map.flyToBounds(cfg.home, { duration: 0.6 });
+      // preload the next theme image
+      const i = cfg.themes.indexOf(t), nx = cfg.themes[(i + 1) % cfg.themes.length];
+      if (nx) { const im = new Image(); im.src = base + nx.img; }
+    }
+
+    cfg.themes.forEach((t, i) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.role = 'tab'; b.dataset.theme = t.id;
+      b.innerHTML = `<span>${String(i + 1).padStart(2, '0')}</span>${esc(t.tab)}`;
+      b.addEventListener('click', () => show(t.id, true));
+      tabs.appendChild(b);
+    });
+    tabs.addEventListener('keydown', e => {
+      if (!['ArrowRight', 'ArrowLeft'].includes(e.key)) return;
+      const ids = cfg.themes.map(t => t.id), i = ids.indexOf(active);
+      const n = ids[(i + (e.key === 'ArrowRight' ? 1 : ids.length - 1)) % ids.length];
+      show(n, true); tabs.querySelector(`[data-theme="${n}"]`).focus();
+    });
+    show(cfg.themes[0].id, false);
+  }
+
+  // ---------------------------------------------------------------- zoomable single image (Zimbabwe)
+  function zoomImage(el) {
+    const w = +el.dataset.width, h = +el.dataset.height;
+    const map = L.map(el, { crs: L.CRS.Simple, minZoom: -3, maxZoom: 1.5, zoomSnap: 0.25, attributionControl: false });
+    const b = [[0, 0], [h, w]];
+    L.imageOverlay(el.dataset.src, b).addTo(map);
+    map.fitBounds(b); map.setMaxBounds(L.latLngBounds(b).pad(0.1));
+    map.setMinZoom(map.getZoom() - 0.5);
+  }
+
+  // ---------------------------------------------------------------- sheet carousel
+  function carousel(el) {
+    const slides = [...el.querySelectorAll('.sc-slide')], thumbs = [...el.querySelectorAll('.sc-thumb')];
+    const count = el.querySelector('.sc-count'), full = el.querySelector('.sc-full');
+    let i = 0;
+    function go(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach((s, k) => { s.hidden = k !== i; const im = s.querySelector('img'); if (k === i && im.dataset.src) { im.src = im.dataset.src; delete im.dataset.src; } });
+      thumbs.forEach((t, k) => t.setAttribute('aria-current', k === i ? 'true' : 'false'));
+      count.textContent = `${i + 1} / ${slides.length}`;
+      full.href = slides[i].querySelector('img').getAttribute('src') || slides[i].querySelector('img').dataset.src;
+    }
+    el.querySelector('.sc-prev').addEventListener('click', () => go(i - 1));
+    el.querySelector('.sc-next').addEventListener('click', () => go(i + 1));
+    thumbs.forEach((t, k) => t.addEventListener('click', () => go(k)));
+    el.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); });
+    let x0 = null;
+    el.querySelector('.sc-stage').addEventListener('touchstart', e => (x0 = e.touches[0].clientX), { passive: true });
+    el.querySelector('.sc-stage').addEventListener('touchend', e => {
+      if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); x0 = null;
+    });
+    go(0);
+  }
+
+  document.querySelectorAll('.story-map').forEach(storyMap);
+  document.querySelectorAll('[data-zoom-image]').forEach(zoomImage);
+  document.querySelectorAll('[data-sheet-carousel]').forEach(carousel);
+})();
