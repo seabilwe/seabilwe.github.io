@@ -310,6 +310,26 @@ a.map-card:hover .map-card-go::after{transform:translateX(4px)}
 #population-map{width:100%}
 @media (max-width:640px){.map-pin{width:19px;height:19px;margin:-9.5px 0 0 -9.5px;box-shadow:inset 0 0 0 2px var(--sheet),inset 0 0 0 10px var(--contour)}}
 
+/* Map sheet series (project pages: Who Holds the Tap?, RE-SITE ZA) */
+.stat-row{list-style:none;margin:0 0 1.5rem;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem 1.5rem}
+.stat{border-top:1.5px solid var(--ink);padding-top:.7rem}
+.stat b{display:block;font-family:var(--serif);font-weight:500;font-size:var(--step-3);line-height:1.1;color:var(--contour-deep)}
+.stat span{display:block;margin-top:.35rem;color:var(--ink-soft);font-size:1rem;line-height:1.45}
+.sheet-list{list-style:none;margin:0;padding:0;display:grid;gap:2.75rem}
+.map-sheet figure{margin:0}
+.map-sheet img{width:100%;height:auto;border:1px solid var(--rule);border-radius:var(--radius);box-shadow:var(--lift);background:var(--sheet)}
+.map-sheet a:focus-visible img{outline:2px solid var(--water);outline-offset:3px}
+.map-sheet figcaption{margin-top:1rem;max-width:var(--measure)}
+.sheet-code{font-family:var(--sans);font-size:var(--step--1);letter-spacing:.12em;color:var(--contour-deep);font-weight:500}
+.map-sheet figcaption h3{font-size:var(--step-2);margin:.15rem 0 .4rem}
+.map-sheet figcaption p{margin:0;color:var(--ink-soft)}
+.table-wrap{overflow-x:auto;border:1px solid var(--rule);border-radius:var(--radius);background:var(--sheet)}
+.data-table{width:100%;border-collapse:collapse;font-size:.98rem;min-width:44rem}
+.data-table th,.data-table td{padding:.55rem .75rem;text-align:left;border-bottom:1px solid var(--rule);vertical-align:top}
+.data-table thead th{font-weight:500;color:var(--ink-soft);font-size:var(--step--1);background:var(--paper-2)}
+.data-table tbody tr:last-child td{border-bottom:0}
+.data-table .num{text-align:right;font-variant-numeric:tabular-nums}
+
 /* ---------- 9. Footer ---------- */
 footer{border-top:1px solid var(--rule);padding:2.5rem 0 3rem;font-size:1rem;color:var(--ink-soft)}
 .foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.25rem}

@@ -13,6 +13,8 @@ work.html             Projects, talks and a map of where the work has been
 skills.html           Skill groups and the projects behind them
 blogs.html            Writing, talks and the maps gallery
 map-population.html   Interactive "Where the World Lives, 2025" map
+map-who-holds-the-tap.html  "Who Holds the Tap?" Africa shared-rivers map series
+map-re-site-za.html   "RE-SITE ZA" Northern Cape solar suitability map series
 maps.html             Redirects to the maps gallery on blogs.html
 contact.html          Formspree contact form (ID: mzdwyebz)
 license.html          Usage terms and citation guide
