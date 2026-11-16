@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261116a">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261116b">
 </head>
 <body>
 <header class="topbar">
@@ -49,7 +49,7 @@
       </header>
 
       <section aria-labelledby="mc-month">
-        <div class="head"><div><h2 id="mc-month">The month at a glance</h2><p><span data-count>3</span> of 30 days mapped. Pick a day to pull its map out of the folder.</p></div></div>
+        <div class="head"><div><h2 id="mc-month">The month at a glance</h2><p><span data-count>5</span> of 30 days mapped. Pick a day to pull its map out of the folder.</p></div></div>
         <ol class="month" data-month aria-label="Days of November 2026"></ol>
         <p class="month-key"><span><i class="k-done"></i>Mapped</span><span><i class="k-open"></i>Not mapped yet</span></p>
       </section>
@@ -59,17 +59,72 @@
 
         <div class="folder">
           <div class="folder-tabs" role="tablist" aria-label="Challenge maps">
-            <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="true" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
+            <button class="folder-tab" role="tab" id="tab-1" aria-controls="day-1" aria-selected="true" data-day="1" data-thumb="assets/maps/30daymapchallenge/day01-fontein.jpg"><small>Day 1</small>Points</button>
+            <button class="folder-tab" role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" tabindex="-1" data-day="2" data-thumb="assets/maps/30daymapchallenge/day02-live-wires.jpg"><small>Day 2</small>Lines</button>
+            <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
           </div>
 
           <div class="folder-body">
 
-            <!-- Day 17 -->
-            <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0">
+            <article class="sheet" id="day-1" role="tabpanel" aria-labelledby="tab-1" tabindex="0">
               <figure class="sheet-map">
-                <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500"></a>
+                <a href="assets/maps/30daymapchallenge/day01-fontein-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day01-fontein.jpg" alt="Map of South Africa with thousands of small blue dots marking places named for a spring, densest from the Cape to the Highveld" width="1200" height="1500"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day01-fontein-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 1 · Points</p>
+                <h3>Fontein</h3>
+                <p class="brief">7,244 South African places are named for a spring. In a dry country, a reliable spring was worth naming a farm after.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>1 in 9</b><span>farm names in the gazetteer contain <i>fontein</i></span></li>
+                  <li class="stat"><b>16% vs 3%</b><span>of named places in Gauteng vs KwaZulu-Natal</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Pulled every place in the GeoNames gazetteer for South Africa (103,212 features) and matched names containing <i>fontein</i> or the older <i>fonteyn</i>.</li>
+                  <li>Drew the 7,244 matches as points over a faint layer of all 67,435 named farms and settlements, so the pattern reads against where names exist at all.</li>
+                  <li>Counted the most repeated names: Rietfontein (reed spring) 318 times, Klipfontein (stone spring) 222, Driefontein (three springs) 153.</li>
+                  <li>Flagged the bias: the gazetteer leans on farm names recorded in Dutch and Afrikaans, so names in other languages are under-represented.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">GeoNames gazetteer for South Africa (CC BY 4.0) · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Point mapping</li><li>Toponymy</li><li>Python · shapely</li><li>Spatial join</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-2" role="tabpanel" aria-labelledby="tab-2" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day02-live-wires-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day02-live-wires.jpg" alt="Map of South Africa’s high-voltage power lines glowing gold and blue, with the brightest 765 kV lines running from the Highveld to the Cape" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day02-live-wires-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 2 · Lines</p>
+                <h3>Live wires</h3>
+                <p class="brief">South Africa’s high-voltage grid, drawn from OpenStreetMap. The heaviest lines leave the Mpumalanga Highveld and reach for the Cape.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>34,157&nbsp;km</b><span>of mapped lines at 220&nbsp;kV and above</span></li>
+                  <li class="stat"><b>2,799&nbsp;km</b><span>of 765&nbsp;kV, the highest voltage</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Extracted 8,095 power lines of 66&nbsp;kV and above from OpenStreetMap with the Overpass API, run from QGIS.</li>
+                  <li>Classed each line by its highest voltage and drew the backbone (400 and 765&nbsp;kV) with a soft glow so it reads first.</li>
+                  <li>Clipped to South Africa and measured every line’s geodesic length for the bar chart under the map.</li>
+                  <li>OSM is volunteer-mapped: each line is counted once, whatever its number of circuits, and some lines may be missing.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">© OpenStreetMap contributors (ODbL), extracted 16 November 2026 · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Line styling</li><li>Overpass API</li><li>PyQGIS</li><li>Geodesic measurement</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
                 <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
               </figure>
               <div class="slip">
@@ -78,51 +133,49 @@
                 <h3>After sunset</h3>
                 <p class="brief">Seen from orbit at night, Johannesburg, Ekurhuleni and Pretoria stop being three cities and become one city-region written in light.</p>
                 <ul class="stat-row">
-                  <li class="stat"><b>2016</b><span>NASA VIIRS annual night-light composite</span></li>
-                  <li class="stat"><b>~500&nbsp;m</b><span>source image resolution</span></li>
+                  <li class="stat"><b>54&nbsp;km</b><span>of unbroken light on a transect from Pretoria to Vereeniging</span></li>
+                  <li class="stat"><b>22%</b><span>of Gauteng above the map’s “lit” line</span></li>
                 </ul>
                 <h4>How I made it</h4>
                 <ul>
-                  <li>Requested the VIIRS night-lights layer from NASA GIBS for a box around Gauteng and reprojected it to UTM&nbsp;35S on a 250&nbsp;m display grid.</li>
-                  <li>Styled the brightness on a navy-to-gold ramp, with a gentle power stretch so dimmer towns still show.</li>
-                  <li>Dimmed the lights outside Gauteng to keep the eye on the province, an editorial choice rather than a measured drop at the border.</li>
-                  <li>Kept the caveat on the map: brightness is not a measure of electricity access, population or load-shedding.</li>
+                  <li>Requested NASA’s VIIRS night-lights layer (2016 annual composite) from NASA GIBS and reprojected it to UTM&nbsp;35S on a 250&nbsp;m display grid.</li>
+                  <li>Styled brightness on a navy-to-gold ramp and dimmed lights outside Gauteng to keep the eye on the province.</li>
+                  <li>Sampled a north–south transect through Pretoria, Johannesburg and Vereeniging and measured the longest unbroken lit stretch.</li>
+                  <li>Brightness is a display value, not a measure of electricity access, population or load-shedding; “lit” is a threshold chosen for this map.</li>
                 </ul>
                 <h4>Data</h4>
                 <p class="src">NASA Earth Observatory / NOAA / Suomi NPP VIIRS via NASA GIBS · Provinces and places: Natural Earth.</p>
-                <ul class="tags"><li>Raster styling</li><li>Reprojection</li><li>Python · rasterio</li><li>QGIS starter pack</li></ul>
+                <ul class="tags"><li>Raster styling</li><li>Transect analysis</li><li>Python · rasterio</li><li>Reprojection</li></ul>
               </div>
             </article>
 
-            <!-- Day 26 -->
             <article class="sheet" id="day-26" role="tabpanel" aria-labelledby="tab-26" tabindex="0" hidden>
               <figure class="sheet-map">
-                <a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day26-written-in-water.jpg" alt="South Africa's river network: perennial rivers in pale blue crowd the wetter east, seasonal rivers in sand dominate the dry west" width="1200" height="1500" loading="lazy"></a>
-                <figcaption><span>Portrait poster, Albers equal-area</span><a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+                <a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day26-written-in-water.jpg" alt="South Africa’s river network: perennial rivers in pale blue crowd the wetter east, seasonal rivers in sand dominate the dry west" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
               </figure>
               <div class="slip">
                 <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
                 <p class="theme">Day 26 · Water</p>
                 <h3>Written in water</h3>
-                <p class="brief">Where South Africa’s rivers run all year, and where they wait for rain. Somewhere near 27°E the country’s river network changes character.</p>
+                <p class="brief">Where South Africa’s rivers run all year, and where they wait for rain. At 27°E, the central meridian of UTM&nbsp;35S, the river network changes character.</p>
                 <ul class="stat-row">
                   <li class="stat"><b>78%</b><span>of mapped river length east of 27°E is perennial</span></li>
                   <li class="stat"><b>28%</b><span>west of 27°E, where most rivers are seasonal</span></li>
                 </ul>
                 <h4>How I made it</h4>
                 <ul>
-                  <li>Mapped 101,472 river reaches (156,378&nbsp;km) from the NFEPA river network, split by the flow class recorded in the source: perennial or non-perennial.</li>
-                  <li>Measured every reach in an Albers equal-area projection and summed perennial length in 1° bands of longitude, shown in the strip chart under the map.</li>
+                  <li>Mapped 101,472 river reaches (156,358&nbsp;km) from the NFEPA river network, split by the flow class in the source: perennial or non-perennial.</li>
+                  <li>Measured every reach’s geodesic length and summed perennial length in 1° bands of longitude for the strip chart.</li>
                   <li>Picked out the Orange in gold: a perennial thread carrying water across the dry west.</li>
                   <li>Flow class is the long-term classification in the data, not today’s flow or drought conditions.</li>
                 </ul>
                 <h4>Data</h4>
-                <p class="src">NFEPA river network via the DFFE Screening Tool · Boundaries: Natural Earth 1:10m.</p>
-                <ul class="tags"><li>Vector analysis</li><li>Equal-area measurement</li><li>Python · shapely</li><li>QGIS starter pack</li></ul>
+                <p class="src">NFEPA river network via the DFFE Screening Tool · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Vector analysis</li><li>Geodesic measurement</li><li>Python · shapely</li><li>Classification</li></ul>
               </div>
             </article>
 
-            <!-- Day 29 -->
             <article class="sheet" id="day-29" role="tabpanel" aria-labelledby="tab-29" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day29-sculpted-by-light-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg" alt="Shaded-relief map of the Maloti-Drakensberg: the high Lesotho plateau glows in sand tones above the dark, shadowed escarpment" width="1200" height="1500" loading="lazy"></a>
@@ -135,17 +188,17 @@
                 <p class="brief">Ridges emerge, valleys fall into shadow. The Maloti-Drakensberg, drawn from nothing but elevation data.</p>
                 <ul class="stat-row">
                   <li class="stat"><b>3,482&nbsp;m</b><span>Thabana Ntlenyana, the highest summit on the map</span></li>
-                  <li class="stat"><b>156</b><span>elevation tiles mosaicked into one 140&nbsp;m grid</span></li>
+                  <li class="stat"><b>1,396&nbsp;m</b><span>the lowest ground in Lesotho on this grid</span></li>
                 </ul>
                 <h4>How I made it</h4>
                 <ul>
-                  <li>Decoded Terrarium elevation tiles to metres, mosaicked them and reprojected the grid to UTM&nbsp;35S.</li>
-                  <li>Coloured elevation from 600 to 3,500&nbsp;m in charcoal, sand and copper, then blended a north-west hillshade over it, with 2× exaggeration for the shading only.</li>
-                  <li>Added sparse contours as texture and labelled three summits with heights from a cited source rather than the resampled grid.</li>
+                  <li>Decoded 156 Terrarium elevation tiles to metres, mosaicked them and reprojected the grid to UTM&nbsp;35S at 140&nbsp;m.</li>
+                  <li>Coloured elevation from 600 to 3,500&nbsp;m in charcoal, sand and copper and blended a north-west hillshade over it (2× exaggeration for shading only).</li>
+                  <li>Cut an elevation profile from the Lesotho plateau over the escarpment, and found Lesotho’s lowest ground from the grid itself.</li>
                 </ul>
                 <h4>Data</h4>
-                <p class="src">Terrain Tiles: Mapzen / AWS Open Data (SRTM and GMTED2010, courtesy of the USGS) · Boundaries: Natural Earth · Summits: Drakensberg Hikes.</p>
-                <ul class="tags"><li>DEM processing</li><li>Hillshade &amp; hypsometric tint</li><li>Python · rasterio</li><li>QGIS starter pack</li></ul>
+                <p class="src">Terrain Tiles: Mapzen / AWS (SRTM and GMTED2010, courtesy of the USGS) · Boundaries: Natural Earth · Summits: Drakensberg Hikes.</p>
+                <ul class="tags"><li>DEM processing</li><li>Hillshade &amp; hypsometric tint</li><li>Elevation profile</li><li>Python · rasterio</li></ul>
               </div>
             </article>
 
@@ -161,7 +214,7 @@
         <div class="head"><div><h2 id="mc-about">About the challenge</h2></div></div>
         <div class="prose">
           <p>The <a href="https://30daymapchallenge.com/" target="_blank" rel="noopener">#30DayMapChallenge</a> is a community event every November: one theme a day, any tools, any data. You can join on as many or as few days as you like.</p>
-          <p>My rule for this year: South African places, open data only, and a clear story in every map. Each map is scripted in Python with AI assistance and packaged as a QGIS starter project, with the data, style and recreation notes, so it can double as teaching material.</p>
+          <p>My rules for this year: South African places, open data only, a clear story in every map, and one shared layout in South Africa’s own UTM zones (34S, 35S or 36S). Each map is scripted in Python and PyQGIS with AI assistance, and the code and data travel with it, so it can double as teaching material.</p>
         </div>
         <p><a class="btn btn-line" href="blogs.html#maps">Back to the gallery</a></p>
       </section>
@@ -175,6 +228,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261116a"></script>
+<script src="assets/js/map-folder.js?v=20261116b"></script>
 </body>
 </html>

@@ -7,6 +7,10 @@
   var month = document.querySelector("[data-month]");
   var steps = document.querySelectorAll("[data-step]");
   var current = 0;
+  var THEMES = ["Points", "Lines", "Polygons", "Clusters", "Senses: Sight", "Vintage", "10 minute map", "Utopia", "Urban-rural",
+    "Prompting only", "Senses: Sound", "Power", "Interactions", "Borgesian map", "Inside out", "Collaborative map", "Light & dark",
+    "NULL", "Senses: Smell", "Hexagons", "OpenStreetMap", "Projections", "Senses: Taste", "Network", "Is this a map?", "Water",
+    "New tool", "Senses: Feeling", "Raster", "Pen & paper"];  /* official 2026 themes, github.com/tjukanovt/30DayMapChallenge */
 
   function select(i, opts) {
     opts = opts || {};
@@ -54,8 +58,9 @@
         var t = tabs[k], b = document.createElement("button");
         b.type = "button"; b.className = "day day-done"; b.setAttribute("data-day", d);
         b.style.backgroundImage = "url('" + t.getAttribute("data-thumb") + "')";
-        b.setAttribute("aria-label", "Day " + d + ": " + t.lastChild.textContent.trim());
-        b.innerHTML = "<span>" + d + "</span>";
+        b.setAttribute("aria-label", "Day " + d + ": " + THEMES[d - 1]);
+        b.title = "Day " + d + ": " + THEMES[d - 1];
+        b.innerHTML = "<span>" + d + "<em>" + THEMES[d - 1].replace(/&/g, "&amp;") + "</em></span>";
         (function (k) {
           b.addEventListener("click", function () {
             select(k);
@@ -64,7 +69,7 @@
         })(k);
         li.appendChild(b);
       } else {
-        li.innerHTML = '<span class="day" aria-label="Day ' + d + ', not mapped yet">' + d + "</span>";
+        li.innerHTML = '<span class="day" title="Day ' + d + ': ' + THEMES[d - 1].replace(/&/g, "&amp;") + ', not mapped yet"><span>' + d + "<em>" + THEMES[d - 1].replace(/&/g, "&amp;") + "</em></span></span>";
       }
       month.appendChild(li);
     }

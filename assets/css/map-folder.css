@@ -3,6 +3,8 @@
 /* ---------- Month strip ---------- */
 .month{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(15,minmax(0,1fr));gap:6px}
 .month li{aspect-ratio:1;min-width:0}
+.day > span{display:flex;flex-direction:column;gap:2px;min-width:0;width:100%}
+.day em{font-style:normal;font-weight:400;font-size:.62rem;line-height:1.1;opacity:.85;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .day{width:100%;height:100%;display:flex;align-items:flex-end;justify-content:flex-start;padding:4px 6px;border-radius:8px;
   font-family:var(--sans);font-size:.85rem;line-height:1;color:var(--ink-soft);border:1px dashed var(--rule);background:transparent}
 .day-done{position:relative;overflow:hidden;cursor:pointer;color:#fff;font-weight:700;border:1.5px solid var(--contour);
@@ -17,6 +19,7 @@
 .month-key .k-open{border:1px dashed var(--ink-soft)}
 @media (max-width:760px){.month{grid-template-columns:repeat(10,minmax(0,1fr))}}
 @media (max-width:420px){.month{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media (max-width:560px){.day em{display:none}}
 
 /* ---------- Folder ---------- */
 .folder{position:relative;margin-top:.5rem}
