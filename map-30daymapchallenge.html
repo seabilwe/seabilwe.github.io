@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261116b">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261116c">
 </head>
 <body>
 <header class="topbar">
@@ -61,6 +61,7 @@
           <div class="folder-tabs" role="tablist" aria-label="Challenge maps">
             <button class="folder-tab" role="tab" id="tab-1" aria-controls="day-1" aria-selected="true" data-day="1" data-thumb="assets/maps/30daymapchallenge/day01-fontein.jpg"><small>Day 1</small>Points</button>
             <button class="folder-tab" role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" tabindex="-1" data-day="2" data-thumb="assets/maps/30daymapchallenge/day02-live-wires.jpg"><small>Day 2</small>Lines</button>
+            <button class="folder-tab" role="tab" id="tab-3" aria-controls="day-3" aria-selected="false" tabindex="-1" data-day="3" data-thumb="assets/maps/30daymapchallenge/day03-orchard-valleys.jpg"><small>Day 3</small>Polygons</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -119,6 +120,33 @@
                 <h4>Data</h4>
                 <p class="src">© OpenStreetMap contributors (ODbL), extracted 16 November 2026 · Boundaries: Natural Earth.</p>
                 <ul class="tags"><li>Line styling</li><li>Overpass API</li><li>PyQGIS</li><li>Geodesic measurement</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-3" role="tabpanel" aria-labelledby="tab-3" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day03-orchard-valleys-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day03-orchard-valleys.jpg" alt="Map of the Western Cape with thousands of small gold orchard polygons strung along river valleys, and an inset of Elgin showing individual orchard blocks" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 34S</span><a href="assets/maps/30daymapchallenge/day03-orchard-valleys-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 3 · Polygons</p>
+                <h3>Orchard valleys</h3>
+                <p class="brief">Every orchard block mapped in the Western Cape, and the rivers that feed them. Fruit grows where water runs all year.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>75%</b><span>of orchard area lies within 2&nbsp;km of a perennial river</span></li>
+                  <li class="stat"><b>24%</b><span>of the province’s land does</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Extracted 9,319 orchard polygons (29,071&nbsp;ha) and the province’s protected areas from OpenStreetMap with the Overpass API, run from QGIS.</li>
+                  <li>Drew the whole province in UTM&nbsp;34S, whose central meridian (21°E) runs through the middle of the Western Cape, with an inset of Elgin at block scale.</li>
+                  <li>Measured each block’s distance to the nearest perennial river (NFEPA) and compared it with every 250&nbsp;m cell of the province: the gap between the two curves is the story.</li>
+                  <li>Dropped biosphere reserves and the World Heritage overlay from the protected areas: they are designations, not protected land.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">© OpenStreetMap contributors (ODbL), extracted 16 November 2026 · Rivers: NFEPA via DFFE · Towns: GeoNames · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Polygon analysis</li><li>Distance analysis</li><li>Python · shapely</li><li>Overpass API</li></ul>
               </div>
             </article>
 
@@ -228,6 +256,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261116b"></script>
+<script src="assets/js/map-folder.js?v=20261116c"></script>
 </body>
 </html>
