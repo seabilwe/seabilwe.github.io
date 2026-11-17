@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117b">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117c">
 </head>
 <body>
 <header class="topbar">
@@ -64,6 +64,7 @@
             <button class="folder-tab" role="tab" id="tab-3" aria-controls="day-3" aria-selected="false" tabindex="-1" data-day="3" data-thumb="assets/maps/30daymapchallenge/day03-orchard-valleys.jpg"><small>Day 3</small>Polygons</button>
             <button class="folder-tab" role="tab" id="tab-4" aria-controls="day-4" aria-selected="false" tabindex="-1" data-day="4" data-thumb="assets/maps/30daymapchallenge/day04-homesteads-and-towns.jpg"><small>Day 4</small>Clusters</button>
             <button class="folder-tab" role="tab" id="tab-5" aria-controls="day-5" aria-selected="false" tabindex="-1" data-day="5" data-thumb="assets/maps/30daymapchallenge/day05-what-table-mountain-sees.jpg"><small>Day 5</small>Senses: Sight</button>
+            <button class="folder-tab" role="tab" id="tab-6" aria-controls="day-6" aria-selected="false" tabindex="-1" data-day="6" data-thumb="assets/maps/30daymapchallenge/day06-the-iron-road.jpg"><small>Day 6</small>Vintage</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -206,6 +207,33 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-6" role="tabpanel" aria-labelledby="tab-6" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day06-the-iron-road-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day06-the-iron-road.jpg" alt="Vintage-style railway map of South Africa on aged paper: hand-tinted provinces, chequered black-and-white railway lines, water-lined coast and serif town names" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day06-the-iron-road-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 6 · Vintage</p>
+                <h3>The iron road</h3>
+                <p class="brief">South Africa’s railways, drawn the way a 1900s railway map would have shown them, with a modern question: how closely do towns follow the line?</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>49%</b><span>of 932 towns of 1,000+ people lie within 5&nbsp;km of a railway</span></li>
+                  <li class="stat"><b>13%</b><span>of South Africa’s land does</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Took 32,276 rail segments from the Geofabrik OpenStreetMap extract and drew them with the classic chequered railway symbol.</li>
+                  <li>Built the vintage look in code: paper grain and vignette, hand-tinted provinces with watercolour edges, water lining along the coast, and greedy label placement so names never collide.</li>
+                  <li>Measured each GeoNames town’s distance to the nearest line and compared it with every square kilometre of the country.</li>
+                  <li>A town is 3.7 times as likely as open land to lie within 5&nbsp;km of a railway, rising to 89% for cities of 250,000+.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">© OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Towns: GeoNames · Rivers: NFEPA · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Vintage cartography</li><li>Label placement</li><li>Proximity analysis</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -312,6 +340,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261117b"></script>
+<script src="assets/js/map-folder.js?v=20261117c"></script>
 </body>
 </html>
