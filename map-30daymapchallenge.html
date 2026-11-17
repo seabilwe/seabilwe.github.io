@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261116c">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117a">
 </head>
 <body>
 <header class="topbar">
@@ -62,6 +62,7 @@
             <button class="folder-tab" role="tab" id="tab-1" aria-controls="day-1" aria-selected="true" data-day="1" data-thumb="assets/maps/30daymapchallenge/day01-fontein.jpg"><small>Day 1</small>Points</button>
             <button class="folder-tab" role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" tabindex="-1" data-day="2" data-thumb="assets/maps/30daymapchallenge/day02-live-wires.jpg"><small>Day 2</small>Lines</button>
             <button class="folder-tab" role="tab" id="tab-3" aria-controls="day-3" aria-selected="false" tabindex="-1" data-day="3" data-thumb="assets/maps/30daymapchallenge/day03-orchard-valleys.jpg"><small>Day 3</small>Polygons</button>
+            <button class="folder-tab" role="tab" id="tab-4" aria-controls="day-4" aria-selected="false" tabindex="-1" data-day="4" data-thumb="assets/maps/30daymapchallenge/day04-homesteads-and-towns.jpg"><small>Day 4</small>Clusters</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -147,6 +148,33 @@
                 <h4>Data</h4>
                 <p class="src">© OpenStreetMap contributors (ODbL), extracted 16 November 2026 · Rivers: NFEPA via DFFE · Towns: GeoNames · Boundaries: Natural Earth.</p>
                 <ul class="tags"><li>Polygon analysis</li><li>Distance analysis</li><li>Python · shapely</li><li>Overpass API</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-4" role="tabpanel" aria-labelledby="tab-4" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day04-homesteads-and-towns-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day04-homesteads-and-towns.jpg" alt="Map of KwaZulu-Natal with two million building dots coloured by settlement size: a solid yellow mass around Durban, teal villages and purple scattered homesteads across the interior" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 36S</span><a href="assets/maps/30daymapchallenge/day04-homesteads-and-towns-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 4 · Clusters</p>
+                <h3>Homesteads and towns</h3>
+                <p class="brief">Every mapped building in KwaZulu-Natal, grouped into settlements by density. Greater Durban is one great mass; inland, homesteads scatter across the hills.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>14,503</b><span>settlement clusters found by DBSCAN</span></li>
+                  <li class="stat"><b>23%</b><span>of buildings stand outside any cluster</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Reduced the 4 million building footprints in the Geofabrik OpenStreetMap extract to centre points with PyQGIS, keeping the 1,998,528 inside KwaZulu-Natal.</li>
+                  <li>Ran DBSCAN in UTM&nbsp;36S: a building joins a settlement when at least 10 buildings chain together within 100&nbsp;m.</li>
+                  <li>Sorted clusters into hamlets, villages, towns and cities by building count, and picked a rural 8&nbsp;km inset automatically, where clustered and scattered homesteads mix most.</li>
+                  <li>OSM building coverage is uneven, so an empty patch can be unmapped rather than empty.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">© OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Towns: GeoNames · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Density clustering</li><li>DBSCAN · scikit-learn</li><li>PyQGIS</li><li>Big point data</li></ul>
               </div>
             </article>
 
@@ -256,6 +284,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261116c"></script>
+<script src="assets/js/map-folder.js?v=20261117a"></script>
 </body>
 </html>
