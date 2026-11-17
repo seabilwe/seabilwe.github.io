@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117e">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117g">
 </head>
 <body>
 <header class="topbar">
@@ -67,6 +67,8 @@
             <button class="folder-tab" role="tab" id="tab-6" aria-controls="day-6" aria-selected="false" tabindex="-1" data-day="6" data-thumb="assets/maps/30daymapchallenge/day06-the-iron-road.jpg"><small>Day 6</small>Vintage</button>
             <button class="folder-tab" role="tab" id="tab-7" aria-controls="day-7" aria-selected="false" tabindex="-1" data-day="7" data-thumb="assets/maps/30daymapchallenge/day07-robots.jpg"><small>Day 7</small>10 minute map</button>
             <button class="folder-tab" role="tab" id="tab-8" aria-controls="day-8" aria-selected="false" tabindex="-1" data-day="8" data-thumb="assets/maps/30daymapchallenge/day08-fifteen-minute-city.jpg"><small>Day 8</small>Utopia</button>
+            <button class="folder-tab" role="tab" id="tab-9" aria-controls="day-9" aria-selected="false" tabindex="-1" data-day="9" data-thumb="assets/maps/30daymapchallenge/day09-where-the-city-ends.jpg"><small>Day 9</small>Urban-rural</button>
+            <button class="folder-tab" role="tab" id="tab-10" aria-controls="day-10" aria-selected="false" tabindex="-1" data-day="10" data-thumb="assets/maps/30daymapchallenge/day10-how-far-to-care.jpg"><small>Day 10</small>Prompting only</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -291,6 +293,62 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-9" role="tabpanel" aria-labelledby="tab-9" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day09-where-the-city-ends-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day09-where-the-city-ends.jpg" alt="Map of South Africa in 1 km squares: gold cities around Johannesburg, Pretoria, Cape Town and Durban, orange towns, and a teal rural spread that is densest in the Eastern Cape and KwaZulu-Natal" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day09-where-the-city-ends-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 9 · Urban-rural</p>
+                <h3>Where the city ends</h3>
+                <p class="brief">Where does the city stop and the countryside begin? The international Degree of Urbanisation rules, applied to every populated square kilometre of South Africa.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>48%</b><span>of South Africans live in a city</span></li>
+                  <li class="stat"><b>22%</b><span>live in rural areas</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Summed the WorldPop 2020 100&nbsp;m population grid into 1&nbsp;km squares on the UTM&nbsp;35S grid.</li>
+                  <li>Applied stage&nbsp;1 of the Degree of Urbanisation (EU, OECD, UN-Habitat, World Bank and others): a city is a contiguous run of squares with 1,500+ people per km&sup2; and 50,000+ people in total, with small gaps filled.</li>
+                  <li>A town or dense suburb is a cluster of squares with 300+ people per km&sup2; and 5,000+ people. Everything else that is populated is rural, drawn fainter where fewer people live.</li>
+                  <li>Named each city after the largest GeoNames place in it, and split each province&rsquo;s population by class for the chart.</li>
+                  <li>UTM&nbsp;35S stretches areas by a few percent at the far west, so the 1&nbsp;km squares there are slightly smaller on the ground.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Population: WorldPop 2020 constrained, 100&nbsp;m, UN-adjusted (CC BY 4.0) · Places: GeoNames · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Degree of Urbanisation</li><li>Raster aggregation</li><li>Connected components</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-10" role="tabpanel" aria-labelledby="tab-10" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day10-how-far-to-care-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day10-how-far-to-care.jpg" alt="Bivariate map of South Africa in 1 km squares showing distance to the nearest public clinic and public hospital; pink patches far from hospitals cluster in the Eastern Cape, KwaZulu-Natal and Limpopo" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day10-how-far-to-care-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 10 · Prompting only</p>
+                <h3>How far to care?</h3>
+                <p class="brief">Made from a single prompt, with no hand edits: &ldquo;Show how far every South African lives from the nearest hospital, using open data&hellip; but also nearest clinics.&rdquo;</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>90%</b><span>live within 5&nbsp;km of a public clinic</span></li>
+                  <li class="stat"><b>6%</b><span>live more than 30&nbsp;km from a public hospital</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>The prompt went to Claude (Anthropic), which chose the data, ran the analysis and drew the map in the series layout. Nothing was edited by hand.</li>
+                  <li>OpenStreetMap holds only about 800 South African clinics, so the map uses the KEMRI-Wellcome / WHO public facility database instead: 3,961 clinics, health centres and posts and 327 hospitals.</li>
+                  <li>Summed WorldPop 2020 population into 1&nbsp;km squares in UTM&nbsp;35S and measured the straight-line distance from each square to the nearest clinic and the nearest hospital.</li>
+                  <li>Coloured each square on a 3&nbsp;&times;&nbsp;3 bivariate scheme: teal for far from a clinic, pink for far from a hospital, white for far from both.</li>
+                  <li>Public sector only, and straight lines: real trips by road are longer, and the facility list dates from about 2018.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Facilities: KEMRI-Wellcome Trust / WHO public health facility database (Maina et al. 2019, Scientific Data), via afrimapr · Population: WorldPop 2020 constrained, 100&nbsp;m (CC BY 4.0) · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>AI-assisted mapping</li><li>Bivariate colour</li><li>Nearest-neighbour</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -397,6 +455,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261117e"></script>
+<script src="assets/js/map-folder.js?v=20261117g"></script>
 </body>
 </html>
