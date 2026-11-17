@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117c">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117d">
 </head>
 <body>
 <header class="topbar">
@@ -65,6 +65,7 @@
             <button class="folder-tab" role="tab" id="tab-4" aria-controls="day-4" aria-selected="false" tabindex="-1" data-day="4" data-thumb="assets/maps/30daymapchallenge/day04-homesteads-and-towns.jpg"><small>Day 4</small>Clusters</button>
             <button class="folder-tab" role="tab" id="tab-5" aria-controls="day-5" aria-selected="false" tabindex="-1" data-day="5" data-thumb="assets/maps/30daymapchallenge/day05-what-table-mountain-sees.jpg"><small>Day 5</small>Senses: Sight</button>
             <button class="folder-tab" role="tab" id="tab-6" aria-controls="day-6" aria-selected="false" tabindex="-1" data-day="6" data-thumb="assets/maps/30daymapchallenge/day06-the-iron-road.jpg"><small>Day 6</small>Vintage</button>
+            <button class="folder-tab" role="tab" id="tab-7" aria-controls="day-7" aria-selected="false" tabindex="-1" data-day="7" data-thumb="assets/maps/30daymapchallenge/day07-robots.jpg"><small>Day 7</small>10 minute map</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -234,6 +235,33 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-7" role="tabpanel" aria-labelledby="tab-7" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day07-robots-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day07-robots.jpg" alt="Map of Gauteng with thousands of amber dots marking traffic signals, densest in central Johannesburg and Pretoria" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day07-robots-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 7 · 10 minute map</p>
+                <h3>Robots</h3>
+                <p class="brief">Every traffic signal mapped in Gauteng, made against a ten-minute clock. In South Africa, a traffic light is a robot.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>6,623</b><span>traffic signals mapped in Gauteng</span></li>
+                  <li class="stat"><b>66</b><span>in the busiest square kilometre</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>One layer, one filter, one colour: the traffic layer of the Geofabrik OpenStreetMap extract, filtered to traffic signals and clipped to Gauteng.</li>
+                  <li>Counted signals in 1&nbsp;km squares of the UTM&nbsp;35S grid for the chart and the busiest-square figure.</li>
+                  <li>Kept the series layout, so even a quick map sits in the same frame as the rest.</li>
+                  <li>One point per mapped signal node: big junctions can carry several.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">© OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Quick mapping</li><li>Point counts</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -340,6 +368,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261117c"></script>
+<script src="assets/js/map-folder.js?v=20261117d"></script>
 </body>
 </html>
