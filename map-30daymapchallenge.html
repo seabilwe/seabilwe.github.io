@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117a">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117b">
 </head>
 <body>
 <header class="topbar">
@@ -63,6 +63,7 @@
             <button class="folder-tab" role="tab" id="tab-2" aria-controls="day-2" aria-selected="false" tabindex="-1" data-day="2" data-thumb="assets/maps/30daymapchallenge/day02-live-wires.jpg"><small>Day 2</small>Lines</button>
             <button class="folder-tab" role="tab" id="tab-3" aria-controls="day-3" aria-selected="false" tabindex="-1" data-day="3" data-thumb="assets/maps/30daymapchallenge/day03-orchard-valleys.jpg"><small>Day 3</small>Polygons</button>
             <button class="folder-tab" role="tab" id="tab-4" aria-controls="day-4" aria-selected="false" tabindex="-1" data-day="4" data-thumb="assets/maps/30daymapchallenge/day04-homesteads-and-towns.jpg"><small>Day 4</small>Clusters</button>
+            <button class="folder-tab" role="tab" id="tab-5" aria-controls="day-5" aria-selected="false" tabindex="-1" data-day="5" data-thumb="assets/maps/30daymapchallenge/day05-what-table-mountain-sees.jpg"><small>Day 5</small>Senses: Sight</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -178,6 +179,33 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-5" role="tabpanel" aria-labelledby="tab-5" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day05-what-table-mountain-sees-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day05-what-table-mountain-sees.jpg" alt="Shaded-relief map of Cape Town with the land in sight of Table Mountain’s summit beacon tinted gold and the buildings that can see it shown as white dots" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 34S</span><a href="assets/maps/30daymapchallenge/day05-what-table-mountain-sees-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 5 · Senses: Sight</p>
+                <h3>What Table Mountain sees</h3>
+                <p class="brief">Every place within sight of Table Mountain’s summit beacon, and every building that can see it back. Sight works both ways.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>28%</b><span>of 327,506 mapped buildings on the sheet can see the beacon</span></li>
+                  <li class="stat"><b>1,611&nbsp;km²</b><span>of land in sight, 31% of the land on the sheet</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Downloaded 210 elevation tiles with PyQGIS, mosaicked them and reprojected to a 30&nbsp;m UTM&nbsp;34S grid; took Cape Town’s building centre points from the Geofabrik OpenStreetMap extract.</li>
+                  <li>Wrote a radial-sweep viewshed from Maclear’s Beacon (1,085&nbsp;m) in Python, with earth curvature and refraction, then tested every building against it.</li>
+                  <li>Checked a surprising result before publishing: from the beacon, the plateau’s own rim about 1&nbsp;km away hides the low Cape Flats, so Khayelitsha and Mitchells Plain fall out of sight.</li>
+                  <li>Bare-earth terrain only: trees and buildings would block more.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Terrain Tiles: Mapzen / AWS (SRTM, courtesy of the USGS) · © OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Places: GeoNames.</p>
+                <ul class="tags"><li>Viewshed analysis</li><li>Terrain processing</li><li>Python · numpy</li><li>PyQGIS</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -284,6 +312,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261117a"></script>
+<script src="assets/js/map-folder.js?v=20261117b"></script>
 </body>
 </html>
