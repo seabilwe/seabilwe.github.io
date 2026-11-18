@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261117g">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261118b">
 </head>
 <body>
 <header class="topbar">
@@ -69,6 +69,8 @@
             <button class="folder-tab" role="tab" id="tab-8" aria-controls="day-8" aria-selected="false" tabindex="-1" data-day="8" data-thumb="assets/maps/30daymapchallenge/day08-fifteen-minute-city.jpg"><small>Day 8</small>Utopia</button>
             <button class="folder-tab" role="tab" id="tab-9" aria-controls="day-9" aria-selected="false" tabindex="-1" data-day="9" data-thumb="assets/maps/30daymapchallenge/day09-where-the-city-ends.jpg"><small>Day 9</small>Urban-rural</button>
             <button class="folder-tab" role="tab" id="tab-10" aria-controls="day-10" aria-selected="false" tabindex="-1" data-day="10" data-thumb="assets/maps/30daymapchallenge/day10-how-far-to-care.jpg"><small>Day 10</small>Prompting only</button>
+            <button class="folder-tab" role="tab" id="tab-11" aria-controls="day-11" aria-selected="false" tabindex="-1" data-day="11" data-thumb="assets/maps/30daymapchallenge/day11-names-that-click.jpg"><small>Day 11</small>Senses: Sound</button>
+            <button class="folder-tab" role="tab" id="tab-12" aria-controls="day-12" aria-selected="false" tabindex="-1" data-day="12" data-thumb="assets/maps/30daymapchallenge/day12-where-power-is-made.jpg"><small>Day 12</small>Power</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -349,6 +351,62 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-11" role="tabpanel" aria-labelledby="tab-11" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day11-names-that-click-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day11-names-that-click.jpg" alt="Map of South Africa with coloured dots for place names spelled with click consonants, densest in the Eastern Cape and KwaZulu-Natal, and grey dots in Limpopo and Mpumalanga where x is the Xitsonga sh sound" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day11-names-that-click-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 11 · Senses: Sound</p>
+                <h3>Names that click</h3>
+                <p class="brief">A map you can hear: place names spelled with the isiXhosa and isiZulu clicks c, q and x, and the Xitsonga x that sounds like &ldquo;sh&rdquo;.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>1,705</b><span>place names with a click spelled in them</span></li>
+                  <li class="stat"><b>73%</b><span>of them in the Eastern Cape</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read all 103,212 GeoNames features for South Africa and kept places, areas, hills, rivers and forests (no hotels or other businesses).</li>
+                  <li>Found clicks from spelling: c, q or x before a vowel (or h, w), in words built from isiXhosa / isiZulu syllables. Words with English or Afrikaans tells (double letters, a silent &ldquo;ce&rdquo;, &ldquo;ex&rdquo;) drop out, plus a short hand-checked list.</li>
+                  <li>Read an x in Limpopo or Mpumalanga as Xitsonga, where it says &ldquo;sh&rdquo; rather than clicking.</li>
+                  <li>Coloured each name by its click: dental c, alveolar q, lateral x, or two kinds in one name.</li>
+                  <li>Spelling is only a proxy for sound, and GeoNames under-records African-language names, so read the map as a sample.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Names: GeoNames gazetteer for South Africa (CC BY 4.0), downloaded 16 November 2026 · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Toponymy</li><li>Regular expressions</li><li>Language</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-12" role="tabpanel" aria-labelledby="tab-12" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day12-where-power-is-made-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day12-where-power-is-made.jpg" alt="Map of South Africa with power stations as circles sized by capacity: huge tan coal stations clustered on the Mpumalanga Highveld and at Medupi, Koeberg nuclear near Cape Town, and small wind and solar farms scattered across the Cape provinces" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day12-where-power-is-made-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 12 · Power</p>
+                <h3>Where power is made</h3>
+                <p class="brief">Day 2 drew the wires; this is where the electricity starts. Every power station in OpenStreetMap, sized by capacity and coloured by fuel.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>66%</b><span>of recorded capacity burns coal</span></li>
+                  <li class="stat"><b>14.1&nbsp;GW</b><span>of wind and solar, mostly in the Cape</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Downloaded every power=plant in South Africa from OpenStreetMap through the Overpass API, on the day of making.</li>
+                  <li>Dropped closed stations (tagged with an end date or as disused, such as Komati in 2022) and grouped the fuels into eight classes.</li>
+                  <li>Sized each circle by its tagged nameplate capacity (area in proportion to megawatts) and drew stations with no capacity as small dots.</li>
+                  <li>Laid them over the Day&nbsp;2 grid of 220&nbsp;kV and above, in UTM&nbsp;35S.</li>
+                  <li>Only 403 of the 1,318 stations record their capacity, nearly all the missing ones small solar plants, so solar is under-counted.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Power stations and grid: &copy; OpenStreetMap contributors (ODbL), extracted 18 November 2026 via the Overpass API · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Proportional symbols</li><li>Overpass API</li><li>Energy</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -455,6 +513,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261117g"></script>
+<script src="assets/js/map-folder.js?v=20261118b"></script>
 </body>
 </html>
