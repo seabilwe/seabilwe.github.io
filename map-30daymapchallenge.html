@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119a">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119b">
 </head>
 <body>
 <header class="topbar">
@@ -73,6 +73,8 @@
             <button class="folder-tab" role="tab" id="tab-12" aria-controls="day-12" aria-selected="false" tabindex="-1" data-day="12" data-thumb="assets/maps/30daymapchallenge/day12-where-power-is-made.jpg"><small>Day 12</small>Power</button>
             <button class="folder-tab" role="tab" id="tab-13" aria-controls="day-13" aria-selected="false" tabindex="-1" data-day="13" data-thumb="assets/maps/30daymapchallenge/day13-from-here-elsewhere.jpg"><small>Day 13</small>Interactions</button>
             <button class="folder-tab" role="tab" id="tab-14" aria-controls="day-14" aria-selected="false" tabindex="-1" data-day="14" data-thumb="assets/maps/30daymapchallenge/day14-closer-and-closer.jpg"><small>Day 14</small>A Borgesian map</button>
+            <button class="folder-tab" role="tab" id="tab-15" aria-controls="day-15" aria-selected="false" tabindex="-1" data-day="15" data-thumb="assets/maps/30daymapchallenge/day15-the-city-between.jpg"><small>Day 15</small>Inside out</button>
+            <button class="folder-tab" role="tab" id="tab-16" aria-controls="day-16" aria-selected="false" tabindex="-1" data-day="16" data-thumb="assets/maps/30daymapchallenge/day16-mapped-by-many.jpg"><small>Day 16</small>Collaborative map</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -465,6 +467,62 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-15" role="tabpanel" aria-labelledby="tab-15" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day15-the-city-between-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day15-the-city-between.jpg" alt="Johannesburg CBD with building footprints as dark holes and the space between them in sand tones, paler where you are further from a wall: a lattice of narrow streets with a few open squares" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day15-the-city-between-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 15 · Inside out</p>
+                <h3>The city between</h3>
+                <p class="brief">A building map usually fills the buildings. Here Johannesburg&rsquo;s CBD is turned inside out: the footprints are holes, and the city is what is left between them.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>59%</b><span>of the frame lies between mapped buildings</span></li>
+                  <li class="stat"><b>38%</b><span>of that space is within 8&nbsp;m of a wall</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read the OpenStreetMap buildings of the CBD from the OSM API, projected them to UTM&nbsp;35S and unioned them, so overlapping outlines and building parts count once.</li>
+                  <li>Burned the footprints into a 1&nbsp;m grid over the whole extract and measured, for every open cell, the distance to the nearest mapped wall.</li>
+                  <li>Drew the footprints as voids and shaded the space between in five sand tones by that distance, so narrow streets read dark and open squares glow.</li>
+                  <li>Summed the area in each distance band for the chart.</li>
+                  <li>The between includes streets, yards, courtyards and unmapped buildings: it is not a map of public or green space.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">&copy; OpenStreetMap contributors (ODbL), API read of the Johannesburg CBD, 18 November 2026.</p>
+                <ul class="tags"><li>Figure-ground</li><li>Distance transform</li><li>OpenStreetMap</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-16" role="tabpanel" aria-labelledby="tab-16" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day16-mapped-by-many-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day16-mapped-by-many.jpg" alt="Map of the blocks around Church Square in Pretoria with building outlines coloured by their last OpenStreetMap editor: mostly sand for one account, with teal, pink, orange, lilac and grey patches for others" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day16-mapped-by-many-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 16 · Collaborative map</p>
+                <h3>Mapped by many</h3>
+                <p class="brief">OpenStreetMap is a map made together. Around Church Square, every building outline is coloured by the account that last edited it.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>39</b><span>accounts last touched these outlines</span></li>
+                  <li class="stat"><b>74%</b><span>of the 1,056 were last edited by a single account</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read the OpenStreetMap data around Church Square from the OSM API, keeping each way&rsquo;s edit metadata (last editor and date).</li>
+                  <li>Coloured each building outline by its last-editor account: the five most frequent, and the other 34 together.</li>
+                  <li>Counted outlines by the year of their latest edit for the chart: most were last touched in 2019, by one account.</li>
+                  <li>Only the latest edit of each way is recorded: not who first drew it, nor everyone who helped. Accounts are not people, and the names are source credits, not co-authors.</li>
+                  <li>This reads the theme as collaboration through shared data; it does not claim a co-mapping session.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">&copy; OpenStreetMap contributors (ODbL), API read of Church Square with edit metadata, 18 November 2026.</p>
+                <ul class="tags"><li>OpenStreetMap</li><li>Provenance</li><li>Categorical colour</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -571,6 +629,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261119a"></script>
+<script src="assets/js/map-folder.js?v=20261119b"></script>
 </body>
 </html>
