@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119e">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119f">
 </head>
 <body>
 <header class="topbar">
@@ -78,6 +78,7 @@
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-18" aria-controls="day-18" aria-selected="false" tabindex="-1" data-day="18" data-thumb="assets/maps/30daymapchallenge/day18-where-names-run-out.jpg"><small>Day 18</small>NULL</button>
             <button class="folder-tab" role="tab" id="tab-19" aria-controls="day-19" aria-selected="false" tabindex="-1" data-day="19" data-thumb="assets/maps/30daymapchallenge/day19-the-smell-of-morning.jpg"><small>Day 19</small>Senses: Smell</button>
+            <button class="folder-tab" role="tab" id="tab-20" aria-controls="day-20" aria-selected="false" tabindex="-1" data-day="20" data-thumb="assets/maps/30daymapchallenge/day20-mapped-and-not-yet.jpg"><small>Day 20</small>Hexagons</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
           </div>
@@ -608,6 +609,34 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-20" role="tabpanel" aria-labelledby="tab-20" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day20-mapped-and-not-yet-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day20-mapped-and-not-yet.jpg" alt="South Africa in 10 km hexagons coloured by OpenStreetMap buildings per 100 people: mostly deep red across Gauteng, Limpopo and Mpumalanga, teal patches in KwaZulu-Natal and the Eastern Cape, and dark empty hexagons in the Karoo" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day20-mapped-and-not-yet-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 20 · Hexagons</p>
+                <h3>Mapped, and not yet</h3>
+                <p class="brief">How complete is the open map? Every 10&nbsp;km hexagon of South Africa, coloured by how many buildings OpenStreetMap holds for every 100 people living there.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>7</b><span>buildings mapped for every 100 South Africans</span></li>
+                  <li class="stat"><b>78%</b><span>of people live where there are fewer than 10 per 100</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Took the centre of all 4.0 million building outlines in the Geofabrik OpenStreetMap extract for South Africa.</li>
+                  <li>Summed WorldPop 2020 population (100&nbsp;m cells) and the buildings into the same 10&nbsp;km hexagons on the UTM&nbsp;35S grid, built with axial hexagon coordinates.</li>
+                  <li>Coloured each hexagon by buildings per 100 people, and drew hexagons with fewer than 250 people as empty. A fully mapped place shows roughly one building per household.</li>
+                  <li>Compared provinces for the chart: Gauteng has only 2 mapped buildings per 100 people, KwaZulu-Natal 18.</li>
+                  <li>A low score usually means buildings not yet mapped, but it can also mean genuinely few buildings; farms with many sheds score high.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Buildings: &copy; OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Population: WorldPop 2020 constrained, UN-adjusted (CC BY 4.0).</p>
+                <ul class="tags"><li>Hexagon binning</li><li>Data completeness</li><li>OpenStreetMap</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-26" role="tabpanel" aria-labelledby="tab-26" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day26-written-in-water.jpg" alt="South Africa’s river network: perennial rivers in pale blue crowd the wetter east, seasonal rivers in sand dominate the dry west" width="1200" height="1500" loading="lazy"></a>
@@ -687,6 +716,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261119e"></script>
+<script src="assets/js/map-folder.js?v=20261119f"></script>
 </body>
 </html>
