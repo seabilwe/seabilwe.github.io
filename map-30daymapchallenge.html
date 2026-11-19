@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261118b">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119a">
 </head>
 <body>
 <header class="topbar">
@@ -71,6 +71,8 @@
             <button class="folder-tab" role="tab" id="tab-10" aria-controls="day-10" aria-selected="false" tabindex="-1" data-day="10" data-thumb="assets/maps/30daymapchallenge/day10-how-far-to-care.jpg"><small>Day 10</small>Prompting only</button>
             <button class="folder-tab" role="tab" id="tab-11" aria-controls="day-11" aria-selected="false" tabindex="-1" data-day="11" data-thumb="assets/maps/30daymapchallenge/day11-names-that-click.jpg"><small>Day 11</small>Senses: Sound</button>
             <button class="folder-tab" role="tab" id="tab-12" aria-controls="day-12" aria-selected="false" tabindex="-1" data-day="12" data-thumb="assets/maps/30daymapchallenge/day12-where-power-is-made.jpg"><small>Day 12</small>Power</button>
+            <button class="folder-tab" role="tab" id="tab-13" aria-controls="day-13" aria-selected="false" tabindex="-1" data-day="13" data-thumb="assets/maps/30daymapchallenge/day13-from-here-elsewhere.jpg"><small>Day 13</small>Interactions</button>
+            <button class="folder-tab" role="tab" id="tab-14" aria-controls="day-14" aria-selected="false" tabindex="-1" data-day="14" data-thumb="assets/maps/30daymapchallenge/day14-closer-and-closer.jpg"><small>Day 14</small>A Borgesian map</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
@@ -407,6 +409,62 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-13" role="tabpanel" aria-labelledby="tab-13" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day13-from-here-elsewhere-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day13-from-here-elsewhere.jpg" alt="Azimuthal equidistant world map centred on Johannesburg with straight air links fanning out to Europe, the Gulf, Asia, Australia and the Americas, teal links across Africa, and an inset of 33 domestic links" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, Azimuthal equidistant, centred on O.R.&nbsp;Tambo (inset: UTM&nbsp;35S)</span><a href="assets/maps/30daymapchallenge/day13-from-here-elsewhere-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 13 · Interactions</p>
+                <h3>From here, elsewhere</h3>
+                <p class="brief">Every recorded non-stop airport pair touching South Africa in June 2014, on a projection centred on Johannesburg, where every route from O.R.&nbsp;Tambo is a straight line and every ring a true distance.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>115</b><span>recorded airport pairs, linking 65 airports abroad</span></li>
+                  <li class="stat"><b>70%</b><span>of them touch O.R. Tambo</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Joined OpenFlights route endpoints to airport coordinates, kept non-stop records with a South African end, and collapsed airline, code-share and return-direction duplicates into 115 unique pairs.</li>
+                  <li>Classed each pair as domestic, elsewhere in Africa or beyond Africa using Natural Earth&rsquo;s country polygons.</li>
+                  <li>Drew the world on an azimuthal equidistant projection centred on O.R.&nbsp;Tambo, so distances and directions from Johannesburg are true, with rings every 2,500&nbsp;km. Land near the antipode, where the projection tears, is left off.</li>
+                  <li>Put the 33 domestic pairs in an inset on UTM&nbsp;35S, and counted links per airport for the chart.</li>
+                  <li>OpenFlights stopped updating routes in 2014: this is a dated study of connections, not a current route map or a measure of traffic.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Routes and airports: OpenFlights / Airline Route Mapper, June 2014 (ODbL) · Countries: Natural Earth.</p>
+                <ul class="tags"><li>Network map</li><li>Azimuthal equidistant</li><li>Great circles</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-14" role="tabpanel" aria-labelledby="tab-14" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day14-closer-and-closer-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day14-closer-and-closer.jpg" alt="Three nested OpenStreetMap views of Church Square in Pretoria: city blocks 1,800 m across, streets 500 m across, and the square 170 m across with its footpath vertices shown as small circles around the Paul Kruger Statue" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day14-closer-and-closer-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 14 · A Borgesian map</p>
+                <h3>Closer. And closer.</h3>
+                <p class="brief">Borges imagined a map as large as the territory. Three nested views of Pretoria&rsquo;s Church Square keep the same data and only look closer, until the map&rsquo;s own grain shows.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>564</b><span>mapped buildings in the widest view</span></li>
+                  <li class="stat"><b>170&nbsp;m</b><span>the width this poster would need to show the square at 1&nbsp;:&nbsp;1</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read the OpenStreetMap features around Church Square from the OSM API and projected them to UTM&nbsp;35S, centred on the Paul Kruger Statue.</li>
+                  <li>Drew three views, 1,800&nbsp;m, 500&nbsp;m and 170&nbsp;m across, each outlined in the one before.</li>
+                  <li>Drew roads at a fixed ground width for their class, so they thicken as you zoom, and showed every footpath vertex in the closest view: the points the map is actually made of.</li>
+                  <li>Worked out each view&rsquo;s scale at the poster&rsquo;s printed size (25.4&nbsp;&times;&nbsp;31.75&nbsp;cm) for the chart: from 1&nbsp;:&nbsp;8,202 down to 1&nbsp;:&nbsp;1,571, still a long way from Borges&rsquo; 1&nbsp;:&nbsp;1.</li>
+                  <li>OSM coverage varies, and areas mapped only as relations are not assembled.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">&copy; OpenStreetMap contributors (ODbL), API read of the Church Square area, 18 November 2026.</p>
+                <ul class="tags"><li>Scale</li><li>Multi-scale</li><li>OpenStreetMap</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-17" role="tabpanel" aria-labelledby="tab-17" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day17-after-sunset-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day17-after-sunset.jpg" alt="Night-light map of Gauteng: a bright, continuous band of light joins Johannesburg, Ekurhuleni and Pretoria" width="1200" height="1500" loading="lazy"></a>
@@ -513,6 +571,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261118b"></script>
+<script src="assets/js/map-folder.js?v=20261119a"></script>
 </body>
 </html>
