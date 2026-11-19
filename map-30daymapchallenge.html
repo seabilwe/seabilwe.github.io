@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119f">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119g">
 </head>
 <body>
 <header class="topbar">
@@ -79,6 +79,7 @@
             <button class="folder-tab" role="tab" id="tab-18" aria-controls="day-18" aria-selected="false" tabindex="-1" data-day="18" data-thumb="assets/maps/30daymapchallenge/day18-where-names-run-out.jpg"><small>Day 18</small>NULL</button>
             <button class="folder-tab" role="tab" id="tab-19" aria-controls="day-19" aria-selected="false" tabindex="-1" data-day="19" data-thumb="assets/maps/30daymapchallenge/day19-the-smell-of-morning.jpg"><small>Day 19</small>Senses: Smell</button>
             <button class="folder-tab" role="tab" id="tab-20" aria-controls="day-20" aria-selected="false" tabindex="-1" data-day="20" data-thumb="assets/maps/30daymapchallenge/day20-mapped-and-not-yet.jpg"><small>Day 20</small>Hexagons</button>
+            <button class="folder-tab" role="tab" id="tab-21" aria-controls="day-21" aria-selected="false" tabindex="-1" data-day="21" data-thumb="assets/maps/30daymapchallenge/day21-drawn-by-volunteers.jpg"><small>Day 21</small>OpenStreetMap</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
           </div>
@@ -637,6 +638,34 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-21" role="tabpanel" aria-labelledby="tab-21" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day21-drawn-by-volunteers-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day21-drawn-by-volunteers.jpg" alt="Every OpenStreetMap road in South Africa on a dark background: bright gold highways radiating from Gauteng, orange country roads netting the interior, and glowing city street grids" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day21-drawn-by-volunteers-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 21 · OpenStreetMap</p>
+                <h3>Drawn by volunteers</h3>
+                <p class="brief">Almost every map in this series stands on OpenStreetMap. Here is the map itself: every road, street and track that volunteers have added in South Africa.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>946k&nbsp;km</b><span>of road and path, 24 times around the Earth</span></li>
+                  <li class="stat"><b>25%</b><span>of it is farm and forest track</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read all 2.1 million road and path pieces from the Geofabrik OpenStreetMap extract for South Africa.</li>
+                  <li>Measured each one in UTM&nbsp;35S on the full line, then simplified it to 120&nbsp;m for drawing at national scale.</li>
+                  <li>Grouped the OSM highway classes into six: highways, main roads, country roads, streets, farm and forest tracks, and footpaths, each with its own colour and weight.</li>
+                  <li>Summed the length of each group for the chart.</li>
+                  <li>UTM&nbsp;35S stretches lengths by a few percent at the far west; OSM coverage is uneven, so some areas are under-mapped.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Roads: &copy; OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>OpenStreetMap</li><li>Line density</li><li>Road network</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-26" role="tabpanel" aria-labelledby="tab-26" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day26-written-in-water.jpg" alt="South Africa’s river network: perennial rivers in pale blue crowd the wetter east, seasonal rivers in sand dominate the dry west" width="1200" height="1500" loading="lazy"></a>
@@ -716,6 +745,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261119f"></script>
+<script src="assets/js/map-folder.js?v=20261119g"></script>
 </body>
 </html>
