@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119b">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119c">
 </head>
 <body>
 <header class="topbar">
@@ -76,6 +76,8 @@
             <button class="folder-tab" role="tab" id="tab-15" aria-controls="day-15" aria-selected="false" tabindex="-1" data-day="15" data-thumb="assets/maps/30daymapchallenge/day15-the-city-between.jpg"><small>Day 15</small>Inside out</button>
             <button class="folder-tab" role="tab" id="tab-16" aria-controls="day-16" aria-selected="false" tabindex="-1" data-day="16" data-thumb="assets/maps/30daymapchallenge/day16-mapped-by-many.jpg"><small>Day 16</small>Collaborative map</button>
             <button class="folder-tab" role="tab" id="tab-17" aria-controls="day-17" aria-selected="false" tabindex="-1" data-day="17" data-thumb="assets/maps/30daymapchallenge/day17-after-sunset.jpg"><small>Day 17</small>Light &amp; dark</button>
+            <button class="folder-tab" role="tab" id="tab-18" aria-controls="day-18" aria-selected="false" tabindex="-1" data-day="18" data-thumb="assets/maps/30daymapchallenge/day18-where-names-run-out.jpg"><small>Day 18</small>NULL</button>
+            <button class="folder-tab" role="tab" id="tab-19" aria-controls="day-19" aria-selected="false" tabindex="-1" data-day="19" data-thumb="assets/maps/30daymapchallenge/day19-the-smell-of-morning.jpg"><small>Day 19</small>Senses: Smell</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
           </div>
@@ -550,6 +552,61 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-18" role="tabpanel" aria-labelledby="tab-18" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day18-where-names-run-out-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day18-where-names-run-out.jpg" alt="South Africa river network with named river features in muted teal and unnamed ones in gold, the gold concentrated in the dry Northern Cape and Karoo and rare in KwaZulu-Natal" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day18-where-names-run-out-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 18 · NULL</p>
+                <h3>Where names run out</h3>
+                <p class="brief">A NULL map with a twist: 23,542 South African river features have no name, yet not one of them is NULL. Every gap is a single space.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>23.2%</b><span>of river features have no name once blanks count as NULL</span></li>
+                  <li class="stat"><b>0</b><span>are actually NULL: every gap is a single space</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read the 101,472 river features of the NFEPA reference network (DFFE Screening Tool), clipped to South Africa, keeping the raw NAME field untouched.</li>
+                  <li>Sorted the raw values: true NULLs (none), whitespace only (all a single space) and name text.</li>
+                  <li>Turned the blanks into NULL the way a database would, with <code>NULLIF(BTRIM(&quot;NAME&quot;), '')</code>, and drew the unnamed features in gold over the named ones.</li>
+                  <li>Compared provinces by unnamed river length: 40% in the Northern Cape against 3% in KwaZulu-Natal.</li>
+                  <li>Counts are feature records, not distinct rivers, and a blank field does not mean a river has no local or official name.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Rivers: NFEPA reference network via the DFFE Screening Tool, retrieved 15 November 2026 · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Data quality</li><li>NULL handling</li><li>SQL</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-19" role="tabpanel" aria-labelledby="tab-19" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day19-the-smell-of-morning-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day19-the-smell-of-morning.jpg" alt="Map of central Cape Town with gold dots for mapped cafés clustered in the old street grid, teal triangles for bakeries, and a pink star for the Trafalgar Place flower market" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 34S</span><a href="assets/maps/30daymapchallenge/day19-the-smell-of-morning-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 19 · Senses: Smell</p>
+                <h3>The smell of morning</h3>
+                <p class="brief">Where might Cape Town&rsquo;s city centre smell of morning? Mapped cafés, bakeries and the flower market as possible scent landmarks.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>56</b><span>possible morning smells mapped in 3.6&nbsp;km&sup2;</span></li>
+                  <li class="stat"><b>59&nbsp;m</b><span>from the typical café to the next one</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Read the OpenStreetMap data of the city centre from the OSM API and picked places by their tags: cafés and coffee shops, bakeries and pastry shops, and the flower market.</li>
+                  <li>Collapsed one duplicate record (the same name and category within 30&nbsp;m).</li>
+                  <li>Drew them over a quiet base of buildings, streets and gardens in UTM&nbsp;34S, and measured each café&rsquo;s distance to its nearest neighbour for the chart.</li>
+                  <li>These are places that might smell of coffee, bread or flowers, read from map tags. No odour, wind, opening hours or trading status was measured.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">&copy; OpenStreetMap contributors (ODbL), API read of the Cape Town city centre, 18 November 2026.</p>
+                <ul class="tags"><li>Senses</li><li>Nearest-neighbour</li><li>OpenStreetMap</li><li>Python · matplotlib</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-26" role="tabpanel" aria-labelledby="tab-26" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day26-written-in-water.jpg" alt="South Africa’s river network: perennial rivers in pale blue crowd the wetter east, seasonal rivers in sand dominate the dry west" width="1200" height="1500" loading="lazy"></a>
@@ -629,6 +686,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261119b"></script>
+<script src="assets/js/map-folder.js?v=20261119c"></script>
 </body>
 </html>
