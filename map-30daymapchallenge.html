@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119d">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261119e">
 </head>
 <body>
 <header class="topbar">
@@ -598,13 +598,13 @@
                 <ul>
                   <li>Read the OpenStreetMap data of the city centre from the OSM API and picked places by their tags: cafés and coffee shops, bakeries and pastry shops, and the flower market.</li>
                   <li>Collapsed one duplicate record (the same name and category within 30&nbsp;m).</li>
-                  <li>Drew them over a quiet base of buildings, streets and gardens in UTM&nbsp;34S, with soft aroma clouds: a smoothed density of the mapped places (Gaussian kernels of 30 and 120&nbsp;m, lightly broken up so they read as clouds).</li>
-                  <li>The clouds show where the places cluster, not how far a smell carries. Measured each café&rsquo;s distance to its nearest neighbour for the chart.</li>
+                  <li>Drew them over a quiet base of buildings, streets and gardens in UTM&nbsp;34S, each with thin rings rippling out like scent lifting off a cup. Where cafés cluster, the ripples overlap.</li>
+                  <li>The rings are decoration, not a smell range. The chart lists the morning like a perfume&rsquo;s note pyramid, and each café&rsquo;s distance to its nearest neighbour gives the typical 59&nbsp;m.</li>
                   <li>These are places that might smell of coffee, bread or flowers, read from map tags. No odour, wind, opening hours or trading status was measured.</li>
                 </ul>
                 <h4>Data</h4>
                 <p class="src">&copy; OpenStreetMap contributors (ODbL), API read of the Cape Town city centre, 18 November 2026.</p>
-                <ul class="tags"><li>Senses</li><li>Kernel density</li><li>OpenStreetMap</li><li>Python · matplotlib</li></ul>
+                <ul class="tags"><li>Senses</li><li>Nearest-neighbour</li><li>OpenStreetMap</li><li>Python · matplotlib</li></ul>
               </div>
             </article>
 
@@ -687,6 +687,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261119d"></script>
+<script src="assets/js/map-folder.js?v=20261119e"></script>
 </body>
 </html>
