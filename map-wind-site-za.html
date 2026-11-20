@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/css/story-map.css?v=20261120a">
+<link rel="stylesheet" href="assets/css/story-map.css?v=20261120b">
 </head>
 <body>
 <header class="topbar">
@@ -75,48 +75,53 @@
       </section>
 
       <section aria-labelledby="ws-sheets">
-        <div class="head"><div><h2 id="ws-sheets">Print map sheets</h2><p>Six finished QGIS map sheets, built by script from the same results.</p></div></div>
-        <div class="sheet-carousel" data-sheet-carousel tabindex="0" aria-roledescription="carousel" aria-label="WIND-SITE ZA map sheets">
-          <div class="sc-stage">
-            <figure class="sc-slide">
-              <img src="assets/img/maps/wind-site-za/WZ-01.jpg" alt="Map sheet WZ-01: Where does the wind blow hardest?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">WZ-01</span><h3>Where does the wind blow hardest?</h3><p>Mean wind speed 150 m above the ground, the hub height of a modern 5 MW turbine (Global Wind Atlas). 24% of the REDZ averages 7.5 m/s or more, mostly on the high ground between Cookhouse and Bedford, where the first wind farms were built (triangles), and on the ridges towards Makhanda. Most of the wind&#x27;s energy comes from the north-north-west and the east-south-east, so turbine rows are set across a 129°–309° axis.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/wind-site-za/WZ-02.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet WZ-02: Where can turbines not go?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">WZ-02</span><h3>Where can turbines not go?</h3><p>Setbacks for a turbine with a 230 m blade tip, and the land that is off limits. Where several apply, the first in the list is shown. 66% of the REDZ (4,855 km²) is left. Homes take little, partly because OpenStreetMap misses many farm buildings: finding them is the first job of the field check.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/wind-site-za/WZ-03.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet WZ-03: Where wind farms fit best" width="1800" height="1406">
-              <figcaption><span class="sheet-code">WZ-03</span><h3>Where wind farms fit best</h3><p>Six criteria scored 1–5 and weighted: wind 40%, distance to a 132 kV+ substation 20%, priority-bird records 15%, slope 10%, road access 10%, land cover 5%. The model was not told where the 306 operating turbines are, yet 79% of them stand on High or Very high ground, which covers only 28% of the open land.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/wind-site-za/WZ-04.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet WZ-04: 12 zones, 367 turbines" width="1800" height="1406">
-              <figcaption><span class="sheet-code">WZ-04</span><h3>12 zones, 367 turbines</h3><p>Blocks of at least 8 km² scoring 3.8 or more, clear of operating wind farms, filled with turbines 5 rotor diameters apart across the wind and 8 along it. Together: 1,835 MW and about 5,814 GWh a year after losses.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/wind-site-za/WZ-05.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet WZ-05: A short way to the grid, but no room on it" width="1800" height="1406">
-              <figcaption><span class="sheet-code">WZ-05</span><h3>A short way to the grid, but no room on it</h3><p>Least-cost routes from each zone to the nearest substation of 132 kV or more: 99 km in all, the longest 22 km. Distance is not the problem. Under NTCSA&#x27;s GCCA 2025 the Eastern Cape supply area can take 0 MW of new generation, and the Poseidon transmission substation 47 MW, against 1,835 MW of potential here.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/wind-site-za/WZ-06.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet WZ-06: Who would see them?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">WZ-06</span><h3>Who would see them?</h3><p>From how many of the 367 proposed turbines a person could see a blade tip, up to 20 km away, over bare terrain. 4,582 km² would see at least one, including 21 towns, villages and suburbs; Golden Valley would see 73. Visibility is weighed in the visual impact assessment rather than used to exclude land.</p></figcaption>
-            </figure>
-          </div>
-          <div class="sc-controls">
-            <button class="sc-prev" type="button" aria-label="Previous sheet">&larr;</button>
-            <span class="sc-count" aria-live="polite">1 / 6</span>
-            <button class="sc-next" type="button" aria-label="Next sheet">&rarr;</button>
-            <a class="sc-full" href="assets/img/maps/wind-site-za/WZ-01.jpg" target="_blank" rel="noopener">Open this sheet full size</a>
-          </div>
-          <div class="sc-thumbs">
-            <button class="sc-thumb" type="button" aria-label="Sheet WZ-01: Where does the wind blow hardest?"><img src="assets/img/maps/thumbs/WZ-01.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet WZ-02: Where can turbines not go?"><img src="assets/img/maps/thumbs/WZ-02.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet WZ-03: Where wind farms fit best"><img src="assets/img/maps/thumbs/WZ-03.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet WZ-04: 12 zones, 367 turbines"><img src="assets/img/maps/thumbs/WZ-04.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet WZ-05: A short way to the grid, but no room on it"><img src="assets/img/maps/thumbs/WZ-05.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet WZ-06: Who would see them?"><img src="assets/img/maps/thumbs/WZ-06.jpg" alt="" loading="lazy" width="360" height="281"></button>
-          </div>
+        <div class="head"><div><h2 id="ws-sheets">Static maps</h2><p>Six finished QGIS map sheets, ready to print. Click a sheet to view it full screen, or download it.</p></div></div>
+        <div class="sheet-shelf" data-sheet-shelf aria-label="WIND-SITE ZA map sheets">
+          <div class="ss-scroll"><button class="ss-scroll-prev" type="button" aria-label="Scroll the sheets left">&larr;</button><button class="ss-scroll-next" type="button" aria-label="Scroll the sheets right">&rarr;</button></div>
+          <ul class="ss-row">
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/wind-site-za/WZ-01.jpg" data-dl="assets/img/maps/wind-site-za/WZ-01.jpg" data-file="WIND-SITE-ZA_WZ-01.jpg" data-code="WZ-01" data-title="Where does the wind blow hardest?" data-text="Mean wind speed 150 m above the ground, the hub height of a modern 5 MW turbine (Global Wind Atlas). 24% of the REDZ averages 7.5 m/s or more, mostly on the high ground between Cookhouse and Bedford, where the first wind farms were built (triangles), and on the ridges towards Makhanda. Most of the wind&#x27;s energy comes from the north-north-west and the east-south-east, so turbine rows are set across a 129°–309° axis." aria-label="View map sheet WZ-01: Where does the wind blow hardest?">
+                <img src="assets/img/maps/thumbs/WZ-01.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">WZ-01</span><span class="ss-title">Where does the wind blow hardest?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/wind-site-za/WZ-01.jpg" download="WIND-SITE-ZA_WZ-01.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/wind-site-za/WZ-02.jpg" data-dl="assets/img/maps/wind-site-za/WZ-02.jpg" data-file="WIND-SITE-ZA_WZ-02.jpg" data-code="WZ-02" data-title="Where can turbines not go?" data-text="Setbacks for a turbine with a 230 m blade tip, and the land that is off limits. Where several apply, the first in the list is shown. 66% of the REDZ (4,855 km²) is left. Homes take little, partly because OpenStreetMap misses many farm buildings: finding them is the first job of the field check." aria-label="View map sheet WZ-02: Where can turbines not go?">
+                <img src="assets/img/maps/thumbs/WZ-02.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">WZ-02</span><span class="ss-title">Where can turbines not go?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/wind-site-za/WZ-02.jpg" download="WIND-SITE-ZA_WZ-02.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/wind-site-za/WZ-03.jpg" data-dl="assets/img/maps/wind-site-za/WZ-03.jpg" data-file="WIND-SITE-ZA_WZ-03.jpg" data-code="WZ-03" data-title="Where wind farms fit best" data-text="Six criteria scored 1–5 and weighted: wind 40%, distance to a 132 kV+ substation 20%, priority-bird records 15%, slope 10%, road access 10%, land cover 5%. The model was not told where the 306 operating turbines are, yet 79% of them stand on High or Very high ground, which covers only 28% of the open land." aria-label="View map sheet WZ-03: Where wind farms fit best">
+                <img src="assets/img/maps/thumbs/WZ-03.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">WZ-03</span><span class="ss-title">Where wind farms fit best</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/wind-site-za/WZ-03.jpg" download="WIND-SITE-ZA_WZ-03.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/wind-site-za/WZ-04.jpg" data-dl="assets/img/maps/wind-site-za/WZ-04.jpg" data-file="WIND-SITE-ZA_WZ-04.jpg" data-code="WZ-04" data-title="12 zones, 367 turbines" data-text="Blocks of at least 8 km² scoring 3.8 or more, clear of operating wind farms, filled with turbines 5 rotor diameters apart across the wind and 8 along it. Together: 1,835 MW and about 5,814 GWh a year after losses." aria-label="View map sheet WZ-04: 12 zones, 367 turbines">
+                <img src="assets/img/maps/thumbs/WZ-04.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">WZ-04</span><span class="ss-title">12 zones, 367 turbines</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/wind-site-za/WZ-04.jpg" download="WIND-SITE-ZA_WZ-04.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/wind-site-za/WZ-05.jpg" data-dl="assets/img/maps/wind-site-za/WZ-05.jpg" data-file="WIND-SITE-ZA_WZ-05.jpg" data-code="WZ-05" data-title="A short way to the grid, but no room on it" data-text="Least-cost routes from each zone to the nearest substation of 132 kV or more: 99 km in all, the longest 22 km. Distance is not the problem. Under NTCSA&#x27;s GCCA 2025 the Eastern Cape supply area can take 0 MW of new generation, and the Poseidon transmission substation 47 MW, against 1,835 MW of potential here." aria-label="View map sheet WZ-05: A short way to the grid, but no room on it">
+                <img src="assets/img/maps/thumbs/WZ-05.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">WZ-05</span><span class="ss-title">A short way to the grid, but no room on it</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/wind-site-za/WZ-05.jpg" download="WIND-SITE-ZA_WZ-05.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/wind-site-za/WZ-06.jpg" data-dl="assets/img/maps/wind-site-za/WZ-06.jpg" data-file="WIND-SITE-ZA_WZ-06.jpg" data-code="WZ-06" data-title="Who would see them?" data-text="From how many of the 367 proposed turbines a person could see a blade tip, up to 20 km away, over bare terrain. 4,582 km² would see at least one, including 21 towns, villages and suburbs; Golden Valley would see 73. Visibility is weighed in the visual impact assessment rather than used to exclude land." aria-label="View map sheet WZ-06: Who would see them?">
+                <img src="assets/img/maps/thumbs/WZ-06.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">WZ-06</span><span class="ss-title">Who would see them?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/wind-site-za/WZ-06.jpg" download="WIND-SITE-ZA_WZ-06.jpg">Download</a>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -206,6 +211,6 @@
 </div>
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/js/story-map.js?v=20261120a"></script>
+<script src="assets/js/story-map.js?v=20261120b"></script>
 </body>
 </html>
