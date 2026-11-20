@@ -21,6 +21,7 @@
 .sm-sw{flex:none;width:22px;height:13px;border:1px solid rgba(43,27,23,.25);border-radius:2px}
 .sm-sw-line{height:0;border:0;border-radius:0}
 .sm-sw-dot{width:12px;height:12px;border-radius:50%;margin:0 5px}
+.sm-sw-tri{width:0;height:0;border:0;border-radius:0;border-left:6px solid transparent;border-right:6px solid transparent;border-bottom:11px solid #2B1B17;margin:0 5px}
 .sm-hint{margin:0;padding-top:.8rem;border-top:1px solid var(--rule);font-size:.88rem;color:var(--ink-soft)}
 @media (max-width:900px){
   .sm-body{grid-template-columns:1fr}
@@ -39,8 +40,11 @@
 .story-map .leaflet-popup-content dl{display:grid;grid-template-columns:auto 1fr;gap:.15rem .7rem;margin:0}
 .story-map .leaflet-popup-content dt{color:var(--ink-soft)}
 .story-map .leaflet-popup-content dd{margin:0;font-weight:500}
-.leaflet-tooltip.sm-town,.leaflet-tooltip.sm-region,.leaflet-tooltip.sm-lab,.leaflet-tooltip.sm-rank{background:transparent;border:0;box-shadow:none;padding:0}
-.leaflet-tooltip.sm-town::before,.leaflet-tooltip.sm-region::before,.leaflet-tooltip.sm-lab::before,.leaflet-tooltip.sm-rank::before{display:none}
+.leaflet-tooltip.sm-town,.leaflet-tooltip.sm-region,.leaflet-tooltip.sm-lab,.leaflet-tooltip.sm-rank,.leaflet-tooltip.sm-zone{background:transparent;border:0;box-shadow:none;padding:0}
+.leaflet-tooltip.sm-town::before,.leaflet-tooltip.sm-region::before,.leaflet-tooltip.sm-lab::before,.leaflet-tooltip.sm-rank::before,.leaflet-tooltip.sm-zone::before{display:none}
+.leaflet-tooltip.sm-zone{padding:1px 4px;border-radius:2px;background:#8E2F22;border:1px solid #F4EFE3;color:#F4EFE3;font:600 10.5px var(--sans);letter-spacing:.04em}
+.sm-demo{display:inline-block;margin:0 0 .35rem;padding:1px 6px;border-radius:2px;background:#D9A35E;color:#2B1B17;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.sm-rose{display:block;margin:.4rem auto .2rem;max-width:150px}
 .leaflet-tooltip.sm-town{font:500 11.5px var(--sans);color:#2B1B17;text-shadow:-1px -1px 0 #F4EFE3,1px -1px 0 #F4EFE3,-1px 1px 0 #F4EFE3,1px 1px 0 #F4EFE3,0 0 3px #F4EFE3}
 .leaflet-tooltip.sm-region{font:500 11px var(--sans);letter-spacing:.22em;color:#9A8A73;text-transform:uppercase}
 .leaflet-tooltip.sm-lab{font:500 11px var(--sans);color:#2B1B17;text-align:center;letter-spacing:.06em;text-shadow:-1px -1px 0 #F4EFE3,1px -1px 0 #F4EFE3,-1px 1px 0 #F4EFE3,1px 1px 0 #F4EFE3}
