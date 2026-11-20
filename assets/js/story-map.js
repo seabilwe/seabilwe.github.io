@@ -256,7 +256,10 @@
     const imgBounds = L.latLngBounds(cfg.bounds);
     const map = L.map(mapEl, { zoomSnap: 0.25, zoomDelta: 0.5, minZoom: cfg.minZoom, maxZoom: cfg.maxZoom,
       maxBounds: imgBounds, maxBoundsViscosity: 1, attributionControl: true });
-    map.attributionControl.setPrefix(false).addAttribution(cfg.attribution);
+    // Credits fold into a small "Credits" button so they never cover the scale bar; open by default on wide screens
+    const wide = window.matchMedia('(min-width: 900px)').matches;
+    map.attributionControl.setPrefix(false)
+      .addAttribution(`<details class="sm-credit"${wide ? ' open' : ''}><summary>Credits</summary><span>${cfg.attribution}</span></details>`);
     // never zoom out past the edge of the map image
     // zoom out no further than the whole study area, and stop before the edge of the image where possible
     function clampZoom() {
@@ -397,31 +400,76 @@
     map.setMinZoom(map.getZoom() - 0.5);
   }
 
-  // ---------------------------------------------------------------- sheet carousel
-  function carousel(el) {
-    const slides = [...el.querySelectorAll('.sc-slide')], thumbs = [...el.querySelectorAll('.sc-thumb')];
-    const count = el.querySelector('.sc-count'), full = el.querySelector('.sc-full');
-    let i = 0;
-    function go(n) {
-      i = (n + slides.length) % slides.length;
-      slides.forEach((s, k) => { s.hidden = k !== i; const im = s.querySelector('img'); if (k === i && im.dataset.src) { im.src = im.dataset.src; delete im.dataset.src; } });
-      thumbs.forEach((t, k) => t.setAttribute('aria-current', k === i ? 'true' : 'false'));
-      count.textContent = `${i + 1} / ${slides.length}`;
-      full.href = slides[i].querySelector('img').getAttribute('src') || slides[i].querySelector('img').dataset.src;
-    }
-    el.querySelector('.sc-prev').addEventListener('click', () => go(i - 1));
-    el.querySelector('.sc-next').addEventListener('click', () => go(i + 1));
-    thumbs.forEach((t, k) => t.addEventListener('click', () => go(k)));
-    el.addEventListener('keydown', e => { if (e.key === 'ArrowRight') go(i + 1); if (e.key === 'ArrowLeft') go(i - 1); });
+  // ---------------------------------------------------------------- static map sheets: a row of cards and a viewer
+  // Markup: .sheet-shelf > .ss-row > .ss-item > button.ss-card[data-full][data-code][data-title][data-text] + a.ss-dl
+  let box = null;
+  function viewer() {
+    if (box) return box;
+    const d = document.createElement('dialog');
+    d.className = 'ss-box';
+    d.setAttribute('aria-label', 'Map sheet');
+    d.innerHTML = `<div class="ss-box-in">
+        <div class="ss-box-top"><p class="ss-box-code"></p><button class="ss-x" type="button" aria-label="Close">&times;</button></div>
+        <div class="ss-box-img"><img alt=""></div>
+        <div class="ss-box-foot">
+          <div class="ss-box-cap"><h3></h3><p></p></div>
+          <div class="ss-box-nav">
+            <button class="ss-prev" type="button" aria-label="Previous sheet">&larr;</button>
+            <span class="ss-count" aria-live="polite"></span>
+            <button class="ss-next" type="button" aria-label="Next sheet">&rarr;</button>
+            <a class="ss-box-dl" download>Download</a>
+            <a class="ss-box-open" target="_blank" rel="noopener">Full size</a>
+          </div>
+        </div>
+      </div>`;
+    document.body.appendChild(d);
+    const state = { cards: [], i: 0 };
+    const show = n => {
+      const cards = state.cards; state.i = (n + cards.length) % cards.length;
+      const c = cards[state.i].dataset, img = d.querySelector('.ss-box-img img');
+      img.src = c.full; img.alt = `Map sheet ${c.code}: ${c.title}`;
+      d.querySelector('.ss-box-code').textContent = c.code;
+      d.querySelector('.ss-box-cap h3').textContent = c.title;
+      d.querySelector('.ss-box-cap p').textContent = c.text || '';
+      d.querySelector('.ss-count').textContent = `${state.i + 1} / ${cards.length}`;
+      const dl = d.querySelector('.ss-box-dl'); dl.href = c.dl || c.full; dl.setAttribute('download', c.file || '');
+      d.querySelector('.ss-box-open').href = c.dl || c.full;
+      const solo = cards.length < 2;
+      d.querySelectorAll('.ss-prev,.ss-next,.ss-count').forEach(x => (x.hidden = solo));
+      // preload the neighbours
+      [1, -1].forEach(k => { const nb = cards[(state.i + k + cards.length) % cards.length]; if (nb) new Image().src = nb.dataset.full; });
+    };
+    d.querySelector('.ss-x').addEventListener('click', () => d.close());
+    d.querySelector('.ss-prev').addEventListener('click', () => show(state.i - 1));
+    d.querySelector('.ss-next').addEventListener('click', () => show(state.i + 1));
+    d.addEventListener('click', e => { if (e.target === d) d.close(); });       // click outside the sheet closes it
+    d.addEventListener('keydown', e => { if (e.key === 'ArrowRight') show(state.i + 1); if (e.key === 'ArrowLeft') show(state.i - 1); });
     let x0 = null;
-    el.querySelector('.sc-stage').addEventListener('touchstart', e => (x0 = e.touches[0].clientX), { passive: true });
-    el.querySelector('.sc-stage').addEventListener('touchend', e => {
-      if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 40) go(i + (dx < 0 ? 1 : -1)); x0 = null;
+    d.addEventListener('touchstart', e => (x0 = e.touches[0].clientX), { passive: true });
+    d.addEventListener('touchend', e => {
+      if (x0 == null) return; const dx = e.changedTouches[0].clientX - x0; if (Math.abs(dx) > 50) show(state.i + (dx < 0 ? 1 : -1)); x0 = null;
     });
-    go(0);
+    d.addEventListener('close', () => { document.documentElement.classList.remove('ss-lock'); if (state.opener) state.opener.focus(); });
+    box = { d, open: (cards, n, opener) => { state.cards = cards; state.opener = opener; show(n); document.documentElement.classList.add('ss-lock'); d.showModal(); } };
+    return box;
+  }
+  function shelf(el) {
+    const cards = [...el.querySelectorAll('.ss-card')], row = el.querySelector('.ss-row');
+    cards.forEach((c, k) => c.addEventListener('click', () => viewer().open(cards, k, c)));
+    const prev = el.querySelector('.ss-scroll-prev'), next = el.querySelector('.ss-scroll-next');
+    if (!prev || !next) return;
+    const step = () => (cards[0] ? cards[0].closest('.ss-item').getBoundingClientRect().width + 12 : 200);
+    prev.addEventListener('click', () => row.scrollBy({ left: -step() * 2, behavior: 'smooth' }));
+    next.addEventListener('click', () => row.scrollBy({ left: step() * 2, behavior: 'smooth' }));
+    const upd = () => {
+      const over = row.scrollWidth > row.clientWidth + 4;
+      prev.hidden = next.hidden = !over;
+      prev.disabled = row.scrollLeft < 4; next.disabled = row.scrollLeft + row.clientWidth > row.scrollWidth - 4;
+    };
+    row.addEventListener('scroll', upd, { passive: true }); window.addEventListener('resize', upd); upd();
   }
 
   document.querySelectorAll('.story-map').forEach(storyMap);
   document.querySelectorAll('[data-zoom-image]').forEach(zoomImage);
-  document.querySelectorAll('[data-sheet-carousel]').forEach(carousel);
+  document.querySelectorAll('[data-sheet-shelf]').forEach(shelf);
 })();

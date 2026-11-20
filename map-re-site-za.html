@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-<link rel="stylesheet" href="assets/css/story-map.css?v=20261120a">
+<link rel="stylesheet" href="assets/css/story-map.css?v=20261120b">
 </head>
 <body>
 <header class="topbar">
@@ -75,48 +75,53 @@
       </section>
 
       <section aria-labelledby="rs-sheets">
-        <div class="head"><div><h2 id="rs-sheets">Print map sheets</h2><p>The same six layers as finished QGIS map sheets.</p></div></div>
-        <div class="sheet-carousel" data-sheet-carousel tabindex="0" aria-roledescription="carousel" aria-label="RE-SITE ZA map sheets">
-          <div class="sc-stage">
-            <figure class="sc-slide">
-              <img src="assets/img/maps/re-site-za/SZ-01.jpg" alt="Map sheet SZ-01: How strong is the sun?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">SZ-01</span><h3>How strong is the sun?</h3><p>Photovoltaic power potential: what one kilowatt-peak of panels would produce in a typical year. The middle 60% of the province lies between 1,954 and 2,010 kWh, a spread of about 3%. Almost all of it is first-class solar country, so the sun alone cannot pick the sites.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/re-site-za/SZ-02.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet SZ-02: Where can panels not go?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">SZ-02</span><h3>Where can panels not go?</h3><p>Protected areas, cropland, settlements, water and mines (from SANLC 2022) and slopes over 15° are taken out of the model: 9% of the province. Everywhere else is shaded by how flat the ground is. Space is not the Northern Cape's problem.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/re-site-za/SZ-03.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet SZ-03: Close to the grid, but is it full?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">SZ-03</span><h3>Close to the grid, but is it full?</h3><p>Blue bands show distance to the nearest line of 132 kV or more. Red dashed areas are NTCSA's main substation zones, labelled with how much new generation each substation could take. Under GCCA 2025 the Northern Cape supply area as a whole can take 0 MW, because the backbone carrying power out of the province is full.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/re-site-za/SZ-04.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet SZ-04: Where solar fits best" width="1800" height="1406">
-              <figcaption><span class="sheet-code">SZ-04</span><h3>Where solar fits best</h3><p>The five criteria combined, balanced weights: solar 30%, grid 25%, land cover 20%, terrain 15%, roads 10%. 161,523 km², 43% of the province, scores High or Very high, yet only 7% of that land lies inside the solar REDZ.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/re-site-za/SZ-05.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet SZ-05: 35 zones worth a closer look" width="1800" height="1406">
-              <figcaption><span class="sheet-code">SZ-05</span><h3>35 zones worth a closer look</h3><p>Land rated Very high under all three weightings, at least 10 km², split by substation zone and ranked. 80% of application land falls on ground the model rates High or better, an independent check on the method.</p></figcaption>
-            </figure>
-            <figure class="sc-slide" hidden>
-              <img data-src="assets/img/maps/re-site-za/SZ-06.jpg" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="Map sheet SZ-06: Does the answer change with the weights?" width="1800" height="1406">
-              <figcaption><span class="sheet-code">SZ-06</span><h3>Does the answer change with the weights?</h3><p>The model run three ways: energy-led (solar 45%), infrastructure-led (grid 40%) and balanced. The map counts how many runs rate each place High or better. 65,445 km² stays High or better in all three, so the core of the result does not hang on one set of weights.</p></figcaption>
-            </figure>
-          </div>
-          <div class="sc-controls">
-            <button class="sc-prev" type="button" aria-label="Previous sheet">&larr;</button>
-            <span class="sc-count" aria-live="polite">1 / 6</span>
-            <button class="sc-next" type="button" aria-label="Next sheet">&rarr;</button>
-            <a class="sc-full" href="assets/img/maps/re-site-za/SZ-01.jpg" target="_blank" rel="noopener">Open this sheet full size</a>
-          </div>
-          <div class="sc-thumbs">
-            <button class="sc-thumb" type="button" aria-label="Sheet SZ-01: How strong is the sun?"><img src="assets/img/maps/thumbs/SZ-01.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet SZ-02: Where can panels not go?"><img src="assets/img/maps/thumbs/SZ-02.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet SZ-03: Close to the grid, but is it full?"><img src="assets/img/maps/thumbs/SZ-03.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet SZ-04: Where solar fits best"><img src="assets/img/maps/thumbs/SZ-04.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet SZ-05: 35 zones worth a closer look"><img src="assets/img/maps/thumbs/SZ-05.jpg" alt="" loading="lazy" width="360" height="281"></button>
-            <button class="sc-thumb" type="button" aria-label="Sheet SZ-06: Does the answer change with the weights?"><img src="assets/img/maps/thumbs/SZ-06.jpg" alt="" loading="lazy" width="360" height="281"></button>
-          </div>
+        <div class="head"><div><h2 id="rs-sheets">Static maps</h2><p>Six finished QGIS map sheets, ready to print. Click a sheet to view it full screen, or download it.</p></div></div>
+        <div class="sheet-shelf" data-sheet-shelf aria-label="RE-SITE ZA map sheets">
+          <div class="ss-scroll"><button class="ss-scroll-prev" type="button" aria-label="Scroll the sheets left">&larr;</button><button class="ss-scroll-next" type="button" aria-label="Scroll the sheets right">&rarr;</button></div>
+          <ul class="ss-row">
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/re-site-za/SZ-01.jpg" data-dl="assets/img/maps/re-site-za/SZ-01.jpg" data-file="RE-SITE-ZA_SZ-01.jpg" data-code="SZ-01" data-title="How strong is the sun?" data-text="Photovoltaic power potential: what one kilowatt-peak of panels would produce in a typical year. The middle 60% of the province lies between 1,954 and 2,010 kWh, a spread of about 3%. Almost all of it is first-class solar country, so the sun alone cannot pick the sites." aria-label="View map sheet SZ-01: How strong is the sun?">
+                <img src="assets/img/maps/thumbs/SZ-01.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">SZ-01</span><span class="ss-title">How strong is the sun?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/re-site-za/SZ-01.jpg" download="RE-SITE-ZA_SZ-01.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/re-site-za/SZ-02.jpg" data-dl="assets/img/maps/re-site-za/SZ-02.jpg" data-file="RE-SITE-ZA_SZ-02.jpg" data-code="SZ-02" data-title="Where can panels not go?" data-text="Protected areas, cropland, settlements, water and mines (from SANLC 2022) and slopes over 15° are taken out of the model: 9% of the province. Everywhere else is shaded by how flat the ground is. Space is not the Northern Cape&#x27;s problem." aria-label="View map sheet SZ-02: Where can panels not go?">
+                <img src="assets/img/maps/thumbs/SZ-02.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">SZ-02</span><span class="ss-title">Where can panels not go?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/re-site-za/SZ-02.jpg" download="RE-SITE-ZA_SZ-02.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/re-site-za/SZ-03.jpg" data-dl="assets/img/maps/re-site-za/SZ-03.jpg" data-file="RE-SITE-ZA_SZ-03.jpg" data-code="SZ-03" data-title="Close to the grid, but is it full?" data-text="Blue bands show distance to the nearest line of 132 kV or more. Red dashed areas are NTCSA&#x27;s main substation zones, labelled with how much new generation each substation could take. Under GCCA 2025 the Northern Cape supply area as a whole can take 0 MW, because the backbone carrying power out of the province is full." aria-label="View map sheet SZ-03: Close to the grid, but is it full?">
+                <img src="assets/img/maps/thumbs/SZ-03.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">SZ-03</span><span class="ss-title">Close to the grid, but is it full?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/re-site-za/SZ-03.jpg" download="RE-SITE-ZA_SZ-03.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/re-site-za/SZ-04.jpg" data-dl="assets/img/maps/re-site-za/SZ-04.jpg" data-file="RE-SITE-ZA_SZ-04.jpg" data-code="SZ-04" data-title="Where solar fits best" data-text="The five criteria combined, balanced weights: solar 30%, grid 25%, land cover 20%, terrain 15%, roads 10%. 161,523 km², 43% of the province, scores High or Very high, yet only 7% of that land lies inside the solar REDZ." aria-label="View map sheet SZ-04: Where solar fits best">
+                <img src="assets/img/maps/thumbs/SZ-04.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">SZ-04</span><span class="ss-title">Where solar fits best</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/re-site-za/SZ-04.jpg" download="RE-SITE-ZA_SZ-04.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/re-site-za/SZ-05.jpg" data-dl="assets/img/maps/re-site-za/SZ-05.jpg" data-file="RE-SITE-ZA_SZ-05.jpg" data-code="SZ-05" data-title="35 zones worth a closer look" data-text="Land rated Very high under all three weightings, at least 10 km², split by substation zone and ranked. 80% of application land falls on ground the model rates High or better, an independent check on the method." aria-label="View map sheet SZ-05: 35 zones worth a closer look">
+                <img src="assets/img/maps/thumbs/SZ-05.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">SZ-05</span><span class="ss-title">35 zones worth a closer look</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/re-site-za/SZ-05.jpg" download="RE-SITE-ZA_SZ-05.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/re-site-za/SZ-06.jpg" data-dl="assets/img/maps/re-site-za/SZ-06.jpg" data-file="RE-SITE-ZA_SZ-06.jpg" data-code="SZ-06" data-title="Does the answer change with the weights?" data-text="The model run three ways: energy-led (solar 45%), infrastructure-led (grid 40%) and balanced. The map counts how many runs rate each place High or better. 65,445 km² stays High or better in all three, so the core of the result does not hang on one set of weights." aria-label="View map sheet SZ-06: Does the answer change with the weights?">
+                <img src="assets/img/maps/thumbs/SZ-06.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">SZ-06</span><span class="ss-title">Does the answer change with the weights?</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/re-site-za/SZ-06.jpg" download="RE-SITE-ZA_SZ-06.jpg">Download</a>
+            </li>
+          </ul>
         </div>
       </section>
 
@@ -191,6 +196,6 @@
 </div>
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="assets/js/story-map.js?v=20261120a"></script>
+<script src="assets/js/story-map.js?v=20261120b"></script>
 </body>
 </html>
