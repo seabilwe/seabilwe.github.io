@@ -1,0 +1,52 @@
+/* Survey-sheet styling for the population map */
+#population-map {
+  height: 70vh;
+  min-height: 420px;
+  background: #E6E2D4;            /* ocean / outside the tiles */
+  border: 1px solid #C9BFAE;
+}
+
+.pop-legend {
+  background: rgba(244, 239, 227, 0.92);
+  border: 1px solid #C9BFAE;
+  padding: 8px 10px;
+  font: 12px/1.4 "DM Sans", system-ui, sans-serif;
+  color: #2B1B17;
+}
+.pop-legend__title {
+  font-family: "DM Serif Display", Georgia, serif;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+.pop-legend__row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.pop-legend__row span {
+  width: 14px;
+  height: 10px;
+  border: 1px solid rgba(43, 27, 23, 0.25);
+}
+
+/* City labels: ink text with a paper halo, no tooltip box or arrow */
+.leaflet-tooltip.pop-label {
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+  font: 500 10px "DM Sans", system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #2B1B17;
+  text-shadow:
+    -1px -1px 0 #F4EFE3, 1px -1px 0 #F4EFE3,
+    -1px  1px 0 #F4EFE3, 1px  1px 0 #F4EFE3,
+     0    0   3px #F4EFE3;
+}
+.leaflet-tooltip.pop-label::before { display: none; }
+
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(244, 239, 227, 0.85);
+  color: #5a4b3d;
+}
