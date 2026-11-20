@@ -1,5 +1,5 @@
 /*
- * Story maps and sheet carousels for the project pages (RE-SITE ZA, Who Holds the Tap?, Zimbabwe).
+ * Story maps and sheet carousels for the project pages (RE-SITE ZA, WIND-SITE ZA, Who Holds the Tap?, Zimbabwe).
  * Needs Leaflet 1.9.x. Each viewer reads its settings from <script type="application/json" id="..."> referenced
  * by data-config on the .story-map element. Theme images are Web Mercator renders from QGIS; clicks are answered
  * from a packed data image (RE-SITE ZA) or a sub-basin id image (Who Holds the Tap?).
@@ -41,7 +41,42 @@
     B1: 'medium dependency, low stress', B2: 'medium dependency, high stress', B3: 'medium dependency, extremely high stress',
     C1: 'high dependency, low stress', C2: 'high dependency, high stress', C3: 'high dependency, extremely high stress',
     AX: 'arid, low water use', BX: 'arid, low water use', CX: 'arid, low water use' };
+  const EXCLW = ['', 'Dwelling setback (500 m)', 'Settlement (2 km)', 'Main road or railway (253 m)', 'Power line (253 m)',
+    'Aerodrome (3 km)', 'Protected area or its 1 km buffer', 'Slope over 12°', 'Forest, water, wetland or built-up land',
+    'Operating wind farm (1.5 km)'];
+  const OUTCOME = { 'Confirmed': '#4E7A50', 'Needs review': '#D9A35E', 'Fails a setback': '#8E2F22' };
   const pop = {
+    wind: px => {
+      if (!px || px[3] === 0) return null;
+      const v = px[0] / 20, code = Math.floor(px[1] / 16), cls = px[1] % 16, vis = px[2];
+      let h = '<b>This spot</b><dl>';
+      h += `<dt>Wind at 150 m</dt><dd>${v.toFixed(1)} m/s on average</dd>`;
+      if (code) h += `<dt>Excluded</dt><dd>${EXCLW[code] || '–'}</dd>`;
+      else h += `<dt>Suitability (balanced)</dt><dd>${SUIT[cls] || '–'}</dd>`;
+      h += `<dt>Blade tips in view</dt><dd>${vis ? (vis >= 255 ? 'over 250' : vis) + ' of the proposed turbines' : 'none of the proposed turbines'}</dd>`;
+      return h + '</dl>';
+    },
+    wzone: p => `<b>Zone ${esc(p.zone)}</b><dl><dt>Area</dt><dd>${p.area_km2.toFixed(1)} km²</dd>` +
+      `<dt>Mean suitability</dt><dd>${p.score.toFixed(2)} of 5 (balanced)</dd><dt>Wind at 150 m</dt><dd>${p.wind_ms.toFixed(1)} m/s</dd>` +
+      `<dt>Turbines (model)</dt><dd>${p.turbines} × 5 MW = ${num(p.mw)} MW</dd>` +
+      `<dt>Energy, net</dt><dd>${num(p.aep_gwh)} GWh a year, capacity factor ${pct(p.cf_net)}</dd>` +
+      `<dt>Grid route</dt><dd>${p.route_km} km to ${esc(p.route_sub || '–')}</dd>` +
+      `<dt>Priority-bird index</dt><dd>${p.bird_index.toFixed(1)} (weighted GBIF records within 3 km)</dd>` +
+      `<dt>Weightings at 3.8+</dt><dd>${p.robustness.toFixed(1)} of 3 on average</dd></dl>`,
+    turbine: p => `<b>Turbine ${esc(p.turbine)}</b><dl><dt>Zone</dt><dd>${esc(p.zone)}</dd>` +
+      `<dt>Wind at 150 m</dt><dd>${p.wind_ms.toFixed(1)} m/s</dd><dt>Ground</dt><dd>${num(p.elev_m)} m above sea level</dd>` +
+      `<dt>Capacity factor</dt><dd>${pct(p.cf_net)} after losses</dd><dt>Energy</dt><dd>${num(p.aep_mwh)} MWh a year</dd></dl>` +
+      `<p>A modelled position on a generic 5 MW turbine, not a planned one.</p>`,
+    route: p => `<b>Grid route from ${esc(p.zone)}</b><dl><dt>To</dt><dd>${esc(p.substation)}${p.kv ? ' (' + num(p.kv) + ' kV)' : ''}</dd>` +
+      `<dt>Length</dt><dd>${p.length_km} km</dd><dt>Zone capacity</dt><dd>${num(p.zone_mw)} MW</dd>` +
+      `<dt>GCCA 2025</dt><dd>${esc(p.gcca_zone || '–')} substation ${p.gcca_sub_mw == null ? '–' : num(p.gcca_sub_mw) + ' MW'}; ` +
+      `supply area ${p.gcca_supply_mw == null ? '–' : num(p.gcca_supply_mw) + ' MW'}</dd></dl>`,
+    check: p => `<p class="sm-demo">Demonstration record</p><b>${esc(p.check_id)}: ${esc(p.check_type)}</b><dl>` +
+      `<dt>Turbine</dt><dd>${esc(p.turbine)} in ${esc(p.zone)}</dd><dt>Access</dt><dd>${esc(p.access)}</dd>` +
+      `<dt>Land use</dt><dd>${esc(p.land_use)}</dd>` +
+      (p.dwelling_found ? `<dt>Dwelling found</dt><dd>${num(p.dwelling_dist_m)} m away, not on the map</dd>` : '') +
+      (p.raptor_seen ? `<dt>Priority bird</dt><dd><i>${esc(p.species)}</i></dd>` : '') +
+      `<dt>Outcome</dt><dd>${esc(p.outcome)}</dd></dl><p>${esc(p.notes)}</p>`,
     grid: px => {
       if (!px || px[3] === 0) return null;
       const pv = px[0] ? 1700 + (px[0] - 1) * 2 : null, km = px[1], b = px[2];
@@ -93,6 +128,40 @@
 
   // ---------------------------------------------------------------- vector layer recipes
   const recipes = {
+    wzones: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#2E4A30', weight: 1.4, fillColor: '#4E7A50', fillOpacity: 0.42 }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.wzone(f.properties), { maxWidth: 300 });
+        l.bindTooltip(f.properties.zone, { permanent: true, direction: 'top', offset: [0, -6], className: 'sm-zone' });
+        l.on('mouseover', () => l.setStyle({ weight: 2.6, fillOpacity: 0.6 })); l.on('mouseout', () => l.setStyle({ weight: 1.4, fillOpacity: 0.42 }));
+      }
+    }),
+    wzonesLine: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#2E4A30', weight: 1.2, fillColor: '#4E7A50', fillOpacity: 0.3 }),
+      onEachFeature: (f, l) => l.bindPopup(pop.wzone(f.properties), { maxWidth: 300 })
+    }),
+    turbines: (gj, map) => {
+      // turbines are 800 m apart: keep the dots apart at every zoom
+      const rad = () => (map.getZoom() < 9.5 ? 1.8 : map.getZoom() < 10.5 ? 2.7 : 3.8);
+      const lyr = L.geoJSON(gj, {
+        pointToLayer: (f, ll) => L.circleMarker(ll, { radius: rad(), color: '#F4EFE3', weight: 0.7, fillColor: '#1F4E6B', fillOpacity: 1 }),
+        onEachFeature: (f, l) => l.bindPopup(pop.turbine(f.properties), { maxWidth: 280 })
+      });
+      map.on('zoomend', () => lyr.eachLayer(l => l.setRadius(rad())));
+      return lyr;
+    },
+    routes: gj => L.geoJSON(gj, {
+      style: () => ({ color: '#D9480F', weight: 3.2, opacity: 0.95 }),
+      onEachFeature: (f, l) => {
+        l.bindPopup(pop.route(f.properties), { maxWidth: 300 });
+        l.on('mouseover', () => l.setStyle({ weight: 5.5 })); l.on('mouseout', () => l.setStyle({ weight: 3.2 }));
+      }
+    }),
+    checks: gj => L.geoJSON(gj, {
+      pointToLayer: (f, ll) => L.circleMarker(ll, { radius: 7, color: '#F4EFE3', weight: 2, fillColor: OUTCOME[f.properties.outcome] || '#7A6A55',
+        fillOpacity: 1 }),
+      onEachFeature: (f, l) => l.bindPopup(pop.check(f.properties), { maxWidth: 300 })
+    }),
     zones: (gj, map) => L.geoJSON(gj, {
       style: f => ({ color: '#2E4A30', weight: 1.2, fillColor: f.properties.rank <= 10 ? '#4E7A50' : '#8FAE86', fillOpacity: 0.85 }),
       onEachFeature: (f, l) => {
@@ -173,6 +242,7 @@
       let sw;
       if (it.line) sw = `<span class="sm-sw sm-sw-line" style="border-top:${it.width || 2}px ${it.dash ? 'dashed' : 'solid'} ${it.line}"></span>`;
       else if (it.circle) sw = `<span class="sm-sw sm-sw-dot" style="background:${it.circle}"></span>`;
+      else if (it.tri) sw = `<span class="sm-sw sm-sw-tri" style="border-bottom-color:${it.tri}"></span>`;
       else sw = `<span class="sm-sw" style="background:${it.color}${it.border ? ';border-color:' + it.border : ''}"></span>`;
       return `<div class="sm-legend-row">${sw}<span>${esc(it.label)}</span></div>`;
     }).join('');
@@ -224,6 +294,7 @@
       const px = lookup.read(e.latlng);
       let html = null;
       if (cfg.lookup.type === 'grid') html = pop.grid(px);
+      else if (cfg.lookup.type === 'wind') html = pop.wind(px);
       else if (px && px[3] === 255 && attrs) {
         const id = (px[0] << 16) + (px[1] << 8) + px[2];
         html = pop.sub(attrs.rows[id], attrs.keys);
