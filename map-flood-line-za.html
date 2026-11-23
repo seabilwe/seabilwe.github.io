@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="assets/css/story-map.css?v=20261120c">
 <link rel="stylesheet" href="assets/css/urban-edge.css?v=20261123b">
-<link rel="stylesheet" href="assets/css/flood-line.css?v=20261123a">
+<link rel="stylesheet" href="assets/css/flood-line.css?v=20261123b">
 </head>
 <body>
 <header class="topbar">
@@ -93,7 +93,7 @@
                 <p class="fl-only-exposure fl-jumps"><span>Fly to, in 3D:</span><button type="button" data-go="28.103,-26.103,15.2,-35">Alexandra</button><button type="button" data-go="27.888,-26.276,15,20">Kliptown</button><button type="button" data-go="27.862,-26.222,14.8,-10">Dobsonville</button><button type="button" data-go="28.012,-25.935,14.6,30">Diepsloot</button></p>
                 <p class="ue-time-note fl-only-events"><i aria-hidden="true"></i>Each dot is a flood reported in the news or by the City. Places are located at street, settlement or suburb level.</p>
                 <p class="ue-time-note fl-only-growth"><i aria-hidden="true"></i>Built-up land from GHSL; years between satellite observations are estimates.</p>
-                <p class="ue-time-note fl-only-exposure"><i aria-hidden="true"></i>Buildings appear from street level. Buildings, roads and facilities: Johannesburg only.</p>
+                <p class="ue-time-note fl-only-exposure"><i aria-hidden="true"></i>Wards show the share of residents on low-lying land; click one for its numbers. Zoom in for buildings (Johannesburg only).</p>
               </div>
             </div>
 
@@ -121,7 +121,7 @@
             <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Key takeaways</h3>
             <ul>
               <li>12% of Gauteng is low-lying land along its streams. Built-up land on it grew from 60 to 147&nbsp;km² between 1975 and 2020, ×2.4, while all built-up land grew ×2.0.</li>
-              <li>About 892,000 people, 5.8% of Gauteng's residents, live on low-lying land.</li>
+              <li>About 892,000 people, 5.8% of Gauteng's residents, live on low-lying land. In 62 of the province's 529 wards, more than a fifth of residents do.</li>
               <li>In Johannesburg, 68,092 buildings, 884&nbsp;km of road, 27 schools and 9 clinics or hospitals sit on it.</li>
               <li>70% of the better-located flood reports lie within 500&nbsp;m of the lowest class, against 35% of built-up Johannesburg. Only 6 of 54 reported places are near the global river model's 1-in-100-year flood zone.</li>
             </ul>
@@ -164,6 +164,7 @@
             <li><b>Reports are uneven.</b> Floods in places the media covers are more likely to be reported, and no report does not mean no flood. Places were geocoded with OpenStreetMap; many are suburb centres, not the flooded street.</li>
             <li><b>Low-lying is not the same as risk.</b> The classes are a screening of terrain. Stormwater pipes, canals and recent works are not modelled, and nothing here estimates how often a place floods or the damage it would cause.</li>
             <li><b>Buildings and heights.</b> Footprints come from Overture Maps (mostly Google and Microsoft footprints, plus OpenStreetMap); heights in the 3D view are GHSL's average building height per hectare, so they are estimates. Facility counts depend on how complete OpenStreetMap is.</li>
+            <li><b>Exposure, not vulnerability.</b> The ward map counts who lives on low-lying land (GHS-POP 2020, which spreads census counts over built-up land). It does not yet weigh how well people can cope: housing, services and age from Census 2022 ward tables would add that.</li>
             <li><b>Rainfall.</b> CHIRPS v3 blends satellite and gauge rain at about 5&nbsp;km; a thunderstorm cell can be smaller than that. November 2026 values are preliminary.</li>
           </ul>
         </div>
@@ -179,7 +180,7 @@
             <li>GHS-BUILT-S, GHS-POP and GHS-BUILT-H R2023A, European Commission, Joint Research Centre.</li>
             <li>Buildings: Overture Maps Foundation, release 2026-11-18 (ODbL and CDLA Permissive 2.0). Roads, schools, clinics and places: © OpenStreetMap contributors (ODbL).</li>
             <li>Flood reports: SAnews, City of Johannesburg media statements, TimesLIVE, SowetanLIVE, News24, Daily Maverick, EWN, The Citizen, SABC, GroundUp, Al Jazeera and IFRC; every report on the map links to its source.</li>
-            <li>Municipal boundaries: Municipal Demarcation Board, via geoBoundaries (CC BY 4.0).</li>
+            <li>Ward boundaries (2020) and municipal boundaries: Municipal Demarcation Board; municipal boundaries via geoBoundaries (CC BY 4.0).</li>
           </ul>
         </div>
         <p><a class="btn btn-line" href="blogs.html#maps">Back to the gallery</a></p>
@@ -196,6 +197,6 @@
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js"></script>
-<script src="assets/js/flood-line.js?v=20261123a"></script>
+<script src="assets/js/flood-line.js?v=20261123b"></script>
 </body>
 </html>

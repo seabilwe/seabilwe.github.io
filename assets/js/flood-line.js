@@ -11,6 +11,7 @@
   const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
   const RAMP = ['#23312F', '#33392F', '#4A3F30', '#634530', '#7C4C2E', '#95582F', '#AE6631', '#C47535', '#D5853A', '#E39A42'];
   const LOW = { 2: '#2F6F9A', 1: '#8FB8D2' }, RED = '#A33B2B', INK = '#23312F';
+  const WARD = ['#F1E8D6', '#E2C79D', '#C99A64', '#A0673A', '#6B3F22'];   // residents on low-lying land, by ward: 0-5, 5-10, 10-20, 20-40, 40+ %
   const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
   const fmtDate = iso => { const d = new Date(iso + 'T12:00:00'); return d.getDate() + ' ' + MONTHS[d.getMonth()] + ' ' + d.getFullYear(); };
 
@@ -86,7 +87,7 @@
         ['Places reported', nf(feats.length)],
         ['Wettest day', r && r.day != null ? nf(r.day, 0) + ' mm' : '–', 'ue-s2'],
         ['Wettest three days', r && r.d3 != null ? nf(r.d3, 0) + ' mm' : '–'],
-        ['Wettest day beats', r && r.pct != null ? nf(r.pct, 0) + '% of wet-season days' : '–'],
+        ['Wettest day beats (wet-season days since 1998)', r && r.pct != null ? nf(r.pct, 0) + '%' : '–'],
         ['Near low-lying land', nf(feats.filter(f => f.properties.near).length) + ' of ' + nf(feats.length)],
       ]);
     } else if (mode === 'growth') {
@@ -129,7 +130,7 @@
       head.textContent = 'Rain around the flood';
       const r = D.rain && D.rain.events ? D.rain.events[ev] : null;
       if (!r || !r.series || !r.series.some(v => v != null)) {
-        svg.innerHTML = `<text class="ue-ax" x="${Wc / 2}" y="${Hc / 2}" text-anchor="middle">Daily rainfall for this event is still being processed.</text>`;
+        svg.innerHTML = `<text class="ue-ax" x="${Wc / 2}" y="${Hc / 2}" text-anchor="middle">Daily rainfall for this flood isn’t available yet.</text>`;
         foot.innerHTML = '<span>CHIRPS v3 daily rainfall</span>'; return;
       }
       const s = r.series, n = s.length, mx = Math.max(10, ...s.filter(v => v != null)) * 1.1;
@@ -137,16 +138,17 @@
       let h = axisY(niceStep(mx / 3) * Math.ceil(mx / niceStep(mx / 3)), 'mm');
       const top = niceStep(mx / 3) * Math.ceil(mx / niceStep(mx / 3));
       s.forEach((v, i) => {
-        if (v == null) return;
+        if (v == null) { h += `<rect x="${(L0 + i * bw + bw * 0.3).toFixed(1)}" y="${Hc - B0 - 3}" width="${(bw * 0.4).toFixed(1)}" height="3" fill="#C9CEBB"><title>${r.days[i]}: no data yet</title></rect>`; return; }
         const x = L0 + i * bw, hh = (Hc - B0 - T0) * v / top, ev0 = i === k0;
         h += `<rect x="${(x + 0.6).toFixed(1)}" y="${(Hc - B0 - hh).toFixed(1)}" width="${Math.max(bw - 1.2, 1).toFixed(1)}" height="${hh.toFixed(1)}" rx="1" fill="${ev0 ? RED : '#2F6F9A'}" opacity="${ev0 ? 1 : 0.75}"><title>${r.days[i]}: ${nf(v, 1)} mm</title></rect>`;
       });
       [0, k0, n - 1].forEach((i, j) => {
+        if (j === 2 && (n - 1 - k0) * bw < 48) return;            // too close to the flood-day label
         const x = L0 + (i + 0.5) * bw; const d = r.days[i];
-        h += `<text class="ue-ax" x="${x}" y="${Hc - 8}" text-anchor="${j === 0 ? 'start' : j === 2 ? 'end' : 'middle'}">${fmtDate(d).replace(/ \d{4}$/, '')}</text>`;
+        h += `<text class="ue-ax" x="${x}" y="${Hc - 8}" text-anchor="${j === 0 ? 'start' : j === 2 ? 'end' : 'middle'}"${j === 1 ? ' style="fill:#A33B2B"' : ''}>${fmtDate(d).replace(/ \d{4}$/, '')}</text>`;
       });
       svg.innerHTML = h;
-      foot.innerHTML = '<span><i style="background:' + RED + '"></i>Day of the flood</span><span>Johannesburg average, CHIRPS v3</span><span class="ue-chart-unit">mm a day</span>';
+      foot.innerHTML = '<span><i style="background:' + RED + '"></i>Flood day</span>' + (s.some(v => v == null) ? '<span><i style="background:#C9CEBB;height:3px"></i>No data yet</span>' : '') + '<span>Johannesburg average, CHIRPS v3</span><span class="ue-chart-unit">mm</span>';
     } else if (mode === 'growth') {
       head.textContent = 'Built-up land on low-lying ground';
       const a = A(), ys = D.years, v = ys.map(y => a.built_low[y]), mx = Math.max(...v) * 1.15, top = niceStep(mx / 3) * Math.ceil(mx / niceStep(mx / 3));
@@ -210,7 +212,7 @@
     if (map.getLayoutProperty('jrc', 'visibility') === 'visible') h += '<p class="ue-leg-h">River model (JRC)</p><span><i style="background:#1F4E70"></i>1-in-10 years</span><span><i style="background:#3E7FAB"></i>1-in-100</span><span><i style="background:#A7C8DD"></i>1-in-500</span>';
     if (mode === 'events') h += `<p class="ue-leg-h">Reported floods</p><span><i class="dot" style="background:${RED}"></i>${esc(EV().label)}</span><span><i class="dot" style="background:#4E5C58;opacity:.6"></i>Other floods, 2016–2026</span>`;
     if (mode === 'growth') h += `<p class="ue-leg-h">Built up on low-lying land</p><span class="fl-ramp"><i style="background:linear-gradient(90deg,${RAMP.join(',')})"></i></span><span class="fl-ramp-l"><em>1975</em><em>${D ? D.years[yi] : ''}</em></span>`;
-    if (mode === 'exposure') h += `<p class="ue-leg-h">Johannesburg</p><span><i style="background:#1F4E70"></i>Building, lowest class</span><span><i style="background:#6E9CBB"></i>Building, low class</span><span><i class="dot" style="background:#A0673A"></i>School</span><span><i class="dot" style="background:${RED}"></i>Clinic or hospital</span>`;
+    if (mode === 'exposure') h += `<p class="ue-leg-h">Residents on low-lying land, by ward</p><span class="fl-wards">${WARD.map(c => `<i style="background:${c}"></i>`).join('')}</span><span class="fl-ramp-l"><em>0%</em><em>5</em><em>10</em><em>20</em><em>40%+</em></span><p class="ue-leg-h">Johannesburg</p><span><i style="background:#1F4E70"></i>Building, lowest class</span><span><i style="background:#6E9CBB"></i>Building, low class</span><span><i class="dot" style="background:#A0673A"></i>School</span><span><i class="dot" style="background:${RED}"></i>Clinic or hospital</span>`;
     L.innerHTML = h;
   }
 
@@ -231,7 +233,7 @@
     root.dataset.mode = m;
     const vis = (id, on) => map.getLayer(id) && map.setLayoutProperty(id, 'visibility', on ? 'visible' : 'none');
     vis('growth', m === 'growth'); ['inc', 'inc-sel'].forEach(id => vis(id, m === 'events'));
-    ['bld', 'fac'].forEach(id => vis(id, m === 'exposure'));
+    ['bld', 'fac', 'wards', 'wards-line'].forEach(id => vis(id, m === 'exposure'));
     if (m !== 'exposure') clearProfile(true);
     setYear(yi, true); setEvent(ev, true);
     stats(); chart(); detail(); legend();
@@ -425,9 +427,13 @@
   let started = false;
   const init = () => {
     if (started) return; started = true;
-    Promise.all(['data.json', 'municipalities.geojson', 'incidents.geojson', 'facilities.geojson', 'places.geojson'].map(f => fetch(BASE + f).then(r => r.json())))
-      .then(([d, mun, inc, fac, places]) => {
+    Promise.all(['data.json', 'municipalities.geojson', 'incidents.geojson', 'facilities.geojson', 'places.geojson', 'wards.geojson'].map(f => fetch(BASE + f).then(r => r.json())))
+      .then(([d, mun, inc, fac, places, wards]) => {
         D = d; MUN = mun; INC = inc; FAC = fac;
+        map.addSource('wards', { type: 'geojson', data: wards });
+        map.addLayer({ id: 'wards', type: 'fill', source: 'wards', maxzoom: 13, layout: { visibility: 'none' },
+          paint: { 'fill-color': ['case', ['==', ['get', 's'], null], 'rgba(0,0,0,0)', ['step', ['get', 's'], WARD[0], 5, WARD[1], 10, WARD[2], 20, WARD[3], 40, WARD[4]]], 'fill-opacity': 0.72 } }, 'low');
+        map.addLayer({ id: 'wards-line', type: 'line', source: 'wards', maxzoom: 13, layout: { visibility: 'none' }, paint: { 'line-color': '#F6F7F0', 'line-width': 0.6, 'line-opacity': 0.9 } }, 'low');
         map.addSource('mun', { type: 'geojson', data: mun });
         map.addLayer({ id: 'mask', type: 'fill', source: 'mun', paint: { 'fill-color': '#EEF0E6', 'fill-opacity': 0.62 }, filter: ['==', ['get', 'name'], '__none__'] });
         map.addLayer({ id: 'mun-line', type: 'line', source: 'mun', paint: { 'line-color': '#4E5C58', 'line-width': 0.8, 'line-dasharray': [3, 2], 'line-opacity': 0.8 } });
@@ -466,6 +472,13 @@
         map.on('click', 'fac', e => {
           if (prof.on) return; const p = e.features[0].properties; popup && popup.remove();
           popup = new maplibregl.Popup({ offset: 8 }).setLngLat(e.lngLat).setHTML(`<div class="fl-pop"><b>${esc(p.n || (p.k === 'school' ? 'School' : 'Health facility'))}</b><span class="fl-pop-d">${p.k}</span><p>${p.c == 2 ? 'On the lowest class of low-lying land' : p.c == 1 ? 'On low-lying land' : 'Not on low-lying land'}</p></div>`).addTo(map);
+        });
+        map.on('click', 'wards', e => {
+          if (prof.on || mode !== 'exposure') return;
+          if (map.queryRenderedFeatures(e.point, { layers: ['fac'] }).length) return;
+          const p = e.features[0].properties; popup && popup.remove();
+          const sh = p.s == null || p.s === 'null' ? null : +p.s;
+          popup = new maplibregl.Popup({ offset: 6, maxWidth: '260px' }).setLngLat(e.lngLat).setHTML(`<div class="fl-pop"><b>Ward ${esc(p.no)}, ${esc(p.mun)}</b><span class="fl-pop-d">${nf(+p.pop)} residents (GHS-POP 2020)</span><p>${sh == null ? 'Too few residents to show a share.' : `${nf(+p.low)} on low-lying land (${nf(sh, 1)}%), ${nf(+p.hi)} of them on the lowest class.`}</p></div>`).addTo(map);
         });
         ['inc', 'fac'].forEach(id => { map.on('mouseenter', id, () => { if (!prof.on) map.getCanvas().style.cursor = 'pointer'; }); map.on('mouseleave', id, () => map.getCanvas().style.cursor = ''); });
 

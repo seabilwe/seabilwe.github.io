@@ -85,3 +85,7 @@
 .fl-root .ue-seg button{padding:.32rem .7rem}
 .fl-root .ue-chip{padding:.3rem .65rem}
 @media (max-width:640px){.fl-root .ue-area{width:auto;flex:1 1 100%}}
+
+.fl-legend .fl-wards{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.fl-legend .fl-wards i{width:auto;height:9px;border-radius:0}
+.fl-legend .fl-wards i:first-child{border-radius:2px 0 0 2px}.fl-legend .fl-wards i:last-child{border-radius:0 2px 2px 0}
