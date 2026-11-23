@@ -218,7 +218,7 @@
   }));
   function chart() {
     if (!data) return;
-    const svg = $('.ue-chart svg'), Wc = 360, Hc = 190, L0 = 42, R0 = 20, T0 = 12, B0 = 26;
+    const svg = $('.ue-chart svg'), Wc = 360, Hc = 150, L0 = 42, R0 = 20, T0 = 10, B0 = 24;
     let v = series(chartKey); const [lab, unit, dec] = SER[chartKey];
     if (chartKey === 'pop') v = v.map(x => x / 1e6);
     const lo = chartKey === 'm2_per_person' ? Math.floor(Math.min(...v) * 0.8 / 10) * 10 : 0;
