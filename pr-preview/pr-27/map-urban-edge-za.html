@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>URBAN-EDGE ZA: how Gauteng grew, 1975–2020, Seabilwe Tilodi</title>
+<meta name="description" content="An interactive timeline of Gauteng's built-up land from 1975 to 2020, from the Global Human Settlement Layer: where the city-region grew, how the land was added, and which municipalities grew denser or spread out.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css?v=20261114c">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<link rel="stylesheet" href="assets/css/story-map.css?v=20261120c">
+<link rel="stylesheet" href="assets/css/urban-edge.css?v=20261123b">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-row">
+    <a class="lockup" href="index.html"><img src="assets/img/logo-mark.svg" alt=""><span>Seabilwe Tilodi</span></a>
+    <details>
+      <summary>Menu</summary>
+      <nav class="nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="work.html">Work</a></li><li><a href="skills.html">Skills</a></li><li><a href="blogs.html">Writing &amp; maps</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    </details>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sidebar-mark" href="index.html" aria-label="Home"><img src="assets/img/logo-mark.svg" alt=""></a>
+    <div class="who">
+      <h2>Seabilwe Tilodi</h2>
+      <p class="who-words"><span>Data</span><i>●</i><span>Connection</span><i>●</i><span>Knowledge</span></p>
+    </div>
+    <nav class="nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="work.html">Work</a></li><li><a href="skills.html">Skills</a></li><li><a href="blogs.html">Writing &amp; maps</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <p class="status">Open to new roles and project work</p>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></a>
+      <a href="https://github.com/seabilwe" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5a3 3 0 0 0-.9-2.4c2.9-.3 6-1.4 6-6.4a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.5s-1.1-.3-3.6 1.4a12.3 12.3 0 0 0-6.4 0C6.1 1.4 5 1.7 5 1.7a4.6 4.6 0 0 0-.1 3.5 5 5 0 0 0-1.4 3.5c0 5 3.1 6.1 6 6.4a3 3 0 0 0-.9 2.4V21"/></svg></a>
+      <a href="mailto:seabilwetilodi@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="wrap">
+
+      <header class="page-head">
+        <p class="topic"><a href="blogs.html#maps">Maps and visualisations</a></p>
+        <h1>URBAN-EDGE ZA: how Gauteng grew, 1975–2020</h1>
+        <p class="lede">Forty-five years of satellite-based estimates of built-up land across Gauteng's nine municipalities. Press play to watch the city-region grow, compare any two years, or pick a municipality to see its own story.</p>
+        <ul class="ue-meta">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Time series</b> 1975–2020, every 5 years</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><span><b>Built-up land</b> from the Global Human Settlement Layer</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 21s7-6.3 7-12a7 7 0 0 0-14 0c0 5.7 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span><b>Study area</b> Gauteng, nine municipalities</span></li>
+        </ul>
+      </header>
+
+      <section aria-labelledby="ue-explore">
+        <h2 id="ue-explore" class="vh">Explore the timeline</h2>
+        <div class="ue-root" data-urban-edge data-base="assets/maps/urban-edge-za/">
+          <div class="ue-dash">
+            <div class="ue-card ue-mapcard">
+              <div class="ue-bar">
+                <label for="ue-area">Municipality</label>
+                <select id="ue-area" class="ue-area"><option value="Gauteng">All of Gauteng</option><option value="Johannesburg">Johannesburg</option><option value="Tshwane">Tshwane</option><option value="Ekurhuleni">Ekurhuleni</option><option value="Emfuleni">Emfuleni</option><option value="Midvaal">Midvaal</option><option value="Lesedi">Lesedi</option><option value="Mogale City">Mogale City</option><option value="Merafong City">Merafong City</option><option value="Rand West City">Rand West City</option></select>
+                <span class="ue-spacer"></span>
+                <div class="ue-seg ue-mode" role="group" aria-label="Map view">
+                  <button type="button" data-mode="year" aria-pressed="true">Year built</button>
+                  <button type="button" data-mode="type" aria-pressed="false">How it grew</button>
+                </div>
+                <button type="button" class="ue-chip ue-base" aria-pressed="false">Satellite</button>
+              </div>
+              <div class="ue-mapwrap">
+                <div class="ue-map" tabindex="0" aria-label="Map of built-up land in Gauteng for the selected year. Click a spot for its details."></div>
+                <div class="ue-legend" aria-hidden="true"></div>
+                <div class="ue-swipe" tabindex="0" role="slider" aria-label="Drag to compare the two years" aria-valuemin="0" aria-valuemax="100">
+                  <span class="ue-swipe-l"></span><span class="ue-swipe-r"></span><span class="ue-swipe-knob" aria-hidden="true">&harr;</span>
+                </div>
+              </div>
+              <div class="ue-time">
+                <button type="button" class="ue-play" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span class="vh">Play</span></button>
+                <button type="button" class="ue-reset" aria-label="Back to 1975"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="currentColor"/></svg></button>
+                <div class="ue-track">
+                  <div class="ue-obs" aria-hidden="true"></div>
+                  <input class="ue-slider" type="range" min="0" max="9" step="1" value="9" aria-label="Year">
+                  <div class="ue-ticks" aria-hidden="true"><span style="left:0.000%">1975</span><span style="left:11.111%">1980</span><span style="left:22.222%">1985</span><span style="left:33.333%">1990</span><span style="left:44.444%">1995</span><span style="left:55.556%">2000</span><span style="left:66.667%">2005</span><span style="left:77.778%">2010</span><span style="left:88.889%">2015</span><span style="left:100.000%">2020</span></div>
+                </div>
+                <output class="ue-year" aria-live="polite">2020</output>
+                <p class="ue-time-note"><i aria-hidden="true"></i>Satellite years: 1975, 1990, 2000, 2014, 2018. Years between are GHSL estimates.</p>
+              </div>
+            </div>
+
+            <div class="ue-side">
+              <div>
+                <p class="ue-area-name">All of Gauteng</p>
+                <div class="ue-tiles">
+                  <div class="ue-tile ue-s0"><span class="ue-sl">Built-up land, 1975</span><b>–</b></div>
+                  <div class="ue-tile ue-s1"><span class="ue-sl">Built-up land, 2020</span><b>–</b></div>
+                  <div class="ue-tile ue-s2"><span class="ue-sl">Growth, 1975–2020</span><b>–</b></div>
+                </div>
+                <div class="ue-tiles ue-tiles-2" style="margin-top:.6rem">
+                  <div class="ue-tile ue-s3"><span class="ue-sl">People living here</span><b>–</b></div>
+                  <div class="ue-tile ue-s4"><span class="ue-sl">Built area per person</span><b>–</b></div>
+                </div>
+              </div>
+              <div class="ue-card ue-panel ue-chart">
+                <div class="ue-panel-head"><h3>Over time</h3>
+                  <div class="ue-chart-tabs" role="group" aria-label="Chart measure">
+                    <button type="button" data-key="footprint_km2" aria-pressed="true">Built-up land</button>
+                    <button type="button" data-key="pop" aria-pressed="false">People</button>
+                    <button type="button" data-key="m2_per_person" aria-pressed="false">Per person</button>
+                  </div>
+                </div>
+                <svg viewBox="0 0 360 150" role="img"></svg>
+                <div class="ue-chart-foot"><span><i></i>Observed</span><span><i class="o"></i>Estimated</span><span class="ue-chart-unit">km²</span></div>
+              </div>
+              <div class="ue-card ue-panel">
+                <h3>Before and after</h3>
+                <div class="ue-thumbs">
+                  <div class="ue-thumb ue-thumb-a"><canvas width="200" height="208"></canvas><span class="ue-tag">1975</span></div>
+                  <span class="ue-arrow" aria-hidden="true">&rarr;</span>
+                  <div class="ue-thumb ue-thumb-b"><canvas width="200" height="208"></canvas><span class="ue-tag">2020</span></div>
+                </div>
+                <div class="ue-compare-row">
+                  <label for="ue-from">Compare</label>
+                  <select id="ue-from" class="ue-from"><option value="0" selected>1975</option><option value="1">1980</option><option value="2">1985</option><option value="3">1990</option><option value="4">1995</option><option value="5">2000</option><option value="6">2005</option><option value="7">2010</option><option value="8">2015</option></select>
+                  <span>with the slider year</span>
+                  <button type="button" class="ue-compare-btn" aria-pressed="false">Compare on the map</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ue-cards">
+          <div class="ue-card">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M5 20V11M10 20V5M15 20v-7M20 20V8"/></svg>Key takeaways</h3>
+            <ul>
+              <li>Built-up land doubled, from 1,214 to 2,443&nbsp;km², while the population nearly tripled, from 5.3 to 15.5 million.</li>
+              <li>So Gauteng got denser: built area per person fell from 100 to 72&nbsp;m². Johannesburg's fell from 94 to 55; Midvaal's rose from 154 to 224.</li>
+              <li>1990–2000 was the fastest decade, at about 43&nbsp;km² of new built-up land a year.</li>
+              <li>60% of new land was added at the edge of existing settlement; growth followed main roads more than railways.</li>
+            </ul>
+          </div>
+          <div class="ue-card">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg>Method</h3>
+            <p>Built-up surface comes from GHSL's GHS-BUILT-S (R2023A) at 100&nbsp;m. A hectare counts as built-up land once a fifth of it is covered by buildings. Statistics are calculated on GHSL's own equal-area grid, so every cell is exactly one hectare, with today's municipal boundaries for every year.</p>
+            <p>New land in each period is classed as infill, edge growth or leapfrog by the share of already built-up land around it (the landscape expansion index).</p>
+          </div>
+          <div class="ue-card">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Data and tools</h3>
+            <ul class="ue-tools">
+              <li><b>Data:</b> GHSL built-up surface and population (European Commission JRC), SANLC 2022 (DFFE), municipal boundaries (MDB), OpenStreetMap</li>
+              <li><b>Tools:</b> QGIS, Python with GDAL and NumPy, Leaflet, HTML, CSS and JavaScript</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="ue-how">
+        <div class="head"><div><h2 id="ue-how">How the land was added</h2><p>Most new building attached itself to existing settlement. Infill closes gaps inside it; edge growth extends it; leapfrog development starts a new patch with no built-up land around it.</p></div></div>
+        <figure class="ue-fig">
+          <ul class="ue-key"><li><i style="background:#2F6F9A"></i>Infill</li><li><i style="background:#A0673A"></i>Edge growth</li><li><i style="background:#A33B2B"></i>Leapfrog</li></ul>
+          <svg viewBox="0 0 760 214" role="img" aria-labelledby="ue-f1t"><title id="ue-f1t">New built-up land a year, by period and by how it was added</title><text x="100" y="29" text-anchor="end" font-size="15">1975–1990</text><rect x="112.0" y="14" width="65.3" height="22" rx="3" fill="#2F6F9A"><title>Infill: 5.9 km² a year</title></rect><rect x="179.3" y="14" width="155.3" height="22" rx="3" fill="#A0673A"><title>Edge growth: 13.7 km² a year</title></rect><rect x="336.7" y="14" width="49.8" height="22" rx="3" fill="#A33B2B"><title>Leapfrog: 4.5 km² a year</title></rect><text x="396.4" y="30" font-size="15">24 km² a year</text><text x="396.4" y="46" font-size="12.5" class="muted">19% leapfrog</text><text x="100" y="75" text-anchor="end" font-size="15">1990–2000</text><rect x="112.0" y="60" width="122.1" height="22" rx="3" fill="#2F6F9A"><title>Infill: 10.8 km² a year</title></rect><rect x="236.1" y="60" width="309.8" height="22" rx="3" fill="#A0673A"><title>Edge growth: 27.2 km² a year</title></rect><rect x="547.9" y="60" width="59.9" height="22" rx="3" fill="#A33B2B"><title>Leapfrog: 5.4 km² a year</title></rect><text x="617.9" y="76" font-size="15">43 km² a year</text><text x="617.9" y="92" font-size="12.5" class="muted">12% leapfrog</text><text x="100" y="121" text-anchor="end" font-size="15">2000–2010</text><rect x="112.0" y="106" width="45.6" height="22" rx="3" fill="#2F6F9A"><title>Infill: 4.2 km² a year</title></rect><rect x="159.6" y="106" width="150.2" height="22" rx="3" fill="#A0673A"><title>Edge growth: 13.3 km² a year</title></rect><rect x="311.8" y="106" width="36.8" height="22" rx="3" fill="#A33B2B"><title>Leapfrog: 3.4 km² a year</title></rect><text x="358.6" y="122" font-size="15">21 km² a year</text><text x="358.6" y="138" font-size="12.5" class="muted">16% leapfrog</text><text x="100" y="167" text-anchor="end" font-size="15">2010–2020</text><rect x="112.0" y="152" width="49.3" height="22" rx="3" fill="#2F6F9A"><title>Infill: 4.5 km² a year</title></rect><rect x="163.3" y="152" width="150.0" height="22" rx="3" fill="#A0673A"><title>Edge growth: 13.3 km² a year</title></rect><rect x="315.3" y="152" width="51.8" height="22" rx="3" fill="#A33B2B"><title>Leapfrog: 4.7 km² a year</title></rect><text x="377.1" y="168" font-size="15">22 km² a year</text><text x="377.1" y="184" font-size="12.5" class="muted">21% leapfrog</text></svg>
+          <figcaption>New built-up land a year in each period. The 1990s added land fastest. The share of leapfrog development rose again after 2010.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="ue-two">
+        <div class="head"><div><h2 id="ue-two">Two Gautengs</h2><p>Built area per person in 1975 and 2020. In the three metros it fell: people arrived faster than land was built up, so more people share each hectare. In Midvaal, Emfuleni and the West Rand it rose: land was built up faster than people arrived.</p></div></div>
+        <figure class="ue-fig">
+          <ul class="ue-key"><li><i class="dot" style="background:#F6F7F0;border:1.6px solid #4E5C58"></i>1975</li><li><i class="dot" style="background:#2F6F9A"></i>2020, denser</li><li><i class="dot" style="background:#A33B2B"></i>2020, more spread out</li></ul>
+          <svg viewBox="0 0 760 340" role="img" aria-labelledby="ue-f2t"><title id="ue-f2t">Built area per person in 1975 and 2020, by municipality</title><line x1="150.0" x2="150.0" y1="6" y2="314" class="rule"/><text x="150.0" y="332" text-anchor="middle" font-size="12" class="muted">0 m²</text><line x1="260.0" x2="260.0" y1="6" y2="314" class="rule"/><text x="260.0" y="332" text-anchor="middle" font-size="12" class="muted">50 m²</text><line x1="370.0" x2="370.0" y1="6" y2="314" class="rule"/><text x="370.0" y="332" text-anchor="middle" font-size="12" class="muted">100 m²</text><line x1="480.0" x2="480.0" y1="6" y2="314" class="rule"/><text x="480.0" y="332" text-anchor="middle" font-size="12" class="muted">150 m²</text><line x1="590.0" x2="590.0" y1="6" y2="314" class="rule"/><text x="590.0" y="332" text-anchor="middle" font-size="12" class="muted">200 m²</text><line x1="700.0" x2="700.0" y1="6" y2="314" class="rule"/><text x="700.0" y="332" text-anchor="middle" font-size="12" class="muted">250 m²</text><text x="138" y="25" text-anchor="end" font-size="14">Midvaal</text><line x1="488.36" x2="643.24" y1="20" y2="20" stroke="#A33B2B" stroke-width="2.5"/><circle cx="488.36" cy="20" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Midvaal, 1975: 154 m² per person</title></circle><circle cx="643.24" cy="20" r="6" fill="#A33B2B" stroke="#F6F7F0" stroke-width="1.5"><title>Midvaal, 2020: 224 m² per person</title></circle><text x="655.24" y="25" font-size="12.5" class="muted">154 → 224</text><text x="138" y="55" text-anchor="end" font-size="14">Lesedi</text><line x1="389.58000000000004" x2="388.48" y1="50" y2="50" stroke="#2F6F9A" stroke-width="2.5"/><circle cx="389.58000000000004" cy="50" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Lesedi, 1975: 109 m² per person</title></circle><circle cx="388.48" cy="50" r="6" fill="#2F6F9A" stroke="#F6F7F0" stroke-width="1.5"><title>Lesedi, 2020: 108 m² per person</title></circle><text x="401.58000000000004" y="55" font-size="12.5" class="muted">109 → 108</text><text x="138" y="85" text-anchor="end" font-size="14">Merafong City</text><line x1="233.6" x2="363.4" y1="80" y2="80" stroke="#A33B2B" stroke-width="2.5"/><circle cx="233.6" cy="80" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Merafong City, 1975: 38 m² per person</title></circle><circle cx="363.4" cy="80" r="6" fill="#A33B2B" stroke="#F6F7F0" stroke-width="1.5"><title>Merafong City, 2020: 97 m² per person</title></circle><text x="375.4" y="85" font-size="12.5" class="muted">38 → 97</text><text x="138" y="115" text-anchor="end" font-size="14">Mogale City</text><line x1="274.08" x2="348.44" y1="110" y2="110" stroke="#A33B2B" stroke-width="2.5"/><circle cx="274.08" cy="110" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Mogale City, 1975: 56 m² per person</title></circle><circle cx="348.44" cy="110" r="6" fill="#A33B2B" stroke="#F6F7F0" stroke-width="1.5"><title>Mogale City, 2020: 90 m² per person</title></circle><text x="360.44" y="115" font-size="12.5" class="muted">56 → 90</text><text x="138" y="145" text-anchor="end" font-size="14">Rand West City</text><line x1="254.28" x2="346.46000000000004" y1="140" y2="140" stroke="#A33B2B" stroke-width="2.5"/><circle cx="254.28" cy="140" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Rand West City, 1975: 47 m² per person</title></circle><circle cx="346.46000000000004" cy="140" r="6" fill="#A33B2B" stroke="#F6F7F0" stroke-width="1.5"><title>Rand West City, 2020: 89 m² per person</title></circle><text x="358.46000000000004" y="145" font-size="12.5" class="muted">47 → 89</text><text x="138" y="175" text-anchor="end" font-size="14">Tshwane</text><line x1="395.74" x2="343.6" y1="170" y2="170" stroke="#2F6F9A" stroke-width="2.5"/><circle cx="395.74" cy="170" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Tshwane, 1975: 112 m² per person</title></circle><circle cx="343.6" cy="170" r="6" fill="#2F6F9A" stroke="#F6F7F0" stroke-width="1.5"><title>Tshwane, 2020: 88 m² per person</title></circle><text x="407.74" y="175" font-size="12.5" class="muted">112 → 88</text><text x="138" y="205" text-anchor="end" font-size="14">Emfuleni</text><line x1="326.44" x2="342.5" y1="200" y2="200" stroke="#A33B2B" stroke-width="2.5"/><circle cx="326.44" cy="200" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Emfuleni, 1975: 80 m² per person</title></circle><circle cx="342.5" cy="200" r="6" fill="#A33B2B" stroke="#F6F7F0" stroke-width="1.5"><title>Emfuleni, 2020: 88 m² per person</title></circle><text x="354.5" y="205" font-size="12.5" class="muted">80 → 88</text><text x="138" y="235" text-anchor="end" font-size="14" font-weight="700">Gauteng</text><line x1="369.12" x2="308.18" y1="230" y2="230" stroke="#2F6F9A" stroke-width="2.5"/><circle cx="369.12" cy="230" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Gauteng, 1975: 100 m² per person</title></circle><circle cx="308.18" cy="230" r="6" fill="#2F6F9A" stroke="#F6F7F0" stroke-width="1.5"><title>Gauteng, 2020: 72 m² per person</title></circle><text x="381.12" y="235" font-size="12.5" class="muted">100 → 72</text><text x="138" y="265" text-anchor="end" font-size="14">Ekurhuleni</text><line x1="429.18" x2="301.58000000000004" y1="260" y2="260" stroke="#2F6F9A" stroke-width="2.5"/><circle cx="429.18" cy="260" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Ekurhuleni, 1975: 127 m² per person</title></circle><circle cx="301.58000000000004" cy="260" r="6" fill="#2F6F9A" stroke="#F6F7F0" stroke-width="1.5"><title>Ekurhuleni, 2020: 69 m² per person</title></circle><text x="441.18" y="265" font-size="12.5" class="muted">127 → 69</text><text x="138" y="295" text-anchor="end" font-size="14">Johannesburg</text><line x1="356.36" x2="270.78" y1="290" y2="290" stroke="#2F6F9A" stroke-width="2.5"/><circle cx="356.36" cy="290" r="5" fill="#F6F7F0" stroke="#4E5C58" stroke-width="1.6"><title>Johannesburg, 1975: 94 m² per person</title></circle><circle cx="270.78" cy="290" r="6" fill="#2F6F9A" stroke="#F6F7F0" stroke-width="1.5"><title>Johannesburg, 2020: 55 m² per person</title></circle><text x="368.36" y="295" font-size="12.5" class="muted">94 → 55</text></svg>
+          <figcaption>Built surface divided by GHSL population. GHSL estimates population partly from built-up land, so read the levels as estimates; the direction of change is the point.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="ue-roads">
+        <div class="head"><div><h2 id="ue-roads">Roads, not rail</h2><p>New built-up land sits close to the main road network far more often than chance would give. Near railway stations the opposite trend shows: growth there was strongest before 2000 and weaker since.</p></div></div>
+        <figure class="ue-fig"><svg viewBox="0 0 760 196" role="img" aria-labelledby="ue-f3t"><title id="ue-f3t">New built-up land near main roads and railway stations</title><text x="0" y="22" font-size="15" font-weight="700">Within 2 km of a main road</text><text x="258" y="46" text-anchor="end" font-size="13.5" class="muted">Share of Gauteng's land</text><rect x="270" y="34" width="171.4" height="16" rx="3" fill="#C9CEBB"/><text x="449.4" y="47" font-size="14">41%</text><text x="258" y="70" text-anchor="end" font-size="13.5" class="muted">Share of land built up 2000–2020</text><rect x="270" y="58" width="258.3" height="16" rx="3" fill="#A0673A"/><text x="536.3" y="71" font-size="14">62%</text><text x="0" y="104" font-size="15" font-weight="700">Within 2 km of a railway station</text><text x="258" y="128" text-anchor="end" font-size="13.5" class="muted">Share of Gauteng's land</text><rect x="270" y="116" width="42.4" height="16" rx="3" fill="#C9CEBB"/><text x="320.4" y="129" font-size="14">10%</text><text x="258" y="152" text-anchor="end" font-size="13.5" class="muted">Share of land built up 1975–2000</text><rect x="270" y="140" width="90.7" height="16" rx="3" fill="#2F6F9A"/><text x="368.7" y="153" font-size="14">22%</text><text x="258" y="176" text-anchor="end" font-size="13.5" class="muted">Share of land built up 2000–2020</text><rect x="270" y="164" width="63.4" height="16" rx="3" fill="#A0673A"/><text x="341.4" y="177" font-size="14">15%</text></svg><figcaption>Main roads: motorways, trunk and primary roads; stations: OpenStreetMap railway stations, both as mapped today.</figcaption></figure>
+        <figure class="ue-fig"><svg viewBox="0 0 760 212" role="img" aria-labelledby="ue-f4t"><title id="ue-f4t">Built area added 1975–2020 by distance from the nearest CBD</title><text x="98" y="23" text-anchor="end" font-size="14">0–5 km</text><rect x="110" y="10" width="24.5" height="18" rx="3" fill="#C98A45"/><text x="142.5" y="24" font-size="14">+9 km² (32 → 41)</text><text x="98" y="57" text-anchor="end" font-size="14">5–10 km</text><rect x="110" y="44" width="100.4" height="18" rx="3" fill="#C98A45"/><text x="218.4" y="58" font-size="14">+38 km² (71 → 109)</text><text x="98" y="91" text-anchor="end" font-size="14">10–20 km</text><rect x="110" y="78" width="398.4" height="18" rx="3" fill="#C98A45"/><text x="516.4" y="92" font-size="14">+149 km² (183 → 333)</text><text x="98" y="125" text-anchor="end" font-size="14">20–30 km</text><rect x="110" y="112" width="480.0" height="18" rx="3" fill="#A0673A"/><text x="598.0" y="126" font-size="14">+180 km² (113 → 293)</text><text x="98" y="159" text-anchor="end" font-size="14">30–40 km</text><rect x="110" y="146" width="238.1" height="18" rx="3" fill="#C98A45"/><text x="356.1" y="160" font-size="14">+89 km² (56 → 145)</text><text x="98" y="193" text-anchor="end" font-size="14">over 40 km</text><rect x="110" y="180" width="306.9" height="18" rx="3" fill="#C98A45"/><text x="424.9" y="194" font-size="14">+115 km² (77 → 192)</text></svg><figcaption>Built area added between 1975 and 2020, by distance from the nearest of the Johannesburg and Pretoria CBDs. The most was added 20–30 km out.</figcaption></figure>
+      </section>
+
+      <section aria-labelledby="ue-sheets">
+        <div class="head"><div><h2 id="ue-sheets">Static maps</h2><p>Four finished QGIS map sheets, ready to print. Click a sheet to view it full screen, or download it.</p></div></div>
+        <div class="sheet-shelf" data-sheet-shelf aria-label="URBAN-EDGE ZA map sheets">
+          <div class="ss-scroll"><button class="ss-scroll-prev" type="button" aria-label="Scroll the sheets left">&larr;</button><button class="ss-scroll-next" type="button" aria-label="Scroll the sheets right">&rarr;</button></div>
+          <ul class="ss-row">
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/urban-edge-za/UE-01.jpg" data-dl="assets/img/maps/urban-edge-za/UE-01.jpg" data-file="URBAN-EDGE-ZA_UE-01.jpg" data-code="UE-01" data-title="Where Gauteng grew" data-text="The year each hectare of Gauteng first became built-up land, 1975–2020." aria-label="View map sheet UE-01: Where Gauteng grew">
+                <img src="assets/img/maps/thumbs/UE-01.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">UE-01</span><span class="ss-title">Where Gauteng grew</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/urban-edge-za/UE-01.jpg" download="URBAN-EDGE-ZA_UE-01.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/urban-edge-za/UE-02.jpg" data-dl="assets/img/maps/urban-edge-za/UE-02.jpg" data-file="URBAN-EDGE-ZA_UE-02.jpg" data-code="UE-02" data-title="How the land was added" data-text="New built-up land in each period, as infill, edge growth or leapfrog development." aria-label="View map sheet UE-02: How the land was added">
+                <img src="assets/img/maps/thumbs/UE-02.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">UE-02</span><span class="ss-title">How the land was added</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/urban-edge-za/UE-02.jpg" download="URBAN-EDGE-ZA_UE-02.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/urban-edge-za/UE-03.jpg" data-dl="assets/img/maps/urban-edge-za/UE-03.jpg" data-file="URBAN-EDGE-ZA_UE-03.jpg" data-code="UE-03" data-title="Two Gautengs" data-text="Built area per person by municipality, 1975 and 2020: the metros grew denser, the outer municipalities spread out." aria-label="View map sheet UE-03: Two Gautengs">
+                <img src="assets/img/maps/thumbs/UE-03.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">UE-03</span><span class="ss-title">Two Gautengs</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/urban-edge-za/UE-03.jpg" download="URBAN-EDGE-ZA_UE-03.jpg">Download</a>
+            </li>
+            <li class="ss-item">
+              <button class="ss-card" type="button" data-full="assets/img/maps/urban-edge-za/UE-04.jpg" data-dl="assets/img/maps/urban-edge-za/UE-04.jpg" data-file="URBAN-EDGE-ZA_UE-04.jpg" data-code="UE-04" data-title="Homes and jobs" data-text="Where non-residential building (offices, shops, industry) grew between 1975 and 2020, against new homes." aria-label="View map sheet UE-04: Homes and jobs">
+                <img src="assets/img/maps/thumbs/UE-04.jpg" alt="" loading="lazy" width="360" height="281">
+                <span class="ss-meta"><span class="ss-code">UE-04</span><span class="ss-title">Homes and jobs</span></span>
+              </button>
+              <a class="ss-dl" href="assets/img/maps/urban-edge-za/UE-04.jpg" download="URBAN-EDGE-ZA_UE-04.jpg">Download</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="ue-check">
+        <div class="head"><div><h2 id="ue-check">Checking the data, and its limits</h2></div></div>
+        <div class="prose">
+          <p><strong>Against South Africa's own land cover.</strong> SANLC 2022 (DFFE) agrees that 95% of the land GHSL calls built-up in 2020 is built-up. SANLC maps more land as built-up overall (4,168&nbsp;km² against 2,443) because it counts whole suburbs, gardens included, so GHSL's figures are on the cautious side. GHSL's population for 2020, 15.5 million, is close to the 2022 Census count of about 15.1 million.</p>
+          <ul>
+            <li>Only 1975, 1990, 2000, 2014 and 2018 come from satellite images (Landsat, then Sentinel-2). GHSL fills the years between by modelling, so the five-year steps are estimates, marked on the timeline.</li>
+            <li>The 1975 layer rests on coarse Landsat images; small settlements may be missed or placed loosely.</li>
+            <li>The "built-up land" threshold (a fifth of the hectare under buildings) is a choice. The totals of roofed area, which need no threshold, tell the same story: 532 to 1,113&nbsp;km².</li>
+            <li>Roads and stations are as mapped today, not as they were in each year.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="ue-src">
+        <div class="head"><div><h2 id="ue-src">Data</h2></div></div>
+        <div class="prose">
+          <ul>
+            <li>GHS-BUILT-S R2023A and GHS-POP R2023A, 1975–2020, 100&nbsp;m (Pesaresi and Politis 2023; Schiavina, Freire, Carioli and MacManus 2023), European Commission, Joint Research Centre.</li>
+            <li>South African National Land Cover 2022, Department of Forestry, Fisheries and the Environment.</li>
+            <li>Local municipal boundaries: Municipal Demarcation Board, via geoBoundaries (CC BY 4.0).</li>
+            <li>Places, main roads and railway stations: © OpenStreetMap contributors (ODbL).</li>
+          </ul>
+        </div>
+        <p><a class="btn btn-solid" href="https://github.com/seabilwe/urban-edge-za">Code on GitHub</a> <a class="btn btn-line" href="blogs.html#maps">Back to the gallery</a></p>
+      </section>
+      <footer>
+        <div class="foot">
+          <p>&copy; <span data-year>2026</span> Seabilwe P.L. Tilodi<br><a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></p>
+          <nav aria-label="Footer"><a href="index.html">Home</a><a href="about.html">About</a><a href="work.html">Work</a><a href="skills.html">Skills</a><a href="blogs.html">Writing &amp; maps</a><a href="contact.html">Contact</a><a href="license.html">License</a></nav>
+        </div>
+      </footer>
+    </div>
+  </main>
+</div>
+<script src="assets/js/site.js"></script>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="assets/js/story-map.js?v=20261120c"></script>
+<script src="assets/js/urban-edge.js?v=20261123b"></script>
+</body>
+</html>
