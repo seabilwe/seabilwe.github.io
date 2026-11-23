@@ -1,0 +1,87 @@
+/* FLOOD-LINE ZA: builds on urban-edge.css (the shared dashboard layout); only the flood-specific parts live here */
+.fl-root .ue-map{background:#ECEDE6}
+.fl-root .maplibregl-canvas{outline:none}
+.fl-root.is-drawing .maplibregl-canvas-container{cursor:crosshair}
+.fl-root .maplibregl-ctrl-attrib{background:rgba(246,247,240,.9);font:12px var(--sans);max-width:calc(100cqw - 150px)}
+.fl-root .maplibregl-ctrl-attrib a{color:var(--water)}
+.fl-root .maplibregl-ctrl-scale{border-color:var(--ink);color:var(--ink);background:rgba(246,247,240,.85);font:11px var(--sans)}
+.fl-root .maplibregl-ctrl-group{border-radius:var(--radius-sm);box-shadow:0 0 0 1px var(--rule)}
+.fl-root .maplibregl-popup-content{background:var(--sheet);border:1px solid var(--rule);border-radius:var(--radius-sm);box-shadow:var(--lift);padding:.6rem .75rem .65rem;font:14px/1.4 var(--sans);color:var(--ink)}
+.fl-root .maplibregl-popup-close-button{font-size:18px;color:var(--ink-soft);padding:0 6px}
+.fl-pop b{display:block;font-family:var(--serif);font-weight:500;font-size:1.05rem;padding-right:1rem}
+.fl-pop-d{display:block;font-size:.82rem;color:var(--contour-deep);margin:.1rem 0 .3rem}
+.fl-pop p{margin:.25rem 0}
+.fl-pop-s{font-size:.8rem;color:var(--ink-soft)}
+.fl-place{font:500 11.5px var(--sans);color:#2B1B17;white-space:nowrap;pointer-events:none;
+  text-shadow:-1px -1px 0 #F4EFE3,1px -1px 0 #F4EFE3,-1px 1px 0 #F4EFE3,1px 1px 0 #F4EFE3,0 0 3px #F4EFE3}
+.fl-place.is-city{font-weight:700;font-size:12.5px}
+.fl-place::before{content:"";display:inline-block;width:5px;height:5px;border-radius:50%;background:#2B1B17;margin:0 4px 1px -8px;vertical-align:middle}
+
+/* legend extras */
+.fl-legend i.dot{width:10px;height:10px;border-radius:50%}
+.fl-legend .fl-ramp i{width:100%;height:9px;border-radius:2px}
+.fl-legend .fl-ramp-l{display:flex;justify-content:space-between;font-size:.74rem;color:var(--ink-soft)}
+.fl-legend .fl-ramp-l em{font-style:normal}
+
+/* 3D height control */
+.fl-exag-box{display:none;position:absolute;left:50%;bottom:34px;transform:translateX(-50%);z-index:5;align-items:center;gap:.5rem;
+  background:rgba(246,247,240,.94);border:1px solid var(--rule);border-radius:var(--radius-pill);padding:.25rem .8rem;font-size:.85rem;color:var(--ink)}
+.fl-exag-box input{width:110px;accent-color:var(--contour)}
+.fl-exag-box output{font-variant-numeric:tabular-nums;min-width:2.4ch}
+.is-3d .fl-exag-box{display:flex}
+
+/* the bar under the map changes with the view */
+.fl-time [class*="fl-only-"]{display:none}
+[data-mode="events"] .fl-time .fl-only-events,
+[data-mode="growth"] .fl-time .fl-only-growth,
+[data-mode="exposure"] .fl-time .fl-only-exposure{display:revert}
+[data-mode="events"] .fl-time .fl-only-events.ue-track,[data-mode="growth"] .fl-time .fl-only-growth.ue-track{display:block}
+[data-mode="exposure"] .fl-time{grid-template-columns:minmax(0,1fr)}
+[data-mode="exposure"] .fl-time .fl-play{display:none}
+.fl-evnav{display:flex;gap:.3rem}
+.fl-evnav button{width:34px;height:34px;border-radius:50%;border:1.5px solid var(--ink);background:transparent;color:var(--ink);font-size:1.1rem;line-height:1;cursor:pointer}
+.fl-ev-trackwrap{position:relative;padding:8px 0 20px}
+.fl-ev-track{position:relative;height:26px;border-bottom:1.5px solid var(--rule)}
+.fl-ev-tick{position:absolute;bottom:-7px;width:13px;height:13px;margin-left:-6.5px;border-radius:50%;border:2px solid var(--sheet);background:#4E5C58;opacity:.7;cursor:pointer;padding:0}
+.fl-ev-tick.on{background:var(--rust,#A33B2B);opacity:1;width:17px;height:17px;margin-left:-8.5px;bottom:-9px;box-shadow:0 0 0 1px #A33B2B}
+.fl-ev-tick:focus-visible{outline:2px solid var(--water);outline-offset:2px}
+.fl-ev-yr{position:absolute;top:30px;transform:translateX(-50%);font-size:.76rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.fl-ev-out{font-size:1.25rem!important;min-width:8.5ch;white-space:nowrap}
+.fl-jumps{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;font-size:.9rem;margin:0}
+.fl-jumps span{color:var(--ink-soft)}
+.fl-jumps button{font:inherit;font-size:.86rem;padding:.28rem .75rem;border-radius:var(--radius-pill);border:1px solid var(--ink);background:var(--sheet);color:var(--ink);cursor:pointer}
+.fl-jumps button:hover{background:var(--ink);color:var(--paper)}
+
+/* detail panel */
+.fl-detail{min-height:0;overflow:hidden}
+.fl-detail .ue-panel-head{margin-bottom:.25rem}
+.fl-detail-body{flex:1 1 auto;min-height:0;overflow:auto}
+.fl-ev-text{margin:0 0 .45rem;font-size:.92rem;line-height:1.4}
+.fl-places{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.3rem}
+.fl-places li{display:flex}
+.fl-places button{font:inherit;font-size:.82rem;padding:.18rem .55rem;border-radius:var(--radius-pill);border:1px solid var(--rule);background:var(--paper);color:var(--ink);cursor:pointer}
+.fl-places button:hover{border-color:#A33B2B;color:#A33B2B}
+.fl-places span{display:none}
+.fl-note{margin:.2rem 0 0;font-size:.86rem;color:var(--ink-soft);line-height:1.4}
+.fl-bars{display:grid;gap:.45rem;margin:.2rem 0 .4rem}
+.fl-bars div{display:grid;grid-template-columns:8.5rem minmax(0,1fr) 3.2rem;align-items:center;gap:.5rem;font-size:.86rem}
+.fl-bars i{display:block;height:14px;border-radius:3px}
+.fl-bars b{font-family:var(--serif);font-weight:500;font-size:1.05rem}
+.fl-prof{display:block;width:100%;height:auto}
+.fl-hover{stroke:var(--ink);stroke-width:1;stroke-dasharray:3 2}
+.fl-draw{font:inherit;font-size:.82rem;padding:.22rem .7rem;border-radius:var(--radius-pill);border:1.5px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.fl-draw[aria-pressed="true"]{background:transparent;color:var(--ink)}
+.fl-chart .ue-chart-foot i{border-radius:2px}
+
+@media (max-width:640px){
+  .fl-ev-out{font-size:1.05rem!important}
+  .fl-evnav button{width:30px;height:30px}
+  .fl-bars div{grid-template-columns:6.5rem minmax(0,1fr) 3rem}
+}
+
+/* keep the control bar on one line on laptop screens */
+.fl-root .ue-bar{gap:.45rem .5rem}
+.fl-root .ue-area{min-width:0;width:10.5rem}
+.fl-root .ue-seg button{padding:.32rem .7rem}
+.fl-root .ue-chip{padding:.3rem .65rem}
+@media (max-width:640px){.fl-root .ue-area{width:auto;flex:1 1 100%}}
