@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
 <link rel="stylesheet" href="assets/css/story-map.css?v=20261120c">
 <link rel="stylesheet" href="assets/css/urban-edge.css?v=20261123b">
-<link rel="stylesheet" href="assets/css/flood-line.css?v=20261123b">
+<link rel="stylesheet" href="assets/css/flood-line.css?v=20261123c">
 </head>
 <body>
 <header class="topbar">
@@ -123,6 +123,7 @@
               <li>12% of Gauteng is low-lying land along its streams. Built-up land on it grew from 60 to 147&nbsp;km² between 1975 and 2020, ×2.4, while all built-up land grew ×2.0.</li>
               <li>About 892,000 people, 5.8% of Gauteng's residents, live on low-lying land. In 62 of the province's 529 wards, more than a fifth of residents do.</li>
               <li>In Johannesburg, 68,092 buildings, 884&nbsp;km of road, 27 schools and 9 clinics or hospitals sit on it.</li>
+              <li>6 of the 13 floods came on a day wetter than about 94% of wet-season days since 1998. Others did not: on 3 December 2022, when the Jukskei swept people away at a baptism, Johannesburg averaged only 3&nbsp;mm: whatever rain caused it was too local for a city-wide average to register.</li>
               <li>70% of the better-located flood reports lie within 500&nbsp;m of the lowest class, against 35% of built-up Johannesburg. Only 6 of 54 reported places are near the global river model's 1-in-100-year flood zone.</li>
             </ul>
           </div>
@@ -165,7 +166,7 @@
             <li><b>Low-lying is not the same as risk.</b> The classes are a screening of terrain. Stormwater pipes, canals and recent works are not modelled, and nothing here estimates how often a place floods or the damage it would cause.</li>
             <li><b>Buildings and heights.</b> Footprints come from Overture Maps (mostly Google and Microsoft footprints, plus OpenStreetMap); heights in the 3D view are GHSL's average building height per hectare, so they are estimates. Facility counts depend on how complete OpenStreetMap is.</li>
             <li><b>Exposure, not vulnerability.</b> The ward map counts who lives on low-lying land (GHS-POP 2020, which spreads census counts over built-up land). It does not yet weigh how well people can cope: housing, services and age from Census 2022 ward tables would add that.</li>
-            <li><b>Rainfall.</b> CHIRPS v3 blends satellite and gauge rain at about 5&nbsp;km; a thunderstorm cell can be smaller than that. November 2026 values are preliminary.</li>
+            <li><b>Rainfall.</b> CHIRPS v3 blends satellite and gauge rain at about 5&nbsp;km, with daily timing from NASA's IMERG; a thunderstorm cell can be smaller than that, and the chart averages it over all of Johannesburg. Days up to October 2026 come from Earth Engine's copy of CHIRPS v3, checked against the Climate Hazards Center's own files (they agree to within 0.02&nbsp;mm a day on average); November 2026 values are preliminary, and a few November days are still missing.</li>
           </ul>
         </div>
       </section>
@@ -197,6 +198,6 @@
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js"></script>
-<script src="assets/js/flood-line.js?v=20261123b"></script>
+<script src="assets/js/flood-line.js?v=20261123c"></script>
 </body>
 </html>

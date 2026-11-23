@@ -484,7 +484,12 @@
 
         // event ticks on the 2016-2026 track
         const t0 = Date.parse('2016-06-01'), t1 = Date.parse('2027-01-01');
-        $('.fl-ev-track').innerHTML = D.events.map((e, i) => `<button type="button" class="fl-ev-tick" style="left:${(100 * (Date.parse(e.date) - t0) / (t1 - t0)).toFixed(2)}%" aria-label="${esc(e.label)}" data-i="${i}"></button>`).join('') +
+        // floods a few days apart would sit on one another: lift every close neighbour one row
+        const rowEnd = [-99, -99, -99];
+        $('.fl-ev-track').innerHTML = D.events.map((e, i) => {
+          const pc = 100 * (Date.parse(e.date) - t0) / (t1 - t0);
+          let row = rowEnd.findIndex(x => pc - x >= 3.5); if (row < 0) row = 2; rowEnd[row] = pc;
+          return `<button type="button" class="fl-ev-tick${row ? ' up' + row : ''}" style="left:${pc.toFixed(2)}%" aria-label="${esc(e.label)}" title="${esc(e.label)}" data-i="${i}"></button>`; }).join('') +
           [2017, 2019, 2021, 2023, 2025].map(y => `<span class="fl-ev-yr" style="left:${(100 * (Date.parse(y + '-01-01') - t0) / (t1 - t0)).toFixed(2)}%">${y}</span>`).join('');
         $$('.fl-ev-tick').forEach(b => b.addEventListener('click', () => { stop(); setEvent(+b.dataset.i); }));
         ev = D.events.length - 1;

@@ -89,3 +89,7 @@
 .fl-legend .fl-wards{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
 .fl-legend .fl-wards i{width:auto;height:9px;border-radius:0}
 .fl-legend .fl-wards i:first-child{border-radius:2px 0 0 2px}.fl-legend .fl-wards i:last-child{border-radius:0 2px 2px 0}
+.fl-ev-tick.up1{bottom:8px}
+.fl-ev-tick.up1.on{bottom:6px}
+.fl-ev-tick.up2{bottom:23px}
+.fl-ev-tick.up2.on{bottom:21px}
