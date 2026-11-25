@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261125a">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261125b">
 </head>
 <body>
 <header class="topbar">
@@ -85,6 +85,8 @@
             <button class="folder-tab" role="tab" id="tab-24" aria-controls="day-24" aria-selected="false" tabindex="-1" data-day="24" data-thumb="assets/maps/30daymapchallenge/day24-the-spine-of-the-country.jpg"><small>Day 24</small>Network</button>
             <button class="folder-tab" role="tab" id="tab-25" aria-controls="day-25" aria-selected="false" tabindex="-1" data-day="25" data-thumb="assets/maps/30daymapchallenge/day25-one-line.jpg"><small>Day 25</small>Is this a map?</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
+            <button class="folder-tab" role="tab" id="tab-27" aria-controls="day-27" aria-selected="false" tabindex="-1" data-day="27" data-thumb="assets/maps/30daymapchallenge/day27-the-green-thread.jpg"><small>Day 27</small>New tool</button>
+            <button class="folder-tab" role="tab" id="tab-28" aria-controls="day-28" aria-selected="false" tabindex="-1" data-day="28" data-thumb="assets/maps/30daymapchallenge/day28-how-the-heat-felt.jpg"><small>Day 28</small>Senses: Feeling</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
           </div>
 
@@ -810,6 +812,62 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-27" role="tabpanel" aria-labelledby="tab-27" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day27-the-green-thread-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day27-the-green-thread.jpg" alt="True-colour Sentinel-2 image of the red Kalahari sands cut by the Orange River, lined with a narrow green ribbon of vineyards and orchards from Augrabies Falls past Kakamas and Keimoes to Upington" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 34S</span><a href="assets/maps/30daymapchallenge/day27-the-green-thread-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 27 · New tool</p>
+                <h3>The green thread</h3>
+                <p class="brief">The new tool is a cloud-native workflow: a STAC search for Sentinel-2 scenes, then reading only the needed pixels from cloud-optimised GeoTIFFs over the web. What it shows is a thread of vines a few kilometres wide, fed by the Orange River through the Kalahari.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>329&nbsp;km&sup2;</b><span>of green cover, 2.7% of the view</span></li>
+                  <li class="stat"><b>1.7&nbsp;GB</b><span>of source files left in the cloud</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Searched the Element 84 Earth Search STAC catalogue for Sentinel-2 L2A scenes over the river between December 2025 and March 2026 with under 3% cloud, and chose 24 January 2026, when both tiles (34JDP and 34JEP) were cloud-free.</li>
+                  <li>Used GDAL to read the red, green, blue, near-infrared, SWIR and scene-classification bands straight from the cloud-optimised GeoTIFFs on AWS. HTTP range requests fetch only the part of each file that is needed, so nothing was downloaded or unzipped.</li>
+                  <li>Warped both tiles into one mosaic in UTM&nbsp;34S at 30&nbsp;m and drew the true colour with a gentle stretch.</li>
+                  <li>Counted green cover where NDVI is 0.4 or more, with water masked using the scene classification, and summed it per kilometre from west to east for the chart.</li>
+                  <li>Green cover includes vines, orchards and the bush along the river banks, not only irrigated fields.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Imagery: contains modified Copernicus Sentinel-2 data (2026), via Element 84 Earth Search and the AWS Open Data registry · Places: GeoNames (CC BY 4.0).</p>
+                <ul class="tags"><li>STAC</li><li>Cloud-optimised GeoTIFF</li><li>Sentinel-2</li><li>NDVI</li><li>Python · GDAL</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-28" role="tabpanel" aria-labelledby="tab-28" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day28-how-the-heat-felt-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day28-how-the-heat-felt.jpg" alt="South Africa coloured by how much hotter or cooler summer afternoons felt than the air temperature: cool blues across the dry Karoo and Northern Cape, warming to deep orange along the humid KwaZulu-Natal coast and the Lowveld" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day28-how-the-heat-felt-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 28 · Senses: Feeling</p>
+                <h3>How the heat felt</h3>
+                <p class="brief">A feeling is hard to map, but heat is felt as much as measured. Humid air stops sweat from cooling us, while wind and dry air help, so the same thermometer reading feels very different across the country.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>+4.0&nbsp;&deg;C</b><span>felt hotter on the Maputaland coast</span></li>
+                  <li class="stat"><b>&minus;2.8&nbsp;&deg;C</b><span>felt cooler in the Karoo</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Requested daily maximum air temperature and apparent (feels-like) temperature for January and February 2026 from the Open-Meteo Historical Weather API, which serves ERA5 reanalysis, at 503 points on a 0.5&deg; grid and at 13 towns.</li>
+                  <li>Averaged the daily maxima at each point and took the difference: feels-like minus air temperature.</li>
+                  <li>Interpolated the grid to 5&nbsp;km, smoothed it lightly, and coloured it on a diverging scale, cool where afternoons felt cooler than measured and warm where they felt hotter.</li>
+                  <li>Used each town&rsquo;s own point for its label and for the chart, so coastal towns are not mixed up with nearby sea or hills.</li>
+                  <li>Apparent temperature is a model of comfort from temperature, humidity, wind and sunshine; how heat feels also depends on the person.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Weather: Open-Meteo Historical Weather API (CC BY 4.0), ERA5 / ERA5-Land reanalysis (Copernicus Climate Change Service) · Borders: Natural Earth.</p>
+                <ul class="tags"><li>Climate</li><li>Apparent temperature</li><li>Interpolation</li><li>Python · SciPy</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-29" role="tabpanel" aria-labelledby="tab-29" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day29-sculpted-by-light-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg" alt="Shaded-relief map of the Maloti-Drakensberg: the high Lesotho plateau glows in sand tones above the dark, shadowed escarpment" width="1200" height="1500" loading="lazy"></a>
@@ -862,6 +920,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261125a"></script>
+<script src="assets/js/map-folder.js?v=20261125b"></script>
 </body>
 </html>
