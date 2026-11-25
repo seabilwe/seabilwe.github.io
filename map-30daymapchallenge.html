@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
-<link rel="stylesheet" href="assets/css/map-folder.css?v=20261123a">
+<link rel="stylesheet" href="assets/css/map-folder.css?v=20261125a">
 </head>
 <body>
 <header class="topbar">
@@ -82,6 +82,8 @@
             <button class="folder-tab" role="tab" id="tab-21" aria-controls="day-21" aria-selected="false" tabindex="-1" data-day="21" data-thumb="assets/maps/30daymapchallenge/day21-drawn-by-volunteers.jpg"><small>Day 21</small>OpenStreetMap</button>
             <button class="folder-tab" role="tab" id="tab-22" aria-controls="day-22" aria-selected="false" tabindex="-1" data-day="22" data-thumb="assets/maps/30daymapchallenge/day22-a-kilometre-is-not-a-kilometre.jpg"><small>Day 22</small>Projections</button>
             <button class="folder-tab" role="tab" id="tab-23" aria-controls="day-23" aria-selected="false" tabindex="-1" data-day="23" data-thumb="assets/maps/30daymapchallenge/day23-the-taste-of-one-place.jpg"><small>Day 23</small>Senses: Taste</button>
+            <button class="folder-tab" role="tab" id="tab-24" aria-controls="day-24" aria-selected="false" tabindex="-1" data-day="24" data-thumb="assets/maps/30daymapchallenge/day24-the-spine-of-the-country.jpg"><small>Day 24</small>Network</button>
+            <button class="folder-tab" role="tab" id="tab-25" aria-controls="day-25" aria-selected="false" tabindex="-1" data-day="25" data-thumb="assets/maps/30daymapchallenge/day25-one-line.jpg"><small>Day 25</small>Is this a map?</button>
             <button class="folder-tab" role="tab" id="tab-26" aria-controls="day-26" aria-selected="false" tabindex="-1" data-day="26" data-thumb="assets/maps/30daymapchallenge/day26-written-in-water.jpg"><small>Day 26</small>Water</button>
             <button class="folder-tab" role="tab" id="tab-29" aria-controls="day-29" aria-selected="false" tabindex="-1" data-day="29" data-thumb="assets/maps/30daymapchallenge/day29-sculpted-by-light.jpg"><small>Day 29</small>Raster</button>
           </div>
@@ -724,6 +726,63 @@
               </div>
             </article>
 
+            <article class="sheet" id="day-24" role="tabpanel" aria-labelledby="tab-24" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day24-the-spine-of-the-country-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day24-the-spine-of-the-country.jpg" alt="South Africa’s major roads in dark teal, with a glowing spine of modelled traffic: thick orange lines from Gauteng to Durban along the N3, to Cape Town along the N1, and out to Polokwane and Mbombela" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day24-the-spine-of-the-country-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 24 · Network</p>
+                <h3>The spine of the country</h3>
+                <p class="brief">A network is more than its lines: it is what flows along them. Sending intercity trips between 571 towns along their fastest routes shows which roads the country leans on.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>71%</b><span>of modelled travel on national (N) routes</span></li>
+                  <li class="stat"><b>8%</b><span>of the road network they make up</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Took every motorway, trunk, primary, secondary and tertiary road from the Geofabrik OpenStreetMap extract and split the ways wherever they share a node, giving a routable graph of 163,000 junctions and 199,000 road links.</li>
+                  <li>Gave each link a driving time from its length and a typical speed for its road class (110&nbsp;km/h on motorways down to 60&nbsp;km/h on tertiary roads).</li>
+                  <li>Took the 574 GeoNames towns of 5,000+ people and snapped each to the nearest junction.</li>
+                  <li>Ran a gravity model: trips between two towns more than an hour apart are proportional to the product of their populations divided by driving time squared.</li>
+                  <li>Sent every trip along its fastest route and added up the trips on each link. Line colour and width show each road&rsquo;s share of all trips.</li>
+                  <li>This is a model of where trips would go, not a traffic count; freight, tolls and congestion are left out.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Roads: &copy; OpenStreetMap contributors (ODbL), Geofabrik extract of 15 November 2026 · Towns: GeoNames (CC BY 4.0) · Boundaries: Natural Earth.</p>
+                <ul class="tags"><li>Network analysis</li><li>Gravity model</li><li>Shortest paths</li><li>Python · SciPy</li></ul>
+              </div>
+            </article>
+
+            <article class="sheet" id="day-25" role="tabpanel" aria-labelledby="tab-25" tabindex="0" hidden>
+              <figure class="sheet-map">
+                <a href="assets/maps/30daymapchallenge/day25-one-line-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day25-one-line.jpg" alt="A single continuous line in province colours that wanders through more than twelve thousand places; with no borders drawn, the shape of South Africa still appears, dense in the east and sparse across the Karoo. Below, the line is unrolled into a strip of province colours" width="1200" height="1500" loading="lazy"></a>
+                <figcaption><span>Portrait poster, WGS&nbsp;84 / UTM zone 35S</span><a href="assets/maps/30daymapchallenge/day25-one-line-full.jpg" target="_blank" rel="noopener">Open full size</a></figcaption>
+              </figure>
+              <div class="slip">
+                <svg class="clip" viewBox="0 0 22 54" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 14V44a5 5 0 0 0 10 0V8a7 7 0 0 0-14 0v34"/></svg>
+                <p class="theme">Day 25 · Is this a map?</p>
+                <h3>One line</h3>
+                <p class="brief">No border, no coastline, no names: only a line that never lifts, passing once through every populated place in the gazetteer. The country still appears. Pulled straight, it becomes a strip of provinces and stops being a map.</p>
+                <ul class="stat-row">
+                  <li class="stat"><b>12,376</b><span>places on one line</span></li>
+                  <li class="stat"><b>71,744&nbsp;km</b><span>of line, 1.8 times around the Earth</span></li>
+                </ul>
+                <h4>How I made it</h4>
+                <ul>
+                  <li>Took every populated place in the GeoNames gazetteer for South Africa, leaving out suburbs, historical and abandoned places, and merged any within 250&nbsp;m of each other.</li>
+                  <li>Solved a travelling-salesman tour through all 12,376 of them: a Hilbert-curve starting order, then 2-opt and Or-opt moves over each place&rsquo;s 12 nearest neighbours until no move helped.</li>
+                  <li>Opened the loop at its longest step, so the line has a start and an end, and drew jumps of 40&nbsp;km or more fainter.</li>
+                  <li>Coloured each stretch by the province it passes through, then unrolled the line into the strip below, to scale.</li>
+                  <li>The gazetteer&rsquo;s coverage is uneven, so dense areas partly reflect how well each area has been mapped.</li>
+                </ul>
+                <h4>Data</h4>
+                <p class="src">Places: GeoNames (CC BY 4.0) · Provinces: Natural Earth.</p>
+                <ul class="tags"><li>Generative cartography</li><li>Travelling salesman</li><li>Single-line drawing</li><li>Python · numba</li></ul>
+              </div>
+            </article>
+
             <article class="sheet" id="day-26" role="tabpanel" aria-labelledby="tab-26" tabindex="0" hidden>
               <figure class="sheet-map">
                 <a href="assets/maps/30daymapchallenge/day26-written-in-water-full.jpg" target="_blank" rel="noopener"><img src="assets/maps/30daymapchallenge/day26-written-in-water.jpg" alt="South Africa’s river network: perennial rivers in pale blue crowd the wetter east, seasonal rivers in sand dominate the dry west" width="1200" height="1500" loading="lazy"></a>
@@ -803,6 +862,6 @@
   </main>
 </div>
 <script src="assets/js/site.js"></script>
-<script src="assets/js/map-folder.js?v=20261123a"></script>
+<script src="assets/js/map-folder.js?v=20261125a"></script>
 </body>
 </html>
