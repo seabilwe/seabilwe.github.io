@@ -4,16 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GeoReady: where can solar connect in the Northern Cape?, Seabilwe Tilodi</title>
-<meta name="description" content="GeoReady, a reproducible solar investment readiness model for the Northern Cape: eligible land, capacity, indicative cost, NTCSA grid headroom and readiness by zone, built as Jupyter notebooks that also run in QGIS.">
+<meta name="description" content="GeoReady, a reproducible solar investment readiness model for the Northern Cape: eligible land, capacity, indicative cost, NTCSA grid headroom and readiness by zone, with maps and data to download.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/site.css?v=20261114c">
 <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
-<link rel="stylesheet" href="assets/css/story-map.css?v=20261120c">
-<link rel="stylesheet" href="assets/css/urban-edge.css?v=20261123b">
-<link rel="stylesheet" href="assets/css/geoready.css?v=20261126a">
+<link rel="stylesheet" href="assets/css/geoready.css?v=20261126c">
 </head>
 <body>
 <header class="topbar">
@@ -43,128 +41,115 @@
   </aside>
 
   <main>
-    <div class="wrap">
+    <div class="wrap gr-page" data-geoready data-base="assets/models/geoready/" data-run="2026-11-26_nc-pv-v01_3d5fc633" data-date="2026-11-26">
 
-      <header class="page-head">
-        <p class="topic"><a href="models.html">Models</a></p>
-        <h1>GeoReady: where can solar connect in the Northern Cape?<span class="gr-badge">Preview</span></h1>
-        <p class="lede">A reproducible screening model that goes past site suitability to investment readiness: eligible land, capacity, indicative cost, grid headroom and permitting, zone by zone. Built as Jupyter notebooks that also run inside QGIS.</p>
-        <ul class="ue-meta">
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span><b>Utility-scale solar PV</b> · Northern Cape pilot</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 7 22M12 2l5 20M8.5 9h7M7.5 14h9M6 20h12"/></svg><span><b>Grid limits</b> from NTCSA GCCA 2025</span></li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h3"/></svg><span><b>Five notebooks</b> · run <code>2026-11-26_nc-pv-v01_3d5fc633</code></span></li>
-        </ul>
+      <header class="page-head gr-head">
+        <p class="gr-crumb"><a href="models.html">Models</a></p>
+        <h1>Where can solar connect in the Northern&nbsp;Cape?</h1>
+        <p class="lede">GeoReady looks past good sunshine to the question investors ask next: can a project actually connect to the grid, at what cost, and with what permits? It scores 2,132 candidate zones under three grid scenarios.</p>
+        <p class="gr-preview">Preview. The cost and capacity assumptions have not yet been reviewed by an energy engineer or a grid planner.</p>
+        <ol class="gr-howto" aria-label="How to use this page">
+          <li><a href="#gr-step1"><b>Pick a grid scenario</b><span>See how much solar could connect.</span></a></li>
+          <li><a href="#gr-step2"><b>Click a square on the map</b><span>See why a zone is more or less ready.</span></a></li>
+          <li><a href="#gr-step3"><b>Download</b><span>Take the map or the data with you.</span></a></li>
+        </ol>
       </header>
 
-      <section aria-labelledby="gr-explore">
-        <h2 id="gr-explore" class="vh">Explore the model</h2>
-        <div class="ue-root gr-root" data-geoready data-base="assets/models/geoready/">
-          <div class="ue-dash">
-            <div class="ue-card ue-mapcard">
-              <div class="ue-bar">
-                <div class="ue-seg gr-scen" role="group" aria-label="Grid scenario">
-                  <button type="button" data-s="published" aria-pressed="true">As published</button>
-                  <button type="button" data-s="strengthened" aria-pressed="false">Backbone strengthened</button>
-                  <button type="button" data-s="unconstrained" aria-pressed="false">No grid limit</button>
-                </div>
-                <span class="ue-spacer"></span>
-                <button type="button" class="ue-chip gr-excl" aria-pressed="true">Exclusions</button>
-                <button type="button" class="ue-chip gr-gcca" aria-pressed="false">Substation zones</button>
-              </div>
-              <div class="ue-mapwrap">
-                <div class="ue-map gr-map" tabindex="0" aria-label="Map of candidate solar zones in the Northern Cape coloured by readiness. Click a zone for its criteria. Hold Ctrl and scroll to zoom."></div>
-                <div class="ue-legend gr-legend" aria-hidden="true"></div>
-              </div>
-              <div class="ue-time" style="grid-template-columns:1fr">
-                <p class="ue-time-note" style="margin:0"><i aria-hidden="true"></i>Zones are 10&nbsp;km squares of eligible land, split by GCCA substation zone. Coloured land inside a square is excluded; the outlined zones get capacity in the chosen scenario.</p>
-              </div>
-            </div>
+      <section id="gr-step1" class="gr-step" aria-labelledby="gr-s1h">
+        <div class="gr-step-head"><span class="gr-num" aria-hidden="true">1</span><div><h2 id="gr-s1h">Pick a grid scenario</h2><p>Each bar is the solar capacity that could connect in that scenario, on one scale. The map, the chart and the downloads below all follow your choice.</p></div></div>
+        <fieldset class="gr-scen">
+        <legend class="vh">Grid scenario</legend>
+        <label class="gr-scen-row">
+          <input type="radio" name="gr-scen" value="published" checked>
+          <span class="gr-scen-text"><b>As the grid stands</b><span>NTCSA's GCCA 2025 limits at the substation, the local area and the supply area.</span></span>
+          <span class="gr-scen-bar" aria-hidden="true"><i style="width:0.000%"></i></span>
+          <span class="gr-scen-mw">0&nbsp;MW</span>
+        </label>
+        <label class="gr-scen-row">
+          <input type="radio" name="gr-scen" value="strengthened">
+          <span class="gr-scen-text"><b>If the backbone were reinforced</b><span>Only each substation's own limit applies, as if the lines upstream were strengthened.</span></span>
+          <span class="gr-scen-bar" aria-hidden="true"><i style="width:0.274%"></i></span>
+          <span class="gr-scen-mw">4.3&nbsp;GW</span>
+        </label>
+        <label class="gr-scen-row">
+          <input type="radio" name="gr-scen" value="unconstrained">
+          <span class="gr-scen-text"><b>With no grid limit</b><span>Technical potential: all eligible zones, built on a tenth of their land.</span></span>
+          <span class="gr-scen-bar" aria-hidden="true"><i style="width:100.000%"></i></span>
+          <span class="gr-scen-mw">1,564&nbsp;GW</span>
+        </label>
+        </fieldset>
+      </section>
 
-            <div class="ue-side">
-              <div>
-                <p class="ue-area-name">GCCA 2025 as published</p>
-                <div class="ue-tiles gr-tiles-a"></div>
-                <div class="ue-tiles ue-tiles-2 gr-tiles-b" style="margin-top:.5rem"></div>
-              </div>
-              <div class="ue-card ue-panel ue-chart gr-chart">
-                <div class="ue-panel-head"><h3>Supply curve</h3></div>
-                <svg viewBox="0 0 360 170" role="img" aria-label="Connectable capacity against indicative cost, cheapest zones first"></svg>
-                <div class="ue-chart-foot gr-chart-foot"></div>
-              </div>
-              <div class="ue-card ue-panel gr-detail">
-                <div class="ue-panel-head"><h3>Why this zone</h3></div>
-                <div class="gr-detail-body"></div>
-              </div>
-            </div>
+      <section id="gr-step2" class="gr-step" aria-labelledby="gr-s2h">
+        <div class="gr-step-head"><span class="gr-num" aria-hidden="true">2</span><div><h2 id="gr-s2h">Click a square on the map</h2><p>Each square is a 10&nbsp;km zone of land where solar is allowed and practical. Darker squares are readier. Outlined squares get grid capacity in the scenario you picked.</p></div></div>
+        <div class="gr-mapbox">
+          <div class="gr-mapframe">
+          <div class="gr-map" tabindex="0" aria-label="Map of candidate solar zones in the Northern Cape, coloured by readiness. Click a zone for its details. Hold Ctrl and scroll to zoom."></div>
+          <div class="gr-maptools">
+            <p class="gr-showing">Showing: <b class="gr-showing-name">As the grid stands</b></p>
+            <label class="gr-switch"><input type="checkbox" class="gr-excl" checked><span>Show excluded land</span></label>
+            <label class="gr-switch"><input type="checkbox" class="gr-gcca"><span>Show substation areas</span></label>
           </div>
-        </div>
-
-        <div class="ue-cards">
-          <div class="ue-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Key takeaways</h3>
-            <ul>
-              <li><b>Land is not the constraint.</b> About 184,000&nbsp;km², half the province, passes every exclusion. Built out at a tenth of that land, the 2,132 zones hold about 1,560&nbsp;GW.</li>
-              <li><b>The grid is.</b> Under GCCA 2025 as published, every zone sits behind a local-area or supply-area limit of 0&nbsp;MW. Nothing can connect.</li>
-              <li>If the backbone were reinforced, substation limits alone would allow about 4.3&nbsp;GW, in 18 zones. Eight substations, with 45% of the technical potential behind them, report 0&nbsp;MW even at the substation.</li>
-              <li>Cost barely separates zones: 90% fall between R807 and R886/MWh in the base case. Grid headroom separates them.</li>
-            </ul>
+          <div class="gr-key" aria-hidden="true"></div>
+          <p class="gr-tip">Click any coloured square</p>
           </div>
-          <div class="ue-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>Method</h3>
-            <p>Each 250&nbsp;m cell gets an exclusion reason: protected areas (a legal bar), then land cover, slope over 15°, weak sun, or more than 50&nbsp;km from a ≥132&nbsp;kV substation (editable thresholds). Eligible land is cut into zones; capacity, yield and cost follow; GCCA limits are shared, so capacity is allocated cheapest-first and never counted twice.</p>
-            <p>Readiness weighs sun (0.20), cost (0.25), distance to grid (0.15), grid headroom (0.25) and REDZ (0.15) on fixed scales.</p>
-          </div>
-          <div class="ue-card">
-            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Data and tools</h3>
-            <ul class="ue-tools">
-              <li><b>Data:</b> Global Solar Atlas, Copernicus DEM, SANLC 2022, WDPA, DFFE/CSIR REDZ and EIA applications, NTCSA GCCA 2025, OpenStreetMap</li>
-              <li><b>Tools:</b> Python (NumPy, pandas, GeoPandas, rasterio), Jupyter, QGIS and the QGIS Notebook plugin, pytest, MapLibre GL</li>
-            </ul>
-          </div>
+          <aside class="gr-drawer" aria-live="polite" hidden>
+            <button type="button" class="gr-close" aria-label="Close zone details">Close</button>
+            <div class="gr-drawer-body"></div>
+          </aside>
+          <p class="gr-maperr" hidden></p>
         </div>
+        <p class="gr-mapnote">Zoom with the + and − buttons, or hold Ctrl and scroll. Land outside the squares is more than 50&nbsp;km from a substation of 132&nbsp;kV or more.</p>
       </section>
 
-      <section aria-labelledby="gr-how">
-        <div class="head"><div><h2 id="gr-how">How the model runs</h2><p>Five notebooks on a small Python package, each writing into one run folder. Every assumption sits in a YAML file with its source; every input is checksummed; and the last notebook writes nothing unless the release gate passes. The same notebooks run in plain Jupyter and inside QGIS, where the final cell loads the results onto the map.</p></div></div>
-        <figure class="ue-fig"><svg class="gr-flow" viewBox="0 0 760 150" role="img" aria-labelledby="gr-flt"><title id="gr-flt">The five GeoReady notebooks in order, ending in a QA gate before outputs are written</title><defs><marker id="gr-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#23312F"/></marker></defs><rect class="box" x="8" y="20" width="124" height="92" rx="8"/><text class="s" x="20" y="42">notebook 00</text><text class="t" x="20" y="64">Run record</text><text class="s" x="20" y="84">run id, parameters,</text><text class="s" x="20" y="99">input checksums</text><path class="arr" d="M135,66 H156"/><rect class="box" x="160" y="20" width="124" height="92" rx="8"/><text class="s" x="172" y="42">notebook 01</text><text class="t" x="172" y="64">Eligible land</text><text class="s" x="172" y="84">exclusion reasons,</text><text class="s" x="172" y="99">10 km zones</text><path class="arr" d="M287,66 H308"/><rect class="box" x="312" y="20" width="124" height="92" rx="8"/><text class="s" x="324" y="42">notebook 02</text><text class="t" x="324" y="64">Capacity & cost</text><text class="s" x="324" y="84">MW, yield,</text><text class="s" x="324" y="99">LCOE low/base/high</text><path class="arr" d="M439,66 H460"/><rect class="box" x="464" y="20" width="124" height="92" rx="8"/><text class="s" x="476" y="42">notebook 03</text><text class="t" x="476" y="64">Grid & readiness</text><text class="s" x="476" y="84">GCCA limits, supply</text><text class="s" x="476" y="99">curves, scores</text><path class="arr" d="M591,66 H612"/><rect class="gate" x="616" y="20" width="124" height="92" rx="8"/><text class="s" x="628" y="42">notebook 04</text><text class="t" x="628" y="64">QA gate</text><text class="s" x="628" y="84">all checks pass</text><text class="s" x="628" y="99">or nothing is written</text><text class="s" x="380.0" y="140" text-anchor="middle">Outputs: GeoPackage · eligibility GeoTIFF · supply-curve CSVs · regional band table for OSeMOSYS · run.json</text></svg></figure>
-        <div class="prose">
-          <ul class="gr-nbs"><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/00_run_record.ipynb">00_run_record.ipynb</a> · Run record: parameters, input checksums, software</li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/01_eligibility_zones.ipynb">01_eligibility_zones.ipynb</a> · Exclusion reasons and candidate zones</li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/02_capacity_cost.ipynb">02_capacity_cost.ipynb</a> · Capacity, yield, connection cost and LCOE</li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/03_grid_readiness.ipynb">03_grid_readiness.ipynb</a> · GCCA limits, allocation, supply curves, readiness, sensitivity</li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/04_qa_publish.ipynb">04_qa_publish.ipynb</a> · QA gate, outputs, and the QGIS hook</li></ul>
+      <section class="gr-step gr-curve" aria-labelledby="gr-ch">
+        <div class="gr-step-head"><span class="gr-num gr-num-off" aria-hidden="true"></span><div><h2 id="gr-ch">What each megawatt would cost</h2><p class="gr-curve-intro"></p></div></div>
+        <figure class="gr-chart">
+          <svg viewBox="0 0 900 320" role="img" aria-labelledby="gr-chart-t"><title id="gr-chart-t">Supply curve: connectable capacity, cheapest zones first, against indicative cost</title></svg>
+          <figcaption><span class="gr-sw gr-sw-bar"></span>Indicative cost of each zone, base assumptions, in 2025 rand per MWh. <span class="gr-sw gr-sw-bid"></span>Prices bid for solar in REIPPPP Bid Window 7 (R500–514/MWh). Click a bar to show that zone on the map.</figcaption>
+        </figure>
+      </section>
+
+      <section id="gr-step3" class="gr-step" aria-labelledby="gr-s3h">
+        <div class="gr-step-head"><span class="gr-num" aria-hidden="true">3</span><div><h2 id="gr-s3h">Download</h2><p>Files follow the scenario you picked in step 1, now <b class="gr-showing-name">as the grid stands</b>. Everything is free to reuse with credit; the data sources keep their own licences.</p></div></div>
+        <ul class="gr-dl">
+          <li><div><b>The map, as you see it</b><span>PNG with title, legend, scenario and sources. Zoom or pan first to frame it.</span></div><button type="button" class="btn btn-solid" data-dl="png">Download map image</button></li>
+          <li><div><b>Zones for this scenario</b><span>CSV, one row per zone: readiness, capacity, connectable MW, cost, distance, grid limits and what limits it.</span></div><button type="button" class="btn btn-line" data-dl="csv">Download zones (CSV)</button></li>
+          <li><div><b>Supply curve for this scenario</b><span>CSV, zones in order of cost with cumulative MW.</span></div><button type="button" class="btn btn-line" data-dl="curve">Download supply curve (CSV)</button></li>
+          <li><div><b>Zone shapes, all scenarios</b><span>GeoJSON in WGS84 for QGIS or any GIS, with every scenario's results as attributes.</span></div><a class="btn btn-line" href="assets/models/geoready/zones.geojson" download="geoready_nc_zones_2026-11-26.geojson">Download zones (GeoJSON)</a></li>
+          <li><div><b>The model itself</b><span>The notebooks, code and assumptions, to rerun it or change it.</span></div><a class="btn btn-line" href="https://github.com/seabilwe/geoready">Open on GitHub</a></li>
+        </ul>
+      </section>
+
+      <section class="gr-findings" aria-labelledby="gr-fh">
+        <h2 id="gr-fh">What the model found</h2>
+        <div class="gr-cols">
+          <p><b>Land is not what holds solar back.</b> About 184,000&nbsp;km², half the province, passes every exclusion, enough for about 1,560&nbsp;GW on a tenth of it.</p>
+          <p><b>The grid is.</b> As the grid stands, every zone sits behind a local-area or supply-area limit of 0&nbsp;MW. Nothing can connect.</p>
+          <p><b>Reinforcing the backbone would open about 4.3&nbsp;GW</b>, in 18 zones. Eight substations, including Upington, Kronos and Paulputs, would still take 0&nbsp;MW, and 45% of the potential sits behind them.</p>
+          <p><b>Cost barely separates zones.</b> Nine in ten fall between R807 and R886/MWh. Grid headroom is what separates them.</p>
         </div>
+        <div class="gr-tablewrap"><table class="gr-table"><caption>Ten most ready zones if the backbone were reinforced. Select a zone to see it on the map.</caption><thead><tr><th scope="col">Zone</th><th scope="col">Substation, local area</th><th scope="col">Readiness, reinforced</th><th scope="col">Readiness, as it stands</th><th scope="col">Connectable MW, reinforced</th><th scope="col">LCOE, base</th><th scope="col">In a solar REDZ</th></tr></thead><tbody><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0923">Z0923</button></th><td>Nieuwehoop, Kimberley</td><td>0.71</td><td>0.57</td><td>475</td><td>R795</td><td>Yes</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0971">Z0971</button></th><td>Aggeneis, Namaqualand</td><td>0.63</td><td>0.49</td><td>419</td><td>R775</td><td>No</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0245">Z0245</button></th><td>Ferrum, Kalahari</td><td>0.61</td><td>0.36</td><td>753</td><td>R814</td><td>No</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z1249">Z1249</button></th><td>Groeipunt, Namaqualand</td><td>0.58</td><td>0.51</td><td>101</td><td>R771</td><td>No</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0829">Z0829</button></th><td>Nieuwehoop, Kimberley</td><td>0.57</td><td>0.57</td><td>0</td><td>R797</td><td>Yes</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0983">Z0983</button></th><td>Nieuwehoop, Kimberley</td><td>0.57</td><td>0.57</td><td>0</td><td>R798</td><td>Yes</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z2119">Z2119</button></th><td>Gamma, Hydra Central</td><td>0.57</td><td>0.32</td><td>755</td><td>R828</td><td>No</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0991">Z0991</button></th><td>Nieuwehoop, Kimberley</td><td>0.56</td><td>0.56</td><td>0</td><td>R800</td><td>Yes</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0776">Z0776</button></th><td>Garona, Kimberley</td><td>0.56</td><td>0.56</td><td>0</td><td>R801</td><td>Yes</td></tr><tr><th scope="row"><button type="button" class="gr-link" data-zone="Z0928">Z0928</button></th><td>Nieuwehoop, Kimberley</td><td>0.56</td><td>0.56</td><td>0</td><td>R803</td><td>Yes</td></tr></tbody></table></div>
+        <p class="gr-small">Readiness weighs sun (0.20), cost (0.25), distance to the grid (0.15), grid headroom (0.25) and being in a solar REDZ (0.15), each on a fixed 0–1 scale. The weights matter: weighting sun most, only 14 of the top 50 zones stay in the top 50; weighting grid or permitting most, 46 and 43 do.</p>
       </section>
 
-      <section aria-labelledby="gr-ready">
-        <div class="head"><div><h2 id="gr-ready">The most ready zones</h2><p>Ranked for the strengthened case, where grid headroom can differ between zones. As published, headroom is zero everywhere, so the order rests on sun, cost, distance and REDZ alone. A shift in weights matters: with sun weighted most heavily, only 14 of the top 50 zones stay in the top 50; with grid or permitting weighted most, 46 and 43 do.</p></div></div>
-        <div class="ue-card" style="padding:.3rem .8rem;overflow-x:auto"><table class="gr-table"><caption class="vh">The ten most ready zones if the backbone were strengthened</caption><thead><tr><th scope="col">Zone</th><th scope="col">Substation · local area</th><th scope="col">Readiness, strengthened</th><th scope="col">Readiness, as published</th><th scope="col">MW connectable, strengthened</th><th scope="col">Technical MW</th><th scope="col">LCOE, base</th><th scope="col">To substation</th><th scope="col">In a solar REDZ</th></tr></thead><tbody><tr><td>Z0923</td><td>Nieuwehoop · Kimberley</td><td>0.71</td><td>0.57</td><td>475</td><td>869</td><td>R795</td><td>4 km</td><td>yes</td></tr><tr><td>Z0971</td><td>Aggeneis · Namaqualand</td><td>0.63</td><td>0.49</td><td>419</td><td>784</td><td>R775</td><td>4 km</td><td>no</td></tr><tr><td>Z0245</td><td>Ferrum · Kalahari</td><td>0.61</td><td>0.36</td><td>753</td><td>753</td><td>R814</td><td>3 km</td><td>no</td></tr><tr><td>Z1249</td><td>Groeipunt · Namaqualand</td><td>0.58</td><td>0.51</td><td>101</td><td>362</td><td>R771</td><td>5 km</td><td>no</td></tr><tr><td>Z0829</td><td>Nieuwehoop · Kimberley</td><td>0.57</td><td>0.57</td><td>0</td><td>614</td><td>R797</td><td>4 km</td><td>yes</td></tr><tr><td>Z0983</td><td>Nieuwehoop · Kimberley</td><td>0.57</td><td>0.57</td><td>0</td><td>862</td><td>R798</td><td>5 km</td><td>yes</td></tr><tr><td>Z2119</td><td>Gamma · Hydra Central</td><td>0.57</td><td>0.32</td><td>755</td><td>755</td><td>R828</td><td>6 km</td><td>no</td></tr><tr><td>Z0991</td><td>Nieuwehoop · Kimberley</td><td>0.56</td><td>0.56</td><td>0</td><td>870</td><td>R800</td><td>8 km</td><td>yes</td></tr><tr><td>Z0776</td><td>Garona · Kimberley</td><td>0.56</td><td>0.56</td><td>0</td><td>256</td><td>R801</td><td>6 km</td><td>yes</td></tr><tr><td>Z0928</td><td>Nieuwehoop · Kimberley</td><td>0.56</td><td>0.56</td><td>0</td><td>870</td><td>R803</td><td>9 km</td><td>yes</td></tr></tbody></table></div>
-      </section>
+      <section class="gr-how" aria-labelledby="gr-hh">
+        <h2 id="gr-hh">How the model works</h2>
+        <p>Five Jupyter notebooks on a small Python package. Every assumption sits in one settings file with its source, every input is checksummed, and nothing is written unless the release checks pass. The same notebooks run in plain Jupyter and inside QGIS with the Notebook plugin, where the last step loads the results onto your map.</p>
+        <figure class="gr-flowfig"><svg class="gr-flow" viewBox="0 0 760 112" role="img" aria-labelledby="gr-flt"><title id="gr-flt">The five GeoReady notebooks in order, ending in release checks before any output is written</title><defs><marker id="gr-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#23312F"/></marker></defs><rect class="box" x="8" y="8" width="136" height="92" rx="10"/><text class="n" x="20" y="30">00</text><text class="t" x="20" y="52">Run record</text><text class="s" x="20" y="72">parameters and</text><text class="s" x="20" y="87">input checksums</text><path class="arr" d="M147,54 H158"/><rect class="box" x="162" y="8" width="136" height="92" rx="10"/><text class="n" x="174" y="30">01</text><text class="t" x="174" y="52">Eligible land</text><text class="s" x="174" y="72">exclusion reasons,</text><text class="s" x="174" y="87">10 km zones</text><path class="arr" d="M301,54 H312"/><rect class="box" x="316" y="8" width="136" height="92" rx="10"/><text class="n" x="328" y="30">02</text><text class="t" x="328" y="52">Capacity and cost</text><text class="s" x="328" y="72">MW, yield and</text><text class="s" x="328" y="87">LCOE in three cases</text><path class="arr" d="M455,54 H466"/><rect class="box" x="470" y="8" width="136" height="92" rx="10"/><text class="n" x="482" y="30">03</text><text class="t" x="482" y="52">Grid and readiness</text><text class="s" x="482" y="72">shared GCCA limits,</text><text class="s" x="482" y="87">supply curves, scores</text><path class="arr" d="M609,54 H620"/><rect class="gate" x="624" y="8" width="136" height="92" rx="10"/><text class="n" x="636" y="30">04</text><text class="t" x="636" y="52">Release checks</text><text class="s" x="636" y="72">all must pass before</text><text class="s" x="636" y="87">outputs are written</text></svg></figure>
+        <ul class="gr-nbs"><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/00_run_record.ipynb">00_run_record.ipynb</a><span>Run record: parameters, input checksums, software</span></li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/01_eligibility_zones.ipynb">01_eligibility_zones.ipynb</a><span>Exclusion reasons and candidate zones</span></li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/02_capacity_cost.ipynb">02_capacity_cost.ipynb</a><span>Capacity, yield, connection cost and LCOE</span></li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/03_grid_readiness.ipynb">03_grid_readiness.ipynb</a><span>Grid limits, allocation, supply curves, readiness and sensitivity</span></li><li><a href="https://github.com/seabilwe/geoready/blob/main/notebooks/04_qa_publish.ipynb">04_qa_publish.ipynb</a><span>Release checks, outputs, and loading the results into QGIS</span></li></ul>
 
-      <section aria-labelledby="gr-cost">
-        <div class="head"><div><h2 id="gr-cost">Is the cost believable?</h2></div></div>
-        <div class="prose">
-          <p>The levelised cost uses sourced assumptions in real 2025 rand: plant CAPEX anchored on IRENA's 2024 cost data, Eskom's line and substation building blocks for connection, and the IRP's 8.2% real discount rate. The <b>low case</b> lands near the prices REIPPPP Bid Window 7 solar projects bid (R500–514/MWh, median R537 here). The <b>base case</b> is higher (median R847), because it assumes fixed panels, where new plants track the sun, and cautious CAPEX. Read the cost axis as relative: which zones are cheaper is more robust than the rand level.</p>
-        </div>
-      </section>
-
-      <section aria-labelledby="gr-qa">
-        <div class="head"><div><h2 id="gr-qa">Release gate for this run</h2><p>The checks from the GeoHub implementation guide, run by notebook 04 before any output is written.</p></div></div>
-        <div class="prose"><ul class="gr-qa"><li class="">Mandatory exclusions (grid) <small>0 eligible cells touch protected areas</small></li><li class="">Mandatory exclusions <small>overlap 0.0000 km² (tolerance 0.01)</small></li><li class="">Grid allocation (published) <small>all limits respected</small></li><li class="">Grid allocation (strengthened) <small>all limits respected</small></li><li class="">Grid allocation (unconstrained) <small>all limits respected</small></li><li class="">Unknown grid explicit <small>0 zones behind unknown headroom</small></li><li class="">Units and totals <small>max difference 5.68e-14 MW</small></li><li class="">Readiness weights <small>sum 1.000</small></li><li class="">Unit tests <small>59 passed in 1.00s</small></li></ul></div>
-      </section>
-
-      <section aria-labelledby="gr-limits">
-        <div class="head"><div><h2 id="gr-limits">What this is not, and its limits</h2></div></div>
-        <div class="prose">
-          <ul>
-            <li><b>A screening, not a permit or a feasibility study.</b> A readiness score is not an environmental authorisation, land entitlement, engineering design or bankable study.</li>
-            <li><b>Grid headroom is a dated public assessment.</b> GCCA 2025 limits are indicative, not connection offers. They are shared with projects outside the province, which are not modelled, so every allocation is an upper bound. Upstream limits beyond the supply area are not captured.</li>
-            <li><b>Distances are straight lines</b> to the nearest ≥132&nbsp;kV substation in OpenStreetMap, scaled by a route factor; real routes are longer and substations may be missing.</li>
-            <li><b>Thresholds are choices.</b> The 50&nbsp;km cap, the 15° slope limit and the 10% land-use factor are editable in the config; only protected areas are treated as a legal bar. How the province's land splits, by reason: <ul><li><b>Eligible:</b> 183,874 km² (49%)</li><li><b>Protected area (legal):</b> 20,488 km² (5%)</li><li><b>Incompatible land cover:</b> 6,688 km² (2%)</li><li><b>Too steep:</b> 6,110 km² (2%)</li><li><b>Weak solar resource:</b> 4,827 km² (1%)</li><li><b>Too far from a substation:</b> 150,906 km² (40%)</li></ul></li>
-            <li><b>Not yet reviewed.</b> The cost and capacity assumptions still need review by a renewable-energy engineer and a grid planner, as the implementation guide asks. This page is a preview.</li>
-          </ul>
-        </div>
-      </section>
-
-      <section aria-labelledby="gr-src">
-        <div class="head"><div><h2 id="gr-src">Data</h2></div></div>
-        <div class="prose">
+        <details class="gr-more">
+          <summary>How cost is estimated, and how it compares</summary>
+          <p>Levelised cost in real 2025 rand, from plant CAPEX anchored on IRENA's 2024 cost data, Eskom's line and substation building blocks for the connection, and the 8.2% real discount rate used in the IRP. The low case (median R537/MWh) lands near the R500–514/MWh that Bid Window 7 solar projects bid. The base case (median R847) is higher because it assumes fixed panels, where new plants track the sun, and cautious CAPEX. Read the cost as relative: which zones are cheaper holds better than the rand figure.</p>
+        </details>
+        <details class="gr-more">
+          <summary>Release checks for this run</summary>
+          <ul class="gr-qa"><li class="ok"><span>Mandatory exclusions (grid)</span><small>0 eligible cells touch protected areas</small></li><li class="ok"><span>Mandatory exclusions</span><small>overlap 0.0000 km² (tolerance 0.01)</small></li><li class="ok"><span>Grid allocation (published)</span><small>all limits respected</small></li><li class="ok"><span>Grid allocation (strengthened)</span><small>all limits respected</small></li><li class="ok"><span>Grid allocation (unconstrained)</span><small>all limits respected</small></li><li class="ok"><span>Unknown grid explicit</span><small>0 zones behind unknown headroom</small></li><li class="ok"><span>Units and totals</span><small>max difference 5.68e-14 MW</small></li><li class="ok"><span>Readiness weights</span><small>sum 1.000</small></li><li class="ok"><span>Unit tests</span><small>59 passed in 1.10s</small></li></ul>
+          <p class="gr-small">Run <code>2026-11-26_nc-pv-v01_3d5fc633</code>, model version 0.1.0.</p>
+        </details>
+        <details class="gr-more">
+          <summary>Data and sources</summary>
           <ul>
             <li>Global Solar Atlas 2.0 PVOUT, World Bank Group and Solargis (CC BY 4.0).</li>
             <li>Copernicus DEM GLO-90 (© DLR e.V. 2010–2014 and © Airbus 2014–2018, provided under Copernicus by the European Union and ESA).</li>
@@ -175,8 +160,18 @@
             <li>Substations: © OpenStreetMap contributors (ODbL). Boundaries: geoBoundaries (CC BY 4.0).</li>
             <li>Costs: IRENA (2025) Renewable Power Generation Costs in 2024; Eskom 240-104073096 sub-transmission building blocks; Stats SA CPI; NREL ATB; IRP 2019; REIPPPP Bid Window 7 results. Land use: Bolinger and Bolinger (2022), IEEE Journal of Photovoltaics.</li>
           </ul>
-        </div>
-        <p><a class="btn btn-solid" href="https://github.com/seabilwe/geoready">Code and notebooks on GitHub</a> <a class="btn btn-line" href="models.html">Back to models</a></p>
+        </details>
+      </section>
+
+      <section class="gr-limits" aria-labelledby="gr-lh">
+        <h2 id="gr-lh">What this is not</h2>
+        <ul>
+          <li><b>Not a permit or a feasibility study.</b> A readiness score is not an environmental authorisation, a land right, an engineering design or a bankable study.</li>
+          <li><b>Not a connection offer.</b> GCCA 2025 limits are indicative and dated. They are shared with projects outside the province, which are not modelled, so every allocation is an upper bound.</li>
+          <li><b>Distances are straight lines</b> to the nearest substation of 132&nbsp;kV or more in OpenStreetMap, scaled up for routing; some substations may be missing.</li>
+          <li><b>Thresholds are choices.</b> The 50&nbsp;km cap, the 15° slope limit and the 10% land-use factor can be changed in the settings file; only protected areas are treated as off-limits by law. The province by reason:<ul><li>Eligible: 183,874&nbsp;km² (49%)</li><li>Protected area (legal): 20,488&nbsp;km² (5%)</li><li>Incompatible land cover: 6,688&nbsp;km² (2%)</li><li>Too steep: 6,110&nbsp;km² (2%)</li><li>Weak solar resource: 4,827&nbsp;km² (1%)</li><li>Too far from a substation: 150,906&nbsp;km² (40%)</li></ul></li>
+        </ul>
+        <p class="gr-actions"><a class="btn btn-solid" href="https://github.com/seabilwe/geoready">Code and notebooks on GitHub</a> <a class="btn btn-line" href="models.html">Back to models</a></p>
       </section>
       <footer>
         <div class="foot">
@@ -189,6 +184,6 @@
 </div>
 <script src="assets/js/site.js"></script>
 <script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
-<script src="assets/js/geoready.js?v=20261126a"></script>
+<script src="assets/js/geoready.js?v=20261126c"></script>
 </body>
 </html>
