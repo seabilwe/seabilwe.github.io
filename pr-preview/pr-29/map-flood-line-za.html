@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>FLOOD-LINE ZA: where Gauteng floods, and who lives there, Seabilwe Tilodi</title>
+<meta name="description" content="An interactive 3D map of low-lying land along Gauteng's streams: floods reported since 2016 and the rain behind them, building on low ground since 1975, and the people, buildings, roads and facilities exposed today.">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;1,500&family=Alegreya+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Kalam:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/site.css?v=20261114c">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="assets/css/story-map.css?v=20261120c">
+<link rel="stylesheet" href="assets/css/urban-edge.css?v=20261123b">
+<link rel="stylesheet" href="assets/css/flood-line.css?v=20261123d">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-row">
+    <a class="lockup" href="index.html"><img src="assets/img/logo-mark.svg" alt=""><span>Seabilwe Tilodi</span></a>
+    <details>
+      <summary>Menu</summary>
+      <nav class="nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="work.html">Work</a></li><li><a href="skills.html">Skills</a></li><li><a href="blogs.html">Writing &amp; maps</a></li><li><a href="models.html">Models</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    </details>
+  </div>
+</header>
+
+<div class="shell">
+  <aside class="sidebar">
+    <a class="sidebar-mark" href="index.html" aria-label="Home"><img src="assets/img/logo-mark.svg" alt=""></a>
+    <div class="who">
+      <h2>Seabilwe Tilodi</h2>
+      <p class="who-words"><span>Data</span><i>●</i><span>Connection</span><i>●</i><span>Knowledge</span></p>
+    </div>
+    <nav class="nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="work.html">Work</a></li><li><a href="skills.html">Skills</a></li><li><a href="blogs.html">Writing &amp; maps</a></li><li><a href="models.html">Models</a></li><li><a href="contact.html">Contact</a></li></ul></nav>
+    <p class="status">Open to new roles and project work</p>
+    <div class="social">
+      <a href="https://www.linkedin.com/in/seabilwe-tilodi-01b779140/" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg></a>
+      <a href="https://github.com/seabilwe" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4 1.3-4-2-6-2.5M15 21v-3.5a3 3 0 0 0-.9-2.4c2.9-.3 6-1.4 6-6.4a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.5s-1.1-.3-3.6 1.4a12.3 12.3 0 0 0-6.4 0C6.1 1.4 5 1.7 5 1.7a4.6 4.6 0 0 0-.1 3.5 5 5 0 0 0-1.4 3.5c0 5 3.1 6.1 6 6.4a3 3 0 0 0-.9 2.4V21"/></svg></a>
+      <a href="mailto:seabilwetilodi@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+  </aside>
+
+  <main>
+    <div class="wrap">
+
+      <header class="page-head">
+        <p class="topic"><a href="blogs.html#maps">Maps and visualisations</a></p>
+        <h1>FLOOD-LINE ZA: where Gauteng floods, and who lives there</h1>
+        <p class="lede">Low-lying land along Gauteng's streams, the floods reported on it since 2016, how much building has spread onto it since 1975, and the people, homes, roads and clinics that sit on it today. Switch on 3D to see the valleys.</p>
+        <ul class="ue-meta">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Reported floods</b> 2016–2026 · <b>growth</b> 1975–2020</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg><span><b>Low-lying land</b> from a 30&nbsp;m bare-earth terrain model</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span><b>Study area</b> Gauteng, with Johannesburg in detail</span></li>
+        </ul>
+      </header>
+
+      <section aria-labelledby="fl-explore">
+        <h2 id="fl-explore" class="vh">Explore the map</h2>
+        <div class="ue-root fl-root" data-flood-line data-base="assets/maps/flood-line-za/" data-mode="events">
+          <div class="ue-dash">
+            <div class="ue-card ue-mapcard">
+              <div class="ue-bar">
+                <label for="fl-area" class="vh">Municipality</label>
+                <select id="fl-area" class="ue-area fl-area"><option value="Gauteng">All of Gauteng</option><option value="Johannesburg">Johannesburg</option><option value="Tshwane">Tshwane</option><option value="Ekurhuleni">Ekurhuleni</option><option value="Emfuleni">Emfuleni</option><option value="Lesedi">Lesedi</option><option value="Merafong City">Merafong City</option><option value="Midvaal">Midvaal</option><option value="Mogale City">Mogale City</option><option value="Rand West City">Rand West City</option></select>
+                <div class="ue-seg fl-mode" role="group" aria-label="View">
+                  <button type="button" data-mode="events" aria-pressed="true">Floods</button>
+                  <button type="button" data-mode="growth" aria-pressed="false">Growth</button>
+                  <button type="button" data-mode="exposure" aria-pressed="false">Exposure</button>
+                </div>
+                <span class="ue-spacer"></span>
+                <button type="button" class="ue-chip fl-jrc" aria-pressed="false">River model</button>
+                <button type="button" class="ue-chip fl-sat" aria-pressed="false">Satellite</button>
+                <button type="button" class="ue-chip fl-3d" aria-pressed="false">3D</button>
+              </div>
+              <div class="ue-mapwrap">
+                <div class="ue-map fl-map" tabindex="0" aria-label="Map of low-lying land in Gauteng. Click a flood report or a facility for details. Hold Ctrl and scroll to zoom."></div>
+                <div class="ue-legend fl-legend" aria-hidden="true"></div>
+                <label class="fl-exag-box">Height <input class="fl-exag" type="range" min="1" max="4" step="0.5" value="2" aria-label="Vertical exaggeration"><output class="fl-exag-v">×2</output></label>
+              </div>
+              <div class="ue-time fl-time">
+                <button type="button" class="ue-play fl-play" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg><span class="vh">Play</span></button>
+                <div class="fl-only-events fl-evnav"><button type="button" class="fl-prev" aria-label="Previous flood">&lsaquo;</button><button type="button" class="fl-next" aria-label="Next flood">&rsaquo;</button></div>
+                <div class="fl-only-events ue-track fl-ev-trackwrap"><div class="fl-ev-track"></div></div>
+                <output class="fl-only-events ue-year fl-ev-out" aria-live="polite">17 Nov 2026</output>
+                <button type="button" class="fl-only-growth ue-reset fl-reset" aria-label="Back to 1975"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5" fill="currentColor"/></svg></button>
+                <div class="fl-only-growth ue-track">
+                  <input class="ue-slider fl-slider" type="range" min="0" max="9" step="1" value="9" aria-label="Year">
+                  <div class="ue-ticks" aria-hidden="true"><span style="left:0.00%">1975</span><span style="left:11.11%">1980</span><span style="left:22.22%">1985</span><span style="left:33.33%">1990</span><span style="left:44.44%">1995</span><span style="left:55.56%">2000</span><span style="left:66.67%">2005</span><span style="left:77.78%">2010</span><span style="left:88.89%">2015</span><span style="left:100.00%">2020</span></div>
+                </div>
+                <output class="fl-only-growth ue-year fl-year" aria-live="polite">2020</output>
+                <p class="fl-only-exposure fl-jumps"><span>Fly to, in 3D:</span><button type="button" data-go="28.103,-26.103,15.2,-35">Alexandra</button><button type="button" data-go="27.888,-26.276,15,20">Kliptown</button><button type="button" data-go="27.862,-26.222,14.8,-10">Dobsonville</button><button type="button" data-go="28.012,-25.935,14.6,30">Diepsloot</button></p>
+                <p class="ue-time-note fl-only-events"><i aria-hidden="true"></i>Each dot is a flood reported in the news or by the City. Places are located at street, settlement or suburb level.</p>
+                <p class="ue-time-note fl-only-growth"><i aria-hidden="true"></i>Built-up land from GHSL; years between satellite observations are estimates.</p>
+                <p class="ue-time-note fl-only-exposure"><i aria-hidden="true"></i>Wards show the share of residents on low-lying land; click one for its numbers. Zoom in for buildings (Johannesburg only).</p>
+              </div>
+            </div>
+
+            <div class="ue-side">
+              <div>
+                <p class="ue-area-name">All of Gauteng</p>
+                <div class="ue-tiles fl-tiles-a"></div>
+                <div class="ue-tiles ue-tiles-2 fl-tiles-b" style="margin-top:.5rem"></div>
+              </div>
+              <div class="ue-card ue-panel ue-chart fl-chart">
+                <div class="ue-panel-head"><h3>Rain around the flood</h3></div>
+                <svg viewBox="0 0 360 150" role="img"></svg>
+                <div class="ue-chart-foot"></div>
+              </div>
+              <div class="ue-card ue-panel fl-detail">
+                <div class="ue-panel-head"><h3>What was reported</h3><span class="fl-profile-tools" hidden><button type="button" class="fl-draw" aria-pressed="false">Draw a profile</button></span></div>
+                <div class="fl-detail-body"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ue-cards">
+          <div class="ue-card">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M5 20V10M12 20V4M19 20v-7"/></svg>Key takeaways</h3>
+            <ul>
+              <li>12% of Gauteng is low-lying land along its streams. Built-up land on it grew from 60 to 147&nbsp;km² between 1975 and 2020, ×2.4, while all built-up land grew ×2.0.</li>
+              <li>About 892,000 people, 5.8% of Gauteng's residents, live on low-lying land. In 62 of the province's 529 wards, more than a fifth of residents do.</li>
+              <li>In Johannesburg, 68,092 buildings, 884&nbsp;km of road, 27 schools and 9 clinics or hospitals sit on it.</li>
+              <li>6 of the 13 floods came on a day wetter than about 94% of wet-season days since 1998. Others did not: on 3 December 2022, when the Jukskei swept people away at a baptism, Johannesburg averaged only 3&nbsp;mm: whatever rain caused it was too local for a city-wide average to register.</li>
+              <li>70% of the better-located flood reports lie within 500&nbsp;m of the lowest class, against 35% of built-up Johannesburg. Only 6 of 54 reported places are near the global river model's 1-in-100-year flood zone.</li>
+            </ul>
+          </div>
+          <div class="ue-card">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></svg>Method</h3>
+            <p>Streams are traced over FABDEM, a bare-earth version of the Copernicus 30&nbsp;m elevation model, wherever at least 5&nbsp;km² drains through. Each cell's height above the stream it drains to is compared with a depth that grows with the stream's catchment (catchment<sup>0.3</sup>&nbsp;m: 1.6&nbsp;m for 5&nbsp;km², 4&nbsp;m for 100&nbsp;km²). The lowest class is within that depth; the low class within twice it.</p>
+            <p>These are screening classes, not flood lines: they mark ground that floodwater reaches first, not how often.</p>
+          </div>
+          <div class="ue-card">
+            <h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/></svg>Data and tools</h3>
+            <ul class="ue-tools">
+              <li><b>Data:</b> FABDEM, JRC GloFAS flood hazard, CHIRPS v3 rainfall, GHSL built-up land and population, Overture buildings, OpenStreetMap, news and City of Johannesburg reports</li>
+              <li><b>Tools:</b> QGIS with GRASS, Python with GDAL, NumPy and DuckDB, MapLibre GL with PMTiles, HTML, CSS and JavaScript</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="fl-low">
+        <div class="head"><div><h2 id="fl-low">Building on low ground</h2><p>Low ground was long avoided: in 1975 only 5% of Gauteng's built-up land was low-lying, against 12% of all land. That avoidance has weakened. 7.1% of the land built up since 1975 is low-lying, so building on low ground grew faster (×2.4) than building overall (×2.0). In most municipalities new building still avoids low ground; where the bars come close, it barely does.</p></div></div>
+        <figure class="ue-fig">
+          <ul class="ue-key"><li><i style="background:#C9CEBB"></i>Share of land that is low-lying</li><li><i style="background:#2F6F9A"></i>Share of land built up 1975–2020 that is low-lying</li></ul>
+          <svg viewBox="0 0 760 434" role="img" aria-labelledby="fl-f1t"><title id="fl-f1t">Share of land that is low-lying, and share of new built-up land 1975 to 2020 that is on it, by municipality</title><line x1="150.0" x2="150.0" y1="4" y2="410" class="rule"/><text x="150.0" y="428" text-anchor="middle" font-size="12" class="muted">0%</text><line x1="330.0" x2="330.0" y1="4" y2="410" class="rule"/><text x="330.0" y="428" text-anchor="middle" font-size="12" class="muted">10%</text><line x1="510.0" x2="510.0" y1="4" y2="410" class="rule"/><text x="510.0" y="428" text-anchor="middle" font-size="12" class="muted">20%</text><line x1="690.0" x2="690.0" y1="4" y2="410" class="rule"/><text x="690.0" y="428" text-anchor="middle" font-size="12" class="muted">30%</text><text x="138" y="25" text-anchor="end" font-size="14" font-weight="700">Gauteng</text><rect x="150" y="10" width="211.7" height="12" rx="2" fill="#C9CEBB"><title>Gauteng: 11.8% of land is low-lying</title></rect><rect x="150" y="24" width="128.2" height="12" rx="2" fill="#2F6F9A"><title>Gauteng: 7.1% of land built up 1975–2020 is low-lying</title></rect><text x="369.7" y="27" font-size="12.5" class="muted">12% · 7%</text><text x="138" y="65" text-anchor="end" font-size="14">Midvaal</text><rect x="150" y="50" width="255.2" height="12" rx="2" fill="#C9CEBB"><title>Midvaal: 14.2% of land is low-lying</title></rect><rect x="150" y="64" width="316.0" height="12" rx="2" fill="#2F6F9A"><title>Midvaal: 17.6% of land built up 1975–2020 is low-lying</title></rect><text x="474.0" y="67" font-size="12.5" class="muted">14% · 18%</text><text x="138" y="105" text-anchor="end" font-size="14">Emfuleni</text><rect x="150" y="90" width="316.7" height="12" rx="2" fill="#C9CEBB"><title>Emfuleni: 17.6% of land is low-lying</title></rect><rect x="150" y="104" width="262.4" height="12" rx="2" fill="#2F6F9A"><title>Emfuleni: 14.6% of land built up 1975–2020 is low-lying</title></rect><text x="474.7" y="107" font-size="12.5" class="muted">18% · 15%</text><text x="138" y="145" text-anchor="end" font-size="14">Merafong City</text><rect x="150" y="130" width="261.1" height="12" rx="2" fill="#C9CEBB"><title>Merafong City: 14.5% of land is low-lying</title></rect><rect x="150" y="144" width="255.3" height="12" rx="2" fill="#2F6F9A"><title>Merafong City: 14.2% of land built up 1975–2020 is low-lying</title></rect><text x="419.1" y="147" font-size="12.5" class="muted">15% · 14%</text><text x="138" y="185" text-anchor="end" font-size="14">Lesedi</text><rect x="150" y="170" width="240.5" height="12" rx="2" fill="#C9CEBB"><title>Lesedi: 13.4% of land is low-lying</title></rect><rect x="150" y="184" width="195.9" height="12" rx="2" fill="#2F6F9A"><title>Lesedi: 10.9% of land built up 1975–2020 is low-lying</title></rect><text x="398.5" y="187" font-size="12.5" class="muted">13% · 11%</text><text x="138" y="225" text-anchor="end" font-size="14">Tshwane</text><rect x="150" y="210" width="193.0" height="12" rx="2" fill="#C9CEBB"><title>Tshwane: 10.7% of land is low-lying</title></rect><rect x="150" y="224" width="129.7" height="12" rx="2" fill="#2F6F9A"><title>Tshwane: 7.2% of land built up 1975–2020 is low-lying</title></rect><text x="351.0" y="227" font-size="12.5" class="muted">11% · 7%</text><text x="138" y="265" text-anchor="end" font-size="14">Ekurhuleni</text><rect x="150" y="250" width="226.2" height="12" rx="2" fill="#C9CEBB"><title>Ekurhuleni: 12.6% of land is low-lying</title></rect><rect x="150" y="264" width="114.1" height="12" rx="2" fill="#2F6F9A"><title>Ekurhuleni: 6.3% of land built up 1975–2020 is low-lying</title></rect><text x="384.2" y="267" font-size="12.5" class="muted">13% · 6%</text><text x="138" y="305" text-anchor="end" font-size="14">Mogale City</text><rect x="150" y="290" width="133.9" height="12" rx="2" fill="#C9CEBB"><title>Mogale City: 7.4% of land is low-lying</title></rect><rect x="150" y="304" width="91.6" height="12" rx="2" fill="#2F6F9A"><title>Mogale City: 5.1% of land built up 1975–2020 is low-lying</title></rect><text x="291.9" y="307" font-size="12.5" class="muted">7% · 5%</text><text x="138" y="345" text-anchor="end" font-size="14">Johannesburg</text><rect x="150" y="330" width="159.9" height="12" rx="2" fill="#C9CEBB"><title>Johannesburg: 8.9% of land is low-lying</title></rect><rect x="150" y="344" width="89.7" height="12" rx="2" fill="#2F6F9A"><title>Johannesburg: 5.0% of land built up 1975–2020 is low-lying</title></rect><text x="317.9" y="347" font-size="12.5" class="muted">9% · 5%</text><text x="138" y="385" text-anchor="end" font-size="14">Rand West City</text><rect x="150" y="370" width="193.4" height="12" rx="2" fill="#C9CEBB"><title>Rand West City: 10.7% of land is low-lying</title></rect><rect x="150" y="384" width="89.4" height="12" rx="2" fill="#2F6F9A"><title>Rand West City: 5.0% of land built up 1975–2020 is low-lying</title></rect><text x="351.4" y="387" font-size="12.5" class="muted">11% · 5%</text></svg>
+          <figcaption>Low-lying: both classes. Built-up land: GHSL, 100&nbsp;m, where a fifth of the hectare is under buildings. On the flat plains of Merafong, Midvaal and the Vaal, a few metres above the stream covers wide ground, so their shares are high.</figcaption>
+        </figure>
+      </section>
+
+      <section aria-labelledby="fl-check">
+        <div class="head"><div><h2 id="fl-check">Do reported floods fall where the map says?</h2><p>Mostly near it. Reports cluster along the larger streams (the Jukskei and the Klipspruit), and near the lowest class far more than built-up Johannesburg does as a whole. Many reports are placed at a suburb's centre, which blurs the test, so the better-located reports (streets, settlements and facilities) are shown separately.</p></div></div>
+        <figure class="ue-fig"><svg viewBox="0 0 760 230" role="img" aria-labelledby="fl-f2t"><title id="fl-f2t">How often reported flood places sit near low-lying land and larger streams, against built-up Johannesburg as a whole</title><text x="20" y="20" font-size="14.5" font-weight="700">Within 500 m of the lowest class</text><rect x="20" y="30" width="476.0" height="18" rx="3" fill="#A33B2B"><title>Better-located reports: 70%</title></rect><text x="504.0" y="44" font-size="13">70% · Better-located reports</text><rect x="20" y="54" width="353.6" height="18" rx="3" fill="#D49A8E"><title>All reports: 52%</title></rect><text x="381.6" y="68" font-size="13">52% · All reports</text><rect x="20" y="78" width="238.0" height="18" rx="3" fill="#C9CEBB"><title>Built-up Johannesburg: 35%</title></rect><text x="266.0" y="92" font-size="13">35% · Built-up Johannesburg</text><text x="20" y="130" font-size="14.5" font-weight="700">Within 1 km of a stream draining 50 km² or more</text><rect x="20" y="140" width="387.6" height="18" rx="3" fill="#A33B2B"><title>Better-located reports: 57%</title></rect><text x="415.6" y="154" font-size="13">57% · Better-located reports</text><rect x="20" y="164" width="238.0" height="18" rx="3" fill="#D49A8E"><title>All reports: 35%</title></rect><text x="266.0" y="178" font-size="13">35% · All reports</text><rect x="20" y="188" width="108.8" height="18" rx="3" fill="#C9CEBB"><title>Built-up Johannesburg: 16%</title></rect><text x="136.8" y="202" font-size="13">16% · Built-up Johannesburg</text></svg><figcaption>54 reported flood places, 2016–2026, of which 23 are located at street, settlement, river-reach or facility level. Built-up Johannesburg: 4,000 random points on GHSL built-up land.</figcaption></figure>
+      </section>
+
+      <section aria-labelledby="fl-limits">
+        <div class="head"><div><h2 id="fl-limits">Checking the data, and its limits</h2></div></div>
+        <div class="prose">
+          <ul>
+            <li><b>The global river model misses most of it.</b> The JRC model works at about 90&nbsp;m on larger rivers. Only 6 of the 54 reported places are within 500&nbsp;m of its 1-in-100-year zone, and some of those are next to dams. Use the <b>River model</b> button to compare.</li>
+            <li><b>Street flooding is invisible at 30&nbsp;m.</b> Hollows where stormwater ponds were tested and dropped: none of the reported places is within 500&nbsp;m of one. Blocked drains and culverts cause much of the flooding in Soweto and cannot be seen in terrain data.</li>
+            <li><b>Reports are uneven.</b> Floods in places the media covers are more likely to be reported, and no report does not mean no flood. Places were geocoded with OpenStreetMap; many are suburb centres, not the flooded street.</li>
+            <li><b>Low-lying is not the same as risk.</b> The classes are a screening of terrain. Stormwater pipes, canals and recent works are not modelled, and nothing here estimates how often a place floods or the damage it would cause.</li>
+            <li><b>Buildings and heights.</b> Footprints come from Overture Maps (mostly Google and Microsoft footprints, plus OpenStreetMap); heights in the 3D view are GHSL's average building height per hectare, so they are estimates. Facility counts depend on how complete OpenStreetMap is.</li>
+            <li><b>Exposure, not vulnerability.</b> The ward map counts who lives on low-lying land (GHS-POP 2020, which spreads census counts over built-up land). It does not yet weigh how well people can cope: housing, services and age from Census 2022 ward tables would add that.</li>
+            <li><b>Rainfall.</b> CHIRPS v3 blends satellite and gauge rain at about 5&nbsp;km, with daily timing from NASA's IMERG; a thunderstorm cell can be smaller than that, and the chart averages it over all of Johannesburg. Days up to October 2026 come from Earth Engine's copy of CHIRPS v3, checked against the Climate Hazards Center's own files (they agree to within 0.02&nbsp;mm a day on average); November 2026 values are preliminary, and a few November days are still missing.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section aria-labelledby="fl-src">
+        <div class="head"><div><h2 id="fl-src">Data</h2></div></div>
+        <div class="prose">
+          <ul>
+            <li>FABDEM v1-2, 30&nbsp;m bare-earth elevation (Hawker et al. 2022), University of Bristol (CC BY-NC-SA 4.0).</li>
+            <li>GloFAS global river flood hazard maps v2.1 (Baugh et al. 2024), European Commission, Joint Research Centre.</li>
+            <li>CHIRPS v3 daily rainfall (Funk et al.), Climate Hazards Center, UC Santa Barbara.</li>
+            <li>GHS-BUILT-S, GHS-POP and GHS-BUILT-H R2023A, European Commission, Joint Research Centre.</li>
+            <li>Buildings: Overture Maps Foundation, release 2026-11-18 (ODbL and CDLA Permissive 2.0). Roads, schools, clinics and places: © OpenStreetMap contributors (ODbL).</li>
+            <li>Flood reports: SAnews, City of Johannesburg media statements, TimesLIVE, SowetanLIVE, News24, Daily Maverick, EWN, The Citizen, SABC, GroundUp, Al Jazeera and IFRC; every report on the map links to its source.</li>
+            <li>Ward boundaries (2020) and municipal boundaries: Municipal Demarcation Board; municipal boundaries via geoBoundaries (CC BY 4.0).</li>
+          </ul>
+        </div>
+        <p><a class="btn btn-solid" href="https://github.com/seabilwe/flood-line-za">Code on GitHub</a> <a class="btn btn-line" href="blogs.html#maps">Back to the gallery</a></p>
+      </section>
+      <footer>
+        <div class="foot">
+          <p>&copy; <span data-year>2026</span> Seabilwe P.L. Tilodi<br><a href="mailto:seabilwetilodi@gmail.com">seabilwetilodi@gmail.com</a></p>
+          <nav aria-label="Footer"><a href="index.html">Home</a><a href="about.html">About</a><a href="work.html">Work</a><a href="skills.html">Skills</a><a href="blogs.html">Writing &amp; maps</a><a href="models.html">Models</a><a href="contact.html">Contact</a><a href="license.html">License</a></nav>
+        </div>
+      </footer>
+    </div>
+  </main>
+</div>
+<script src="assets/js/site.js"></script>
+<script src="https://unpkg.com/maplibre-gl@5.24.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@4.5.0/dist/pmtiles.js"></script>
+<script src="assets/js/flood-line.js?v=20261123d"></script>
+</body>
+</html>
