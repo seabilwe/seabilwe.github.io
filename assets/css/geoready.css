@@ -1,0 +1,57 @@
+/* GeoReady page: builds on urban-edge.css (ue-*) */
+.gr-badge{display:inline-block;margin-left:.5rem;padding:.1rem .55rem;border-radius:var(--radius-pill);background:var(--sand,#E9DFC9);color:var(--ink);font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+.gr-root .ue-map{height:clamp(360px,calc(100vh - 260px),600px)}
+.gr-legend{min-width:9.5rem}
+.gr-legend i.gr-out{background:transparent;border:1.6px solid var(--ink)}
+.gr-chart svg{overflow:visible}
+.gr-band{fill:#C9CEBB;opacity:.75}
+.gr-band-t{font-size:10px;fill:var(--ink-soft);font-family:var(--sans)}
+.gr-zero{font-family:var(--serif);font-size:19px;fill:var(--ink)}
+.gr-area{fill:#A0673A;opacity:.85}
+.gr-step{cursor:pointer;outline:none}
+.gr-step rect{fill:#A0673A}
+.gr-step:hover rect,.gr-step:focus rect{fill:#6B3F22}
+.gr-step.on rect{fill:#A33B2B}
+.gr-wh{stroke:var(--ink);stroke-width:1;opacity:.55}
+.gr-hint{margin:.2rem 0;color:var(--ink-soft);font-size:.92rem}
+.gr-zone{margin:0 0 .3rem;font-size:.92rem}
+.gr-score{display:flex;align-items:baseline;justify-content:space-between;margin:.1rem 0 .45rem;border-bottom:1px solid var(--rule);padding-bottom:.3rem}
+.gr-score span{font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+.gr-score b{font-family:var(--serif);font-weight:500;font-size:1.6rem;color:var(--contour-deep)}
+.gr-crit{display:grid;grid-template-columns:9.5rem minmax(0,1fr) 2.4rem;align-items:center;gap:.5rem;font-size:.85rem;margin:.18rem 0}
+.gr-crit small{color:var(--ink-soft)}
+.gr-crit i{display:block;height:9px;background:#ECEAE2;border-radius:2px;overflow:hidden}
+.gr-crit i b{display:block;height:100%;background:#A0673A;border-radius:2px}
+.gr-crit em{font-style:normal;text-align:right;font-variant-numeric:tabular-nums}
+.gr-facts{display:grid;grid-template-columns:1fr 1fr;gap:.25rem .8rem;margin:.55rem 0 .4rem;font-size:.84rem}
+.gr-facts dt{color:var(--ink-soft)}
+.gr-facts dd{margin:0;font-variant-numeric:tabular-nums}
+.gr-bind{margin:.3rem 0 0;font-size:.85rem;padding:.4rem .55rem;background:var(--paper-2);border-radius:var(--radius-sm)}
+.gr-flow{display:block;width:100%;height:auto;margin:.4rem 0}
+.gr-flow .box{fill:var(--sheet);stroke:var(--rule);stroke-width:1.2}
+.gr-flow .gate{fill:#F1E8D6;stroke:#A0673A;stroke-width:1.4}
+.gr-flow text{font-family:var(--sans);fill:var(--ink)}
+.gr-flow .t{font-size:14px;font-weight:600}
+.gr-flow .s{font-size:12px;fill:var(--ink-soft)}
+.gr-flow .arr{stroke:var(--ink);stroke-width:1.4;fill:none;marker-end:url(#gr-ah)}
+.gr-table{width:100%;border-collapse:collapse;font-size:.9rem;font-variant-numeric:tabular-nums}
+.gr-table th,.gr-table td{padding:.4rem .5rem;border-bottom:1px solid var(--rule);text-align:right}
+.gr-table th:first-child,.gr-table td:first-child,.gr-table th:nth-child(2),.gr-table td:nth-child(2){text-align:left}
+.gr-table th{font-weight:500;color:var(--ink-soft);font-size:.82rem}
+.gr-qa{list-style:none;padding:0;margin:.4rem 0;display:grid;gap:.3rem}
+.gr-qa li{display:flex;gap:.55rem;align-items:baseline}
+.gr-qa li::before{content:"✓";color:#4F7A3E;font-weight:700}
+.gr-qa li.no::before{content:"✕";color:#A33B2B}
+.gr-qa small{color:var(--ink-soft)}
+.gr-nbs{list-style:none;padding:0;margin:.3rem 0;display:grid;gap:.35rem}
+.gr-nbs a{font-family:var(--mono,ui-monospace,monospace);font-size:.88rem}
+@media (max-width:900px){.gr-crit{grid-template-columns:8rem minmax(0,1fr) 2.2rem}}
+.gr-soon{box-shadow:none;background:var(--paper-2)}
+.gr-soon .map-card-thumb{opacity:.6}
+.gr-soon h3{color:var(--ink-soft)}
+.gr-chart-foot i.gr-bid{width:14px;height:6px;border-radius:1px;background:#C9CEBB}
+.prose .gr-qa li{padding-left:0}
+.prose .gr-qa li::before{content:"✓";position:static;width:auto;height:auto;background:none;transform:none;color:#4F7A3E;font-weight:700}
+.prose .gr-qa li.no::before{content:"✕";color:#A33B2B}
+.gr-leg-ex span{display:flex;align-items:center;gap:.4rem}
+@media (max-width:700px){.gr-legend{font-size:.72rem;min-width:0;max-width:52%;padding:.3rem .45rem}.gr-leg-ex{display:none}}
